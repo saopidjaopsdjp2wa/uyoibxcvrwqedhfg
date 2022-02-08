@@ -2030,22 +2030,18 @@ do
         Tab:AddLabel("Hello World!")
  
         Tab:AddButton("Button", function()
-            print("Button clicked.")
         end)
  
         Tab:AddTextBox("TextBox", function(text)
-            print(text)
         end, {
             ["clear"] = false, 
         })
  
         local Switch = Tab:AddSwitch("Switch", function(bool)
-            print(bool)
         end)
         Switch:Set(true)
  
         local Slider = Tab:AddSlider("Slider", function(x)
-            print(x)
         end, {
             ["min"] = 0, 
             ["max"] = 100, 
@@ -2059,7 +2055,6 @@ do
         })
  
         local Dropdown = Tab:AddDropdown("Dropdown", function(object)
-            print(object)
         end)
         for i = 1, 9 do
             Dropdown:Add(tostring(i))
@@ -2068,7 +2063,6 @@ do
         obj:Remove()
  
         local CP = Tab:AddColorPicker(function(color)
-            print(color)
         end)
         CP:Set(Color3.new(1, 0, 0))
  
@@ -2077,7 +2071,6 @@ do
             ["source"] = "Lua",
         })
         Console:Set("")
-        print(Console:Get())
  
         local HA = Tab:AddHorizontalAlignment()
         HA:AddButton("Execute", function()
@@ -2498,7 +2491,8 @@ pcall(function()
       end))
     end
   end)
-print("[hoodsense.cc] Executed version: 0.4 [BETA]")
-print("[hoodsense.cc] Join discord.gg/olifkaa")
-print("[hoodsense.cc] Made by ekso#0001 <@557595801682182147>")
-print("[hoodsense.cc] ========================================")
+print("_____________________HOODSENSE.CC________________________")
+print("| [hoodsense.cc] Executed version: 0.4 [BETA]           |")
+print("| [hoodsense.cc] Join discord.gg/olifkaa                |")
+print("| [hoodsense.cc] Made by ekso#0001 <@557595801682182147>|")
+print("_________________________________________________________")
