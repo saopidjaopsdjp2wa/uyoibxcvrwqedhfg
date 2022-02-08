@@ -1,6 +1,3 @@
---[[
-1.1                                                                                                                                                                 
---]]
 local ui_options = {
     main_color = Color3.fromRGB(41, 74, 122),
     min_size = Vector2.new(400, 300),
@@ -2102,7 +2099,7 @@ do
 end
  
 local Window = library:AddWindow("hoodsense.cc", {
-    main_color = Color3.fromRGB(10, 10, 10),
+    main_color = Color3.fromRGB(6, 112, 27),
     min_size = Vector2.new(450, 500),
     toggle_key = Enum.KeyCode.RightShift,
     can_resize = true,
@@ -2163,7 +2160,6 @@ game.StarterGui:SetCore("SendNotification", {
 })
  
 local ALTab = Window:AddTab("Silent Aimbot")
-local AimTab = Window:AddTab("AimLock")
 local ESPTab = Window:AddTab("Esp")
 local RCTab = Window:AddTab("Misc")
 local AnimTab = Window:AddTab("Anim")
@@ -2430,9 +2426,6 @@ end)
  
 ALTab:AddSwitch("Hit all Airshots", function(bool)
     Aiming.Airshots = true
-end)
- 
-AimTab:AddSwitch("Coming Soon", function(bool)
 end)
  
 function Aiming.Check()
