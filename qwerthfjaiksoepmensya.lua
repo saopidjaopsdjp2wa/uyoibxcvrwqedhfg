@@ -2492,7 +2492,7 @@ pcall(function()
     end
   end)
 print("_____________________HOODSENSE.CC________________________")
-print("| [hoodsense.cc] Executed version: 0.4 [BETA]           |")
+print("| [hoodsense.cc] Executed version: 1.0                  |")
 print("| [hoodsense.cc] Join discord.gg/olifkaa                |")
 print("| [hoodsense.cc] Made by ekso#0001 <@557595801682182147>|")
 print("_________________________________________________________")
