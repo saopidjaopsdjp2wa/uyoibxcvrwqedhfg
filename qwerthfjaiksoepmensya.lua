@@ -2500,7 +2500,7 @@ pcall(function()
       end))
     end
   end)
-print("[hoodsense.cc] Executed version: 0.4 [BETA]")
+print("[hoodsense.cc] Executed version: 1.0!")
 print("[hoodsense.cc] Join discord.gg/olifkaa")
 print("[hoodsense.cc] Made by ekso#0001 <@557595801682182147>")
 print("[hoodsense.cc] Last update was on 25.08.2022!")
