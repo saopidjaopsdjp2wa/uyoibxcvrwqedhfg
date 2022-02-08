@@ -2100,7 +2100,7 @@ end
  
 local Window = library:AddWindow("hoodsense.cc", {
     main_color = Color3.fromRGB(6, 112, 27),
-    min_size = Vector2.new(450, 500),
+    min_size = Vector2.new(385, 500),
     toggle_key = Enum.KeyCode.RightShift,
     can_resize = true,
 })
@@ -2500,7 +2500,7 @@ pcall(function()
       end))
     end
   end)
-print("[hoodsense.cc] Executed version: 0.1 [BETA]")
+print("[hoodsense.cc] Executed version: 0.4 [BETA]")
 print("[hoodsense.cc] Join discord.gg/olifkaa")
 print("[hoodsense.cc] Made by ekso#0001 <@557595801682182147>")
 print("[hoodsense.cc] Executed using github.com or source!")
