@@ -2027,10 +2027,10 @@ do
     local Tab = Window:AddTab("Tab 1")
  
     do 
-        Tab:AddLabel("")
+        Tab:AddLabel("Hello World!")
  
-        Tab:AddButton("", function()
-            print("")
+        Tab:AddButton("Button", function()
+            print("Button clicked.")
         end)
  
         Tab:AddTextBox("TextBox", function(text)
@@ -2080,17 +2080,17 @@ do
         print(Console:Get())
  
         local HA = Tab:AddHorizontalAlignment()
-        HA:AddButton("", function()
+        HA:AddButton("Execute", function()
             loadstring(Console:Get())()
         end)
-        HA:AddButton("", function()
+        HA:AddButton("Clear", function()
             Console:Set("")
         end)
  
         local Folder = Tab:AddFolder("Folder") 
-        Folder:AddLabel("")
-        local Folder2 = Folder:AddFolder("")
-        Folder2:AddLabel("")
+        Folder:AddLabel("Hello")
+        local Folder2 = Folder:AddFolder("?")
+        Folder2:AddLabel("Woo!")
  
     end
  
@@ -2498,6 +2498,7 @@ pcall(function()
       end))
     end
   end)
-print("[hoodsense.cc] Executed version: 1.0!")
-print("[hoodsense.cc] Join discord.gg/olifkaa!")
+print("[hoodsense.cc] Executed version: 0.4 [BETA]")
+print("[hoodsense.cc] Join discord.gg/olifkaa")
 print("[hoodsense.cc] Made by ekso#0001 <@557595801682182147>")
+print("[hoodsense.cc] ========================================")
