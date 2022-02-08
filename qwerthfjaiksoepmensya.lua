@@ -2027,10 +2027,10 @@ do
     local Tab = Window:AddTab("Tab 1")
  
     do 
-        Tab:AddLabel("Hello World!")
+        Tab:AddLabel("")
  
-        Tab:AddButton("Button", function()
-            print("Button clicked.")
+        Tab:AddButton("", function()
+            print("")
         end)
  
         Tab:AddTextBox("TextBox", function(text)
@@ -2080,17 +2080,17 @@ do
         print(Console:Get())
  
         local HA = Tab:AddHorizontalAlignment()
-        HA:AddButton("Execute", function()
+        HA:AddButton("", function()
             loadstring(Console:Get())()
         end)
-        HA:AddButton("Clear", function()
+        HA:AddButton("", function()
             Console:Set("")
         end)
  
         local Folder = Tab:AddFolder("Folder") 
-        Folder:AddLabel("Hello")
-        local Folder2 = Folder:AddFolder("?")
-        Folder2:AddLabel("Woo!")
+        Folder:AddLabel("")
+        local Folder2 = Folder:AddFolder("")
+        Folder2:AddLabel("")
  
     end
  
@@ -2105,8 +2105,8 @@ local Window = library:AddWindow("hoodsense.cc", {
     can_resize = true,
 })
  
-local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/Riheusz/hoodsense.ccESP/main/fov.lua"))()
-local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Riheusz/hoodsense.ccESP/main/ESP.lua"))()
+local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/Riheusz/holders/main/fov.lua"))()
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Riheusz/holders/main/esp.lua"))()
 ESP:Toggle(false)
 ESP.Tracers = false
 ESP.Names = false
@@ -2168,7 +2168,7 @@ local CreditTAB = Window:AddTab("Credits")
 
 local folder = AnimTab:AddFolder("Animations")
 folder:AddButton("Animations", function(bool)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Riheusz/hoodsense.ccESP/main/anims.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Riheusz/holders/main/anims.lua"))()
 end)
 
 
@@ -2327,11 +2327,9 @@ CreditTAB:AddButton("Join discord.gg/olifkaa!", function(bool)
     })
 end)
  
-RCTab:AddButton("Extras Gui", function(bool)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Riheusz/hoodsense.ccESP/main/fake.lua"))()
+RCTab:AddButton("Rejoin", function(bool)
+    loadstring(game:HttpGet("https://pastebin.com/raw/1gtVMUz3"))()
 end)
- 
-RCTab:AddLabel("Loads a new gui")
  
 RCTab:AddButton("Fly", function(bool)
     loadstring(game:HttpGet("https://pastebin.com/raw/5GWNQ1Ys"))()
@@ -2501,6 +2499,5 @@ pcall(function()
     end
   end)
 print("[hoodsense.cc] Executed version: 1.0!")
-print("[hoodsense.cc] Join discord.gg/olifkaa")
+print("[hoodsense.cc] Join discord.gg/olifkaa!")
 print("[hoodsense.cc] Made by ekso#0001 <@557595801682182147>")
-print("[hoodsense.cc] Last update was on 25.08.2022!")
