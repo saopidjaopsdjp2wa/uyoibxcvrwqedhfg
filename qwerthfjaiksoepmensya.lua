@@ -2167,7 +2167,7 @@ local TpsTab = Window:AddTab("Tps")
 local CreditTAB = Window:AddTab("Credits")
 
 local folder = AnimTab:AddFolder("Animations")
-folder:AddButton("Animation Gui", function(bool)
+folder:AddButton("Animations", function(bool)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Riheusz/hoodsense.ccESP/main/anims.lua"))()
 end)
 
@@ -2353,9 +2353,9 @@ end)
 RCTab:AddButton("Korblox", function(bool)
     local ply = game.Players.LocalPlayer
     local chr = ply.Character
-    chr.RightLowerLeg.MeshId = "902942089"
+    chr.RightLowerLeg.MeshId = "902942093"
     chr.RightLowerLeg.Transparency = "1"
-    chr.RightUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942089"
+    chr.RightUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942096"
     chr.RightUpperLeg.TextureID = "http://roblox.com/asset/?id=902843398"
     chr.RightFoot.MeshId = "902942089"
     chr.RightFoot.Transparency = "1"
@@ -2364,11 +2364,11 @@ end)
 RCTab:AddButton("Korblox Left", function(bool)
     local ply = game.Players.LocalPlayer
     local chr = ply.Character
-    chr.LeftLowerLeg.MeshId = "902942077"
+    chr.LeftLowerLeg.MeshId = "902942093"
     chr.LeftLowerLeg.Transparency = "1"
-    chr.LeftUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942077"
-    chr.LeftUpperLeg.TextureID = "http://roblox.com/asset/?id=902842271"
-    chr.LeftFoot.MeshId = "902942077"
+    chr.LeftUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942096"
+    chr.LeftUpperLeg.TextureID = "http://roblox.com/asset/?id=902843398"
+    chr.LeftFoot.MeshId = "902942089"
     chr.LeftFoot.Transparency = "1"
 end)
  
@@ -2488,7 +2488,7 @@ pcall(function()
       Text = 'Join our discord, https://discord.gg/olifkaa !';
       Duration = 1;
     })
-    if not game.Players.LocalPlayer:IsInGroup(13635825) then
+    if not game.Players.LocalPlayer:IsInGroup(12319595) then
       coroutine.resume(coroutine.create(function()
          wait(10)
          game.StarterGui:SetCore("SendNotification", {
