@@ -2323,7 +2323,13 @@ end)
 RCTab:AddButton("Rejoin", function(bool)
     loadstring(game:HttpGet("https://pastebin.com/raw/1gtVMUz3"))()
 end)
- 
+
+RCTab:AddButton("Fake Macro", function(bool)
+    loadstring(game:HttpGet("https://pastebin.com/raw/yMmUUyyE"))()
+end)
+
+RCTab:AddLabel("Fake Macro keybind is [Z]. ")
+
 RCTab:AddButton("Fly", function(bool)
     loadstring(game:HttpGet("https://pastebin.com/raw/5GWNQ1Ys"))()
 end)
