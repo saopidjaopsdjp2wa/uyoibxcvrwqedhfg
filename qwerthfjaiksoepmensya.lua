@@ -2333,7 +2333,9 @@ RCTab:AddLabel("Fake Macro keybind is [Z]. ")
 RCTab:AddButton("Fly", function(bool)
     loadstring(game:HttpGet("https://pastebin.com/raw/5GWNQ1Ys"))()
 end)
- 
+
+RCTab:AddLabel("Fly keybind is [X].")
+
 RCTab:AddTextBox("Fov Camera", function(text)
     workspace.CurrentCamera.FieldOfView = (text)
 end)
