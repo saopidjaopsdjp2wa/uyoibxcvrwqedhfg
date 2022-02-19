@@ -2146,8 +2146,8 @@ local bindableFunction= Instance.new("BindableFunction")
 game.StarterGui:SetCore("SendNotification", {
     Title = "hoodsense.cc";
     Text = "Welcome to hoodsense.cc!";
-    Icon = "BLANK";
-    Duration = "BLANK";
+    Icon = "http://www.roblox.com/asset/?id=8768441000";
+    Duration = "10";
     callbakc = bindableFunction;
     Button1 = "Okay!";
 })
@@ -2155,13 +2155,35 @@ game.StarterGui:SetCore("SendNotification", {
 local ALTab = Window:AddTab("Silent Aimbot")
 local ESPTab = Window:AddTab("Esp")
 local RCTab = Window:AddTab("Misc")
-local AnimTab = Window:AddTab("Anim")
+local AnimTab = Window:AddTab("Avatar")
 local TpsTab = Window:AddTab("Tps")
 local CreditTAB = Window:AddTab("Credits")
 
 local folder = AnimTab:AddFolder("Animations")
 folder:AddButton("Animations", function(bool)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Riheusz/holders/main/anims.lua"))()
+end)
+
+AnimTab:AddButton("Korblox", function(bool)
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.RightLowerLeg.MeshId = "902942093"
+    chr.RightLowerLeg.Transparency = "1"
+    chr.RightUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942096"
+    chr.RightUpperLeg.TextureID = "http://roblox.com/asset/?id=902843398"
+    chr.RightFoot.MeshId = "902942089"
+    chr.RightFoot.Transparency = "1"
+end)
+ 
+AnimTab:AddButton("Korblox Left", function(bool)
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.LeftLowerLeg.MeshId = "902942093"
+    chr.LeftLowerLeg.Transparency = "1"
+    chr.LeftUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942096"
+    chr.LeftUpperLeg.TextureID = "http://roblox.com/asset/?id=902843398"
+    chr.LeftFoot.MeshId = "902942089"
+    chr.LeftFoot.Transparency = "1"
 end)
 
 
@@ -2219,7 +2241,7 @@ folder:AddButton("Admin Food", function(bool)
 end)
  
 local folder2 = TpsTab:AddFolder("Locations")
-folder2:AddButton("Buy Armor", function(bool)
+folder2:AddButton("Buy High-Medium Armor", function(bool)
     local plr = game.Players.LocalPlayer
     local savedarmourpos = plr.Character.HumanoidRootPart.Position
     plr.Character.HumanoidRootPart.CFrame = CFrame.new(-938.476685, -25.2498264, 570.100159, -0.0353576206, 9.85617206e-08, -0.999374807, -2.69198441e-09, 1, 9.871858e-08, 0.999374807, 6.18077589e-09, -0.0353576206)
@@ -2289,7 +2311,7 @@ CreditTAB:AddButton("Made by ekso#0001", function(bool)
     game.StarterGui:SetCore("SendNotification", {
         Title = "hoodsense.cc";
         Text = "Discord Link Copied On Clipboard.";
-        Icon = "BLANK";
+        Icon = "http://www.roblox.com/asset/?id=8768441000";
         Duration = "BLANK";
         callbakc = bindableFunction;
         Button1 = "Okay!";
@@ -2312,8 +2334,8 @@ CreditTAB:AddButton("Join discord.gg/olifkaa!", function(bool)
     
     game.StarterGui:SetCore("SendNotification", {
         Title = "hoodsense.cc";
-        Text = "Discord Link Copied On Clipboard!";
-        Icon = "BLANK";
+        Text = "Discord thing copied to Clipboard!";
+        Icon = "http://www.roblox.com/asset/?id=8768441000";
         Duration = "BLANK";
         callbakc = bindableFunction;
         Button1 = "Okay!";
@@ -2361,28 +2383,6 @@ if (v:IsA("Decal")) then
 v:Destroy()
 end
 end
-end)
- 
-RCTab:AddButton("Korblox", function(bool)
-    local ply = game.Players.LocalPlayer
-    local chr = ply.Character
-    chr.RightLowerLeg.MeshId = "902942093"
-    chr.RightLowerLeg.Transparency = "1"
-    chr.RightUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942096"
-    chr.RightUpperLeg.TextureID = "http://roblox.com/asset/?id=902843398"
-    chr.RightFoot.MeshId = "902942089"
-    chr.RightFoot.Transparency = "1"
-end)
- 
-RCTab:AddButton("Korblox Left", function(bool)
-    local ply = game.Players.LocalPlayer
-    local chr = ply.Character
-    chr.LeftLowerLeg.MeshId = "902942093"
-    chr.LeftLowerLeg.Transparency = "1"
-    chr.LeftUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942096"
-    chr.LeftUpperLeg.TextureID = "http://roblox.com/asset/?id=902843398"
-    chr.LeftFoot.MeshId = "902942089"
-    chr.LeftFoot.Transparency = "1"
 end)
  
 ESPTab:AddSwitch("Enable ESP", function(bool)
@@ -2498,6 +2498,7 @@ end)
 pcall(function()
     game.StarterGui:SetCore("SendNotification", {
       Title = 'hoodsense.cc';
+	  Icon = "http://www.roblox.com/asset/?id=8768441000";
       Text = 'Join our discord, https://discord.gg/olifkaa !';
       Duration = 1;
     })
@@ -2506,6 +2507,7 @@ pcall(function()
          wait(10)
          game.StarterGui:SetCore("SendNotification", {
           Title = 'hoodsense.cc';
+		  Icon = "8768441000";
           Text = 'Our Discord link was copied to your clipboard.';
           Duration = 1;
          })
@@ -2514,7 +2516,7 @@ pcall(function()
     end
   end)
 print("_____________________HOODSENSE.CC________________________")
-print("| [hoodsense.cc] Executed version: 2.0                  |")
+print("| [hoodsense.cc] Executed version: 2.1                  |")
 print("| [hoodsense.cc] Join discord.gg/olifkaa                |")
 print("| [hoodsense.cc] Join us discord.gg/8XFRC2vKw6          |")
 print("| [hoodsense.cc] Made by ekso#0001 <@557595801682182147>|")
