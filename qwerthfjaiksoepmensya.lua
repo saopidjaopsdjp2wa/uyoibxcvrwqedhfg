@@ -1,7 +1,7 @@
 local ui_options = {
     main_color = Color3.fromRGB(41, 74, 122),
     min_size = Vector2.new(400, 300),
-    toggle_key = Enum.KeyCode.V,
+    toggle_key = Enum.KeyCode.RightShift,
     can_resize = false,
 }
  
@@ -2320,23 +2320,37 @@ CreditTAB:AddButton("Join discord.gg/olifkaa!", function(bool)
     })
 end)
  
-RCTab:AddButton("Rejoin", function(bool)
+RCTab:AddButton("Rejoin Server", function(bool)
     loadstring(game:HttpGet("https://pastebin.com/raw/1gtVMUz3"))()
 end)
+RCTab:AddLabel("Rejoins Server")
 
 RCTab:AddButton("Fake Macro", function(bool)
     loadstring(game:HttpGet("https://pastebin.com/raw/yMmUUyyE"))()
 end)
-
-RCTab:AddLabel("Fake Macro keybind is [Z]. ")
+RCTab:AddLabel("Loads Fake Macro [Z]")
 
 RCTab:AddButton("Fly", function(bool)
     loadstring(game:HttpGet("https://pastebin.com/raw/5GWNQ1Ys"))()
 end)
 
-RCTab:AddLabel("Fly keybind is [X].")
+RCTab:AddLabel("Loads Fly [X]")
 
-RCTab:AddTextBox("Fov Camera", function(text)
+        local Console = RCTab:AddConsole({
+            ["y"] = 100,
+            ["source"] = "Lua",
+        })
+        Console:Set("print(\"hoodsense.cc = win\")")
+        print(Console:Get())
+ 
+        local RC = RCTab:AddHorizontalAlignment()
+        RC:AddButton("Execute", function()
+            loadstring(Console:Get())()
+        end)
+        RC:AddButton("Clear", function()
+            Console:Set("")
+        end)
+RCTab:AddTextBox("Change Fov", function(text)
     workspace.CurrentCamera.FieldOfView = (text)
 end)
  
@@ -2500,7 +2514,8 @@ pcall(function()
     end
   end)
 print("_____________________HOODSENSE.CC________________________")
-print("| [hoodsense.cc] Executed version: 1.0                  |")
+print("| [hoodsense.cc] Executed version: 2.0                  |")
 print("| [hoodsense.cc] Join discord.gg/olifkaa                |")
+print("| [hoodsense.cc] Join us discord.gg/8XFRC2vKw6          |")
 print("| [hoodsense.cc] Made by ekso#0001 <@557595801682182147>|")
 print("_________________________________________________________")
