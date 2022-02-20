@@ -2164,6 +2164,15 @@ folder:AddButton("Animations", function(bool)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Riheusz/holders/main/anims.lua"))()
 end)
 
+AnimTab:AddButton("Headless", function(bool)
+game.Players.LocalPlayer.Character.Head.Transparency = 1
+for i,v in pairs(game.Players.LocalPlayer.Character.Head:GetChildren()) do
+if (v:IsA("Decal")) then
+v:Destroy()
+end
+end
+end)
+
 AnimTab:AddButton("Korblox", function(bool)
     local ply = game.Players.LocalPlayer
     local chr = ply.Character
@@ -2376,15 +2385,6 @@ RCTab:AddTextBox("Change Fov", function(text)
     workspace.CurrentCamera.FieldOfView = (text)
 end)
  
-RCTab:AddButton("Headless", function(bool)
-game.Players.LocalPlayer.Character.Head.Transparency = 1
-for i,v in pairs(game.Players.LocalPlayer.Character.Head:GetChildren()) do
-if (v:IsA("Decal")) then
-v:Destroy()
-end
-end
-end)
- 
 ESPTab:AddSwitch("Enable ESP", function(bool)
     ESP:Toggle(bool)
 end)
@@ -2516,7 +2516,7 @@ pcall(function()
     end
   end)
 print("_____________________HOODSENSE.CC________________________")
-print("| [hoodsense.cc] Executed version: 2.1                  |")
+print("| [hoodsense.cc] Executed version: 2.3                  |")
 print("| [hoodsense.cc] Join discord.gg/olifkaa                |")
 print("| [hoodsense.cc] Join us discord.gg/8XFRC2vKw6          |")
 print("| [hoodsense.cc] Made by ekso#0001 <@557595801682182147>|")
