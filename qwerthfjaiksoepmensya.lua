@@ -2304,8 +2304,8 @@ folder2:AddButton("School Roof", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-525.353455, 68.125, 311.824402, 0.999992013, 1.03866675e-08, -0.00399552286, -1.03507425e-08, 1, 9.01170427e-09, 0.00399552286, -8.97027519e-09, 0.999992013)
 end)
  
-CreditTAB:AddButton("Made by ekso#0001", function(bool)
-    setclipboard("ekso#0001 <@557595801682182147>")
+CreditTAB:AddButton("Brought to you by hoodsense team.", function(bool)
+    setclipboard("ekso#0001 <@557595801682182147> | urfriend#2137 <@935540113369346130> | http://hoodsense.cf/")
     wait(1)
     local function callback(text)
         if text == "Yes" then
