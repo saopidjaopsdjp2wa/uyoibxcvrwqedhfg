@@ -2356,6 +2356,11 @@ RCTab:AddButton("Rejoin Server", function(bool)
 end)
 RCTab:AddLabel("Rejoins Server")
 
+RCTab:AddButton("Trash Talk", function(bool)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/trash_talk.lua"))()
+end)
+RCTab:AddLabel("Trash Talk [J]")
+
 RCTab:AddButton("Fake Macro", function(bool)
     loadstring(game:HttpGet("https://pastebin.com/raw/yMmUUyyE"))()
 end)
@@ -2506,7 +2511,7 @@ pcall(function()
          wait(10)
          game.StarterGui:SetCore("SendNotification", {
           Title = 'hoodsense.cc';
-		  Icon = "8768441000";
+		  Icon = "http://www.roblox.com/asset/?id=8768441000";
           Text = 'Our Discord link was copied to your clipboard.';
           Duration = 1;
          })
@@ -2515,8 +2520,9 @@ pcall(function()
     end
   end)
 print("_____________________HOODSENSE.CC________________________")
-print("| [hoodsense.cc] Executed version: 2.3                  |")
+print("| [hoodsense.cc] Executed version: 3.1                  |")
 print("| [hoodsense.cc] Join discord.gg/olifkaa                |")
-print("| [hoodsense.cc] Join us discord.gg/8XFRC2vKw6          |")
-print("| [hoodsense.cc] Made by ekso#0001 <@557595801682182147>|")
+print("| [hoodsense.cc] Join us http://hoodsense.cf/discord    |")
+print("| [hoodsense.cc] Made by ekso#0001 <@804245361894883339>|")
+print("| [hoodsense.cc] Website - http://hoodsense.cf          |")
 print("_________________________________________________________")
