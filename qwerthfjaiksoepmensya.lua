@@ -2098,8 +2098,8 @@ local Window = library:AddWindow("hoodsense.cc", {
     can_resize = true,
 })
  
-local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/Riheusz/holders/main/fov.lua"))()
-local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Riheusz/holders/main/esp.lua"))()
+local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/fov.lua"))()
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/esp.lua"))()
 ESP:Toggle(false)
 ESP.Tracers = false
 ESP.Names = false
@@ -2161,7 +2161,7 @@ local CreditTAB = Window:AddTab("Credits")
 
 local folder = AnimTab:AddFolder("Animations")
 folder:AddButton("Animations", function(bool)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Riheusz/holders/main/anims.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/anims.lua"))()
 end)
 
 AnimTab:AddButton("Headless", function(bool)
@@ -2305,7 +2305,7 @@ folder2:AddButton("School Roof", function(bool)
 end)
  
 CreditTAB:AddButton("Brought to you by hoodsense team.", function(bool)
-    setclipboard("ekso#0001 <@557595801682182147> | urfriend#2137 <@935540113369346130> | http://hoodsense.cf/")
+    setclipboard("ekso#0001 <@804245361894883339> | urfriend#2137 <@935540113369346130> | http://hoodsense.cf/")
     wait(1)
     local function callback(text)
         if text == "Yes" then
@@ -2343,7 +2343,7 @@ CreditTAB:AddButton("Join discord.gg/olifkaa!", function(bool)
     
     game.StarterGui:SetCore("SendNotification", {
         Title = "hoodsense.cc";
-        Text = "Discord thing copied to Clipboard!";
+        Text = "Credits copied to clipboard.";
         Icon = "http://www.roblox.com/asset/?id=8768441000";
         Duration = "BLANK";
         callbakc = bindableFunction;
@@ -2421,7 +2421,7 @@ ALTab:AddSwitch("FOV Circle", function(bool)
     Aiming.ShowFOV = bool
 end)
  
-ALTab:AddSlider("FOV Size", function(value)
+ALTab:AddSlider("FOV Circle Size", function(value)
     Aiming.FOV = value
 end, {
     ["min"] = 0,
@@ -2441,7 +2441,7 @@ ALTab:AddSwitch("Visible Check", function(bool)
     Aiming.VisibleCheck = bool
 end)
  
-ALTab:AddSwitch("Hit all Airshots", function(bool)
+ALTab:AddSwitch("Hit Airshots", function(bool)
     Aiming.Airshots = true
 end)
  
@@ -2503,7 +2503,7 @@ pcall(function()
     game.StarterGui:SetCore("SendNotification", {
       Title = 'hoodsense.cc';
 	  Icon = "http://www.roblox.com/asset/?id=8768441000";
-      Text = 'Join our discord, https://discord.gg/olifkaa !';
+      Text = 'Join our discord, http://hoodsense.cf/discord!';
       Duration = 1;
     })
     if not game.Players.LocalPlayer:IsInGroup(12319595) then
