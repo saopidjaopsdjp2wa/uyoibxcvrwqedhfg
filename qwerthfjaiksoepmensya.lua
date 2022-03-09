@@ -2156,7 +2156,7 @@ local ALTab = Window:AddTab("Silent Aimbot")
 local ESPTab = Window:AddTab("Esp")
 local RCTab = Window:AddTab("Misc")
 local AnimTab = Window:AddTab("Avatar")
-local TpsTab = Window:AddTab("Tps")
+local TpsTab = Window:AddTab("Tp")
 local CreditTAB = Window:AddTab("Credits")
 
 local folder = AnimTab:AddFolder("Animations")
