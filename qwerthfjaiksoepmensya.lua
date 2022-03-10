@@ -2376,7 +2376,7 @@ RCTab:AddLabel("Loads Fly [X]")
             ["y"] = 100,
             ["source"] = "Lua",
         })
-        Console:Set("print(\"hoodsense.cc = win\")")
+        Console:Set("print(\"hoodsense executor\")")
  
         local RC = RCTab:AddHorizontalAlignment()
         RC:AddButton("Execute", function()
