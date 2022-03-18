@@ -1,6 +1,6 @@
 local Config = {
     WindowName = "hoodsense.cc",
-	Color = Color3.fromRGB(),
+	Color = Color3.fromRGB(91, 150, 20),
 	Keybind = Enum.KeyCode.V
 }
 
@@ -53,7 +53,7 @@ local Section3 = Tab7:CreateSection("Menu")
 local Section4 = Tab7:CreateSection("Background")
 
 local CreditsLabel = Section11:CreateLabel("Brought to you by hoodsense team.")
-CreditsLabel:UpdateText("Made with ❤ by ekso!")
+CreditsLabel:UpdateText("Made with love by hoodsense team!")
 
 local PartnersLabel = Section12:CreateLabel("Brought to you by hoodsense team.")
 PartnersLabel:UpdateText("Partners supporting us!")
@@ -161,7 +161,7 @@ local revolver = Section7:CreateButton("Revolver", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-638.75, 18.8500004, -118.175011, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 end)
 
-local ak = Section7:("Ak", function(bool)
+local ak = Section7:CreateButton("Ak", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-587.529358, 5.39480686, -753.717712, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 end)
 
@@ -268,17 +268,17 @@ rejoin:AddToolTip("Rejoins Server.")
 local trash = Section9:CreateButton("Trash Talk", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/trash_talk.lua"))()
 end)
-trash:AddToolTip("Loads Trash Talk. [J]")
+trash:AddToolTip("Loads Trash Talk.")
 
 local macro = Section9:CreateButton("Fake Macro", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/yMmUUyyE"))()
 end)
 macro:AddToolTip("Loads Fake Macro. [Z]")
 
-local fly = Section9:CreateButton("Trash Talk [J]", function()
+local fly = Section9:CreateButton("Buggy Fly", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/trash_talk.lua"))()
 end)
-fly:AddToolTip("Loads Fly. [X]")
+fly:AddToolTip("Loads Buggy Fly. [X]")
 
 local fullbright = Section9:CreateButton("Full Bright", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/full_bright.lua"))()
@@ -303,9 +303,15 @@ ben:AddToolTip("Loads Ben Talk. [K]")
 local swagfly = Section10:CreateButton("Admin Fly", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/cracked%20stuff/admin_fly.lua'))()
 end)
+swagfly:AddToolTip("Loads Swag Mode Admin Fly. [X]")
+
+local crash = Section10:CreateButton("Better Crash", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/GS21Official/DH-TB-Crash/main/Swagmode%20crash%20modified%20(better%20FPS)%20crash'))()
+end)
+crash:AddToolTip("Loads Swag Mode Modified Crash \(For potato pc's.\)")
 ------------------------
 ---// CREDITS PAGE \\---
-local discord = Section11:CreateButton("Copy discord link", function(bool)
+local discord = Section11:CreateButton("Brought to you by hoodsense.", function(bool)
     setclipboard("ekso#0001 <@804245361894883339> | urfriend#2137 <@935540113369346130> | http://hoodsense.cf/")
     wait(1)
     local function callback(text)
@@ -328,8 +334,8 @@ local discord = Section11:CreateButton("Copy discord link", function(bool)
     })
 end)
 
-local partners = Section12:CreateButton("discord.gg/olifkaa", function(bool)
-    setclipboard("https://discord.gg/olifkaa")
+local partners = Section12:CreateButton("hoodsense.cf/dhc", function(bool)
+    setclipboard("http://hoodsense.cf/dhc")
     wait(1)
     local function callback(text)
         if text == "Yes" then
@@ -456,6 +462,15 @@ RunService:BindToRenderStep("Aimlock", 0, function()
     end
 end)
 -------------------------------
+game.StarterGui:SetCore("SendNotification", {
+    Title = "hoodsense.cc";
+    Text = "Welcome to hoodsense.cc!";
+    Icon = "http://www.roblox.com/asset/?id=8768441000";
+    Duration = "10";
+    callbakc = bindableFunction;
+    Button1 = "Okay!";
+})
+
 print("_____________________HOODSENSE.CC________________________")
 print("| [hoodsense.cc] Executed version: 4.2                  |")
 print("| [hoodsense.cc] ESP is working now!                    |")
