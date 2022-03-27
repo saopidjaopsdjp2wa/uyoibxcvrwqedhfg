@@ -702,7 +702,7 @@ print("| [hoodsense.cc] Website - http://hoodsense.cf          |")
 print("_________________________________________________________")
 
 --// Premium User //--
-local user_premium__001 = game.Players.jestemfajny780 or qcnqy or ztmave
+local user_premium__001 = game.Players.jestemfajny780 or qcnqy or ztmave or HappiMarry or michxas
 -----------------------------------------------------------------------
 --// Premium Commands //--
 local freeze = function()
