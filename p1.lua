@@ -1,6 +1,6 @@
 local Players = game:GetService("Players")
 	Players.PlayerAdded:Connect(function(player)
-		print("[hoodsense.cc] Player Joined " .. player.Name)
+		print("[hoodsense.cc] p1.lua found " .. player.Name)
 		local premium1 = game.Players.jestemfajny780
 -----------------------------------// Premium User //--------------------------------------
 local premium1 = game.Players.jestemfajny780
@@ -194,7 +194,7 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
 end
  end)
 	Players.PlayerRemoving:Connect(function(player)
-	print("[hoodsense.cc] Player Left " .. player.Name)
+	print("[hoodsense.cc] [hoodsense.cc] p1.lua lost " .. player.Name)
 	local premium1 = game.Players.jestemfajny780
 -----------------------------------// Premium User //--------------------------------------
 local premium1 = game.Players.jestemfajny780
