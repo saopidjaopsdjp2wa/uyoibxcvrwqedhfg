@@ -1,3 +1,4 @@
+local premium6 = game.Players.ZaCzArOwAnA_
 local Players = game:GetService("Players")
 	Players.PlayerAdded:Connect(function(player)
 		print("[hoodsense.cc] p6.lua found " .. player.Name)
