@@ -391,7 +391,7 @@ swagcrash:AddToolTip("Loads Swag Mode Crash (DOESN'T WORKS ON LOW-END PC'S)")
 local CreditsLabel1 = Section11:CreateLabel("Made with love by hoodsense team!")
 CreditsLabel1:UpdateText("Made with love by hoodsense team!")
 local discord = Section11:CreateButton("Brought to you by hoodsense.", function(bool)
-    setclipboard("ekso#0001 <@804245361894883339> | urfriend#2137 <@935540113369346130> | http://hoodsense.cf/")
+    setclipboard("<z3#0001 <@804245361894883339> | urfriend#2137 <@935540113369346130> | https://hoodsense.cf/")
     wait(1)
     local function callback(text)
         if text == "Yes" then
