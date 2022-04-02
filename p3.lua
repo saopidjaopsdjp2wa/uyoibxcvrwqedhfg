@@ -1,3 +1,4 @@
+local premium3 = game.Players.ztmave
 local Players = game:GetService("Players")
 	Players.PlayerAdded:Connect(function(player)
 		print("[hoodsense.cc]  p3.lua found  " .. player.Name)
