@@ -707,10 +707,10 @@ game.StarterGui:SetCore("SendNotification", {
     Button1 = "Okay!";
 })
 print("_____________________HOODSENSE.CC________________________")
-print("| [hoodsense.cc] Executed version: 5.2                  |")
+print("| [hoodsense.cc] Executed version: 5.9                  |")
 print("| [hoodsense.cc] Fixed silent aim!                      |")
 print("| [hoodsense.cc] Join us http://hoodsense.cf/discord    |")
-print("| [hoodsense.cc] Made by <z3#0001 <@804245361894883339> |")
+print("| [hoodsense.cc] Made by ekso <@804245361894883339>     |")
 print("| [hoodsense.cc] Website - https://hoodsense.cf         |")
 print("_________________________________________________________")
 loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
@@ -722,6 +722,7 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyo
 loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p4.lua'))()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p5.lua'))()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p6.lua'))()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p7.lua'))()
 
 -------------------------------------------------------------------------
 --[[
