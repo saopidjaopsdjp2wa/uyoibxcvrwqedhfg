@@ -32,30 +32,33 @@ local DaHoodSettings = {
 }
 
 local Tab1 = Window:CreateTab("Main")
-local Tab4 = Window:CreateTab("Teleports")
-local Tab5 = Window:CreateTab("Misc")
+local Tab2 = Window:CreateTab("Teleports")
+local Tab3 = Window:CreateTab("Avatar")
+local Tab4 = Window:CreateTab("Extra")
 local Tab6 = Window:CreateTab("Credits")
 local Tab7 = Window:CreateTab("Settings")
 
-local Section1 = Tab1:CreateSection("Silentaim Configuration")
+local Section1 = Tab1:CreateSection("Silent Aim Configuration")
 local Section2 = Tab1:CreateSection("Fov Configuration")
-local Section5 = Tab1:CreateSection("Esp Configuration")
-local Section6 = Tab1:CreateSection("Avatar Modifications")
-local Section13 = Tab1:CreateSection("Faces")
-local Section7 = Tab4:CreateSection("Guns")
-local Section8 = Tab4:CreateSection("Places")
-local Section9 = Tab5:CreateSection("Misc")
-local Section10 = Tab5:CreateSection("Extra Scripts")
-local Section11 = Tab6:CreateSection("Credits")
-local Section12 = Tab6:CreateSection("Partners")
+local Section99 = Tab1:CreateSection("Esp Configuration")
+local Section12 = Tab1:CreateSection("Toggles")
+local Section5 = Tab2:CreateSection("Guns")
+local Section11 = Tab2:CreateSection("Places")
+local Section6 = Tab3:CreateSection("Avatar Modifiactions")
+local other2 = Tab3:CreateSection("Other")
+local Section7 = Tab3:CreateSection("Face Changer")
+local Section8 = Tab4:CreateSection("Extra Stuff")
+local Section9 = Tab4:CreateSection("Fun Stuff")
+local Section13 = Tab6:CreateSection("Credits")
+local Section10 = Tab6:CreateSection("Partners")
 local Section3 = Tab7:CreateSection("Menu")
 local Section4 = Tab7:CreateSection("Background")
 
-local PartnersLabel = Section12:CreateLabel("Supporting with creating project!")
+local PartnersLabel = Section10:CreateLabel("Supporting with creating project!")
 PartnersLabel:UpdateText("Supporting with creating project!")
 
-------------------------
------//MAIN  PAGE-----
+----------------------------------------------------------------
+-------------------------//  AIMING  \\-------------------------
 local SilentAimToggle = Section1:CreateToggle("Silent Aim", nil, function(bool)
     DaHoodSettings.SilentAim = bool
 end)
@@ -80,87 +83,186 @@ local HitAirShootsToggle = Section1:CreateToggle("Hit Airshots", nil, function(b
     Aiming.Airshots = true
 end)
 HitAirShootsToggle:AddToolTip("Hits Airshots.")
-
-local fovcolor =Section1:CreateColorpicker("Fov Color", function(color)
-	Aiming.FOVColour = color
-end)
-fovcolor:AddToolTip("Change FOV color.")
-fovcolor:UpdateColor(Color3.fromRGB(20, 124, 255))
-
+--------------------------------------------------------------------
+-------------------------//  FOV CIRCLE  \\-------------------------
 
 local FovCircleSize = Section2:CreateSlider("Fov Circle Size", 0,400,nil,true, function(value)
     Aiming.FOV = value
 end)
 FovCircleSize:AddToolTip("Customize Fov Circle Size.")
 
+local fovcolor =Section2:CreateColorpicker("Fov Color", function(color)
+	Aiming.FOVColour = color
+end)
+fovcolor:AddToolTip("Change FOV color.")
+fovcolor:UpdateColor(Color3.fromRGB(20, 124, 255))
+
+
 local HitChanceSlider = Section2:CreateSlider("Hitchance", 0,400,nil,false, function(value)
     DaHoodSettings.Prediction = tonumer("0." .. value)
 end)
 HitChanceSlider:AddToolTip("Customize hitchance.")
 
-local animationgamepass = Section6:CreateButton("Animation Gamepass", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/animation_gamepass.lua'))()
-end)
-animationgamepass:AddToolTip("Loads Animation Gamepass (Press P to close.)")
+--------------------------------------------------------------
+-----------------------//  TOGGLES   \\-----------------------
 
-local meanie = Section13:CreateButton("Meanie", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/508490451.lua'))()
+local AntiSlow = Section12:CreateToggle("Anti-Slow", nil, function(gh)
+    if gh == true then
+        game:GetService('RunService'):BindToRenderStep("Anti-Slow", 0 , function()
+            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed"):Destroy() end
+            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk"):Destroy() end
+            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoJumping") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoJumping"):Destroy() end
+            if game.Players.LocalPlayer.Character.BodyEffects.Reload.Value == true then game.Players.LocalPlayer.Character.BodyEffects.Reload.Value = false end
+        end)
+    elseif gh == false then
+        game:GetService('RunService'):UnbindFromRenderStep("Anti-Slow")
+    end
 end)
-meanie:AddToolTip("Changes your face to Meanie.")
+local Reach = Section12:CreateToggle("Reach", nil, function(e)
+    if e == true then
+        game:GetService('RunService'):BindToRenderStep("Reach", 0 , function()
+            local success, err = pcall(function()
+                if game.Players.LocalPlayer.Character.BodyEffects.Attacking.Value == true then
+                    for i,v in pairs(game:GetService('Players'):GetChildren()) do
+                        if (v.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.LeftHand.Position).Magnitude <= 50 then
+                            if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
+                                if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool"):FindFirstChild('Handle') then
+                                    firetouchinterest(game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Handle, v.Character.UpperTorso, 0)
+                                else
+                                    firetouchinterest(game.Players.LocalPlayer.Character['RightHand'], v.Character.UpperTorso, 0)
+                                    firetouchinterest(game.Players.LocalPlayer.Character['LeftHand'], v.Character.UpperTorso, 0)
+                                    firetouchinterest(game.Players.LocalPlayer.Character['RightFoot'], v.Character.UpperTorso, 0)
+                                    firetouchinterest(game.Players.LocalPlayer.Character['LeftFoot'], v.Character.UpperTorso, 0)
+                                    firetouchinterest(game.Players.LocalPlayer.Character['RightLowerLeg'], v.Character.UpperTorso, 0)
+                                    firetouchinterest(game.Players.LocalPlayer.Character['LeftLowerLeg'], v.Character.UpperTorso, 0)
+                                end
+                            end
+                        end
+                    end
+                end
+            end)
+        end)
+    elseif e == false then
+        game:GetService('RunService'):UnbindFromRenderStep("Reach")
+    end
+end)
+local AutoStomp = Section12:CreateToggle("Auto-Stomp", nil, function(r)
+    if r == true then
+        game:GetService('RunService'):BindToRenderStep("Auto-Stomp", 0 , function()
+            game:GetService("ReplicatedStorage").MainEvent:FireServer("Stomp")
+        end)
+    elseif r == false then
+        game:GetService('RunService'):UnbindFromRenderStep("Auto-Stomp")
+    end
+end)
+local AntiStomp = Section12:CreateToggle("Anti-Stomp", nil, function(x)
+    if x == true then
+        game:GetService('RunService'):BindToRenderStep("Anti-Stomp", 0 , function()
+            if game.Players.LocalPlayer.Character.Humanoid.Health <= 5 then
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA('MeshPart') or v:IsA('Part') then
+                        v:Destroy()
+                    end
+                end
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA('Accessory') then
+                        v.Handle:Destroy()
+                    end
+                end
+            end
+        end)
+    elseif x == false then
+        game:GetService('RunService'):UnbindFromRenderStep("Anti-Stomp")
+    end
+end)
+local AutoReload = Section12:CreateToggle("Auto-Reload", nil, function(r)
+    if r == true then
+        game:GetService('RunService'):BindToRenderStep("Auto-Reload", 0 , function()
+            if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
+                if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo") then
+                    if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo").Value <= 0 then
+                        game:GetService("ReplicatedStorage").MainEvent:FireServer("Reload", game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool")) 
+                        wait(1)
+                    end
+                end
+            end
+        end)
+    elseif r == false then
+        game:GetService('RunService'):UnbindFromRenderStep("Auto-Reload")
+    end
+end)
+--[[local NoRecoil = Section12:CreateToggle("No Recoil", nil, function()
+    local player = game.Players.LocalPlayer
+    for i,v in pairs(game:GetService('Workspace'):GetChildren()) do
+        if v:IsA('Camera') then
+            v:Destroy()
+        end
+    end
+    local newcam = Instance.new('Camera')
+    newcam.Parent = game:GetService('Workspace')
+    newcam.Name = 'Camera'
+    newcam.CameraType = 'Custom'
+    newcam.CameraSubject = player.Character:FindFirstChildWhichIsA('Humanoid')
+    newcam.HeadLocked = true
+    newcam.HeadScale = 1 
+end)]]
 
-local sshf = Section13:CreateButton("Super Super Happy Face", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/494290547.lua'))()
+local Noclip = Section12:CreateToggle("No Clip", nil, function(t)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/LegoHacker1337/legohacks/main/PhysicsServiceOnClient.lua"))()
+    setfflag("HumanoidParallelRemoveNoPhysics", "False")
+    setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+    if t == true then
+        game:GetService('RunService'):BindToRenderStep("crash", 0 , function()
+            game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+        end)
+    elseif t == false then
+        game:GetService('RunService'):UnbindFromRenderStep("crash")
+    end
 end)
-sshf:AddToolTip("Changes your face to Super Super Happy Face.")
-
---[[local silverpunk = Section13:CreateButton("Silver Punk Face", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/387256104.lua'))()
-end)
-silverpunk:AddToolTip("Changes your face to Silver Punk Face.")]]
-
-local yum = Section13:CreateButton("Yum", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/26018945.lua'))()
-end)
-yum:AddToolTip("Changes your face to Yum.")
-
-local playful = Section13:CreateButton("Playful Vampire", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/2409281591.lua'))()
-end)
-playful:AddToolTip("Changes your face to Playful Vampire.")
-
---[[local beastmode = Section13:CreateButton("Beast Mode", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/127959433.lua'))()
-end)
-beastmode:AddToolTip("Changes your face to Beast Mode.")]]--
-------------------------
------// ESP PAGE -----
-local espToggle = Section5:CreateToggle("Enable ESP", nil, function(bool)
+--[[local walkspeed = Section12:CreateSlider("Walk Speed", 16,150,nil,true,  function(t)
+    game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').Name = 'SWAG MODE'
+    game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').WalkSpeed = t
+    if t == 16 then
+        game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').Name = 'Humanoid'
+        game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').WalkSpeed = 16
+    end
+end)]]--
+--------------------------------------------------------------------
+-----------------------------//  ESP   \\---------------------------
+local espToggle = Section99:CreateToggle("Enable ESP", nil, function(bool)
     ESP:Toggle(bool)
 end)
 espToggle:AddToolTip("Enables ESP.")
 
-local tracersToggle = Section5:CreateToggle("Enable Tracers", nil, function(bool)
+local tracersToggle = Section99:CreateToggle("Enable Tracers", nil, function(bool)
     ESP.Tracers = bool
 end)
 tracersToggle:AddToolTip("Enables Tracers.")
 
-local namesToggle = Section5:CreateToggle("Enable Names", nil, function(bool)
+local namesToggle = Section99:CreateToggle("Enable Names", nil, function(bool)
     ESP.Names = bool
 end)
 namesToggle:AddToolTip("Enables Names.")
 
-local boxesToggle = Section5:CreateToggle("Enable Boxes", nil, function(bool)
+local boxesToggle = Section99:CreateToggle("Enable Boxes", nil, function(bool)
     ESP.Boxes = bool
 end)
 tracersToggle:AddToolTip("Enables Boxes.")
 
-local espcolor = Section5:CreateColorpicker("Esp Color", function(color)
+local espcolor = Section99:CreateColorpicker("Esp Color", function(color)
 	ESP.Color = color
 end)
 espcolor:UpdateColor(Color3.fromRGB(20, 124, 255))
 espcolor:AddToolTip("Change ESP Color.")
-------------------------
------// AV  PAGE -----
+
+---------------------------------------------------------------------
+-------------------------//  AVATAR MODS   \\------------------------
+
+local animationgamepass = Section6:CreateButton("Animation Gamepass", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/animation_gamepass.lua'))()
+end)
+animationgamepass:AddToolTip("Loads Animation Gamepass.")
+
 local animbutton = Section6:CreateButton("Animations", function(bool)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/anims.lua"))()
 end)
@@ -174,7 +276,7 @@ v:Destroy()
 end
 end
 end)
-headlbutton:AddToolTip("Gives you headless. [NOT FE]")
+headlbutton:AddToolTip("Makes you headless. [NOT FE]")
 
 local korbloxbutton = Section6:CreateButton("Korblox", function(bool)
     local ply = game.Players.LocalPlayer
@@ -186,7 +288,7 @@ local korbloxbutton = Section6:CreateButton("Korblox", function(bool)
     chr.RightFoot.MeshId = "rbxassetid://902942089"
     chr.RightFoot.Transparency = "1"
 end)
-korbloxbutton:AddToolTip("Avatar Modification. [NOT FE]")
+korbloxbutton:AddToolTip("Gets you korblox [NOT FE]")
 
 local animatedbeastmode = Section6:CreateButton("Animated Beast Mode", function()
 	while true do
@@ -202,196 +304,858 @@ wait(1)
 end
 end)
 animatedbeastmode:AddToolTip("Makes your face animated.")
-------------------------
------// TP  PAGE -----
-local revolver = Section7:CreateButton("Revolver", function(bool)
+
+---------------------------------------------------------------------
+--------------------------//  FACE MODS   \\-------------------------
+
+local meanie = Section7:CreateButton("Meanie", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/508490451.lua'))()
+end)
+meanie:AddToolTip("Changes your face to Meanie.")
+
+local sshf = Section7:CreateButton("Super Super Happy Face", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/494290547.lua'))()
+end)
+sshf:AddToolTip("Changes your face to Super Super Happy Face.")
+
+local silverpunk = Section7:CreateButton("Silver Punk Face", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/387256104.lua'))()
+end)
+silverpunk:AddToolTip("Changes your face to Silver Punk Face.")
+
+local yum = Section7:CreateButton("Yum", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/26018945.lua'))()
+end)
+yum:AddToolTip("Changes your face to Yum.")
+
+local playful = Section7:CreateButton("Playful Vampire", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/2409281591.lua'))()
+end)
+playful:AddToolTip("Changes your face to Playful Vampire.")
+
+local beastmode = Section7:CreateButton("Beast Mode", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/127959433.lua'))()
+end)
+beastmode:AddToolTip("Changes your face to Beast Mode.")
+
+--------------------------------------------------------------------
+--------------------------//  TELEPORTS  \\-------------------------
+--------------------------\\    GUNS     //-------------------------
+--------------------------------------------------------------------
+local revolver = Section5:CreateButton("Revolver", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-638.75, 18.8500004, -118.175011, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 end)
 
-local ak = Section7:CreateButton("Ak", function(bool)
+local ak = Section5:CreateButton("Ak", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-587.529358, 5.39480686, -753.717712, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 end)
 
-local smg = Section7:CreateButton("Smg", function(bool)
+local smg = Section5:CreateButton("Smg", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-577.123413, 5.47666788, -718.031433, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 end)
 
-local ar = Section7:CreateButton("AR", function(bool)
+local ar = Section5:CreateButton("AR", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-591.824158, 5.46046877, -744.731628, 0, 0, 1, 0, 1, -0, -1, 0, 0)
 end)
 
-local dbs = Section7:CreateButton("Double Barrel", function(bool)
+local dbs = Section5:CreateButton("Double Barrel", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1039.59985, 18.8513641, -256.449951, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 end)
 
-local shotgun = Section7:CreateButton("Shotgun", function(bool)
+local shotgun = Section5:CreateButton("Shotgun", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-578.623657, 5.47212696, -725.131531, 0, 0, 1, 0, 1, -0, -1, 0, 0)
 end)
 
-local flame = Section7:CreateButton("Flame Thrower", function(bool)
+local flame = Section5:CreateButton("Flame Thrower", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-157.122437, 50.9120102, -104.93145, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 end)
 
-local tac = Section7:CreateButton("Tactical Shotgun", function(bool)
+local tac = Section5:CreateButton("Tactical Shotgun", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(470.877533, 45.1272316, -620.630676, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 end)
 
-local rpg = Section7:CreateButton("Rpg", function(bool)
+local rpg = Section5:CreateButton("Rpg", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(118.664856, -29.6487694, -272.349792, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 end)
 
-local drumgun = Section7:CreateButton("Drum Gun", function(bool)
+local drumgun = Section5:CreateButton("Drum Gun", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-83.548996, 19.7020588, -82.1449585, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 end)
 
-local armor = Section7:CreateButton("High Medium Armor", function(bool)
+local armor = Section5:CreateButton("High Medium Armor", function(bool)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-939, -25, 571)
 end)
 
-local bat = Section7:CreateButton("Bat", function(bool)
+local bat = Section5:CreateButton("Bat", function(bool)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(380, 49, -283)
 end)
 
-local mediumarmor = Section7:CreateButton("Medium Armor", function(bool)
+local mediumarmor = Section5:CreateButton("Medium Armor", function(bool)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(528, 50, -637)
 end)
------// PLACES -----
-local church = Section8:CreateButton("Church", function(bool)
+--------------------------------------------------------------------
+--------------------------//  TELEPORTS  \\-------------------------
+--------------------------\\   PLACES    //-------------------------
+--------------------------------------------------------------------
+local church = Section11:CreateButton("Church", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(147.299988, 18.8493252, 31.7999744, 0, 0, 1, 0, 1, -0, -1, 0, 0)
 end)
 
-local admin1 = Section8:CreateButton("Admin Guns", function(bool)
+local admin1 = Section11:CreateButton("Admin Guns", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-872.853516, -34.4276848, -538.013306, -0.999724388, -3.9898886e-08, -0.0234765243, -3.9204977e-08, 1, -3.00177518e-08, 0.0234765243, -2.90890814e-08, -0.999724388)
 end)
 
-local admin2 = Section8:CreateButton("Admin Guns 2", function(bool)
+local admin2 = Section11:CreateButton("Admin Guns 2", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-808.708557, -39.6492004, -932.789368, 0.999899805, 2.01343173e-08, -0.0141554065, -2.17800533e-08, 1, -1.16108232e-07, 0.0141554065, 1.16404912e-07, 0.999899805)
 end)
 
-local admin3 = Section8:CreateButton("Admin Food", function(bool)
+local admin3 = Section11:CreateButton("Admin Food", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-788.053406, -39.6492004, -932.951233, 0.998369277, 2.46515359e-08, 0.0570784509, -2.8773524e-08, 1, 7.13949646e-08, -0.0570784509, -7.29209759e-08, 0.998369277)
 end)
 
-local ufo = Section8:CreateButton("Ufo", function(bool)
+local ufo = Section11:CreateButton("Ufo", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2.85052466, 132, -736.571106, -0.0460956171, -4.24733706e-08, -0.998937011, 7.26012459e-08, 1, -4.58687275e-08, 0.998937011, -7.46384217e-08, -0.0460956171)
 end)
 
-local casino = Section8:CreateButton("Casino", function(bool)
+local casino = Section11:CreateButton("Casino", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-995, 21.6998043, -153.100037, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 end)
 
-local bank = Section8:CreateButton("Bank", function(bool)
+local bank = Section11:CreateButton("Bank", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-318.891174, 80.2145309, -257.177429, 0.0479469746, -5.14644114e-08, 0.998850107, -3.12971538e-09, 1, 5.16738901e-08, -0.998850107, -5.60372015e-09, 0.0479469746)
 end)
 
-local taco = Section8:CreateButton("Taco", function(bool)
+local taco = Section11:CreateButton("Taco", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(584.026855, 48.1605072, -474.033936, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 end)
 
-local revRoof = Section8:CreateButton("Revolver Roof", function(bool)
+local revRoof = Section11:CreateButton("Revolver Roof", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-634.463135, 80.434761, -204.232559, -0.0190527271, -1.03574322e-07, -0.999818563, 4.36709335e-09, 1, -1.03676342e-07, 0.999818563, -6.3416179e-09, -0.0190527271)
 end)
 
-local playground = Section8:CreateButton("PlayGround", function(bool)
+local playground = Section11:CreateButton("PlayGround", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-282.694153, 19.7496624, -807.719727, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 end)
 
-local gas = Section8:CreateButton("Gas Station", function(bool)
+local gas = Section11:CreateButton("Gas Station", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(604.800415, 46.0998344, -258.249573, 0, 0, 1, 0, 1, -0, -1, 0, 0)
 end)
 
-local cementery = Section8:CreateButton("Cementery", function(bool)
+local cementery = Section11:CreateButton("Cementery", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(135.109558, 99.75, -57.2315979, 0.999993503, -0.000633752206, -0.0035054055, 0.000638642872, 0.999998808, 0.00139435288, 0.00350463158, -0.00139658386, 0.999992728)
 end)
 
-local school = Section8:CreateButton("School Roof", function(bool)
+local school = Section11:CreateButton("School Roof", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-525.353455, 68.125, 311.824402, 0.999992013, 1.03866675e-08, -0.00399552286, -1.03507425e-08, 1, 9.01170427e-09, 0.00399552286, -8.97027519e-09, 0.999992013)
 end)
-------------------------
----//  MISC  PAGES ---
-local rejoin = Section9:CreateButton("Rejoin Server", function()
+
+--------------------------------------------------------------------
+--------------------------//   EXTRA  \\----------------------------
+--------------------------\\   STUFF  //----------------------------
+--------------------------------------------------------------------
+local rejoin = Section8:CreateButton("Rejoin", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/1gtVMUz3"))()
 end)
 rejoin:AddToolTip("Rejoins Server.")
 
-local hop = Section9:CreateButton("Server hop", function()
+local hop = Section8:CreateButton("Server hop", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/serverhop.lua'))()
 end)
-local trash = Section9:CreateButton("Trash Talk", function()
+local trash = Section8:CreateButton("Trash Talk", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/trash_talk.lua"))()
 end)
 trash:AddToolTip("Loads Trash Talk. [J]")
 
-local macro = Section9:CreateButton("Fake Macro", function()
+local macro = Section8:CreateButton("Fake Macro", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/yMmUUyyE"))()
 end)
 macro:AddToolTip("Loads Fake Macro. [Z]")
 
-local fly = Section9:CreateButton("Buggy Fly", function()
+local fly = Section8:CreateButton("Fly", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/fly.lua"))()
 end)
-fly:AddToolTip("Loads Buggy Fly. [X]")
+fly:AddToolTip("Loads Fly. [X]")
 
-local fullbright = Section9:CreateButton("Full Bright", function()
+local fullbright = Section8:CreateButton("Full Bright", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/full_bright.lua"))()
 end)
 fullbright:AddToolTip("Loads Full Bright.")
 
-local nocooldown = Section9:CreateButton("No jump cooldown", function()
+local nocooldown = Section8:CreateButton("No jump cooldown", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/no-jump-cooldown.lua'))()
 end)
 nocooldown:AddToolTip("Removes jump cooldown.")
 
-local weightfarm = Section9:CreateButton("Weight Farm", function()
+local weightfarm = Section8:CreateButton("Weight Farm", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/weight_farm.lua'))()
 end)
 weightfarm:AddToolTip("Runs Weight Farm.")
 
-local rayx = Section10:CreateButton("RAYX", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/cracked%20stuff/rayx.lua'))()
+--------------------------------------------------------------------
+--------------------------//    FUN   \\----------------------------
+--------------------------\\   STUFF  //----------------------------
+--------------------------------------------------------------------
+local swagfly = Section9:CreateButton("Admin Fly", function ()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/cracked%20stuff/admin_fly.lua'))()
 end)
-rayx:AddToolTip("Loads rayx.")
+swagfly:AddToolTip("Loads Swag Mode Admin Fly! [X]")
 
-local avatarchanger = Section10:CreateButton("Avatar Modifier", function()
+local Juggernaut = Section9:CreateButton("Juggernaut", function()
+    local LocalPlayer = game:GetService("Players").LocalPlayer
+    local Mouse = LocalPlayer:GetMouse()
+    local OriginalKeyUpValue = 0
+    
+    local Anim = Instance.new("Animation")
+    Anim.AnimationId = "rbxassetid://2788838708"
+    
+    function StopAudio()
+        LocalPlayer.Character.LowerTorso.BOOMBOXSOUND:Stop()
+    end
+    
+    function stop(ID, Key)
+        local cor = coroutine.wrap(function()
+            wait(LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.TimeLength-0.1)
+            if LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OriginalKeyUpValue == Key then
+                StopAudio()
+            end
+        end)
+        cor()
+    end
+    
+    function play(ID, STOP, LMAO)
+        if LocalPlayer.Backpack:FindFirstChild("[Boombox]") then
+            local Tool = nil
+            if LocalPlayer.Character:FindFirstChildOfClass("Tool") and LMAO == true then
+                Tool = LocalPlayer.Character:FindFirstChildOfClass("Tool")
+                LocalPlayer.Character:FindFirstChildOfClass("Tool").Parent = LocalPlayer.Backpack
+            end
+            LocalPlayer.Backpack["[Boombox]"].Parent =
+                LocalPlayer.Character
+            game.ReplicatedStorage.MainEvent:FireServer("Boombox", ID)
+            LocalPlayer.Character["[Boombox]"].RequiresHandle = false
+            if LocalPlayer.Character["[Boombox]"]:FindFirstChild("Handle") then
+                LocalPlayer.Character["[Boombox]"].Handle:Destroy()
+            end
+            LocalPlayer.Character["[Boombox]"].Parent =
+                LocalPlayer.Backpack
+            LocalPlayer.PlayerGui.MainScreenGui.BoomboxFrame.Visible = false
+            if Tool ~= true then
+                if Tool then
+                    Tool.Parent = LocalPlayer.Character
+                end
+            end
+            if STOP == true then
+                LocalPlayer.Character.LowerTorso:WaitForChild("BOOMBOXSOUND")
+                local cor = coroutine.wrap(function()
+                    repeat wait() until LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.TimeLength > 0.01
+                    OriginalKeyUpValue = OriginalKeyUpValue+1
+                    stop(ID, OriginalKeyUpValue)
+                end)
+                cor()
+            end
+        end
+    end
+    
+    function Tool()
+        local Tool = Instance.new("Tool")
+        Tool.Name = "Juggernaut"
+        Tool.RequiresHandle = false
+        Tool.Activated:Connect(function()
+            local Character = LocalPlayer.Character
+            local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+    
+            function rm()
+                for i,v in pairs(Character:GetDescendants()) do
+                    if v:IsA("BasePart") or v:IsA("MeshPart") then
+                        if v.Name ~= "Head" then
+                            for i,cav in pairs(v:GetDescendants()) do
+                                if cav:IsA("Attachment") then
+                                    if cav:FindFirstChild("OriginalPosition") then
+                                        cav.OriginalPosition:Destroy()
+                                    end
+                                end
+                            end
+                            for i,v in pairs(v:GetChildren()) do
+                                if v.Name == "OriginalSize" then
+                                    v:Destroy()
+                                end
+                            end
+                            if v:FindFirstChild("AvatarPartScaleType") then
+                                v:FindFirstChild("AvatarPartScaleType"):Destroy()
+                            end
+                        end
+                    end
+                end
+            end
+    
+            Humanoid:LoadAnimation(Anim):Play()
+            play(862491729, true, true)
+            wait(0.4)
+            rm()
+            Humanoid:FindFirstChild("BodyTypeScale"):Destroy()
+            wait(0.2)
+    
+            rm()
+            Humanoid:FindFirstChild("BodyWidthScale"):Destroy()
+            wait(0.02)
+    
+            rm()
+            Humanoid:FindFirstChild("BodyDepthScale"):Destroy()
+            wait(0.02)
+    
+            rm()
+            Humanoid:FindFirstChild("BodyTypeScale"):Destroy()
+            wait(0.02)
+        end)
+        Tool.Parent = LocalPlayer.Backpack
+    end
+    Tool()
+end)
+Juggernaut:AddToolTip("Makes you Juggernaut.")
+
+local avatarchanger = Section9:CreateButton("Avatar Modifier", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/cracked%20stuff/facechanger.lua'))()
 end)
 avatarchanger:AddToolTip("Loads Avatar Modifier. [NOT FE]")
 
-local ben = Section10:CreateButton("Ben Talk", function()
+local ben = Section9:CreateButton("Ben Talk", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/ben.lua"))()
 end)
 ben:AddToolTip("Loads Ben Talk. [K]")
 
-local swagfly = Section10:CreateButton("Admin Fly", function()
+local swagfly = Section9:CreateButton("Admin Fly", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/cracked%20stuff/admin_fly.lua'))()
 end)
 swagfly:AddToolTip("Loads Swag Mode Admin Fly. [X]")
 
-local crash = Section10:CreateButton("Better Crash", function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/GS21Official/DH-TB-Crash/main/Swagmode%20crash%20modified%20(better%20FPS)%20crash'))()
-end)
-crash:AddToolTip("Loads Swag Mode Modified Crash (For potato pc's.)")
 
-local panic = Section10:CreateButton("Rage quit", function()
+local panic = Section9:CreateButton("Rage quit", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/ragequit.lua'))()
 end)
 panic:AddToolTip("Why u mad bro?")
 
-local swagmode = Section10:CreateButton("Swag Mode", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/lerkermer/lua-projects/master/SwagModeV002'))()
+local superjump = Section9:CreateButton("Super Jump!", function()
+    local  MyStand = "DxskTilIDawn"
+    local SuperJumpEnabled = false
+    
+    getgenv().Toggled = false
+    local UIS = game:GetService("UserInputService")
+    UIS.InputBegan:connect(function(input,gameProcessed)
+        if input.UserInputType == Enum.UserInputType.Keyboard then
+            if input.KeyCode == Enum.KeyCode.H then
+                if UIS:GetFocusedTextBox() == nil then
+                    if getgenv().Toggled == false then
+                        getgenv().Toggled = true
+                    else
+                        getgenv().Toggled = true
+                    end;end;end;end;end)
+    
+    local LocalPlayer = game:GetService("Players").LocalPlayer
+    local Cookies = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Roll)
+    local OriginalKeyUpValue = 0
+    local Anim = Instance.new("Animation" )
+    Anim.AnimationId = "rbxassetid://2788290270"
+    local Hover = Instance.new("Animation", game.Workspace)
+    Hover.Name = "Hover"
+    Hover.AnimationId = "rbxassetid://698251653"
+    local LeftPunch = Instance.new("Animation",  game.ReplicatedStorage.ClientAnimations)LeftPunch.Name = "LeftPunch"
+    LeftPunch.AnimationId = "rbxassetid://2788308661"
+    local LeftAnim = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.LeftPunch)
+    local CoreUI = Instance.new("ScreenGui")
+    local Humanoid = game.Players.LocalPlayer.Character.Humanoid
+    CoreUI.Parent = game.CoreGui
+    local SaveLocation = nil
+    local RigWalk = nil
+    local RigIdle = nil
+    local InTimeErase = false
+    
+    local Pointing = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
+    Pointing.AnimationId = "rbxassetid://507770453"
+    
+    local UNMASKKK = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
+    UNMASKKK.Name = "Unmask"
+    UNMASKKK.AnimationId = "rbxassetid://3380629232"
+    
+    local MASKKK = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
+    MASKKK.Name = "Mask"
+    MASKKK.AnimationId = "rbxassetid://3380627692"
+    
+    local Poter = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(Pointing)
+    Poter.Looped = true
+    Poter.Priority = Enum.AnimationPriority.Action
+    
+    local WalkAnimation = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
+    WalkAnimation.AnimationId = "rbxassetid://2510198475"
+    
+    local Idle = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
+    Idle.AnimationId = "rbxassetid://507766388"
+    
+    local OldChar = LocalPlayer.Character
+    local MaskAnim = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Mask)
+    local UnmaskAnim = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Unmask)
+    
+    function FoV()
+        local fov = coroutine.wrap(function()
+            local Camera = workspace.Camera
+            for i = 1, 20 do
+                game.TweenService:Create(Camera, TweenInfo.new(0.5), {FieldOfView = 8*i}):Play()
+                wait(0.01)
+            end
+            for i = 1, 20 do
+                game.TweenService:Create(Camera, TweenInfo.new(0.5), {FieldOfView = 160-i*4.5}):Play()
+                wait(0.01)
+            end
+        end)
+        fov()
+    end
+    
+    local WalkSpeed = false
+    
+    local function rm()
+        for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+            if v.Name == "OriginalPosition" then
+                v:Destroy()
+            elseif v.Name == "OriginalSize" then
+                v:Destroy()
+            elseif v.Name == "AvatarPartScaleType" then
+                v:Destroy()
+            end
+        end
+    end
+    
+    
+    function Lighting()
+        if game.Lighting:FindFirstChild("ERASE") == nil then
+            local sound5 = Instance.new("Sound", CoreUI)
+            sound5.Volume = 0.1
+            sound5.Name = "ERASE"
+            sound5.Looped = true
+            sound5.SoundId = "rbxassetid://3167092959"
+            sound5:Play()
+    
+            game.Lighting.Sky.Parent = workspace
+            game:GetObjects("rbxassetid://6546113226")[1].Parent=game.Lighting
+    
+        else
+            workspace.Sky.Parent = game.Lighting
+            CoreUI:FindFirstChild("ERASE"):Destroy()
+            game.Lighting:FindFirstChild("ERASE"):Destroy()
+        end
+    end
+    
+    function TimeEraseUI()
+        local sound5 = Instance.new("Sound", CoreUI)
+        sound5.Volume = 0.1
+        sound5.SoundId = "rbxassetid://6546128175"
+        sound5:Play()
+    
+        local Image = Instance.new("ImageLabel", CoreUI)
+        Image.Image = "http://www.roblox.com/asset/?id=6546043746"
+        Image.BackgroundTransparency = 1
+        Image.AnchorPoint = Vector2.new(0.5, 0.5)
+        Image.Size = UDim2.fromScale(1, 1)
+        Image.Position = UDim2.fromScale(-0.5, 0.5)
+        delay(0, function()
+            for i = 0, 1, 0.1 do
+                Image.Position = UDim2.fromScale(-Image.Position.X.Scale+i, 0.5)
+                Image.ImageTransparency = Image.ImageTransparency+i
+                wait(.01)
+            end
+            Image:Destroy()
+            sound5:Destroy()
+        end)
+    end
+    
+    
+    function ModelCharacter()
+        if workspace:FindFirstChild(LocalPlayer.Name.."StringKOD") == nil then
+            local MODEL = Instance.new("Model", workspace)
+            MODEL.Name = LocalPlayer.Name.."StringKOD"
+    
+            OldChar.Humanoid:UnequipTools()
+    
+            for i, v in pairs(OldChar:GetChildren()) do 
+                if (v:IsA("BasePart")  or v:IsA("MeshPart")) and v.Parent:FindFirstChildOfClass("Humanoid") and v.Name ~= "HumanoidRootPart" then
+                    local Part = v:Clone()
+                    Part.Parent = MODEL
+                    Part.Name = v.Name
+                    Part.Material = Enum.Material.ForceField
+                    Part.CFrame = v.CFrame
+                    Part.Transparency = 0.5 
+                    Part.BrickColor = BrickColor.Red()
+                    Part.CanCollide = false
+                    Part.Anchored = true
+                    for i, v  in pairs(Part:GetChildren()) do 
+                        if v.ClassName ~= "SpecialMesh" then
+                            v:Destroy()
+                        end
+                    end
+                end
+            end
+            local NewCharacter = game:GetObjects("rbxassetid://6547055500")[1]
+            NewCharacter.Parent = MODEL
+            NewCharacter.Name = "Idaro"
+    
+            workspace.Camera.CameraSubject = NewCharacter.Humanoid
+            SaveLocation = OldChar.HumanoidRootPart.CFrame
+            InTimeErase = true
+            NewCharacter.HumanoidRootPart.CFrame = SaveLocation
+    
+            RigIdle = NewCharacter:WaitForChild("Humanoid"):LoadAnimation(Idle)
+            RigIdle.Looped = true
+            RigIdle.Priority = Enum.AnimationPriority.Action
+            RigWalk = NewCharacter:WaitForChild("Humanoid"):LoadAnimation(WalkAnimation)
+            RigWalk.Looped = true
+            RigWalk.Priority = Enum.AnimationPriority.Action
+            WalkSpeed = true
+            RigIdle:Play()
+        else
+            InTimeErase = false
+            WalkSpeed = false
+            workspace.Camera.CameraSubject =  OldChar.Humanoid
+            OldChar.HumanoidRootPart.CFrame =  workspace:FindFirstChild(LocalPlayer.Name.."StringKOD").Idaro.HumanoidRootPart.CFrame
+            workspace:FindFirstChild(LocalPlayer.Name.."StringKOD"):Destroy()
+        end
+    end
+    
+    function Slide()
+        local XD = OldChar.Humanoid:LoadAnimation(Anim)
+        XD:Play()
+        XD.TimePosition = 0.15
+        XD.Looped = false
+        XD:AdjustSpeed(1.1)
+    end
+    
+    function AddVelocity(Vel, Char)
+        Char.HumanoidRootPart.Velocity = Char.HumanoidRootPart.Velocity+Vel
+    end
+    
+    local IsJump = false
+    
+    function Jumping()
+        if IsJump == false then
+            return false
+        else
+            return true
+        end
+    end
+    
+    local Mouse = LocalPlayer:GetMouse()
+    
+    local MoveDirection = Vector3.new(0,0,0)
+    local WSpped = 0 
+    local LeftSpeed = 0
+    local UpSpeed = 0
+    
+    function IdleRigXD()
+        if RigIdle and RigWalk.IsPlaying and WSpped == 0 and LeftSpeed == 0 and UpSpeed == 0 then
+            RigIdle:Play()
+            RigWalk:Stop()
+        end
+    end
+    
+    function WalkRigXD()
+        if RigWalk and RigIdle.IsPlaying then
+            RigIdle:Stop()
+            RigWalk:Play()
+        end
+    end
+    
+    Mouse.KeyDown:Connect(function(KeyDownXD)
+        if workspace:FindFirstChild(LocalPlayer.Name.."StringKOD") then
+            if KeyDownXD == "w" then
+                WSpped = -1
+                WalkRigXD()
+            elseif KeyDownXD == "a" then
+                LeftSpeed = -1
+                WalkRigXD()
+            elseif KeyDownXD == "d" then
+                LeftSpeed = 1
+                WalkRigXD()
+            elseif KeyDownXD == "s" then
+                WSpped = 1
+                WalkRigXD()
+            end
+        end
+    end)
+    
+    Mouse.KeyUp:Connect(function(KeyDownXD)
+        if KeyDownXD == "w" then
+            WSpped = 0
+            IdleRigXD()
+        elseif KeyDownXD == "a" then
+            LeftSpeed = 0
+            IdleRigXD()
+        elseif KeyDownXD == "d" then
+            LeftSpeed = -0
+            IdleRigXD()
+        elseif KeyDownXD == "s" then
+            WSpped = 0
+            IdleRigXD()
+        end
+    end)
+    
+    local CD = false
+    local uis = game:GetService("UserInputService")
+    
+    uis.InputBegan:Connect(function(i, XD)
+        if i.KeyCode == Enum.KeyCode.H and XD == false then
+            if SuperJumpEnabled == false then
+                SuperJumpEnabled = true
+            elseif SuperJumpEnabled == true then
+                SuperJumpEnabled = false
+            end
+        end
+    end)
+    
+    uis.InputBegan:Connect(function(i, XD)
+        if i.KeyCode == Enum.KeyCode.Space and XD == false then
+            if workspace:FindFirstChild(LocalPlayer.Name.."StringKOD") == nil then
+                if Jumping() == true and not Poter.IsPlaying then
+                    AddVelocity(OldChar.HumanoidRootPart.CFrame.LookVector*150, OldChar)
+                    IsJump = false
+                    Cookies:Stop()
+                    CD = true
+                    Slide()
+                    repeat wait() until workspace:FindPartOnRayWithWhitelist(Ray.new(OldChar.HumanoidRootPart.Position, Vector3.new(0, -4 * OldChar.HumanoidRootPart.Size.y, 0)), { workspace.MAP })
+                    CD = false
+                end
+            else
+                workspace:FindFirstChild(LocalPlayer.Name.."StringKOD"):FindFirstChild("Idaro").Humanoid:ChangeState(3)
+            end
+        end
+    end)
+    
+    function StopAudio()
+        OldChar.LowerTorso.BOOMBOXSOUND:Stop()
+    end
+    
+    function stop(ID, Key)
+        local cor = coroutine.wrap(function()
+            wait(OldChar.LowerTorso.BOOMBOXSOUND.TimeLength-0)
+            if OldChar.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OriginalKeyUpValue == Key then
+                StopAudio()
+            end
+        end)
+        cor()
+    end
+    
+    
+    function play(ID, STOP, LMAO)
+        if LocalPlayer.Backpack:FindFirstChild("[Boombox]") then
+            local Tool = nil
+            if OldChar:FindFirstChildOfClass("Tool") and LMAO == true then
+                Tool = OldChar:FindFirstChildOfClass("Tool")
+                OldChar:FindFirstChildOfClass("Tool").Parent = LocalPlayer.Backpack
+            end
+            LocalPlayer.Backpack["[Boombox]"].Parent =
+                OldChar
+            game.ReplicatedStorage.MainEvent:FireServer("Boombox", ID)
+            OldChar["[Boombox]"].RequiresHandle = false
+            if OldChar["[Boombox]"]:FindFirstChild("Handle") then
+                OldChar["[Boombox]"].Handle:Destroy()
+            end
+            OldChar["[Boombox]"].Parent =
+                LocalPlayer.Backpack
+            LocalPlayer.PlayerGui.MainScreenGui.BoomboxFrame.Visible = false
+            if Tool ~= true then
+                if Tool then
+                    Tool.Parent = OldChar
+                end
+            end
+            if STOP == true then
+                OldChar.LowerTorso:WaitForChild("BOOMBOXSOUND")
+                local cor = coroutine.wrap(function()
+                    repeat wait() until OldChar.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OldChar.LowerTorso.BOOMBOXSOUND.TimeLength > 0
+                    OriginalKeyUpValue = OriginalKeyUpValue+1
+                    stop(ID, OriginalKeyUpValue)
+                end)
+                cor()
+            end
+        end
+    end
+    
+    local bro = false
+    local TimeErase, CanCel = "Time erase!", "Time erase!"
+    local TimeStop, TimeResume = "Time stop!", "Time stop!"
+    local XD = false
+    LocalPlayer.Chatted:Connect(function(MSG)
+        if MSG == "Rage!" then
+    if Humanoid:FindFirstChild("HeadScale") then
+        rm()
+        wait(0.6)
+    
+        Humanoid:FindFirstChild("HeadScale"):Destroy()
+        wait(0.6)
+    end
+    
+    
+    if Humanoid:FindFirstChild("BodyWidthScale") then
+        rm()
+        wait(0.6)
+        Humanoid:FindFirstChild("BodyWidthScale"):Destroy()
+        wait(0.6)
+    end
+    
+    
+    
+    if Humanoid:FindFirstChild("BodyDepthScale") then
+        rm()
+        wait(0.6)
+        Humanoid:FindFirstChild("BodyDepthScale"):Destroy()
+        wait(0.6)
+    end
+    
+    
+    
+    if Humanoid:FindFirstChild("BodyTypeScale") then
+        rm()
+        wait(0.6)
+        Humanoid:FindFirstChild("BodyTypeScale"):Destroy()
+       wait(0.6)
+    end
+        elseif MSG:sub(1, 11) == TimeErase and XD == false and not Poter.IsPlaying then
+            XDDDD(XD)
+        elseif MSG == CanCel and XD == true and not Poter.IsPlaying then
+            XDDDD(XD)
+        elseif MSG == TimeStop then
+            play(6947054675, true, true)
+            wait(0.3)
+            OldChar.LowerTorso.BOOMBOXSOUND.SoundId = "http://www.roblox.com/asset/?id=wd"
+            wait(0.1)
+            play(7084712646, true, true)
+        end
+    end)
+    
+    function XDDDD(XDR)
+        if XDR == false then
+            XD = true
+            play(6546133414, true, true)
+            wait(2)
+            TimeEraseUI()
+            FoV()
+            Lighting()
+            ModelCharacter()
+        else
+            XD = false
+            InTimeErase = false
+            wait(0.1)
+            play(6543435253, true, true)
+            TimeEraseUI()
+            ModelCharacter()
+            Lighting()
+            FoV()
+    end
+    end
+    
+    function Jump(...)
+        (...).Jumping:Connect(function()
+            if SuperJumpEnabled == true then
+            if CD == false and not Poter.IsPlaying then
+                CD = true
+                delay(1, function()
+                    CD = false
+                end)
+                Cookies:Play(0, 1, 1.4)
+                AddVelocity(OldChar.HumanoidRootPart.CFrame.UpVector*120, OldChar)
+                delay(0, function()
+                    IsJump = true
+                    wait(1) 
+                    if IsJump == true then
+                        IsJump = false
+                    end
+                end)
+                end
+            end
+        end)
+    end
+    
+    
+    Jump(OldChar.Humanoid)
+    
+    LocalPlayer.CharacterAdded:Connect(function(Character)
+        wait(1)
+        if Character.Name == LocalPlayer.Name then
+            Jump(Character.Humanoid)
+            Poter = Character:WaitForChild("Humanoid"):LoadAnimation(Pointing)
+            Poter.Looped = true
+            Poter.Priority = Enum.AnimationPriority.Action
+    
+            Cookies = Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Roll)
+            OldChar = Character
+        end
+    end)
+    
+    game["Run Service"].Heartbeat:Connect(function()
+        if InTimeErase then
+            for i, v in pairs(OldChar:GetChildren()) do
+                if v:IsA("BasePart") then
+                    v.CFrame = CFrame.new(math.random(200, 500), math.random(200, 500), math.random(200, 500))
+                    v.Velocity = Vector3.new(0,0,0)
+                end
+            end
+    
+            if OldChar:FindFirstChild("Combat") and XD == true then
+                XD = false
+                XDDDD(true)
+            end
+    
+            if WalkSpeed == true then
+                MoveDirection = Vector3.new(LeftSpeed, UpSpeed, WSpped)
+                workspace:FindFirstChild(LocalPlayer.Name.."StringKOD"):FindFirstChild("Idaro").Humanoid:Move(MoveDirection, true)
+            end
+        else
+            if OldChar:FindFirstChild("[Flashlight]") then
+                if workspace.Players:FindFirstChild(MyStand) then
+                    if not Poter.IsPlaying then
+                        Poter:Play()
+                        Poter:AdjustSpeed(0)
+                        Poter.TimePosition = 1.2
+                    end
+                    local lol = workspace.Players:FindFirstChild(MyStand).HumanoidRootPart.CFrame * CFrame.new(0, 0.5, 1.25)
+                    OldChar.HumanoidRootPart.CFrame = lol
+                end
+            else
+                if Poter.IsPlaying then
+                    Poter:Stop()
+                end
+            end
+        end
+    end)	
 end)
-swagmode:AddToolTip("Loads Swag Mode.")
+superjump:AddToolTip("Tip: Type \'Time erase!\' in chat to time erase")
 
-local swagcrash = Section10:CreateButton("Swag Crasher", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/lerkermer/lua-projects/master/SuperCustomServerCrasher'))()
+local speedboost = Section9:CreateButton("Speed", function()
+    plr = game:GetService('Players').LocalPlayer
+    down = true
+     
+    function onButton1Down(mouse)
+        down = true
+        while down do
+            if not down then break end
+            local char = plr.Character
+            char.HumanoidRootPart.Velocity = char.HumanoidRootPart.CFrame.lookVector * 190
+            wait()
+        end
+    end
+     
+    function onButton1Up(mouse)
+        down = false
+    end
+     
+    function onSelected(mouse)
+        mouse.KeyDown:connect(function(m) if m:lower()=="m"then onButton1Down(mouse)end end)
+        mouse.KeyUp:connect(function(m) if m:lower()=="m"then onButton1Up(mouse)end end)
+    end
+    onSelected(game.Players.LocalPlayer:GetMouse())
 end)
-swagcrash:AddToolTip("Loads Swag Mode Crash (DOESN'T WORKS ON LOW-END PC'S)")
+speedboost:AddToolTip("Makes you faster when pressing \'M\'")
 ------------------------
 ---// CREDITS PAGE ---
-local CreditsLabel1 = Section11:CreateLabel("Made with love by hoodsense team!")
+local CreditsLabel1 = Section13:CreateLabel("Made with love by hoodsense team!")
 CreditsLabel1:UpdateText("Made with love by hoodsense team!")
-local discord = Section11:CreateButton("Brought to you by hoodsense.", function(bool)
-    setclipboard("pawel#0008 <@804245361894883339> | urfriend#2137 <@935540113369346130> | https://hoodsense.cf/")
+local discord = Section13:CreateButton("Brought to you by hoodsense.", function(bool)
+    setclipboard("pawel#0008 <@804245361894883339> | xdzz#2137 <@935540113369346130> | https://hoodsense.cf/")
     wait(1)
     local function callback(text)
         if text == "Yes" then
@@ -413,10 +1177,33 @@ local discord = Section11:CreateButton("Brought to you by hoodsense.", function(
     })
 end)
 
-local CreditsLabel2 = Section11:CreateLabel("Our Staff")
+local esko = Section13:CreateButton("Owned by ekso.gq", function(bool)
+    setclipboard("https://ekso.gq")
+    wait(1)
+    local function callback(text)
+        if text == "Yes" then
+        print("")
+        elseif text == "No" then
+        print("")
+        end
+    end
+    
+    local bindableFunction= Instance.new("BindableFunction")
+    
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense.cc";
+        Text = "Credits Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+
+local CreditsLabel2 = Section13:CreateLabel("Our Staff")
 CreditsLabel2:UpdateText("Our Staff")
 
-local discord = Section11:CreateButton("pawel#0008", function(bool)
+local discord = Section13:CreateButton("pawel#0008", function(bool)
     setclipboard("pawel#0008 <@804245361894883339>")
     wait(1)
     local function callback(text)
@@ -439,7 +1226,7 @@ local discord = Section11:CreateButton("pawel#0008", function(bool)
     })
 end)
 
-local discord = Section11:CreateButton("xdzz#2137", function(bool)
+local discord = Section13:CreateButton("xdzz#2137", function(bool)
     setclipboard("xdzz#2137 <@935540113369346130>")
     wait(1)
     local function callback(text)
@@ -462,7 +1249,7 @@ local discord = Section11:CreateButton("xdzz#2137", function(bool)
     })
 end)
 
-local discord = Section11:CreateButton("! ave#0005", function(bool)
+local discord = Section13:CreateButton("! ave#0005", function(bool)
     setclipboard("! ave#0005 <@557671767565664285>")
     wait(1)
     local function callback(text)
@@ -485,7 +1272,7 @@ local discord = Section11:CreateButton("! ave#0005", function(bool)
     })
 end)
 
-local discord = Section11:CreateButton("Copy website link.", function(bool)
+local discord = Section13:CreateButton("Copy website link.", function(bool)
     setclipboard("http://hoodsense.cf")
     wait(1)
     local function callback(text)
@@ -508,10 +1295,10 @@ local discord = Section11:CreateButton("Copy website link.", function(bool)
     })
 end)
 
-local partnerslabel1 = Section12:CreateLabel("Da hood cash services")
+local partnerslabel1 = Section10:CreateLabel("Da hood cash services")
 partnerslabel1:UpdateText("Da hood cash services")
 
-local partners1 = Section12:CreateButton("discord.gg/axq", function(bool)
+local partners1 = Section10:CreateButton("discord.gg/axq", function(bool)
     setclipboard("https://discord.gg/axq")
     wait(1)
     local function callback(text)
@@ -534,10 +1321,10 @@ local partners1 = Section12:CreateButton("discord.gg/axq", function(bool)
     })
 end)
 
-local partnerslabel2 = Section12:CreateLabel("Other supporters")
+local partnerslabel2 = Section10:CreateLabel("Other supporters")
 partnerslabel2:UpdateText("Other supporters")
 
-local partners2 = Section12:CreateButton("v3rmillion.net", function(bool)
+local partners2 = Section10:CreateButton("v3rmillion.net", function(bool)
     setclipboard("https://v3rmillion.net")
     wait(1)
     local function callback(text)
@@ -559,7 +1346,30 @@ local partners2 = Section12:CreateButton("v3rmillion.net", function(bool)
         Button1 = "Okay!";
     })
 end)
-local partners = Section12:CreateButton("krnl.ca", function(bool)
+local partners = Section10:CreateButton("x.synapse.to", function(bool)
+    setclipboard("https://x.synapse.to")
+    wait(1)
+    local function callback(text)
+        if text == "Yes" then
+        print("")
+        elseif text == "No" then
+        print("")
+        end
+    end
+    
+    local bindableFunction= Instance.new("BindableFunction")
+    
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense.cc";
+        Text = "Supporter Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+
+local partners4 = Section10:CreateButton("krnl.ca", function(bool)
     setclipboard("https://krnl.ca")
     wait(1)
     local function callback(text)
@@ -581,8 +1391,9 @@ local partners = Section12:CreateButton("krnl.ca", function(bool)
         Button1 = "Okay!";
     })
 end)
-local partners3 = Section12:CreateButton("ryos.best", function(bool)
-    setclipboard("https://ryos.best")
+
+local partners5 = Section10:CreateButton("ekso.gq", function(bool)
+    setclipboard("https://ekso.gq")
     wait(1)
     local function callback(text)
         if text == "Yes" then
@@ -713,16 +1524,6 @@ print("| [hoodsense.cc] Join us http://hoodsense.cf/discord    |")
 print("| [hoodsense.cc] Made by ekso <@804245361894883339>     |")
 print("| [hoodsense.cc] Website - https://hoodsense.cf         |")
 print("_________________________________________________________")
-loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/dp.lua'))()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/dp2.lua'))()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p1.lua'))()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p2.lua'))()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p3.lua'))()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p4.lua'))()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p5.lua'))()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p6.lua'))()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p7.lua'))()
 
 -------------------------------------------------------------------------
 --[[
@@ -922,3 +1723,17 @@ warn("---------------------------")
 print("                          ")
 wait(69420)
 end
+while true do
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/dp.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/dp2.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p1.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p2.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p3.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p4.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p5.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p6.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p7.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p8.lua'))()
+    wait(10)
+    end
