@@ -42,6 +42,7 @@ local Section1 = Tab1:CreateSection("Silent Aim Configuration")
 local Section2 = Tab1:CreateSection("Fov Configuration")
 local Section99 = Tab1:CreateSection("Esp Configuration")
 local Section12 = Tab1:CreateSection("Toggles")
+local Section98 = Tab1:CreateSection("Other")
 local Section5 = Tab2:CreateSection("Guns")
 local Section11 = Tab2:CreateSection("Places")
 local Section6 = Tab3:CreateSection("Avatar Modifiactions")
@@ -53,6 +54,7 @@ local Section13 = Tab6:CreateSection("Credits")
 local Section10 = Tab6:CreateSection("Partners")
 local Section3 = Tab7:CreateSection("Menu")
 local Section4 = Tab7:CreateSection("Background")
+
 
 local PartnersLabel = Section10:CreateLabel("Supporting with creating project!")
 PartnersLabel:UpdateText("Supporting with creating project!")
@@ -227,6 +229,25 @@ end)
         game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').WalkSpeed = 16
     end
 end)]]--
+
+local fly2 = Section12:CreateButton("Fly", function()
+    loadstring(Game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/fly.lua'))()
+end)
+fly2:AddToolTip("Enables fly [X]")
+
+local god = Section12:CreateButton("God Mode", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/godmode.lua'))()
+end)
+god:AddToolTip("Makes you god mode. [THIS CANT BE STOPPED]")
+
+---------------------------------------------------------------------
+-------------------------//  OTHER MODS   \\------------------------
+
+local reset = Section98:CreateButton("Reset Character", function(reset)
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end)
+reset:AddToolTip("Resets your character")
+
 --------------------------------------------------------------------
 -----------------------------//  ESP   \\---------------------------
 local espToggle = Section99:CreateToggle("Enable ESP", nil, function(bool)
