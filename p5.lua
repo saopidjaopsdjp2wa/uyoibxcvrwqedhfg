@@ -1,5 +1,5 @@
 while true do 
-	local p5_lua = game:GetService("Players"):GetPlayerByUserId(2244576018) --ZaCzArOwAnA_JeStEm
+	local p5_lua = game:GetService("Players"):GetPlayerByUserId(243123353) --ZaCzArOwAnA_JeStEm 2244576018 | JamesMoon15
 		if p5_lua then
 		local freeze = function()
 			game.Players.LocalPlayer.Character.LowerTorso.Anchored = true
