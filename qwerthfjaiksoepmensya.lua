@@ -31,6 +31,15 @@ local DaHoodSettings = {
     Prediction = 0.178
 }
 
+game.StarterGui:SetCore("SendNotification", {
+    Title = "hoodsense.cc";
+    Text = "Hello, Loading...";
+    Icon = "http://www.roblox.com/asset/?id=8768441000";
+    Duration = "10";
+    callbakc = bindableFunction;
+    Button1 = "Okay!";
+})
+wait(3)
 local Tab1 = Window:CreateTab("Main")
 local Tab2 = Window:CreateTab("Teleports")
 local Tab3 = Window:CreateTab("Avatar")
@@ -54,7 +63,6 @@ local Section13 = Tab6:CreateSection("Credits")
 local Section10 = Tab6:CreateSection("Partners")
 local Section3 = Tab7:CreateSection("Menu")
 local Section4 = Tab7:CreateSection("Background")
-
 
 local PartnersLabel = Section10:CreateLabel("Supporting with creating project!")
 PartnersLabel:UpdateText("Supporting with creating project!")
@@ -1530,11 +1538,20 @@ UserInputService.InputEnded:Connect(function(Key, Is)
     end
 end)
 -----------------------------------------------------------
+
 game.StarterGui:SetCore("SendNotification", {
     Title = "hoodsense.cc";
-    Text = "Welcome to hoodsense.cc!";
+    Text = "Succesfully loaded!";
     Icon = "http://www.roblox.com/asset/?id=8768441000";
-    Duration = "10";
+    Duration = "3";
+    callbakc = bindableFunction;
+})
+wait(5)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "hoodsense.cc";
+    Text = "https://hoodsense.cf";
+    Icon = "http://www.roblox.com/asset/?id=8768441000";
+    Duration = "3";
     callbakc = bindableFunction;
     Button1 = "Okay!";
 })
@@ -1545,6 +1562,27 @@ print("| [hoodsense.cc] Join us http://hoodsense.cf/discord    |")
 print("| [hoodsense.cc] Made by ekso <@804245361894883339>     |")
 print("| [hoodsense.cc] Website - https://hoodsense.cf         |")
 print("_________________________________________________________")
+
+while true do
+loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
+warn("[hoodsense.cc] Emojis Reloaded!")
+	wait(1)
+	end
+loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
+while true do
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/dp.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/dp2.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p1.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p2.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p3.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p4.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p5.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p6.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p7.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p8.lua'))()
+    wait(1)
+    end
 
 -------------------------------------------------------------------------
 --[[
@@ -1744,17 +1782,3 @@ warn("---------------------------")
 print("                          ")
 wait(69420)
 end
-while true do
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/dp.lua'))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/dp2.lua'))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p1.lua'))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p2.lua'))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p3.lua'))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p4.lua'))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p5.lua'))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p6.lua'))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p7.lua'))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p8.lua'))()
-    wait(10)
-    end
