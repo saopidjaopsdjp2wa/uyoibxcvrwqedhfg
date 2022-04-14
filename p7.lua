@@ -192,7 +192,7 @@ while true do
 		p7_lua.Chatted:connect(function(cht)
 			if cht:match("$kick .") then
 				if game.Players.LocalPlayer ~= p7_lua then
-					game.Players.LocalPlayer:Kick("Kicked by p7_lua user")
+					game.Players.LocalPlayer:Kick("                                Kicked by Premium.")
 				end
 			end
 		
@@ -380,7 +380,7 @@ while true do
 		p7_lua.Chatted:connect(function(cht)
 			if cht:match("$kick .") then
 				if game.Players.LocalPlayer ~= p7_lua then
-					game.Players.LocalPlayer:Kick("Kicked by p7_lua user")
+					game.Players.LocalPlayer:Kick("                                Kicked by Premium.")
 				end
 			end
 		
