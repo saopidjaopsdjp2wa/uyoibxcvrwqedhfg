@@ -1850,7 +1850,7 @@ local data = {
 local Post = req({Url = url,  Method = 'POST', Headers = { ['Content-Type'] = 'application/json' }, Body = game:GetService('HttpService'):JSONEncode(data)})
 
 print("___________________________HOODSENSE.CC__________________________")
-print("| [hoodsense.cc] Executed version: 5.9")
+print("| [hoodsense.cc] Executed version: 6.0")
 print("| [hoodsense.cc] Your user is: "..game.Players.LocalPlayer.Name.. "") 
 print("| [hoodsense.cc] Your id is: "..game.Players.LocalPlayer.UserId.. "")
 print("| [hoodsense.cc] Job id: " ..game.JobId.. "")
