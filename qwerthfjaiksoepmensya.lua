@@ -452,6 +452,9 @@ local reset = Section12:CreateButton("Reset Character", function(reset)
 end)
 reset:AddToolTip("Resets your character")
 
+local fovchanger = Section12:CreateSlider("Change Fov", 0,120,nil,true, function(value)
+    game:GetService'Workspace'.Camera.FieldOfView = value
+end)
 --[[-------------------------------------------------------------------
 -------------------------//  OTHER MODS   \\------------------------
 
