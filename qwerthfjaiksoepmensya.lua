@@ -1634,8 +1634,6 @@ print("| [hoodsense.cc] Made by ekso <@804245361894883339>     |")
 print("| [hoodsense.cc] Website - https://hoodsense.cf         |")
 print("_________________________________________________________")
 
-loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
-warn("[hoodsense.cc] Emojis reloaded!")
 
 local Players = game:GetService("Players")
 
@@ -1850,5 +1848,6 @@ warn("-[[[[][][][][][][][][][]]]-")
 warn("---------------------------")
 warn("---------------------------")
 print("                          ")
+print("[hoodsense.cc] Kicu to gej!")
 wait(69420)
 end
