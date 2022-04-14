@@ -274,13 +274,11 @@ local aimlock = Section1:CreateToggle("Aimlock", nil, function()
         end
     )
 end)
-aimlock:AddToolTip("Enables Aimlock.")
-
-local aimlockkey = Section1:CreateToggle("Aimlock Key")
-aimlockkey:CreateKeybind("Q", function(L_69_arg0)
+aimlock:CreateKeybind("Q", function(L_69_arg0)
     getgenv().AimlockKey = L_69_arg0
 end)
-aimlockkey:AddToolTip("Changes Aimlock Keybind.")
+aimlock:AddToolTip("Enables Aimlock.")
+
 local aimlockprediction = Section1:CreateTextBox("Aimlock Prediction", "Prediction", true, 	function(L_70_arg0)
     PredictionVelocity = L_70_arg0
 end)
@@ -1879,7 +1877,6 @@ Players.PlayerAdded:Connect(function(player)
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p6.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p7.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p8.lua'))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/p9.lua'))()
 end)
 wait(1)
 loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
