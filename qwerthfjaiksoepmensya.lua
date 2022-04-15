@@ -93,7 +93,7 @@ local HitAirShootsToggle = Section1:CreateToggle("Hit Airshots", nil, function(b
 end)
 HitAirShootsToggle:AddToolTip("Hits Airshots.")
 
-local aimlock = Section1:CreateToggle("Enable Aimlock", nil, function()
+local aimlock = Section1:CreateButton("Enable Aimlock", function()
     getgenv().AimPart = "HumanoidRootPart"
     getgenv().AimlockKey = "q"
     getgenv().AimRadius = 30
@@ -274,13 +274,8 @@ local aimlock = Section1:CreateToggle("Enable Aimlock", nil, function()
         end
     )
 end)
-aimlock:AddToolTip("Enables Aimlock.")
+aimlock:AddToolTip("Enables Aimlock [Q]")
 
-local aimlockkey = Section1:CreateToggle("Aimlock Key")
-aimlockkey:CreateKeybind("Q", function(L_69_arg0)
-    getgenv().AimlockKey = L_69_arg0
-end)
-aimlockkey:AddToolTip("Changes Aimlock Keybind.")
 local aimlockprediction = Section1:CreateTextBox("Aimlock Prediction", "Prediction", true, 	function(L_70_arg0)
     PredictionVelocity = L_70_arg0
 end)
