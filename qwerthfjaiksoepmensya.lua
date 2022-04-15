@@ -67,7 +67,7 @@ local PartnersLabel = Section10:CreateLabel("Supporting with creating project!")
 PartnersLabel:UpdateText("Supporting with creating project!")
 
 ----------------------------------------------------------------
--------------------------//  AIMING  \\-------------------------
+-------------------------//  AIMING  -------------------------
 local SilentAimToggle = Section1:CreateToggle("Silent Aim", nil, function(bool)
     DaHoodSettings.SilentAim = bool
 end)
@@ -288,7 +288,7 @@ end)
 aimlockaimpart:SetOption("UpperTorso")
 aimlockaimpart:AddToolTip("Changes Aimpart.")
 --------------------------------------------------------------------
--------------------------//  FOV CIRCLE  \\-------------------------
+-------------------------//  FOV CIRCLE  -------------------------
 
 local FovCircleSize = Section2:CreateSlider("Fov Circle Size", 0,400,nil,true, function(value)
     Aiming.FOV = value
@@ -308,7 +308,7 @@ end)
 HitChanceSlider:AddToolTip("Customize hitchance.")
 
 --------------------------------------------------------------
------------------------//  TOGGLES   \\-----------------------
+-----------------------//  TOGGLES   -----------------------
 
 local AntiSlow = Section12:CreateToggle("Anti-Slow", nil, function(gh)
     if gh == true then
@@ -395,42 +395,42 @@ local AutoReload = Section12:CreateToggle("Auto-Reload", nil, function(r)
         game:GetService('RunService'):UnbindFromRenderStep("Auto-Reload")
     end
 end)
---[[local NoRecoil = Section12:CreateToggle("No Recoil", nil, function()
-    local player = game.Players.LocalPlayer
-    for i,v in pairs(game:GetService('Workspace'):GetChildren()) do
-        if v:IsA('Camera') then
-            v:Destroy()
-        end
-    end
-    local newcam = Instance.new('Camera')
-    newcam.Parent = game:GetService('Workspace')
-    newcam.Name = 'Camera'
-    newcam.CameraType = 'Custom'
-    newcam.CameraSubject = player.Character:FindFirstChildWhichIsA('Humanoid')
-    newcam.HeadLocked = true
-    newcam.HeadScale = 1 
-end)]]
 
-local Noclip = Section12:CreateToggle("No Clip", nil, function(t)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/LegoHacker1337/legohacks/main/PhysicsServiceOnClient.lua"))()
-    setfflag("HumanoidParallelRemoveNoPhysics", "False")
-    setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
-    if t == true then
-        game:GetService('RunService'):BindToRenderStep("crash", 0 , function()
-            game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-        end)
-    elseif t == false then
-        game:GetService('RunService'):UnbindFromRenderStep("crash")
-    end
+local Noclip = Section12:CreateButton("No Clip", function()
+local noclipplayer = game:GetService("Players").LocalPlayer
+local noclipmouse = noclipplayer:GetMouse()
+ 
+local donoclip = false
+local noclip = false
+ 
+function b_noclip(key)
+if (key == "b") then
+if noclip == false then
+donoclip = true
+ 
+noclip = true
+elseif noclip == true then
+donoclip = false
+ 
+noclip = false
+end
+end
+end
+ 
+noclipmouse.KeyDown:connect(b_noclip)
+ 
+game:GetService("Players").LocalPlayer.Character.Head.Touched:connect(function(obj)
+if obj ~= workspace.Terrain then
+if donoclip == true then
+obj.CanCollide = false
+else
+obj.CanCollide = true
+end
+end
 end)
---[[local walkspeed = Section12:CreateSlider("Walk Speed", 16,150,nil,true,  function(t)
-    game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').Name = 'SWAG MODE'
-    game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').WalkSpeed = t
-    if t == 16 then
-        game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').Name = 'Humanoid'
-        game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').WalkSpeed = 16
-    end
-end)]]--
+end)
+Noclip:AddToolTip("Enables Noclip [B].")
+
 
 local fly2 = Section12:CreateButton("Fly", function()
     loadstring(Game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/fly.lua'))()
@@ -451,7 +451,7 @@ local fovchanger = Section12:CreateSlider("Change Fov", 0,120,nil,true, function
     game:GetService'Workspace'.Camera.FieldOfView = value
 end)
 --[[-------------------------------------------------------------------
--------------------------//  OTHER MODS   \\------------------------
+-------------------------//  OTHER MODS   ------------------------
 
 local reset = Section98:CreateButton("Reset Character", function(reset)
     game.Players.LocalPlayer.Character.Humanoid.Health = 0
@@ -459,7 +459,7 @@ end)
 reset:AddToolTip("Resets your character")
 ]]
 --------------------------------------------------------------------
------------------------------//  ESP   \\---------------------------
+-----------------------------//  ESP   ---------------------------
 local espToggle = Section99:CreateToggle("Enable ESP", nil, function(bool)
     ESP:Toggle(bool)
 end)
@@ -487,7 +487,7 @@ espcolor:UpdateColor(Color3.fromRGB(20, 124, 255))
 espcolor:AddToolTip("Change ESP Color.")
 
 ---------------------------------------------------------------------
--------------------------//  AVATAR MODS   \\------------------------
+-------------------------//  AVATAR MODS   ------------------------
 
 local animationgamepass = Section6:CreateButton("Animation Gamepass", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/animation_gamepass.lua'))()
@@ -537,7 +537,7 @@ end)
 animatedbeastmode:AddToolTip("Makes your face animated.")
 
 ---------------------------------------------------------------------
---------------------------//  FACE MODS   \\-------------------------
+--------------------------//  FACE MODS   -------------------------
 
 local meanie = Section7:CreateButton("Meanie", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/508490451.lua'))()
@@ -570,8 +570,8 @@ end)
 beastmode:AddToolTip("Changes your face to Beast Mode.")
 
 --------------------------------------------------------------------
---------------------------//  TELEPORTS  \\-------------------------
---------------------------\\    GUNS     //-------------------------
+--------------------------//  TELEPORTS  -------------------------
+--------------------------    GUNS     //-------------------------
 --------------------------------------------------------------------
 local revolver = Section5:CreateButton("Revolver", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-638.75, 18.8500004, -118.175011, -1, 0, 0, 0, 1, 0, 0, 0, -1)
@@ -625,8 +625,8 @@ local mediumarmor = Section5:CreateButton("Medium Armor", function(bool)
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(528, 50, -637)
 end)
 --------------------------------------------------------------------
---------------------------//  TELEPORTS  \\-------------------------
---------------------------\\   PLACES    //-------------------------
+--------------------------//  TELEPORTS  -------------------------
+--------------------------   PLACES    //-------------------------
 --------------------------------------------------------------------
 local church = Section11:CreateButton("Church", function(bool)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(147.299988, 18.8493252, 31.7999744, 0, 0, 1, 0, 1, -0, -1, 0, 0)
@@ -681,8 +681,8 @@ local school = Section11:CreateButton("School Roof", function(bool)
 end)
 
 --------------------------------------------------------------------
---------------------------//   EXTRA  \\----------------------------
---------------------------\\   STUFF  //----------------------------
+--------------------------//   EXTRA  ----------------------------
+--------------------------   STUFF  //----------------------------
 --------------------------------------------------------------------
 local rejoin = Section8:CreateButton("Rejoin", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/1gtVMUz3"))()
@@ -723,8 +723,8 @@ end)
 weightfarm:AddToolTip("Runs Weight Farm.")
 
 --------------------------------------------------------------------
---------------------------//    FUN   \\----------------------------
---------------------------\\   STUFF  //----------------------------
+--------------------------//    FUN   ----------------------------
+--------------------------   STUFF  //----------------------------
 --------------------------------------------------------------------
 local swagfly = Section9:CreateButton("Admin Fly", function ()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/cracked%20stuff/admin_fly.lua'))()
@@ -1354,7 +1354,7 @@ local superjump = Section9:CreateButton("Super Jump!", function()
         end
     end)	
 end)
-superjump:AddToolTip("Tip: Type \'Time erase!\' in chat to time erase")
+superjump:AddToolTip("Tip: Type 'Time erase!' in chat to time erase")
 
 local speedboost = Section9:CreateButton("Speed", function()
     plr = game:GetService('Players').LocalPlayer
@@ -1380,7 +1380,7 @@ local speedboost = Section9:CreateButton("Speed", function()
     end
     onSelected(game.Players.LocalPlayer:GetMouse())
 end)
-speedboost:AddToolTip("Makes you faster when pressing \'M\'")
+speedboost:AddToolTip("Makes you faster when pressing 'M'")
 ------------------------
 ---// CREDITS PAGE ---
 local CreditsLabel1 = Section13:CreateLabel("Made with love by hoodsense team!")
@@ -2094,5 +2094,6 @@ warn("---------------------------")
 warn("---------------------------")
 print("                          ")
 print("[hoodsense.cc] Kicu to gej!")
+print("[hoodsense.cc] Kc kuba<3  !")
 wait(69420)
 end
