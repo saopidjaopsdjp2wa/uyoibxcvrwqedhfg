@@ -93,6 +93,9 @@ local HitAirShootsToggle = Section1:CreateToggle("Hit Airshots", nil, function(b
 end)
 HitAirShootsToggle:AddToolTip("Hits Airshots.")
 
+
+local aimlockifno = Section1:CreateLabel("Silent aim will break.")
+
 local aimlock = Section1:CreateButton("Enable Aimlock", function()
     getgenv().AimPart = "HumanoidRootPart"
     getgenv().AimlockKey = "q"
