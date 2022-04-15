@@ -1431,8 +1431,10 @@ local esko = Section13:CreateButton("Owned by ekso.gq", function(bool)
     })
 end)
 
-local CreditsLabel2 = Section13:CreateLabel("Our Staff")
-CreditsLabel2:UpdateText("Our Staff")
+local CreditsLabel2 = Section13:CreateLabel("© 2022 ekso.gq")
+CreditsLabel2:UpdateText("(C) 2022 ekso.gq")
+local CreditsLabel3 = Section13:CreateLabel("Staff")
+CreditsLabel3:UpdateText("Staff")
 
 local discord = Section13:CreateButton("pawel#0008", function(bool)
     setclipboard("pawel#0008 <@804245361894883339>")
@@ -1623,6 +1625,29 @@ local partners4 = Section10:CreateButton("krnl.ca", function(bool)
     })
 end)
 
+local partners6 = Section10:CreateButton("angxlzz", function(bool)
+    setclipboard("https://youtube.com/angxlzz")
+    wait(1)
+    local function callback(text)
+        if text == "Yes" then
+        print("")
+        elseif text == "No" then
+        print("")
+        end
+    end
+    
+    local bindableFunction= Instance.new("BindableFunction")
+    
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense.cc";
+        Text = "Supporter Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+
 local partners5 = Section10:CreateButton("ekso.gq", function(bool)
     setclipboard("https://ekso.gq")
     wait(1)
@@ -1748,7 +1773,7 @@ game.StarterGui:SetCore("SendNotification", {
     Duration = "4";
     callbakc = bindableFunction;
 })
-wait(3)
+wait(8)
 game.StarterGui:SetCore("SendNotification", {
     Title = "hoodsense.cc";
     Text = "https://hoodsense.cf";
