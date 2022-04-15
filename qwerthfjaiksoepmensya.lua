@@ -1862,7 +1862,7 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/SpaceYes/SomeRandomSt
 local Players = game:GetService("Players")
 
 Players.PlayerAdded:Connect(function(player)
-    print(game.JobId, "[hoodsense.cc] Succesfully Reloaded!")
+    print("[hoodsense.cc] Succesfully Reloaded!" ..game.JobId.. "")
     loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/dp.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/saopidjaopsdjp2wa/uyoibxcvrwqedhfg/main/dp2.lua'))()
