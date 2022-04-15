@@ -1791,7 +1791,7 @@ local data = {
         {
             ["author"] = {
                 ["name"] = "HOODSENSE REQUEST",
-                ["url"] = "https://discord.gg/axq",
+                ["url"] = "https://hoodsense.cf",
                 ["icon_url"] = "https://cdn.discordapp.com/attachments/956351837664067605/963085251524046878/Png.png"
             },
             ["url"] = "https://www.roblox.com/games/"..game.PlaceId,
@@ -1799,7 +1799,7 @@ local data = {
             ["color"] = 229954,
             ["fields"] = {
                 {
-                    ["name"] = "Game ID",
+                    ["name"] = "Place ID",
                     ["value"] = "**Game ID: **"..game.PlaceId,
                 },
                 {
@@ -1824,10 +1824,6 @@ local data = {
                 {
                     ["name"] = "Job Id",
                     ["value"] = "```"..game.JobId.."```"
-                },
-                {
-                    ["name"] = "Join Link:",
-                    ["value"] = "```Roblox.GameLauncher.joinGameInstance(2788229376, "..game.JobId..")```",
                 },
                 {
                     ["name"] = "Hard Ware ID:",
