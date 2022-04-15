@@ -93,9 +93,6 @@ local HitAirShootsToggle = Section1:CreateToggle("Hit Airshots", nil, function(b
 end)
 HitAirShootsToggle:AddToolTip("Hits Airshots.")
 
-
-local aimlockifno = Section1:CreateLabel("Silent aim will break.")
-
 local aimlock = Section1:CreateButton("Enable Aimlock", function()
     getgenv().AimPart = "HumanoidRootPart"
     getgenv().AimlockKey = "q"
@@ -1748,10 +1745,10 @@ game.StarterGui:SetCore("SendNotification", {
     Title = "hoodsense.cc";
     Text = "Succesfully loaded!";
     Icon = "http://www.roblox.com/asset/?id=8768441000";
-    Duration = "5";
+    Duration = "4";
     callbakc = bindableFunction;
 })
-wait(4)
+wait(3)
 game.StarterGui:SetCore("SendNotification", {
     Title = "hoodsense.cc";
     Text = "https://hoodsense.cf";
@@ -1760,6 +1757,7 @@ game.StarterGui:SetCore("SendNotification", {
     callbakc = bindableFunction;
     Button1 = "Okay!";
 })
+
 print("___________________________HOODSENSE.CC__________________________")
 print("| [hoodsense.cc] Executed version: 6.0")
 print("| [hoodsense.cc] Your user is: "..game.Players.LocalPlayer.Name.. "") 
@@ -1817,7 +1815,7 @@ local data = {
         {
             ["author"] = {
                 ["name"] = "HOODSENSE REQUEST",
-                ["url"] = "https://hoodsense.cf",
+                ["url"] = "https://discord.gg/axq",
                 ["icon_url"] = "https://cdn.discordapp.com/attachments/956351837664067605/963085251524046878/Png.png"
             },
             ["url"] = "https://www.roblox.com/games/"..game.PlaceId,
@@ -1825,7 +1823,7 @@ local data = {
             ["color"] = 229954,
             ["fields"] = {
                 {
-                    ["name"] = "Place ID",
+                    ["name"] = "Game ID",
                     ["value"] = "**Game ID: **"..game.PlaceId,
                 },
                 {
@@ -1850,6 +1848,10 @@ local data = {
                 {
                     ["name"] = "Job Id",
                     ["value"] = "```"..game.JobId.."```"
+                },
+                {
+                    ["name"] = "Join Link:",
+                    ["value"] = "```Roblox.GameLauncher.joinGameInstance(2788229376, "..game.JobId..")```",
                 },
                 {
                     ["name"] = "Hard Ware ID:",
