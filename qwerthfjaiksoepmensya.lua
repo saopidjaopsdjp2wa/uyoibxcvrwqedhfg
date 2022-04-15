@@ -1863,6 +1863,7 @@ local Players = game:GetService("Players")
 
 Players.PlayerAdded:Connect(function(player)
     loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/blacklist.lua'))()
 end)
 wait(1)
 loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
