@@ -72,6 +72,8 @@ local SilentAimToggle = Section1:CreateToggle("Silent Aim", nil, function(bool)
     DaHoodSettings.SilentAim = bool
 end)
 SilentAimToggle:AddToolTip("Enables Silentaim.")
+SilentAimToggle:CreateKeybind("", function()
+end)
 
 local PredictLagToggle = Section1:CreateToggle("Predict Lag", nil, function(bool)
     DaHoodSettings.Prediction.Lag = bool
@@ -92,6 +94,13 @@ local HitAirShootsToggle = Section1:CreateToggle("Hit Airshots", nil, function(b
     Aiming.Airshots = true
 end)
 HitAirShootsToggle:AddToolTip("Hits Airshots.")
+
+local HitChanceSlider = Section2:CreateSlider("Silent Aim Hitchance", 0,400,nil,false, function(value)
+    DaHoodSettings.Prediction = tonumer("0." .. value)
+end)
+HitChanceSlider:AddToolTip("Customize hitchance.")
+
+local aimlocklabel = Section1:CreateLabel("Aimlock")
 
 -------------------------------
 -----// AIMING FUNCTION -----
@@ -341,17 +350,16 @@ local FovCircleSize = Section2:CreateSlider("Fov Circle Size", 0,400,nil,true, f
 end)
 FovCircleSize:AddToolTip("Customize Fov Circle Size.")
 
-local fovcolor =Section2:CreateColorpicker("Fov Color", function(color)
+local fovsides = Section2:CreateSlider("Fov Circle Sides", 0,40,nil,true, function(value)
+    Aiming.FOVSides  = value
+end)
+FovCircleSize:AddToolTip("Customize Fov Circle Sides.")
+
+local fovcolor = Section2:CreateColorpicker("Fov Color", function(color)
 	Aiming.FOVColour = color
 end)
 fovcolor:AddToolTip("Change FOV color.")
 fovcolor:UpdateColor(Color3.fromRGB(20, 124, 255))
-
-
-local HitChanceSlider = Section2:CreateSlider("Hitchance", 0,400,nil,false, function(value)
-    DaHoodSettings.Prediction = tonumer("0." .. value)
-end)
-HitChanceSlider:AddToolTip("Customize hitchance.")
 
 --------------------------------------------------------------
 -----------------------//  TOGGLES   -----------------------
@@ -396,6 +404,7 @@ local Reach = Section12:CreateToggle("Reach", nil, function(e)
         game:GetService('RunService'):UnbindFromRenderStep("Reach")
     end
 end)
+--AntiSlow:CreateKeybind("", function()
 local AutoStomp = Section12:CreateToggle("Auto-Stomp", nil, function(r)
     if r == true then
         game:GetService('RunService'):BindToRenderStep("Auto-Stomp", 0 , function()
@@ -405,6 +414,7 @@ local AutoStomp = Section12:CreateToggle("Auto-Stomp", nil, function(r)
         game:GetService('RunService'):UnbindFromRenderStep("Auto-Stomp")
     end
 end)
+--AutoStomp:CreateKeybind("", function()
 local AntiStomp = Section12:CreateToggle("Anti-Stomp", nil, function(x)
     if x == true then
         game:GetService('RunService'):BindToRenderStep("Anti-Stomp", 0 , function()
@@ -425,6 +435,7 @@ local AntiStomp = Section12:CreateToggle("Anti-Stomp", nil, function(x)
         game:GetService('RunService'):UnbindFromRenderStep("Anti-Stomp")
     end
 end)
+--AntiStomp:CreateKeybind("", function()
 local AutoReload = Section12:CreateToggle("Auto-Reload", nil, function(r)
     if r == true then
         game:GetService('RunService'):BindToRenderStep("Auto-Reload", 0 , function()
@@ -441,6 +452,7 @@ local AutoReload = Section12:CreateToggle("Auto-Reload", nil, function(r)
         game:GetService('RunService'):UnbindFromRenderStep("Auto-Reload")
     end
 end)
+--AutoReload:CreateKeybind("", function()
 
 local Noclip = Section12:CreateButton("No Clip", function()
 local noclipplayer = game:GetService("Players").LocalPlayer
@@ -483,19 +495,49 @@ local fly2 = Section12:CreateButton("Fly", function()
 end)
 fly2:AddToolTip("Enables fly [X]")
 
-local god = Section12:CreateButton("God Mode", function()
+--[[local god = Section12:CreateButton("God Mode", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/godmode.lua'))()
 end)
-god:AddToolTip("Makes you god mode. [THIS CANT BE STOPPED]")
+god:AddToolTip("Makes you god mode. [THIS CANT BE STOPPED]")]]
 
-local reset = Section12:CreateButton("Reset Character", function(reset)
+--[[local reset = Section12:CreateButton("Reset Character", function(reset)
     game.Players.LocalPlayer.Character.Humanoid.Health = 0
 end)
-reset:AddToolTip("Resets your character")
+reset:AddToolTip("Resets your character")]]
 
 local fovchanger = Section12:CreateSlider("Change Fov", 0,120,nil,true, function(value)
     game:GetService'Workspace'.Camera.FieldOfView = value
 end)
+
+getgenv().SpinBotSpeed = 20
+
+local spinbot = Section12:CreateToggle("Spin Bot", nil, function(state)
+	function getRoot(char)
+				local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('UpperTorso')
+				return rootPart
+			end
+
+			if state == true then
+				local Spin = Instance.new("BodyAngularVelocity")
+				Spin.Name = "Spinning"
+				Spin.Parent = getRoot(game.Players.LocalPlayer.Character)
+				Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+				Spin.AngularVelocity = Vector3.new(0,getgenv().SpinBotSpeed,0)
+			else
+				for i,v in pairs(getRoot(game.Players.LocalPlayer.Character):GetChildren()) do
+					if v.Name == "Spinning" then
+						v:Destroy()
+					end
+				end
+			end
+		end)
+spinbot:CreateKeybind("", function()
+end)
+
+local spinbotspeed = Section12:CreateSlider("Spinbot Speed",20,50,nil,true, function(a)
+    getgenv().SpinBotSpeed = a
+end)
+spinbotspeed:SetValue(20)
 --[[-------------------------------------------------------------------
 -------------------------//  OTHER MODS   ------------------------
 
@@ -510,6 +552,8 @@ local espToggle = Section99:CreateToggle("Enable ESP", nil, function(bool)
     ESP:Toggle(bool)
 end)
 espToggle:AddToolTip("Enables ESP.")
+espToggle:CreateKeybind("", function()
+end)
 
 local tracersToggle = Section99:CreateToggle("Enable Tracers", nil, function(bool)
     ESP.Tracers = bool
@@ -768,6 +812,21 @@ local weightfarm = Section8:CreateButton("Weight Farm", function()
 end)
 weightfarm:AddToolTip("Runs Weight Farm.")
 
+local idepomilion = Section8:CreateButton('Sing', function()
+    game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Mam głód pierdolę wszystko","All")
+wait(1)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("ty stój kiedy idę po milion","All")
+wait(1.2)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("jxak znxów coś mi nie wyszło","All")
+wait(1.3)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("i huj nadal idę po milion","All")
+wait(0.7)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("już nie czekam na przyszłość ","All")
+wait(0.8)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("alxe nie mów nic bo","All")
+wait(0.9)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("bo bo idę po milion", "All")
+end)
 --------------------------------------------------------------------
 --------------------------//    FUN   ----------------------------
 --------------------------   STUFF  //----------------------------
@@ -1421,12 +1480,12 @@ local speedboost = Section9:CreateButton("Speed", function()
     end
      
     function onSelected(mouse)
-        mouse.KeyDown:connect(function(m) if m:lower()=="m"then onButton1Down(mouse)end end)
-        mouse.KeyUp:connect(function(m) if m:lower()=="m"then onButton1Up(mouse)end end)
+        mouse.KeyDown:connect(function(m) if m:lower()=="c"then onButton1Down(mouse)end end)
+        mouse.KeyUp:connect(function(m) if m:lower()=="c"then onButton1Up(mouse)end end)
     end
     onSelected(game.Players.LocalPlayer:GetMouse())
 end)
-speedboost:AddToolTip("Makes you faster when pressing 'M'")
+speedboost:AddToolTip("Makes you faster when pressing 'C'")
 ------------------------
 ---// CREDITS PAGE ---
 local CreditsLabel1 = Section13:CreateLabel("Made with love by hoodsense team!")
