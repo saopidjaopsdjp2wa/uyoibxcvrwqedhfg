@@ -1491,7 +1491,7 @@ local antilock = Section9:CreateButton("Antilock", function()
     local userInput = game:service('UserInputService')
     local runService = game:service('RunService')
     userInput.InputBegan:connect(function(Key)
-    if Key.KeyCode == Enum.KeyCode.0 then
+    if Key.KeyCode == Enum.KeyCode.h then
         Enabled = not Enabled
         if Enabled == true then
             repeat
@@ -1502,7 +1502,7 @@ local antilock = Section9:CreateButton("Antilock", function()
     end
 end)
 end)
-antilock:AddToolTip("Enables antilock [0].")
+antilock:AddToolTip("Enables antilock [H].")
 ------------------------
 ---// CREDITS PAGE ---
 local CreditsLabel1 = Section13:CreateLabel("Made with love by hoodsense team!")
