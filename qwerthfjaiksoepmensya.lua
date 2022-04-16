@@ -1491,7 +1491,7 @@ local antilock = Section9:CreateButton("Antilock", function()
     local userInput = game:service('UserInputService')
     local runService = game:service('RunService')
     userInput.InputBegan:connect(function(Key)
-    if Key.KeyCode == Enum.KeyCode.h then
+    if Key.KeyCode == Enum.KeyCode.H then
         Enabled = not Enabled
         if Enabled == true then
             repeat
