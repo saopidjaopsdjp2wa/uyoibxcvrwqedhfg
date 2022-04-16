@@ -93,6 +93,52 @@ local HitAirShootsToggle = Section1:CreateToggle("Hit Airshots", nil, function(b
 end)
 HitAirShootsToggle:AddToolTip("Hits Airshots.")
 
+-------------------------------
+-----// AIMING FUNCTION -----
+function Aiming.Check()
+    if not (Aiming.Enabled == true and Aiming.Selected ~= LocalPlayer and Aiming.SelectedPart ~= nil) then
+        return false
+    end
+ 
+    local Character = Aiming.Character(Aiming.Selected)
+    local KOd = Character:WaitForChild("BodyEffects")["K.O"].Value
+    local Grabbed = Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil
+ 
+    if (KOd or Grabbed) then
+        return false
+    end
+ 
+    return true
+end
+local __index
+__index = hookmetamethod(game, "__index", function(t, k)
+    if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and Aiming.Check()) then
+        local SelectedPart = Aiming.SelectedPart
+        if (DaHoodSettings.SilentAim and (k == "Hit" or k == "Target")) then
+            local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+ 
+            return (k == "Hit" and Hit or SelectedPart)
+        end
+    end
+ 
+    return __index(t, k)
+end)
+ 
+local LMFAO = false
+ 
+UserInputService.InputBegan:Connect(function(Key, Is)
+    if Key.UserInputType == Enum.UserInputType.MouseButton2 and not Is then
+        LMFAO = true
+    end
+end)
+ 
+UserInputService.InputEnded:Connect(function(Key, Is)
+    if Key.UserInputType == Enum.UserInputType.MouseButton2 and not Is then
+        LMFAO = false
+    end
+end)
+-----------------------------------------------------------
+
 local aimlock = Section1:CreateButton("Enable Aimlock", function()
     getgenv().AimPart = "HumanoidRootPart"
     getgenv().AimlockKey = "q"
@@ -1718,53 +1764,6 @@ local Slider4 = Section4:CreateSlider("Tile Scale",0,1,nil,false, function(Value
 	Window:SetTileScale(Value)
 end)
 Slider4:SetValue(0.25)
-
-
--------------------------------
------// AIMING FUNCTION -----
-function Aiming.Check()
-    if not (Aiming.Enabled == true and Aiming.Selected ~= LocalPlayer and Aiming.SelectedPart ~= nil) then
-        return false
-    end
- 
-    local Character = Aiming.Character(Aiming.Selected)
-    local KOd = Character:WaitForChild("BodyEffects")["K.O"].Value
-    local Grabbed = Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil
- 
-    if (KOd or Grabbed) then
-        return false
-    end
- 
-    return true
-end
-local __index
-__index = hookmetamethod(game, "__index", function(t, k)
-    if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and Aiming.Check()) then
-        local SelectedPart = Aiming.SelectedPart
-        if (DaHoodSettings.SilentAim and (k == "Hit" or k == "Target")) then
-            local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
- 
-            return (k == "Hit" and Hit or SelectedPart)
-        end
-    end
- 
-    return __index(t, k)
-end)
- 
-local LMFAO = false
- 
-UserInputService.InputBegan:Connect(function(Key, Is)
-    if Key.UserInputType == Enum.UserInputType.MouseButton2 and not Is then
-        LMFAO = true
-    end
-end)
- 
-UserInputService.InputEnded:Connect(function(Key, Is)
-    if Key.UserInputType == Enum.UserInputType.MouseButton2 and not Is then
-        LMFAO = false
-    end
-end)
------------------------------------------------------------
 
 game.StarterGui:SetCore("SendNotification", {
     Title = "hoodsense.cc";
