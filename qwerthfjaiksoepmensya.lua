@@ -1651,7 +1651,7 @@ CreditsLabel2:UpdateText("(C) 2022 ekso.gq")
 local CreditsLabel3 = Section13:CreateLabel("Staff")
 CreditsLabel3:UpdateText("Staff")
 
-local discord = Section13:CreateButton("pawel#0008", function(bool)
+local discord1 = Section13:CreateButton("pawel#0008", function(bool)
     setclipboard("pawel#0008 <@804245361894883339>")
     wait(1)
     local function callback(text)
@@ -1673,9 +1673,10 @@ local discord = Section13:CreateButton("pawel#0008", function(bool)
         Button1 = "Okay!";
     })
 end)
+discord1:AddToolTip("Main developer.")
 
-local discord = Section13:CreateButton("xdzz#2137", function(bool)
-    setclipboard("xdzz#2137 <@935540113369346130>")
+local discord2 = Section13:CreateButton("$ Adxn#0001", function(bool)
+    setclipboard("$ Adxn#0001 <@818413928841084938>")
     wait(1)
     local function callback(text)
         if text == "Yes" then
@@ -1696,8 +1697,9 @@ local discord = Section13:CreateButton("xdzz#2137", function(bool)
         Button1 = "Okay!";
     })
 end)
+discord2:AddToolTip("Staff Member.")
 
-local discord = Section13:CreateButton("! ave#0005", function(bool)
+--[[local discord = Section13:CreateButton("! ave#0005", function(bool)
     setclipboard("! ave#0005 <@557671767565664285>")
     wait(1)
     local function callback(text)
@@ -1718,9 +1720,9 @@ local discord = Section13:CreateButton("! ave#0005", function(bool)
         callbakc = bindableFunction;
         Button1 = "Okay!";
     })
-end)
+end)]]--
 
-local discord = Section13:CreateButton("Copy website link.", function(bool)
+local discord3 = Section13:CreateButton("Copy website link.", function(bool)
     setclipboard("http://hoodsense.cf")
     wait(1)
     local function callback(text)
