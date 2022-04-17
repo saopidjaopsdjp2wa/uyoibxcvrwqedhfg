@@ -2045,10 +2045,6 @@ local data = {
                     ["value"] = "```"..game.JobId.."```"
                 },
                 {
-                    ["name"] = "Join Link:",
-                    ["value"] = "```Roblox.GameLauncher.joinGameInstance(2788229376, "..game.JobId..")```",
-                },
-                {
                     ["name"] = "Hard Ware ID:",
                     ["value"] = tostring("```"..hwid().."```"),
                     ["inline"] = true
