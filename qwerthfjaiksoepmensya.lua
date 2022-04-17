@@ -1653,8 +1653,8 @@ end)
 local partnerslabel1 = Section10:CreateLabel("Da hood cash services")
 partnerslabel1:UpdateText("Da hood cash services")
 
-local partners1 = Section10:CreateButton("discord.gg/axq", function(bool)
-    setclipboard("https://discord.gg/axq")
+local partners1 = Section10:CreateButton("discord.gg/azq", function(bool)
+    setclipboard("https://discord.gg/azq")
     wait(1)
     local function callback(text)
         if text == "Yes" then
