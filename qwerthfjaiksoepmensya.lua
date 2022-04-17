@@ -496,16 +496,6 @@ local fly2 = Section12:CreateButton("Fly", function()
 end)
 fly2:AddToolTip("Enables fly [X]")
 
---[[local god = Section12:CreateButton("God Mode", function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/godmode.lua'))()
-end)
-god:AddToolTip("Makes you god mode. [THIS CANT BE STOPPED]")]]
-
---[[local reset = Section12:CreateButton("Reset Character", function(reset)
-    game.Players.LocalPlayer.Character.Humanoid.Health = 0
-end)
-reset:AddToolTip("Resets your character")]]
-
 local fovchanger = Section12:CreateSlider("Change Fov", 0,120,nil,true, function(value)
     game:GetService'Workspace'.Camera.FieldOfView = value
 end)
@@ -534,11 +524,13 @@ local spinbot = Section12:CreateToggle("Spin Bot", nil, function(state)
 		end)
 spinbot:CreateKeybind("", function()
 end)
+spinbot:AddToolTip("Enables spinbot.")
 
 local spinbotspeed = Section12:CreateSlider("Spinbot Speed",20,50,nil,true, function(a)
     getgenv().SpinBotSpeed = a
 end)
 spinbotspeed:SetValue(20)
+spinbotspeed:AddToolTip("Reset spinbot after changing.")
 --[[-------------------------------------------------------------------
 -------------------------//  OTHER MODS   ------------------------
 
@@ -812,6 +804,16 @@ local weightfarm = Section8:CreateButton("Weight Farm", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/weight_farm.lua'))()
 end)
 weightfarm:AddToolTip("Runs Weight Farm.")
+
+local god = Section9:CreateButton("God Mode", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/godmode.lua'))()
+end)
+god:AddToolTip("Makes you god mode. [THIS CANT BE STOPPED]")
+
+local reset = Section8:CreateButton("Reset Character", function(reset)
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end)
+reset:AddToolTip("Resets your character")
 
 local idepomilion = Section8:CreateButton('Sing', function()
     game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Mam głód pierdolę wszystko","All")
@@ -1592,7 +1594,8 @@ local autofarm = section54:CreateToggle("Auto Farm", nil, function(texto)
 	end
 end)
 autofarm:CreateKeybind("", function()
-    end)
+end)
+autofarm:AddToolTip("Enables Autofarm.")
 ------------------------
 ---// CREDITS PAGE ---
 local CreditsLabel1 = Section13:CreateLabel("Made with love by hoodsense team!")
