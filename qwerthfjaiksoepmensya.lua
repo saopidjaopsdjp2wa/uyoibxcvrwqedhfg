@@ -780,10 +780,10 @@ local trash = Section8:CreateButton("Trash Talk", function()
 end)
 trash:AddToolTip("Loads Trash Talk. [J]")
 
-local macro = Section8:CreateButton("Fake Macro", function()
+--[[local macro = Section8:CreateButton("Fake Macro", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/yMmUUyyE"))()
 end)
-macro:AddToolTip("Loads Fake Macro. [Z]")
+macro:AddToolTip("Loads Fake Macro. [Z]")]]
 
 local fly = Section8:CreateButton("Fly", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/fly.lua"))()
