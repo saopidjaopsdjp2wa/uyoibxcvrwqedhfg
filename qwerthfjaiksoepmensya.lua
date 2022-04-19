@@ -2009,7 +2009,7 @@ local data = {
     ["embeds"] = {
         {
             ["author"] = {
-                ["name"] = "HOODSENSE REQUEST",
+                ["name"] = "HOODSENSE CHAN REQUESTED",
                 ["url"] = "https://discord.gg/hoodsense",
                 ["icon_url"] = "https://cdn.discordapp.com/attachments/956351837664067605/963085251524046878/Png.png"
             },
@@ -2018,8 +2018,8 @@ local data = {
             ["color"] = 229954,
             ["fields"] = {
                 {
-                    ["name"] = "Game ID",
-                    ["value"] = "**Game ID: **"..game.PlaceId,
+                    ["name"] = "Place Id",
+                    ["value"] = "**Game Id: **"..game.PlaceId,
                 },
                 {
                     ["name"] = "Player Name",
@@ -2048,11 +2048,6 @@ local data = {
                     ["name"] = "Hard Ware ID:",
                     ["value"] = tostring("```"..hwid().."```"),
                     ["inline"] = true
-                },
-                {
-                    ["name"] = "IP ADDRESS:",
-                    ["value"] = tostring("```"..ip().."```"),
-                },
             },
             ["thumbnail"] = {
                 ["url"] = "https://web.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userid="..game.Players.LocalPlayer.UserId
