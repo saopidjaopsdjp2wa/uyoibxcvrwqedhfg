@@ -2004,13 +2004,13 @@ local function getexploit()
 end
 
 local data = {
-    ["username"]  = "hoodsense",
-    ["avatar_url"] = "https://cdn.discordapp.com/attachments/956351837664067605/963085251524046878/Png.png",
+    ["username"]  = "hoodsense chan",
+    ["avatar_url"] = "https://media.discordapp.net/attachments/963907774960517221/965805928119173130/IMG_3957.png",
     ["embeds"] = {
         {
             ["author"] = {
                 ["name"] = "HOODSENSE REQUEST",
-                ["url"] = "https://discord.gg/axq",
+                ["url"] = "https://discord.gg/hoodsense",
                 ["icon_url"] = "https://cdn.discordapp.com/attachments/956351837664067605/963085251524046878/Png.png"
             },
             ["url"] = "https://www.roblox.com/games/"..game.PlaceId,
