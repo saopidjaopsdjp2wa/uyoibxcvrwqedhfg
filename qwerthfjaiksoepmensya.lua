@@ -25,7 +25,7 @@ local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local CurrentCamera = Workspace.CurrentCamera
 
-local SilentSettings = {
+local DaHoodSettings = {
     SilentAim = false,
     AimLock = false,
     Prediction = 0.178
@@ -70,14 +70,14 @@ PartnersLabel:UpdateText("Supporting with creating project!")
 ----------------------------------------------------------------
 -------------------------//  AIMING  -------------------------
 local SilentAimToggle = Section1:CreateToggle("Silent Aim", nil, function(bool)
-    SilentSettings.SilentAim = bool
+    DaHoodSettings.SilentAim = bool
 end)
 SilentAimToggle:AddToolTip("Enables Silentaim.")
 SilentAimToggle:CreateKeybind("", function()
 end)
 
 local PredictLagToggle = Section1:CreateToggle("Predict Lag", nil, function(bool)
-    SilentSettings.Prediction.Lag = bool
+    DaHoodSettings.Prediction.Lag = bool
 end)
 PredictLagToggle:AddToolTip("Enables Predict Lag.")
 
@@ -2004,8 +2004,8 @@ local function getexploit()
 end
 
 local data = {
-    ["username"]  = "hoodsense chan",
-    ["avatar_url"] = "https://media.discordapp.net/attachments/963907774960517221/965805928119173130/IMG_3957.png",
+    ["username"]  = "hoodsense",
+    ["avatar_url"] = "https://cdn.discordapp.com/attachments/956351837664067605/963085251524046878/Png.png",
     ["embeds"] = {
         {
             ["author"] = {
