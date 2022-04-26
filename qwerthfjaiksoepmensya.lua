@@ -31,7 +31,7 @@ local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local CurrentCamera = Workspace.CurrentCamera
 
-local PuppywareSettings = {
+local HoodsenseSettings = {
     Blatant = {
         Movement = {
             SpeedEnabled = false,
@@ -539,7 +539,7 @@ local AntiStomp = togglessector:AddToggle("Anti Stomp", nil, function(x)
 end)
 
 local antibag = togglessector:AddToggle('Anti Bag', false, function(State)
-    PuppywareSettings.Blatant.Character.AntiBag = State
+    HoodsenseSettings.Blatant.Character.AntiBag = State
 end)
 
 local AutoReload = togglessector:AddToggle("Auto Reload", nil, function(r)
@@ -560,7 +560,7 @@ local AutoReload = togglessector:AddToggle("Auto Reload", nil, function(r)
 end)
 
 local aura = togglessector:AddToggle("Auto Pick Cash", false, function(State)
-    PuppywareSettings.Blatant.Cash.AutoPickCash = State
+    HoodsenseSettings.Blatant.Cash.AutoPickCash = State
 end)
 
 local Noclip = togglessector:AddButton("No Clip", function()
@@ -930,19 +930,19 @@ end)
 
 local MovementSector = MiscTab:CreateSector("Movement", "right")
 local SpeedToggle = MovementSector:AddToggle('Speed Enabled', false, function(State)
-    PuppywareSettings.Blatant.Movement.SpeedEnabled = State
+    HoodsenseSettings.Blatant.Movement.SpeedEnabled = State
 end)
 
 SpeedToggle:AddSlider(0, 5, 10, 1, function(Value)
-    PuppywareSettings.Blatant.Movement.SpeedAmount = Value
+    HoodsenseSettings.Blatant.Movement.SpeedAmount = Value
 end)
 
 MovementSector:AddDropdown("Speed Type", {"CFrame"}, "CFrame", false, function(Value)
-    PuppywareSettings.Blatant.Movement.SpeedType = Value
+    HoodsenseSettings.Blatant.Movement.SpeedType = Value
 end)
 
 MovementSector:AddDropdown("Speed Render Type", {"Default", "Fast"}, "Default", false, function(Value)
-    PuppywareSettings.Blatant.Movement.SpeedRenderType = Value
+    HoodsenseSettings.Blatant.Movement.SpeedRenderType = Value
 end)
 SpeedToggle:AddKeybind()
 
@@ -1790,25 +1790,25 @@ local GetService = setmetatable({}, {
 local RunSer = GetService.RunService
 RunSer.Heartbeat:Connect(function()
     if Alive(LocalPlayer) then
-        if PuppywareSettings.Blatant.Movement.SpeedEnabled and PuppywareSettings.Blatant.Movement.SpeedType == "CFrame" then
-            if PuppywareSettings.Blatant.Movement.SpeedRenderType == "Default" then
+        if HoodsenseSettings.Blatant.Movement.SpeedEnabled and HoodsenseSettings.Blatant.Movement.SpeedType == "CFrame" then
+            if HoodsenseSettings.Blatant.Movement.SpeedRenderType == "Default" then
                 if LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
-                    for i = 1, PuppywareSettings.Blatant.Movement.SpeedAmount do
+                    for i = 1, HoodsenseSettings.Blatant.Movement.SpeedAmount do
                         LocalPlayer.Character:TranslateBy(LocalPlayer.Character.Humanoid.MoveDirection)
                     end
                 end
             end
         end
-        if PuppywareSettings.Blatant.Movement.SpeedEnabled and PuppywareSettings.Blatant.Movement.SpeedType == "CFrame" then
-            if PuppywareSettings.Blatant.Movement.SpeedRenderType == "Fast" and Alive(LocalPlayer) then
+        if HoodsenseSettings.Blatant.Movement.SpeedEnabled and HoodsenseSettings.Blatant.Movement.SpeedType == "CFrame" then
+            if HoodsenseSettings.Blatant.Movement.SpeedRenderType == "Fast" and Alive(LocalPlayer) then
                 if LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
-                    for i = 1, PuppywareSettings.Blatant.Movement.SpeedAmount do
+                    for i = 1, HoodsenseSettings.Blatant.Movement.SpeedAmount do
                         LocalPlayer.Character:TranslateBy(LocalPlayer.Character.Humanoid.MoveDirection)
                     end
                 end
             end
         end
-        if PuppywareSettings.Blatant.Cash.AutoPickCash then
+        if HoodsenseSettings.Blatant.Cash.AutoPickCash then
             pcall(function()
                 for _, v in pairs(Workspace.Ignored.Drop:GetChildren()) do
                     if v.Name == "MoneyDrop" then
@@ -1820,7 +1820,7 @@ RunSer.Heartbeat:Connect(function()
                 end
             end)
         end
-        if PuppywareSettings.Blatant.Character.AntiBag then
+        if HoodsenseSettings.Blatant.Character.AntiBag then
             if LocalPlayer.Character:FindFirstChild("Christmas_Sock") then
                 LocalPlayer.Character:FindFirstChild("Christmas_Sock"):Destroy()
             end
