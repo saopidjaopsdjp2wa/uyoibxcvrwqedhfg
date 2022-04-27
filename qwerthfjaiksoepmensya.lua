@@ -1,3 +1,4 @@
+game.Players.LocalPlayer:Kick("                                Script discontinued.")
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/library.lua", true))()
 --Library.theme.accentcolor = Color3.new(20, 79, 13)--
 local Window = Library:CreateWindow("hoodsense", Vector2.new(492, 598), Enum.KeyCode.RightShift)
