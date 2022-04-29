@@ -1645,7 +1645,7 @@ end)
 local CreditsTab = Window:CreateTab("Credits")
 local CreditsSection = CreditsTab:CreateSector("Developers", "left")
 local discord = CreditsSection:AddButton("Our Developing Team", function(bool)
-    setclipboard("pawel#1337 <@557595801682182147> | $ Adxn#0001 <@818413928841084938> | https://hoodsense.cf/")
+    setclipboard("grek#1337 <@557595801682182147> | $ Adxn#0001 <@818413928841084938> | https://hoodsense.cf/")
     game.StarterGui:SetCore("SendNotification", {
         Title = "hoodsense";
         Text = "Our team copied on clipboard!";
@@ -1668,8 +1668,8 @@ local esko = CreditsSection:AddButton("Owned by ekso.gq", function(bool)
     })
 end)
 
-local discord1 = CreditsSection:AddButton("pawel#1337", function(bool)
-    setclipboard("pawel#1337 <@557595801682182147>")
+local discord1 = CreditsSection:AddButton("grek#1337", function(bool)
+    setclipboard("grek#1337 <@557595801682182147>")
     game.StarterGui:SetCore("SendNotification", {
         Title = "hoodsense";
         Text = "Staff member copied on clipboard!";
