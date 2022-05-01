@@ -32,7 +32,7 @@ local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local CurrentCamera = Workspace.CurrentCamera
 
-local zap.luaSettings = {
+local zapluaSettings = {
     Blatant = {
         Movement = {
             SpeedEnabled = false,
@@ -540,7 +540,7 @@ local AntiStomp = togglessector:AddToggle("Anti Stomp", nil, function(x)
 end)
 
 local antibag = togglessector:AddToggle('Anti Bag', false, function(State)
-    zap.luaSettings.Blatant.Character.AntiBag = State
+    zapluaSettings.Blatant.Character.AntiBag = State
 end)
 
 local AutoReload = togglessector:AddToggle("Auto Reload", nil, function(r)
@@ -561,7 +561,7 @@ local AutoReload = togglessector:AddToggle("Auto Reload", nil, function(r)
 end)
 
 local aura = togglessector:AddToggle("Auto Pick Cash", false, function(State)
-    zap.luaSettings.Blatant.Cash.AutoPickCash = State
+    zapluaSettings.Blatant.Cash.AutoPickCash = State
 end)
 
 local Noclip = togglessector:AddButton("No Clip", function()
@@ -931,19 +931,19 @@ end)
 
 local MovementSector = MiscTab:CreateSector("Movement", "right")
 local SpeedToggle = MovementSector:AddToggle('Speed Enabled', false, function(State)
-    zap.luaSettings.Blatant.Movement.SpeedEnabled = State
+    zapluaSettings.Blatant.Movement.SpeedEnabled = State
 end)
 
 SpeedToggle:AddSlider(0, 5, 10, 1, function(Value)
-    zap.luaSettings.Blatant.Movement.SpeedAmount = Value
+    zapluaSettings.Blatant.Movement.SpeedAmount = Value
 end)
 
 MovementSector:AddDropdown("Speed Type", {"CFrame"}, "CFrame", false, function(Value)
-    zap.luaSettings.Blatant.Movement.SpeedType = Value
+    zapluaSettings.Blatant.Movement.SpeedType = Value
 end)
 
 MovementSector:AddDropdown("Speed Render Type", {"Default", "Fast"}, "Default", false, function(Value)
-    zap.luaSettings.Blatant.Movement.SpeedRenderType = Value
+    zapluaSettings.Blatant.Movement.SpeedRenderType = Value
 end)
 SpeedToggle:AddKeybind()
 
@@ -1791,25 +1791,25 @@ local GetService = setmetatable({}, {
 local RunSer = GetService.RunService
 RunSer.Heartbeat:Connect(function()
     if Alive(LocalPlayer) then
-        if zap.luaSettings.Blatant.Movement.SpeedEnabled and zap.luaSettings.Blatant.Movement.SpeedType == "CFrame" then
-            if zap.luaSettings.Blatant.Movement.SpeedRenderType == "Default" then
+        if zapluaSettings.Blatant.Movement.SpeedEnabled and zapluaSettings.Blatant.Movement.SpeedType == "CFrame" then
+            if zapluaSettings.Blatant.Movement.SpeedRenderType == "Default" then
                 if LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
-                    for i = 1, zap.luaSettings.Blatant.Movement.SpeedAmount do
+                    for i = 1, zapluaSettings.Blatant.Movement.SpeedAmount do
                         LocalPlayer.Character:TranslateBy(LocalPlayer.Character.Humanoid.MoveDirection)
                     end
                 end
             end
         end
-        if zap.luaSettings.Blatant.Movement.SpeedEnabled and zap.luaSettings.Blatant.Movement.SpeedType == "CFrame" then
-            if zap.luaSettings.Blatant.Movement.SpeedRenderType == "Fast" and Alive(LocalPlayer) then
+        if zapluaSettings.Blatant.Movement.SpeedEnabled and zapluaSettings.Blatant.Movement.SpeedType == "CFrame" then
+            if zapluaSettings.Blatant.Movement.SpeedRenderType == "Fast" and Alive(LocalPlayer) then
                 if LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
-                    for i = 1, zap.luaSettings.Blatant.Movement.SpeedAmount do
+                    for i = 1, zapluaSettings.Blatant.Movement.SpeedAmount do
                         LocalPlayer.Character:TranslateBy(LocalPlayer.Character.Humanoid.MoveDirection)
                     end
                 end
             end
         end
-        if zap.luaSettings.Blatant.Cash.AutoPickCash then
+        if zapluaSettings.Blatant.Cash.AutoPickCash then
             pcall(function()
                 for _, v in pairs(Workspace.Ignored.Drop:GetChildren()) do
                     if v.Name == "MoneyDrop" then
@@ -1821,7 +1821,7 @@ RunSer.Heartbeat:Connect(function()
                 end
             end)
         end
-        if zap.luaSettings.Blatant.Character.AntiBag then
+        if zapluaSettings.Blatant.Character.AntiBag then
             if LocalPlayer.Character:FindFirstChild("Christmas_Sock") then
                 LocalPlayer.Character:FindFirstChild("Christmas_Sock"):Destroy()
             end
