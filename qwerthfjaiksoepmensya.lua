@@ -1,1217 +1,473 @@
-local GetService = setmetatable({}, {
-    __index = function(self, key)
-        return game:GetService(key)
-    end
-})
-
+--game.Players.LocalPlayer:Kick("                                Script discontinued.")
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/library.lua", true))()
-local NotifyLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
-local Notify = NotifyLibrary.Notify
+--Library.theme.accentcolor = Color3.new(20, 79, 13)--
+local Window = Library:CreateWindow("zap.lua", Vector2.new(492, 598), Enum.KeyCode.RightShift)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "zap.lua";
+    Text = "Hello, Loading...";
+    Icon = "http://www.roblox.com/asset/?id=8768441000";
+    Duration = "10";
+    callbakc = bindableFunction;
+    Button1 = "Okay!";
+})
+wait(3)
 
-local RunService = GetService.RunService
-local Players = GetService.Players
+local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/fov.lua"))()
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/esp.lua"))()
+ESP:Toggle(false)
+ESP.Tracers = false
+ESP.Names = false
+ESP.Boxes = false
+Aiming.TeamCheck(false)
+Aiming.VisibleCheck = false
+
+local Workspace = game:GetService("Workspace")
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
 local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
-local CurrentCamera = workspace.CurrentCamera
-local UserInputService = GetService.UserInputService
-local GuiInset = GetService.GuiService:GetGuiInset()
-local AimbotFOV = Drawing.new("Circle")
-AimbotFOV.Thickness = 1
-local SilentAimFOV = Drawing.new("Circle")
-SilentAimFOV.Thickness = 1
-local Insert = table.insert
-local Network = GetService.NetworkClient
-local ZapFolder = Instance.new("Folder", workspace)
-ZapFolder.Name = "Zap-Folder"
-local StarterGui = GetService.StarterGui
-local ReplicatedStorage = GetService.ReplicatedStorage
+local CurrentCamera = Workspace.CurrentCamera
+local LocalPlayer = Players.LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+local CurrentCamera = Workspace.CurrentCamera
 
-local AnimationModule = {
-    Astronaut = {
-        "rbxassetid://891621366",
-        "rbxassetid://891633237",
-        "rbxassetid://891667138",
-        "rbxassetid://891636393",
-        "rbxassetid://891627522",
-        "rbxassetid://891609353",
-        "rbxassetid://891617961"
-    },
-    Bubbly = {
-        "rbxassetid://910004836",
-        "rbxassetid://910009958",
-        "rbxassetid://910034870",
-        "rbxassetid://910025107",
-        "rbxassetid://910016857",
-        "rbxassetid://910001910",
-        "rbxassetid://910030921",
-        "rbxassetid://910028158"
-    },
-    Cartoony = {
-        "rbxassetid://742637544",
-        "rbxassetid://742638445",
-        "rbxassetid://742640026",
-        "rbxassetid://742638842",
-        "rbxassetid://742637942",
-        "rbxassetid://742636889",
-        "rbxassetid://742637151"
-    },
-    Confindent = {
-        "rbxassetid://1069977950",
-        "rbxassetid://1069987858",
-        "rbxassetid://1070017263",
-        "rbxassetid://1070001516",
-        "rbxassetid://1069984524",
-        "rbxassetid://1069946257",
-        "rbxassetid://1069973677"
-    },
-    Cowboy = {
-        "rbxassetid://1014390418",
-        "rbxassetid://1014398616",
-        "rbxassetid://1014421541",
-        "rbxassetid://1014401683",
-        "rbxassetid://1014394726",
-        "rbxassetid://1014380606",
-        "rbxassetid://1014384571"
-    },
-    Default = {
-        "http://www.roblox.com/asset/?id=507766666",
-        "http://www.roblox.com/asset/?id=507766951",
-        "http://www.roblox.com/asset/?id=507777826",
-        "http://www.roblox.com/asset/?id=507767714",
-        "http://www.roblox.com/asset/?id=507765000",
-        "http://www.roblox.com/asset/?id=507765644",
-        "http://www.roblox.com/asset/?id=507767968"
-    },
-    Elder = {
-        "rbxassetid://845397899",
-        "rbxassetid://845400520",
-        "rbxassetid://845403856",
-        "rbxassetid://845386501",
-        "rbxassetid://845398858",
-        "rbxassetid://845392038",
-        "rbxassetid://845396048" 
-    },
-    Ghost = {
-        "rbxassetid://616006778",
-        "rbxassetid://616008087",
-        "rbxassetid://616013216",
-        "rbxassetid://616013216",
-        "rbxassetid://616008936",
-        "rbxassetid://616005863",
-        "rbxassetid://616012453",
-        "rbxassetid://616011509"
-    },
-    Knight = {
-        "rbxassetid://657595757",
-        "rbxassetid://657568135",
-        "rbxassetid://657552124",
-        "rbxassetid://657564596",
-        "rbxassetid://658409194",
-        "rbxassetid://658360781",
-        "rbxassetid://657600338"
-    },
-    Levitation = {
-        "rbxassetid://616006778",
-        "rbxassetid://616008087",
-        "rbxassetid://616013216",
-        "rbxassetid://616010382",
-        "rbxassetid://616008936",
-        "rbxassetid://616003713",
-        "rbxassetid://616005863"
-    },
-    Mage = {
-        "rbxassetid://707742142",
-        "rbxassetid://707855907",
-        "rbxassetid://707897309",
-        "rbxassetid://707861613",
-        "rbxassetid://707853694",
-        "rbxassetid://707826056",
-        "rbxassetid://707829716"
-    },
-    Ninja = {
-        "rbxassetid://656117400",
-        "rbxassetid://656118341",
-        "rbxassetid://656121766",
-        "rbxassetid://656118852",
-        "rbxassetid://656117878",
-        "rbxassetid://656114359",
-        "rbxassetid://656115606"
-    },
-    OldSchool = {
-        "rbxassetid://5319828216",
-        "rbxassetid://5319831086",
-        "rbxassetid://5319847204",
-        "rbxassetid://5319844329",
-        "rbxassetid://5319841935",
-        "rbxassetid://5319839762",
-        "rbxassetid://5319852613",
-        "rbxassetid://5319850266"
-    },
-    Patrol = {
-        "rbxassetid://1149612882",
-        "rbxassetid://1150842221",
-        "rbxassetid://1151231493",
-        "rbxassetid://1150967949",
-        "rbxassetid://1148811837",
-        "rbxassetid://1148811837",
-        "rbxassetid://1148863382"
-    },
-    Pirtate = {
-        "rbxassetid://750781874",
-        "rbxassetid://750782770",
-        "rbxassetid://750785693",
-        "rbxassetid://750783738",
-        "rbxassetid://750782230",
-        "rbxassetid://750779899",
-        "rbxassetid://750780242"
-    },
-    Popstar = {
-        "rbxassetid://1212900985",
-        "rbxassetid://1150842221",
-        "rbxassetid://1212980338",
-        "rbxassetid://1212980348",
-        "rbxassetid://1212954642",
-        "rbxassetid://1213044953",
-        "rbxassetid://1212900995"
-    },
-    Princess = {
-        "rbxassetid://941003647",
-        "rbxassetid://941013098",
-        "rbxassetid://941028902",
-        "rbxassetid://941015281",
-        "rbxassetid://941008832",
-        "rbxassetid://940996062",
-        "rbxassetid://941000007"
-    },
-    Robot = {
-        "rbxassetid://616088211",
-        "rbxassetid://616089559",
-        "rbxassetid://616095330",
-        "rbxassetid://616091570",
-        "rbxassetid://616090535",
-        "rbxassetid://616086039",
-        "rbxassetid://616087089"
-    },
-    Rthro = {
-        "rbxassetid://2510196951",
-        "rbxassetid://2510197257",
-        "rbxassetid://2510202577",
-        "rbxassetid://2510198475",
-        "rbxassetid://2510197830",
-        "rbxassetid://2510195892",
-        "rbxassetid://02510201162",
-        "rbxassetid://2510199791",
-        "rbxassetid://2510192778"
-    },
-    Sneaky = {
-        "rbxassetid://1132473842",
-        "rbxassetid://1132477671",
-        "rbxassetid://1132510133",
-        "rbxassetid://1132494274",
-        "rbxassetid://1132489853",
-        "rbxassetid://1132461372",
-        "rbxassetid://1132469004"
-    },
-    Stylish = {
-        "rbxassetid://616136790",
-        "rbxassetid://616138447",
-        "rbxassetid://616146177",
-        "rbxassetid://616140816",
-        "rbxassetid://616139451",
-        "rbxassetid://616133594",
-        "rbxassetid://616134815"
-    },
-    Superhero = {
-        "rbxassetid://782841498",
-        "rbxassetid://782845736",
-        "rbxassetid://782843345",
-        "rbxassetid://782842708",
-        "rbxassetid://782847020",
-        "rbxassetid://782843869",
-        "rbxassetid://782846423"
-    },
-    Toy = {
-        "rbxassetid://782841498",
-        "rbxassetid://782845736",
-        "rbxassetid://782843345",
-        "rbxassetid://782842708",
-        "rbxassetid://782847020",
-        "rbxassetid://782843869",
-        "rbxassetid://782846423"
-    },
-    Vampire = {
-        "rbxassetid://1083445855",
-        "rbxassetid://1083450166",
-        "rbxassetid://1083473930",
-        "rbxassetid://1083462077",
-        "rbxassetid://1083455352",
-        "rbxassetid://1083439238",
-        "rbxassetid://1083443587"
-    },
-    Werewolf = {
-        "rbxassetid://1083195517",
-        "rbxassetid://1083214717",
-        "rbxassetid://1083178339",
-        "rbxassetid://1083216690",
-        "rbxassetid://1083218792",
-        "rbxassetid://1083182000",
-        "rbxassetid://1083189019"
-    },
-    Zombie = {
-        "rbxassetid://616158929",
-        "rbxassetid://616160636",
-        "rbxassetid://616168032",
-        "rbxassetid://616163682",
-        "rbxassetid://616161997",
-        "rbxassetid://616156119",
-        "rbxassetid://616157476"
-    }
-}
-
-local AnimationsName = {
-    "Astronaut",
-    "Bubbly",
-    "Cartoony",
-    "Confindent",
-    "Cowboy",
-    "Default",
-    "Elder",
-    "Ghost",
-    "Knight",
-    "Levitation",
-    "Mage",
-    "Ninja",
-    "OldSchool",
-    "Patrol",
-    "Pirate",
-    "Popstar",
-    "Princess",
-    "Robot",
-    "Rthro",
-    'Sneaky',
-    "Stylish",
-    "Superhero",
-    "Toy",
-    "Vampire",
-    "Werewolf",
-    "Zombie"
-}
-
-local AnimationState = {
-    Idle = "Default",
-    Walk = "Default",
-    Run = "Default",
-    Jump = "Default",
-    Climb = "Default",
-    Fall = "Default",
-}
-
-local ZapSettings = {
-    Aiming = {
-        Aimbot = {
-            Enabled = false,
-            AimAssist = false,
-            IsAiming = false,
-            ShowFOV = false,
-            FOVColor = Library.theme.accentcolor,
-            UseNearestDistance = false,
-            WallCheck = false,
-            KnockedOutCheck = false,
-            GrabbedCheck = false,
-            Hitboxes = {"Head"}
-        },
-        TriggerBot = {
-            Enabled = false,
-            Delay = false,
-            DelayAmount = 0
-        },
-        SilentAim = {
-            Enabled = false,
-            ShowFOV = false,
-            FOVColor = Library.theme.accentcolor,
-            WallCheck = false,
-            KnockedOutCheck = false,
-            UseNearestDistance = false,
-            GrabbedCheck = false,
-            Hitboxes = {"Head"}
-        },
-        TargetAim = {
-            Enabled = false,
-            ShowFOV = false,
-            FOVColor = Library.theme.accentcolor,
-            WallCheck = false,
-            KnockedOutCheck = false,
-            UseNearestDistance = false,
-            GrabbedCheck = false,
-            Hitboxes = {"Head"},
-            Target = nil
-        },
-        AimingSettings = {
-            MovementPrediction = false,
-            MovementPredictionAmount = 0.165 * 1,
-            HitChance = false,
-            HitChanceAmount = {
-                HitPercent = 100,
-                NotHitPercent = 0
-            },
-            AimAssistType = "Camera",
-            MovementPrediction = false,
-            MovementPredictionAmount = 0.165 * 1,
-            SmoothingTracing = false,
-            SmoothingTracingAmount = 5,
-            PingBasedPrediction = false,
-            GetVelocity = 0.165
-        },
-        TargetAimSettings = {
-            UnlockTargetKnocked = false,
-            NotificationAlert = false,
-        },
-        FOV = {
-            FOVFilled = false,
-            AimAssistSize = 100,
-            SilentAimSize = 100,
-            TargetAimSize = 100
-        },
-        Whitelist = {
-            Players = {},
-            Friends = {},
-            Holder = "",
-            Enabled = false,
-            CrewEnabled = false,
-            FriendsWhitelist = false
-        },
-    },
+local zap.luaSettings = {
     Blatant = {
-        BlatantAA = {
-            Enabled = false,
-            NoAutoRotate = false,
-            UndergroundWallbang = false,
-            Underground = false,
-            AntiAimType = "Jitter",
-            AntiAimSpeed = 100,
-            JitterAngle = 180
-        },
-        LegitAA = {
-            Enabled = false,
-            AntiAimAt = false,
-            AntiAimAtDistance = 20
-        },
-        FakeLag = {
-            Enabled = false,
-            TriggerAmount = 5
-        },
         Movement = {
             SpeedEnabled = false,
             SpeedType = "Default",
             SpeedRender = "Default",
             SpeedAmount = 5
         },
-        Reaching = {
-            FistReach = false,
-            MeleeReach = false
-        },
-        Character = {
-            AntiGrab = false,
-            AntiBag = false,
-            AutoArmor = false,
-            AutoLettuce = false,
-            AutoReload = false
-        },
-        Farming = {
-            ATMFarm = false,
-            ShoeFarm = false,
-            MuscleFarm = false,
-            MuscleFarmingType = "Normal",
-            BoxFarm = false,
-            HospitalFarm = false,
-            ATMPick = false
-        },
         Cash = {
             AutoDrop = false,
             AutoDropAmount = 5000,
             AutoPickCash = false
-        }
+        },
+        Character = {
+            AntiBag = false,
+        },
     },
-    Teleport = {
-        TeleportReturn = false,
-        ReturnDelay = false,
-        AutoPurchase = false,
-        AmmoPurchaseAmount = 1
-    }
 }
 
-local ZapModule = {
-    Old = {
-        CFrame,
-    },
-    God = {
-        MeleeAlive = false,
-        GodMelee = false,
-        GodBullet = false,
-        AntiRagdoll = false
-    },
-    LagTick = 0,
-    Ignores = {
-        "UpperTorso",
-        "LowerTorso",
-        "Head",
-        "LeftHand",
-        "LeftUpperArm",
-        "LeftLowerArm",
-        "RightHand",
-        "RightUpperArm",
-        "RightLowerArm"
-    },
-    PingBasedPrediction = 0.165,
-    Instance = {},
-    Teleport = {
-        Players = {},
-        Food = {
-            "Cranberry",
-            "Donut",
-            "Pizza",
-            "Chicken",
-            "Popcorn",
-            "Hamburger",
-            "Taco",
-            "Starblox Latte",
-            "Lettuce",
-            "Lemonade"
-        },
-        Location = {
-            "Bank",
-            "Boxing Place",
-            "Police Station",
-            "Admin Base",
-            "Sewers",
-            "Shoe Store",
-            "Hospital",
-            "Phone Store",
-            "Taco Shack",
-            "Casino",
-            "UFO",
-            "Fire Station",
-            "Church",
-            "Downhill Shop",
-            "Uphill Shop"
-        },
-        Gun = {
-            "Glock",
-            "SMG",
-            "Silencer",
-            "TacticalShotgun",
-            "P90",
-            "AUG",
-            "Shotgun",
-            "RPG",
-            "AR",
-            "Double-Barrel SG",
-            "Flamethrower",
-            "Revolver",
-            "LMG",
-            "AK47",
-            "DrumGun",
-            "Silencer",
-            "GrenadeLauncher",
-            "Taser",
-            "SilencerAR",
-            "Grenade"
-        },
-        Armor = {
-            "High-Medium Armor",
-            "Medium Armor"
-        },
-        Mask = {
-            "Surgeon Mask",
-            "Riot Mask",
-            "Pitchfork",
-            "Hockey Mask",
-            "Breathing Mask",
-            "Pumpkin Mask",
-            "Skull Mask",
-            "Paintball Mask",
-            "Ninja Mask"
-        },
-        Weight = {
-            "Weights",
-            "HeavyWeights"
-        },
-        Melee = {
-            "Shovel",
-            "Bat",
-            "Pencil",
-            "StopSign",
-            "Knife",
-            "Pitchfork"
-        },
-        Phone = {
-            "iPhone",
-            "iPhoneB",
-            "iPhoneG",
-            "iPhoneP",
-            "Old Phone",
-            "Orange Phone",
-            "Original Phone",
-        },
-        Bike = {
-            "DuoBike",
-            "Solo Bike",
-        },
-        Extra = {
-            "PepperSpray",
-            "LockPicker",
-            "Flashlight",
-            "Flowers",
-            "Money Gun",
-            "Brown Bag",
-            "Anti Bodies",
-            "Firework"
-        }
-    }
+local AimingTab = Window:CreateTab("Main")
+local SilentSection = AimingTab:CreateSector("Aim Configuration", "left")
+
+local DaHoodSettings = {
+    SilentAim = false,
+    AimLock = false,
+    Prediction = 0.178
 }
 
-local Window = Library:CreateWindow("Zap", Vector2.new(492, 598), Enum.KeyCode.RightShift)
-local AimingTab = Window:CreateTab("Aiming")
-Notify({
-    Title = "Zap",
-    Description = "Hello, " ..game.Players.LocalPlayer.DisplayName..".",
-    Duration = 3
-    })
-wait(0.2)
-Notify({
-    Title = "Zap",
-    Description = "Loading...",
-    Duration = 3
-    })
-wait(5)
-
--- Aimbot Setion --
-
-local LegitSection = AimingTab:CreateSector("Aimbot", "left")
-LegitSection:AddToggle('Aimbot Enabled', false, function(Boolean)
-    ZapSettings.Aiming.Aimbot.Enabled = Boolean
+local SilentAimToggle = SilentSection:AddToggle("Silent Aim", nil, function(bool)
+    DaHoodSettings.SilentAim = bool
 end)
-
-local AimAssistToggle = LegitSection:AddToggle('Aim Assist', false, function(Boolean)
-    ZapSettings.Aiming.Aimbot.AimAssist = Boolean
-end)
-
-AimAssistToggle:AddKeybind()
-
-local AimbotFOVToggle = LegitSection:AddToggle('Show FOV', false, function(Boolean)
-    ZapSettings.Aiming.Aimbot.ShowFOV = Boolean
-end)
-
-AimbotFOVToggle:AddColorpicker(ZapSettings.Aiming.Aimbot.FOVColor, function(Color)
-    ZapSettings.Aiming.Aimbot.FOVColor = Color
-end)
-
-LegitSection:AddToggle('Use Nearest Distance', false, function(Boolean)
-    ZapSettings.Aiming.Aimbot.UseNearestDistance = Boolean
-end)
-
-LegitSection:AddToggle('Wall Check', false, function(Boolean)
-    ZapSettings.Aiming.Aimbot.WallCheck = Boolean
-end)
-
-LegitSection:AddToggle('Knock Out Check', false, function(Boolean)
-    ZapSettings.Aiming.Aimbot.KnockedOutCheck = Boolean
-end)
-
-LegitSection:AddToggle('Grabbed Check', false, function(Boolean)
-    ZapSettings.Aiming.Aimbot.GrabbedCheck = Boolean
-end)
-
-LegitSection:AddDropdown('Hitboxes', {"Head", "HumanoidRootPart"}, {"HumanoidRootPart"}, true, function(Value)
-    ZapSettings.Aiming.Aimbot.Hitboxes = Value
-end)
-
--- Silent Aim Setion --
-
-local RageSection = AimingTab:CreateSector("Silent Aim", "left")
-local SilentAimToggle = RageSection:AddToggle('Silent Aim Enabled', false, function(Boolean)
-    ZapSettings.Aiming.SilentAim.Enabled = Boolean
-end)
-
 SilentAimToggle:AddKeybind()
 
-local SilentAimFOVToggle = RageSection:AddToggle('Show FOV', false, function(Boolean)
-    ZapSettings.Aiming.SilentAim.ShowFOV = Boolean
+local PredictLagToggle = SilentSection:AddToggle("Predict Lag", nil, function(bool)
+    DaHoodSettings.Prediction.Lag = bool
 end)
 
-SilentAimFOVToggle:AddColorpicker(Library.theme.accentcolor, function(Color)
-    ZapSettings.Aiming.SilentAim.FOVColor = Color
+local FovCircleToggle = SilentSection:AddToggle("FOV Circle", nil, function(bool)
+    Aiming.ShowFOV = bool
 end)
 
-RageSection:AddToggle('Use Nearest Distance', false, function(Boolean)
-    ZapSettings.Aiming.SilentAim.NearestDistance = Boolean
+local VisibleCheckToggle = SilentSection:AddToggle("Visible Check", nil, function(bool)
+    Aiming.VisibleCheck = bool
 end)
 
-RageSection:AddToggle('Wall Check', false, function(Boolean)
-    ZapSettings.Aiming.SilentAim.WallCheck = Boolean
+local HitAirShootsToggle = SilentSection:AddToggle("Hit Airshots", nil, function(bool)
+    Aiming.Airshots = true
 end)
 
-RageSection:AddToggle('Knock Out Check', false, function(Boolean)
-    ZapSettings.Aiming.SilentAim.KnockedOutCheck = Boolean
+local fovsettings = AimingTab:CreateSector("Fov Configuration", "right")
+
+local HitChanceSlider = fovsettings:AddSlider("Silent Aim Hitchance", 0, 100, 400, 1, function(value)
+    DaHoodSettings.Prediction = tonumer("0." .. value)
 end)
 
-RageSection:AddToggle('Grabbed Check', false, function(Boolean)
-    ZapSettings.Aiming.SilentAim.GrabbedCheck = Boolean
+local fovsize = fovsettings:AddSlider("Silent Aim Size", 0, 30, 500, 1, function(value)
+    Aiming.FOV = value
 end)
 
-RageSection:AddDropdown('Hitboxes', {"Head", "HumanoidRootPart"}, {"HumanoidRootPart"}, true, function(Value)
-    ZapSettings.Aiming.SilentAim.Hitboxes = Value
+local fovsides = fovsettings:AddSlider("Fov Circle Sides", 1, 40, 40, 1, function(value)
+    Aiming.FOVSides  = value
+end)
+-------------------------------
+-----// AIMING FUNCTION -----
+function Aiming.Check()
+    if not (Aiming.Enabled == true and Aiming.Selected ~= LocalPlayer and Aiming.SelectedPart ~= nil) then
+        return false
+    end
+ 
+    local Character = Aiming.Character(Aiming.Selected)
+    local KOd = Character:WaitForChild("BodyEffects")["K.O"].Value
+    local Grabbed = Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil
+ 
+    if (KOd or Grabbed) then
+        return false
+    end
+ 
+    return true
+end
+local __index
+__index = hookmetamethod(game, "__index", function(t, k)
+    if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and Aiming.Check()) then
+        local SelectedPart = Aiming.SelectedPart
+        if (DaHoodSettings.SilentAim and (k == "Hit" or k == "Target")) then
+            local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+ 
+            return (k == "Hit" and Hit or SelectedPart)
+        end
+    end
+ 
+    return __index(t, k)
+end)
+ 
+local LMFAO = false
+ 
+UserInputService.InputBegan:Connect(function(Key, Is)
+    if Key.UserInputType == Enum.UserInputType.MouseButton2 and not Is then
+        LMFAO = true
+    end
+end)
+ 
+UserInputService.InputEnded:Connect(function(Key, Is)
+    if Key.UserInputType == Enum.UserInputType.MouseButton2 and not Is then
+        LMFAO = false
+    end
 end)
 
--- Target Aim Setion --
 
-local RageSection = AimingTab:CreateSector("Target Aim", "left")
-local TargetAimToggle = RageSection:AddToggle('Target Aim Enabled', false, function(Boolean)
-    ZapSettings.Aiming.TargetAim.Enabled = Boolean
-end)
-
-TargetAimToggle:AddKeybind()
-
-local SilentAimFOVToggle = RageSection:AddToggle('Show FOV', false, function(Boolean)
-    ZapSettings.Aiming.TargetAim.ShowFOV = Boolean
-end)
-
-SilentAimFOVToggle:AddColorpicker(Library.theme.accentcolor, function(Color)
-    ZapSettings.Aiming.TargetAim.FOVColor = Color
-end)
-
-RageSection:AddToggle('Wall Check', false, function(Boolean)
-    ZapSettings.Aiming.TargetAim.WallCheck = Boolean
-end)
-
-RageSection:AddToggle('Knock Out Check', false, function(Boolean)
-    ZapSettings.Aiming.TargetAim.KnockedOutCheck = Boolean
-end)
-
-RageSection:AddToggle('Grabbed Check', false, function(Boolean)
-    ZapSettings.Aiming.TargetAim.GrabbedCheck = Boolean
-end)
-
-RageSection:AddDropdown('Hitboxes', {"Head", "HumanoidRootPart"}, {"Head"}, true, function(Value)
-    ZapSettings.Aiming.TargetAim.Hitboxes = Value
-end)
-
--- Aim Assist FOV Section --
-
-local AimbotFOVSection = AimingTab:CreateSector("FOV Settings", "right")
-AimbotFOVSection:AddToggle('Filled', false, function(Boolean)
-    ZapSettings.Aiming.FOV.FOVFilled = Boolean
-end)
-
-AimbotFOVSection:AddSlider("Aim Assist", 0, 100, 500, 1, function(Value)
-    ZapSettings.Aiming.FOV.AimAssistSize = Value
-end)
-
-AimbotFOVSection:AddSlider("Silent Aim", 0, 100, 500, 1, function(Value)
-    ZapSettings.Aiming.FOV.SilentAimSize = Value
-end)
-
-AimbotFOVSection:AddSlider("Transparency", 0, 9, 9, 1, function(Value)
-    ZapSettings.Aiming.FOV.Transparency = tonumber("0." .. Value)
-end)
-
--- Trigger Bot Section -- 
-
-local TriggerbotSection = AimingTab:CreateSector("Trigger Bot Settings", "left")
-
-local TriggerBotToggle = TriggerbotSection:AddToggle('Trigger Bot', false, function(State)
-    ZapSettings.Aiming.TriggerBot.Enabled = State
-end)
-
-TriggerBotToggle:AddKeybind()
-
-local TValue = TriggerbotSection:AddToggle('Trigger Bot Delay', false, function(State)
-    ZapSettings.Aiming.TriggerBot.Delay = State
-end)
-
-TValue:AddSlider(1, 0, 60, 1, function(Value)
-    ZapSettings.Aiming.TriggerBot.DelayAmount = Value
-end)
-
--- Aiming Settings Section --
-
-local AimingSettings = AimingTab:CreateSector("Aim Settings", "right")
-
-AimingSettings:AddToggle('Ping Based Prediction', false, function(Boolean)
-    ZapSettings.Aiming.AimingSettings.PingBasedPrediction = Boolean
-end)
-
-AimingSettings:AddDropdown('Aim Assist Type', {"Camera", "Mouse"}, "Camera", false, function(Option)
-    ZapSettings.Aiming.AimingSettings.AimAssistType = Option
-end)
-
-local SmoothingTracing = AimingSettings:AddToggle('Smoothing Tracing', false, function(Boolean)
-    ZapSettings.Aiming.AimingSettings.SmoothingTracing = Boolean
-end)
-
-SmoothingTracing:AddSlider(2, 5, 10, 1, function(Value)
-    ZapSettings.Aiming.AimingSettings.SmoothingTracingAmount = Value
-end)
-
-local MovementPredToggle2 = AimingSettings:AddToggle('Custom Prediction', false, function(Boolean)
-    ZapSettings.Aiming.AimingSettings.MovementPrediction = Boolean
-end)
-
-MovementPredToggle2:AddSlider(1, 1, 5, 1, function(Value)
-    ZapSettings.Aiming.AimingSettings.MovementPredictionAmount = 0.165 * tonumber("1." ..Value)
-end)
-
-local HitChanceToggle2 = AimingSettings:AddToggle('Hit Chance', false, function(Boolean)
-    ZapSettings.Aiming.AimingSettings.HitChance = Boolean
-end)
-
-HitChanceToggle2:AddSlider(0, 100, 100, 1, function(Value)
-    ZapSettings.Aiming.AimingSettings.HitChanceAmount.HitPercent = tonumber(Value)
-    ZapSettings.Aiming.AimingSettings.HitChanceAmount.NotHitPercent = tonumber(100 - ZapSettings.Aiming.AimingSettings.HitChanceAmount.HitPercent)
-end)
-
--- Target Aim Settings Section --
-
-local TargetAimSettings = AimingTab:CreateSector("Target Aim Settings", "right")
-
-local TargetBind = TargetAimSettings:AddKeybind("Keybind", false, function()
-    
-end, function()
-    if ZapSettings.Aiming.TargetAim.Enabled then
-        local NearestTarget, NearestDistance = NearestMouse()
-        if NearestTarget and Visible(NearestTarget.Character.HumanoidRootPart, LocalPlayer.Character.HumanoidRootPart) then
-            ZapSettings.Aiming.TargetAim.Target = NearestTarget.Name
-            if ZapSettings.Aiming.TargetAimSettings.NotificationAlert then
-                Notify({
-                    Title = "Zap",
-                    Description = "Tagert " .. NearestTarget.Name,
-                    Duration = 3
-                })
+local aimlock = AimingTab:CreateSector("Aimlock", "left")
+local aimlocktoggle = aimlock:AddToggle("Aimlock",  nil, function()
+getgenv().AimPart = "HumanoidRootPart"
+getgenv().AimlockKey = "q"
+getgenv().AimRadius = 30
+getgenv().ThirdPerson = true
+getgenv().FirstPerson = true
+getgenv().TeamCheck = false
+getgenv().PredictMovement = true
+getgenv().PredictionVelocity = 9
+local L_27_, L_28_, L_29_, L_30_ =
+    game:GetService "Players",
+game:GetService "UserInputService",
+game:GetService "RunService",
+game:GetService "StarterGui"
+local L_31_, L_32_, L_33_, L_34_, L_35_, L_36_, L_37_ =
+    L_27_.LocalPlayer,
+L_27_.LocalPlayer:GetMouse(),
+workspace.CurrentCamera,
+CFrame.new,
+Ray.new,
+Vector3.new,
+Vector2.new
+local L_38_, L_39_, L_40_ = true, false, false
+local L_41_
+getgenv().CiazwareUniversalAimbotLoaded = true
+getgenv().WorldToViewportPoint = function(L_42_arg0)
+    return L_33_:WorldToViewportPoint(L_42_arg0)
+end
+getgenv().WorldToScreenPoint = function(L_43_arg0)
+    return L_33_.WorldToScreenPoint(L_33_, L_43_arg0)
+end
+getgenv().GetObscuringObjects = function(L_44_arg0)
+    if L_44_arg0 and L_44_arg0:FindFirstChild(getgenv().AimPart) and L_31_ and L_31_.Character:FindFirstChild("Head") then
+        local L_45_ = workspace:FindPartOnRay(L_35_(L_44_arg0[getgenv().AimPart].Position, L_31_.Character.Head.Position))
+        if L_45_ then
+            return L_45_:IsDescendantOf(L_44_arg0)
+        end
+    end
+end
+getgenv().GetNearestTarget = function()
+    local L_46_ = {}
+    local L_47_ = {}
+    local L_48_ = {}
+    for L_50_forvar0, L_51_forvar1 in pairs(L_27_:GetPlayers()) do
+        if L_51_forvar1 ~= L_31_ then
+            table.insert(L_46_, L_51_forvar1)
+        end
+    end
+    for L_52_forvar0, L_53_forvar1 in pairs(L_46_) do
+        if L_53_forvar1.Character ~= nil then
+            local L_54_ = L_53_forvar1.Character:FindFirstChild("Head")
+            if getgenv().TeamCheck == true and L_53_forvar1.Team ~= L_31_.Team then
+                local L_55_ =
+                    (L_53_forvar1.Character:FindFirstChild("Head").Position - game.Workspace.CurrentCamera.CFrame.p).magnitude
+                local L_56_ =
+                    Ray.new(
+                        game.Workspace.CurrentCamera.CFrame.p,
+                        (L_32_.Hit.p - game.Workspace.CurrentCamera.CFrame.p).unit * L_55_
+                    )
+                local L_57_, L_58_ = game.Workspace:FindPartOnRay(L_56_, game.Workspace)
+                local L_59_ = math.floor((L_58_ - L_54_.Position).magnitude)
+                L_47_[L_53_forvar1.Name .. L_52_forvar0] = {}
+                L_47_[L_53_forvar1.Name .. L_52_forvar0].dist = L_55_
+                L_47_[L_53_forvar1.Name .. L_52_forvar0].plr = L_53_forvar1
+                L_47_[L_53_forvar1.Name .. L_52_forvar0].diff = L_59_
+                table.insert(L_48_, L_59_)
+            elseif getgenv().TeamCheck == false and L_53_forvar1.Team == L_31_.Team then
+                local L_60_ =
+                    (L_53_forvar1.Character:FindFirstChild("Head").Position - game.Workspace.CurrentCamera.CFrame.p).magnitude
+                local L_61_ =
+                    Ray.new(
+                        game.Workspace.CurrentCamera.CFrame.p,
+                        (L_32_.Hit.p - game.Workspace.CurrentCamera.CFrame.p).unit * L_60_
+                    )
+                local L_62_, L_63_ = game.Workspace:FindPartOnRay(L_61_, game.Workspace)
+                local L_64_ = math.floor((L_63_ - L_54_.Position).magnitude)
+                L_47_[L_53_forvar1.Name .. L_52_forvar0] = {}
+                L_47_[L_53_forvar1.Name .. L_52_forvar0].dist = L_60_
+                L_47_[L_53_forvar1.Name .. L_52_forvar0].plr = L_53_forvar1
+                L_47_[L_53_forvar1.Name .. L_52_forvar0].diff = L_64_
+                table.insert(L_48_, L_64_)
             end
         end
     end
-end)
-
-TargetAimSettings:AddToggle('Unlock when knocked', false, function(State)
-    ZapSettings.Aiming.TargetAimSettings.UnlockTargetKnocked = State
-end)
-
-TargetAimSettings:AddToggle('Notification Alert', false, function(State)
-    ZapSettings.Aiming.TargetAimSettings.NotificationAlert = State
-end)
-
-local WhitelistSection = AimingTab:CreateSector("Whitelist", "right")
-
-WhitelistSection:AddToggle('Whitelist Enabled', false, function(State)
-    ZapSettings.Aiming.Whitelist.Enabled = State
-end)
-
-WhitelistSection:AddTextbox("Player Username", nil, function(Text)
-    if Text ~= nil and Find(Text) ~= nil and Players:FindFirstChild(Find(Text)) then
-        ZapSettings.Aiming.Whitelist.Holder = Find(Text)
-    else
-        Notify({
-            Title = "Zap",
-            Description = "Player is not found.",
-            Duration = 3
-        })
+    if unpack(L_48_) == nil then
+        return nil
     end
-end)
-
-WhitelistSection:AddButton('Whitelist', function(State)
-    if ZapSettings.Aiming.Whitelist.Holder ~= nil and Players:FindFirstChild(ZapSettings.Aiming.Whitelist.Holder) then
-        if table.find(ZapSettings.Aiming.Whitelist.Players, ZapSettings.Aiming.Whitelist.Holder) then
-            Notify({
-                Title = "Zap",
-                Description = ZapSettings.Aiming.Whitelist.Holder .. " is whitelisted.",
-                Duration = 3
-            })
-        else
-            Insert(ZapSettings.Aiming.Whitelist.Players, ZapSettings.Aiming.Whitelist.Holder)
-            Notify({
-                Title = "Zap",
-                Description = "Whitelisted " .. ZapSettings.Aiming.Whitelist.Holder,
-                Duration = 3
-            })
+    local L_49_ = math.floor(math.min(unpack(L_48_)))
+    if L_49_ > getgenv().AimRadius then
+        return nil
+    end
+    for L_65_forvar0, L_66_forvar1 in pairs(L_47_) do
+        if L_66_forvar1.diff == L_49_ then
+            return L_66_forvar1.plr
         end
-    else
-        Notify({
-            Title = "Zap",
-            Description = "Player is not found.",
-            Duration = 3
-        })
     end
-end)
-
-WhitelistSection:AddButton('Unwhitelist', function()
-    if ZapSettings.Aiming.Whitelist.Holder ~= nil and Players:FindFirstChild(ZapSettings.Aiming.Whitelist.Holder) then
-        if table.find(ZapSettings.Aiming.Whitelist.Players, ZapSettings.Aiming.Whitelist.Holder) then
-            Remove(ZapSettings.Aiming.Whitelist.Players, ZapSettings.Aiming.Whitelist.Holder)
-            Notify({
-                Title = "Zap",
-                Description = "Removed " .. ZapSettings.Aiming.Whitelist.Holder,
-                Duration = 5
-            })
-        else
-            Notify({
-                Title = "Zap",
-                Description = ZapSettings.Aiming.Whitelist.Holder .. " is not whitelisted.",
-                Duration = 5
-            })
+    return nil
+end
+L_32_.KeyDown:Connect(
+    function(L_67_arg0)
+        if L_67_arg0 == AimlockKey and L_41_ == nil then
+            pcall(
+                function()
+                    if L_39_ ~= true then
+                        L_39_ = true
+                    end
+                    local L_68_
+                    L_68_ = GetNearestTarget()
+                    if L_68_ ~= nil then
+                        L_41_ = L_68_
+                    end
+                end
+            )
+        elseif L_67_arg0 == AimlockKey and L_41_ ~= nil then
+            if L_41_ ~= nil then
+                L_41_ = nil
+            end
+            if L_39_ ~= false then
+                L_39_ = false
+            end
         end
-    else
-        Notify({
-            Title = "Zap",
-            Description = "Player is not found.",
-            Duration = 3
-        })
     end
+)
+L_29_.RenderStepped:Connect(
+    function()
+        if getgenv().ThirdPerson == true and getgenv().FirstPerson == true then
+            if
+                (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude > 1 or
+                (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude <= 1
+            then
+                L_40_ = true
+            else
+                L_40_ = false
+            end
+        elseif getgenv().ThirdPerson == true and getgenv().FirstPerson == false then
+            if (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude > 1 then
+                L_40_ = true
+            else
+                L_40_ = false
+            end
+        elseif getgenv().ThirdPerson == false and getgenv().FirstPerson == true then
+            if (L_33_.Focus.p - L_33_.CoordinateFrame.p).Magnitude <= 1 then
+                L_40_ = true
+            else
+                L_40_ = false
+            end
+        end
+        if L_38_ == true and L_39_ == true then
+            if L_41_ and L_41_.Character and L_41_.Character:FindFirstChild(getgenv().AimPart) then
+                if getgenv().FirstPerson == true then
+                    if L_40_ == true then
+                        if getgenv().PredictMovement == true then
+                            L_33_.CFrame =
+                                L_34_(
+                                    L_33_.CFrame.p,
+                                    L_41_.Character[getgenv().AimPart].Position +
+                                    L_41_.Character[getgenv().AimPart].Velocity / PredictionVelocity
+                                )
+                        elseif getgenv().PredictMovement == false then
+                            L_33_.CFrame = L_34_(L_33_.CFrame.p, L_41_.Character[getgenv().AimPart].Position)
+                        end
+                    end
+                elseif getgenv().ThirdPerson == true then
+                    if L_40_ == true then
+                        if getgenv().PredictMovement == true then
+                            L_33_.CFrame =
+                                L_34_(
+                                    L_33_.CFrame.p,
+                                    L_41_.Character[getgenv().AimPart].Position +
+                                    L_41_.Character[getgenv().AimPart].Velocity / PredictionVelocity
+                                )
+                        elseif getgenv().PredictMovement == false then
+                            L_33_.CFrame = L_34_(L_33_.CFrame.p, L_41_.Character[getgenv().AimPart].Position)
+                        end
+                    end
+                end
+            end
+        end
+    end
+)
+end
+)
+
+aimlock:AddTextbox("Aimlock Key", nil, function(L_69_arg0)
+		getgenv().AimlockKey = L_69_arg0
 end)
 
-WhitelistSection:AddToggle('Whitelist Crew', false, function(State)
-    ZapSettings.Aiming.Whitelist.CrewEnabled = State
+aimlock:AddTextbox("Aimlock Prediction", nil, function(L_70_arg0)
+    PredictionVelocity = L_70_arg0
 end)
 
-WhitelistSection:AddToggle('Whitelist Friends', false, function(State)
-    ZapSettings.Aiming.Whitelist.FriendsWhitelist = State
+aimlock:AddDropdown("Aim Part", {"Head", "UpperTorso", "HumanoidRootPart", "LowerTorso"}, "Head", false, function(L_71_arg0)
+    getgenv().AimPart = L_71_arg0
 end)
 
--- Visuals Window --
---[[
-    
-local VisualsTab = Window:CreateTab("Visuals")
-local ESPSection = VisualsTab:CreateSector("ESP", "left")
 
-local ESPToggle = ESPSection:AddToggle('ESP Enabled', false, function(Boolean)
-    
+local TeleportsTab = Window:CreateTab("Teleports")
+local gunssection = TeleportsTab:CreateSector("Guns", "left")
+
+local revolver = gunssection:AddButton("Revolver", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-638.75, 18.8500004, -118.175011, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 end)
 
-ESPToggle:AddKeybind()
-
-ESPSection:AddToggle('Box ESP', false, function(Boolean)
-    
+local ak = gunssection:AddButton("Ak", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-587.529358, 5.39480686, -753.717712, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 end)
 
-ESPSection:AddToggle('Tracer ESP', false, function(Boolean)
-    
+local smg = gunssection:AddButton("Smg", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-577.123413, 5.47666788, -718.031433, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 end)
 
-ESPSection:AddToggle('Name ESP', false, function(Boolean)
-    
+local ar = gunssection:AddButton("AR", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-591.824158, 5.46046877, -744.731628, 0, 0, 1, 0, 1, -0, -1, 0, 0)
 end)
 
-ESPSection:AddToggle('Health Bar', false, function(Boolean)
-    
+local dbs = gunssection:AddButton("Double Barrel", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1039.59985, 18.8513641, -256.449951, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 end)
 
-ESPSection:AddToggle('Armor Bar', false, function(Boolean)
-    
+local shotgun = gunssection:AddButton("Shotgun", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-578.623657, 5.47212696, -725.131531, 0, 0, 1, 0, 1, -0, -1, 0, 0)
 end)
 
-ESPSection:AddToggle("Wall Check", false, function()
-
+local flame = gunssection:AddButton("Flame Thrower", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-157.122437, 50.9120102, -104.93145, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 end)
 
-local LocalSection = VisualsTab:CreateSector("Local", "left")
-
-local FOVToggle = LocalSection:AddToggle('FOV Changer', false, function(State)
-
+local tac = gunssection:AddButton("Tactical Shotgun", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(470.877533, 45.1272316, -620.630676, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 end)
 
-FOVToggle:AddSlider(70, 90, 120, 1, function(Value)
-    
+local rpg = gunssection:AddButton("Rpg", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(118.664856, -29.6487694, -272.349792, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 end)
 
-local SelfChamToggle = LocalSection:AddToggle('Self Cham', false, function(State)
-
+local drumgun = gunssection:AddButton("Drum Gun", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-83.548996, 19.7020588, -82.1449585, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 end)
 
-SelfChamToggle:AddColorpicker(Color3.fromRGB(255, 255, 255), function()
-
+local armor = gunssection:AddButton("High Medium Armor", function(bool)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-939, -25, 571)
 end)
 
-SelfChamToggle:AddDropdown({}, "Ghost", false, function(Option)
-    
+local bat = gunssection:AddButton("Bat", function(bool)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(380, 49, -283)
 end)
 
-local FakeLagChamToggle = LocalSection:AddToggle('Fake Lag Cham', false, function(State)
-
+local mediumarmor = gunssection:AddButton("Medium Armor", function(bool)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(528, 50, -637)
 end)
 
-FakeLagChamToggle:AddColorpicker(Color3.fromRGB(255, 255, 255), function()
+local placessection = TeleportsTab:CreateSector("Places", "right")
 
+local church = placessection:AddButton("Church", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(147.299988, 18.8493252, 31.7999744, 0, 0, 1, 0, 1, -0, -1, 0, 0)
 end)
 
-local CrosshairSection = VisualsTab:CreateSector("Drawing Crosshair", "left")
-
-local DrawingCrosshairToggle = CrosshairSection:AddToggle("Crosshair Enabled", false, function()
-
+local admin1 = placessection:AddButton("Admin Base", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-872.853516, -34.4276848, -538.013306, -0.999724388, -3.9898886e-08, -0.0234765243, -3.9204977e-08, 1, -3.00177518e-08, 0.0234765243, -2.90890814e-08, -0.999724388)
 end)
 
-DrawingCrosshairToggle:AddColorpicker(Color3.fromRGB(255, 255, 255), function()
-
+local admin2 = placessection:AddButton("Admin Guns", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-808.708557, -39.6492004, -932.789368, 0.999899805, 2.01343173e-08, -0.0141554065, -2.17800533e-08, 1, -1.16108232e-07, 0.0141554065, 1.16404912e-07, 0.999899805)
 end)
 
-CrosshairSection:AddSlider("Gap", 0, 1, 5, 1, function(Value)
-    
+local admin3 = placessection:AddButton("Admin Food", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-788.053406, -39.6492004, -932.951233, 0.998369277, 2.46515359e-08, 0.0570784509, -2.8773524e-08, 1, 7.13949646e-08, -0.0570784509, -7.29209759e-08, 0.998369277)
 end)
 
-CrosshairSection:AddSlider("Size", 0, 3, 10, 1, function(Value)
-    
+local ufo = placessection:AddButton("Ufo", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2.85052466, 132, -736.571106, -0.0460956171, -4.24733706e-08, -0.998937011, 7.26012459e-08, 1, -4.58687275e-08, 0.998937011, -7.46384217e-08, -0.0460956171)
 end)
 
-local ScriptsSector = VisualsTab:CreateSector("Misc", "left")
-
-ScriptsSector:AddToggle("No Flashbag", false, function()
-
+local casino = placessection:AddButton("Casino", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-995, 21.6998043, -153.100037, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 end)
 
-ScriptsSector:AddToggle("No Recoil", false, function()
-
+local bank = placessection:AddButton("Bank", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-318.891174, 80.2145309, -257.177429, 0.0479469746, -5.14644114e-08, 0.998850107, -3.12971538e-09, 1, 5.16738901e-08, -0.998850107, -5.60372015e-09, 0.0479469746)
 end)
 
-local WorldSection = VisualsTab:CreateSector("World", "right")
-
-WorldSection:AddToggle("Better Shadow", false, function()
-
+local taco = placessection:AddButton("Taco", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(584.026855, 48.1605072, -474.033936, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 end)
 
-WorldSection:AddToggle("FullBright", false, function()
-
+local revRoof = placessection:AddButton("Revolver Roof", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-634.463135, 80.434761, -204.232559, -0.0190527271, -1.03574322e-07, -0.999818563, 4.36709335e-09, 1, -1.03676342e-07, 0.999818563, -6.3416179e-09, -0.0190527271)
 end)
 
-local GridiantToggle = WorldSection:AddToggle("Gradiant", false, function()
-
+local playground = placessection:AddButton("PlayGround", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-282.694153, 19.7496624, -807.719727, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 end)
 
-GridiantToggle:AddColorpicker(Color3.fromRGB(255, 255, 255), function()
-
+local gas = placessection:AddButton("Gas Station", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(604.800415, 46.0998344, -258.249573, 0, 0, 1, 0, 1, -0, -1, 0, 0)
 end)
 
-GridiantToggle:AddColorpicker(Color3.fromRGB(255, 255, 255), function()
-
+local cementery = placessection:AddButton("Cementery", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(135.109558, 99.75, -57.2315979, 0.999993503, -0.000633752206, -0.0035054055, 0.000638642872, 0.999998808, 0.00139435288, 0.00350463158, -0.00139658386, 0.999992728)
 end)
 
-local SaturationToggle = WorldSection:AddToggle("Saturation", false, function()
-
+local school = placessection:AddButton("School Roof", function(bool)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-525.353455, 68.125, 311.824402, 0.999992013, 1.03866675e-08, -0.00399552286, -1.03507425e-08, 1, 9.01170427e-09, 0.00399552286, -8.97027519e-09, 0.999992013)
 end)
 
-SaturationToggle:AddSlider(-10, 0, 10, 1, function(Value)
-    
-end)
+--- Esp Tab ---
+local EspSection = AimingTab:CreateSector("Esp", "left")
 
-local BrightnessToggle = WorldSection:AddToggle("Brightness", false, function()
-
-end)
-
-BrightnessToggle:AddSlider(-10, 0, 10, 1, function(Value)
-    
-end)
-
-local ContrastToggle = WorldSection:AddToggle("Contrast", false, function()
-
-end)
-
-ContrastToggle:AddSlider(-10, 0, 10, 1, function(Value)
-    
-end)
-
-local ESPSettings = VisualsTab:CreateSector("ESP Settings", "right")
-
-ESPSettings:AddDropdown('Font', {}, "Plex", false, function(Option)
-    
-end)
-
-ESPSettings:AddDropdown('Text Case', {"Normal", "Uppercase", "Lowercase"}, "Lowercase", false, function(Option)
-    
-end)
-
-ESPSettings:AddToggle("Unlock Tracers", false, function()
-
-end)
-
-ESPSettings:AddSlider("Text Size", 5, 14, 20, 1, function(Value)
-    
-end)
-]]
-
--- Blatant Tab --
-
-local BlatantTab = Window:CreateTab("Character")
-
-local MovementSector = BlatantTab:CreateSector("Speed", "right")
-
-local BlatantAntiAimSector = BlatantTab:CreateSector("Anti Aim", "left")
-
-local SpeedToggle = MovementSector:AddToggle('Speed Enabled', false, function(State)
-    ZapSettings.Blatant.Movement.SpeedEnabled = State
-end)
-SpeedToggle:AddKeybind()
-
-SpeedToggle:AddSlider(0, 5, 10, 1, function(Value)
-    ZapSettings.Blatant.Movement.SpeedAmount = Value
-end)
-
-MovementSector:AddDropdown("Speed Type", {"CFrame"}, "CFrame", false, function(Value)
-    ZapSettings.Blatant.Movement.SpeedType = Value
-end)
-
-MovementSector:AddDropdown("Speed Render Type", {"Default", "Fast"}, "Default", false, function(Value)
-    ZapSettings.Blatant.Movement.SpeedRenderType = Value
-end)
-
-local AntiAimToggle = BlatantAntiAimSector:AddToggle('Anti Aim Enabled', false, function(State)
-    ZapSettings.Blatant.BlatantAA.Enabled = State
-end)
-
-AntiAimToggle:AddKeybind()
-
-BlatantAntiAimSector:AddToggle('No Camera Rotate', false, function(State)
-    ZapSettings.Blatant.BlatantAA.NoAutoRotate = State
-end)
-
-local UndergroundWallBangToggle = BlatantAntiAimSector:AddToggle('Wallbang', false, function(State)
-    pcall(function()
-        if State then
-			wait(0.5)
-			Float = Instance.new("BodyVelocity")
-			Float.Parent = LocalPlayer.Character.HumanoidRootPart
-			Float.MaxForce = Vector3.new(100000, 100000, 100000)
-			Float.Velocity = Vector3.new(0, 0, 0)
-			wait(0.25)
-			LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, -9.5, 0)
-			Cham(LocalPlayer, true)
-			ZapSettings.Blatant.BlatantAA.UndergroundWallbang = true
-            SpeedToggle:Set(true)
-		else
-			LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 9.5, 0)
-			Cham(LocalPlayer, false)
-			Float:Destroy()
-			ZapSettings.Blatant.BlatantAA.UndergroundWallbang = false
-            SpeedToggle:Set(false)
-		end
-    end)
-end)
-
-UndergroundWallBangToggle:AddKeybind()
-
-BlatantAntiAimSector:AddToggle('Underground', false, function(State)
-    ZapSettings.Blatant.BlatantAA.Underground = State
-end)
-
-BlatantAntiAimSector:AddDropdown("Anti Aim Type", {"Jitter", "Spin"}, "Jitter", false, function(Value)
-    ZapSettings.Blatant.BlatantAA.AntiAimType = Value
-end)
-
-BlatantAntiAimSector:AddSlider("Anti Aim Speed", 0, 100, 300, 1, function(Value)
-    ZapSettings.Blatant.BlatantAA.AntiAimSpeed = Value
-end)
-
-BlatantAntiAimSector:AddSlider("Jitter Angle", 0, 180, 360, 1, function(Value)
-    ZapSettings.Blatant.BlatantAA.JitterAngle = Value
-end)
-
---[[local LegitAntiAimSector = BlatantTab:CreateSector("Legit Anti Aim", "left")
-
-local LegitAntiAimToggle = LegitAntiAimSector:AddToggle('Legit AA Enabled', false, function(State)
-    ZapSettings.Blatant.LegitAA.Enabled = Value
-end)]]
-
---[[LegitAntiAimSector:AddToggle('Anti Aim At', false, function(State)
-    ZapSettings.Blatant.LegitAA.AntiAimAt = State
-end)
-
-LegitAntiAimSector:AddSlider("Anti Aim At Distance", 2.5, 20, 100, 1, function(Value)
-    ZapSettings.Blatant.LegitAA.AntiAimAtDistance = Value
-end)
-
-local FakeLagSector = BlatantTab:CreateSector("Fake Lag", "left")
-
-local FakeLagToggle = FakeLagSector:AddToggle('Fake Lag Enabled', false, function(State)
-    ZapSettings.Blatant.FakeLag.Enabled = State
-end)
-
-FakeLagToggle:AddKeybind()
-
-FakeLagToggle:AddSlider(1, 5, 10, 1, function(Value)
-    ZapSettings.Blatant.FakeLag.TriggerAmount = Value
-end)]]
-
---[[local MiscSector = BlatantTab:CreateSector("Misc", "left")
-
-MiscSector:AddButton('Invisible', function(State)
-    Invisible()
-end)
-
-MiscSector:AddButton('Nil Char', function(State)
-    NilBody()
-end)]]
-
---[[
-    MiscSector:AddButton('Unjail', function(State)
-
-    end)
-]]
-
---[[local NilCharBind = MiscSector:AddKeybind("Nil Char Bind", false, function()
-    
-end, function()
-    NilBody()
-end)]]
-
-local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/esp.lua"))()
-ESP:Toggle(false)
-ESP.Tracers = false
-ESP.Names = false
-ESP.Boxes = false
-
-local EspSector = BlatantTab:CreateSector("Esp", "left")
-
-local esptoggle = EspSector:AddToggle("Enable ESP", false, function(bool)
+local espToggle = EspSection:AddToggle("Enable ESP", false, function(bool)
     ESP:Toggle(bool)
 end)
 
-EspSector:AddToggle("Enable Tracers", false, function(bool)
+local tracersToggle = EspSection:AddToggle("Enable Tracers", false, function(bool)
     ESP.Tracers = bool
 end)
 
-EspSector:AddToggle("Enable Names", false, function(bool)
+local namesToggle = EspSection:AddToggle("Enable Names", false, function(bool)
     ESP.Names = bool
 end)
 
-EspSector:AddToggle("Enable Boxes", false, function(bool)
+local boxesToggle = EspSection:AddToggle("Enable Boxes", false, function(bool)
     ESP.Boxes = bool
 end)
-esptoggle:AddColorpicker(Library.theme.accentcolor, function(Color)
-    ESP.Color = Color
-end)
+espToggle:AddKeybind()
 
-local GodModeSector = BlatantTab:CreateSector("God Mode", "left")
-
-GodModeSector:AddButton("Gun", function()
-    ZapModule.God.GodBullet = true
-    NilBody()
-end)
-
-GodModeSector:AddButton("Melee", function()
-    ZapModule.God.GodMelee = true
-    NilBody()
-end)
-
-GodModeSector:AddButton("Anti Ragdoll", function()
-    ZapModule.God.AntiRagdoll = true
-    NilBody()
-end)
-
-GodModeSector:AddButton("God Block", function()
-    pcall(function()
-        LocalPlayer.Character.BodyEffects.Defense.CurrentTimeBlock:Destroy()
-    end)
-end)
-
-local CharacterSector = BlatantTab:CreateSector("Toggles", "right")
-
-CharacterSector:AddToggle("Reach", nil, function(e)
+local togglessector = AimingTab:CreateSector("Toggles", "right")
+local Reach = togglessector:AddToggle("Reach", nil, function(e)
     if e == true then
         game:GetService('RunService'):BindToRenderStep("Reach", 0 , function()
             local success, err = pcall(function()
@@ -1239,8 +495,7 @@ CharacterSector:AddToggle("Reach", nil, function(e)
         game:GetService('RunService'):UnbindFromRenderStep("Reach")
     end
 end)
-
-CharacterSector:AddToggle("Auto Stomp", nil, function(r)
+local AutoStomp = togglessector:AddToggle("Auto Stomp", nil, function(r)
     if r == true then
         game:GetService('RunService'):BindToRenderStep("Auto-Stomp", 0 , function()
             game:GetService("ReplicatedStorage").MainEvent:FireServer("Stomp")
@@ -1250,7 +505,7 @@ CharacterSector:AddToggle("Auto Stomp", nil, function(r)
     end
 end)
 
-CharacterSector:AddToggle("Anti Slow", nil, function(gh)
+local AntiSlow = togglessector:AddToggle("Anti Slow", nil, function(gh)
     if gh == true then
         game:GetService('RunService'):BindToRenderStep("Anti-Slow", 0 , function()
             if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed"):Destroy() end
@@ -1263,7 +518,7 @@ CharacterSector:AddToggle("Anti Slow", nil, function(gh)
     end
 end)
 
-CharacterSector:AddToggle("Anti Stomp", nil, function(x)
+local AntiStomp = togglessector:AddToggle("Anti Stomp", nil, function(x)
     if x == true then
         game:GetService('RunService'):BindToRenderStep("Anti-Stomp", 0 , function()
             if game.Players.LocalPlayer.Character.Humanoid.Health <= 5 then
@@ -1284,342 +539,271 @@ CharacterSector:AddToggle("Anti Stomp", nil, function(x)
     end
 end)
 
-
-CharacterSector:AddToggle('Anti Bag', false, function(State)
-    ZapSettings.Blatant.Character.AntiBag = State
+local antibag = togglessector:AddToggle('Anti Bag', false, function(State)
+    zap.luaSettings.Blatant.Character.AntiBag = State
 end)
 
-CharacterSector:AddToggle('Anti Grab', false, function(State)
-    ZapSettings.Blatant.Character.AntiGrab = State
+local AutoReload = togglessector:AddToggle("Auto Reload", nil, function(r)
+    if r == true then
+        game:GetService('RunService'):BindToRenderStep("Auto-Reload", 0 , function()
+            if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
+                if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo") then
+                    if game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo").Value <= 0 then
+                        game:GetService("ReplicatedStorage").MainEvent:FireServer("Reload", game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool")) 
+                        wait(1)
+                    end
+                end
+            end
+        end)
+    elseif r == false then
+        game:GetService('RunService'):UnbindFromRenderStep("Auto-Reload")
+    end
 end)
 
-CharacterSector:AddToggle('Auto Lettuce', false, function(State)
-    ZapSettings.Blatant.Character.AutoLettuce = State
+local aura = togglessector:AddToggle("Auto Pick Cash", false, function(State)
+    zap.luaSettings.Blatant.Cash.AutoPickCash = State
 end)
 
-CharacterSector:AddToggle('Auto Armor', false, function(State)
-    ZapSettings.Blatant.Character.AutoArmor = State
+local Noclip = togglessector:AddButton("No Clip", function()
+local noclipplayer = game:GetService("Players").LocalPlayer
+local noclipmouse = noclipplayer:GetMouse()
+ 
+local donoclip = false
+local noclip = false
+ 
+function b_noclip(key)
+if (key == "b") then
+if noclip == false then
+donoclip = true
+ 
+noclip = true
+elseif noclip == true then
+donoclip = false
+ 
+noclip = false
+end
+end
+end
+ 
+noclipmouse.KeyDown:connect(b_noclip)
+ 
+game:GetService("Players").LocalPlayer.Character.Head.Touched:connect(function(obj)
+if obj ~= workspace.Terrain then
+if donoclip == true then
+obj.CanCollide = false
+else
+obj.CanCollide = true
+end
+end
+end)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "zap.lua";
+    Text = "Noclip keybind is B.";
+    Icon = "rbxassetid://8768441000";
+    Duration = "BLANK";
+    callbakc = bindableFunction;
+})
 end)
 
-CharacterSector:AddToggle('Auto Reload', false, function(State)
-    ZapSettings.Blatant.Character.AutoReload = State
+
+local fly2 = togglessector:AddButton("Fly", function()
+    loadstring(Game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/fly.lua'))()
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Fly keybind is X.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+    })
 end)
 
-local FarmingSector = BlatantTab:CreateSector("Auto Farming", "right")
-
-FarmingSector:AddToggle('Shoe Farm', false, function(State)
-    ZapSettings.Blatant.Farming.ShoeFarm = State
+local fovchanger = togglessector:AddSlider("Change Fov", 1, 70, 120, 1, function(value)
+    game:GetService'Workspace'.Camera.FieldOfView = value
 end)
 
-FarmingSector:AddToggle('ATM Farm', false, function(State)
-    ZapSettings.Blatant.Farming.ATMFarm = State
+getgenv().SpinBotSpeed = 20
+
+local spinbot = togglessector:AddToggle("Spin Bot", nil, function(state)
+	function getRoot(char)
+				local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('UpperTorso')
+				return rootPart
+			end
+
+			if state == true then
+				local Spin = Instance.new("BodyAngularVelocity")
+				Spin.Name = "Spinning"
+				Spin.Parent = getRoot(game.Players.LocalPlayer.Character)
+				Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+				Spin.AngularVelocity = Vector3.new(0,getgenv().SpinBotSpeed,0)
+			else
+				for i,v in pairs(getRoot(game.Players.LocalPlayer.Character):GetChildren()) do
+					if v.Name == "Spinning" then
+						v:Destroy()
+					end
+				end
+			end
+		end)
+spinbot:AddKeybind()
+
+local spinbotspeed = togglessector:AddSlider("Spinbot Speed", 1, 20, 50, 1, function(value)
+    getgenv().SpinBotSpeed = value
 end)
 
-FarmingSector:AddToggle('Hospital Farm', false, function(State)
-    ZapSettings.Blatant.Farming.HospitalFarm = State
+--- Visuals Tab ---
+local VisualsTab = Window:CreateTab("Avatar")
+local VisualsSection = VisualsTab:CreateSector("Character", "left")
+local VisualsSection2 = VisualsTab:CreateSector("Other", "right")
+
+local animationgamepass = VisualsSection:AddButton("Animation Gamepass", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/animation_gamepass.lua'))()
 end)
 
-local BoxFarmToggle = FarmingSector:AddToggle('Box Farm', false, function(State)
-    ZapSettings.Blatant.Farming.BoxFarm = State
+local animbutton = VisualsSection:AddButton("Animations", function(bool)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/anims.lua"))()
 end)
 
-BoxFarmToggle:AddKeybind()
-
-FarmingSector:AddDropdown("Muscle Farming Type", {"Normal", "Heavy"}, "Normal", false, function(State)
-    ZapSettings.Blatant.Farming.MuscleFarmingType = State
+local headlbutton = VisualsSection:AddButton("Headless", function(bool)
+game.Players.LocalPlayer.Character.Head.Transparency = 1
+for i,v in pairs(game.Players.LocalPlayer.Character.Head:GetChildren()) do
+if (v:IsA("Decal")) then
+v:Destroy()
+end
+end
 end)
 
-FarmingSector:AddToggle('Muscle Farm', false, function(State)
-    ZapSettings.Blatant.Farming.MuscleFarm = State
+local animatedbeastmode = VisualsSection:AddButton("Animated Beast Mode", function()
+	while true do
+local player = game.Players.LocalPlayer.Character
+if player:findFirstChild("Humanoid") then
+    player.Head.face.Texture = "https://www.roblox.com/asset/?id=209712379"
+    end
+wait(1)
+if player:findFirstChild("Humanoid") then
+    player.Head.face.Texture = "https://www.roblox.com/asset/?id=127959433"
+    end
+wait(1)
+end
 end)
 
-local CashSector = BlatantTab:CreateSector("Cash", "left")
+local facesection = VisualsTab:CreateSector("Face Changer", "left")
 
-local AutoDropToggle = CashSector:AddToggle("Auto Drop", false, function(State)
-    ZapSettings.Blatant.Cash.AutoDrop = State
+local meanie = facesection:AddButton("Meanie", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/508490451.lua'))()
 end)
 
-AutoDropToggle:AddSlider(1000, 5000, 10000, 1, function(Value)
-    ZapSettings.Blatant.Cash.AutoDropAmount = Value
+local sshf = facesection:AddButton("Super Super Happy Face", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/494290547.lua'))()
 end)
 
-CashSector:AddToggle("Cash Cash Aura", false, function(State)
-    ZapSettings.Blatant.Cash.AutoPickCash = State
+local silverpunk = facesection:AddButton("Silver Punk Face", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/387256104.lua'))()
 end)
 
--- Auto Buy Tab --
-
-local TeleportTab = Window:CreateTab("Teleport")
-
-local TeleportModule = {
-    Food = ZapModule.Teleport.Food[1],
-    Gun = ZapModule.Teleport.Gun[1],
-    Location = ZapModule.Teleport.Location[1],
-    Armor = ZapModule.Teleport.Armor[1],
-    Melee = ZapModule.Teleport.Melee[1],
-    Extra = ZapModule.Teleport.Extra[1],
-    Bike = ZapModule.Teleport.Bike[1],
-    Mask = ZapModule.Teleport.Mask[1],
-    Phone = ZapModule.Teleport.Phone[1],
-    Weight = ZapModule.Teleport.Weight[1],
-    AutoSet = {
-        Tools = {}
-    }
-}
-
-local FoodSector = TeleportTab:CreateSector("Food", "left")
-FoodSector:AddDropdown("Food Selection", ZapModule.Teleport.Food, ZapModule.Teleport.Food[1], false, function(Value)
-    TeleportModule.Food = Value
+local yum = facesection:AddButton("Yum", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/26018945.lua'))()
 end)
 
-FoodSector:AddButton("Teleport", function()
-    TeleportBuy(ToolName(TeleportModule.Food))
+local playful = facesection:AddButton("Playful Vampire", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/2409281591.lua'))()
 end)
 
-local GunSector = TeleportTab:CreateSector("Gun", "left")
-GunSector:AddDropdown("Gun Selection", ZapModule.Teleport.Gun, ZapModule.Teleport.Gun[1], false, function(Value)
-    TeleportModule.Gun = Value
+local beastmode = facesection:AddButton("Beast Mode", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/faces/127959433.lua'))()
 end)
 
-GunSector:AddButton("Teleport", function()
-    TeleportBuy(ToolName(TeleportModule.Gun))
-    spawn(function()
-        for i = 1, ZapSettings.Teleport.AmmoPurchaseAmount do
-            TeleportBuy(ToolAmmo(TeleportModule.Gun))
+--- Misc Tab ---
+local MiscTab = Window:CreateTab("Misc")
+local MiscSection = MiscTab:CreateSector("Miscelanious", "left")
+local scriptsSection = MiscTab:CreateSector("Fun Stuff", "right")
+local autofarmsection = MiscTab:CreateSector("Auto Farm", "left")
+local autofarm = autofarmsection:AddToggle("Auto Farm", nil, function(texto)
+        repeat
+            wait()
+        until game:IsLoaded()
+        local gm = getrawmetatable(game)
+        setreadonly(gm, false)
+        local namecall = gm.__namecall
+        gm.__namecall =
+            newcclosure(
+            function(self, ...)
+                local args = {...}
+                if not checkcaller() and getnamecallmethod() == "FireServer" and tostring(self) == "MainEvent" then
+                    if tostring(getcallingscript()) ~= "Framework" then
+                        return
+                    end
+                end
+                if not checkcaller() and getnamecallmethod() == "Kick" then
+                    return
+                end
+                return namecall(self, unpack(args))
+            end
+        )
+        
+        local LocalPlayer = game:GetService("Players").LocalPlayer
+        
+        function gettarget()
+            local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
+            local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+            local maxdistance = math.huge
+            local target
+            for i, v in pairs(game:GetService("Workspace").Cashiers:GetChildren()) do
+                if v:FindFirstChild("Head") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                    local distance = (HumanoidRootPart.Position - v.Head.Position).magnitude
+                    if distance < maxdistance then
+                        target = v
+                        maxdistance = distance
+                    end
+                end
+            end
+            return target
+        end
+        
+        for i, v in pairs(workspace:GetDescendants()) do
+            if v:IsA("Seat") then
+                v:Destroy()
+            end
+        end
+        
+        shared.MoneyFarm = texto
+        
+        while shared.MoneyFarm do
+            wait()
+            local Target = gettarget()
+            repeat
+                wait()
+                pcall(
+                    function()
+                        local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
+                        local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+                        local Combat = LocalPlayer.Backpack:FindFirstChild("Combat") or Character:FindFirstChild("Combat")
+                        if not Combat then
+                            Character:FindFirstChild("Humanoid").Health = 0
+                            return
+                        end
+                        HumanoidRootPart.CFrame = Target.Head.CFrame * CFrame.new(0, -2.5, 3)
+                        Combat.Parent = Character
+                        Combat:Activate()
+                    end
+                )
+            until not Target or Target.Humanoid.Health < 0
+            for i, v in pairs(game:GetService("Workspace").Ignored.Drop:GetDescendants()) do
+                if v:IsA("ClickDetector") and v.Parent and v.Parent.Name:find("Money") then
+                    local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
+                    local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+                    if (v.Parent.Position - HumanoidRootPart.Position).magnitude <= 18 then
+                        repeat
+                            wait()
+                            fireclickdetector(v)
+                        until not v or not v.Parent.Parent
+                    end
+                end
+            end
             wait(1)
         end
     end)
-end)
+autofarm:AddKeybind()
 
-local LocationSector = TeleportTab:CreateSector("Location", "left")
-LocationSector:AddDropdown("Location Selection", ZapModule.Teleport.Location, ZapModule.Teleport.Location[1], false, function(Value)
-    TeleportModule.Location = Value
-end)
-
-LocationSector:AddButton("Teleport", function()
-    TeleportBuy(ToolName(TeleportModule.Location))
-end)
-
-local ArmorSector = TeleportTab:CreateSector("Armor", "left")
-ArmorSector:AddDropdown("Armor Selection", ZapModule.Teleport.Armor, ZapModule.Teleport.Armor[1], false, function(Value)
-    TeleportModule.Armor = Value
-end)
-
-ArmorSector:AddButton("Teleport", function()
-    TeleportBuy(ToolName(TeleportModule.Armor))
-end)
-
-local MeleeSector = TeleportTab:CreateSector("Melee", "left")
-MeleeSector:AddDropdown("Melee Selection", ZapModule.Teleport.Melee, ZapModule.Teleport.Melee[1], false, function(Value)
-    TeleportModule.Melee = Value
-end)
-
-MeleeSector:AddButton("Teleport", function()
-    TeleportBuy(ToolName(TeleportModule.Melee))
-end)
-
-local ExtraSector = TeleportTab:CreateSector("Extra", "left")
-ExtraSector:AddDropdown("Extra Selection", ZapModule.Teleport.Extra, ZapModule.Teleport.Extra[1], false, function(Value)
-    TeleportModule.Extra = Value
-end)
-
-ExtraSector:AddButton("Teleport", function()
-    TeleportBuy(ToolName(TeleportModule.Extra))
-end)
-
-local BikeSector = TeleportTab:CreateSector("Bike", "left")
-BikeSector:AddDropdown("Bike Selection", ZapModule.Teleport.Bike, ZapModule.Teleport.Bike[1], false, function(Value)
-    TeleportModule.Bike = Value
-end)
-
-BikeSector:AddButton("Teleport", function()
-    TeleportBuy(ToolName(TeleportModule.Bike))
-end)
-
-local MaskSector = TeleportTab:CreateSector("Mask", "left")
-MaskSector:AddDropdown("Mask Selection", ZapModule.Teleport.Mask, ZapModule.Teleport.Mask[1], false, function(Value)
-    TeleportModule.Mask = Value
-end)
-
-MaskSector:AddButton("Teleport", function()
-    TeleportBuy(ToolName(TeleportModule.Mask))
-end)
-
-local PhoneSector = TeleportTab:CreateSector("Phone", "left")
-PhoneSector:AddDropdown("Phone Selection", ZapModule.Teleport.Phone, ZapModule.Teleport.Phone[1], false, function(Value)
-    TeleportModule.Phone = Value
-end)
-
-PhoneSector:AddButton("Teleport", function()
-    TeleportBuy(ToolName(TeleportModule.Phone))
-end)
-
-local WeightSector = TeleportTab:CreateSector("Weight", "left")
-WeightSector:AddDropdown("Weight Selection", ZapModule.Teleport.Weight, ZapModule.Teleport.Weight[1], false, function(Value)
-    TeleportModule.Weight = Value
-end)
-
-WeightSector:AddButton("Teleport", function()
-    TeleportBuy(ToolName(TeleportModule.Weight))
-end)
-
-local TeleportSettings = TeleportTab:CreateSector("Teleport Settings", "right")
-TeleportSettings:AddToggle("Teleport Return", false, function(State)
-    ZapSettings.Teleport.TeleportReturn = State
-end)
-
-TeleportSettings:AddSlider("Return Delay", 0, 1, 100, 1, function(Value)
-    ZapSettings.Teleport.ReturnDelay = Value
-end)
-
-TeleportSettings:AddToggle("Auto Purchase", false, function(State)
-    ZapSettings.Teleport.AutoPurchase = State
-end)
-
-TeleportSettings:AddSlider("Ammo Purchase Amount", 0, 1, 100, 1, function(Value)
-    ZapSettings.Teleport.AmmoPurchaseAmount = Value
-end)
-
-local AutoSetTab = TeleportTab:CreateSector("Auto Set", "right")
-for i, v in pairs(ZapModule.Teleport.Armor) do
-    AutoSetTab:AddToggle(v, false, function(State)
-        if State then
-            if not table.find(TeleportModule.AutoSet.Tools, v) then
-                table.insert(TeleportModule.AutoSet.Tools, v)
-            end
-        else
-            Remove(TeleportModule.AutoSet.Tools, v)
-        end
-    end)
-end
-
-for i, v in pairs(ZapModule.Teleport.Gun) do
-    AutoSetTab:AddToggle(v, false, function(State)
-        if State then
-            if not table.find(TeleportModule.AutoSet.Tools, v) then
-                table.insert(TeleportModule.AutoSet.Tools, v)
-            end
-        else
-            Remove(TeleportModule.AutoSet.Tools, v)
-        end
-    end)
-end
-
-AutoSetTab:AddButton("Teleport", function()
-    if Alive(LocalPlayer) then
-        for i, v in pairs(TeleportModule.AutoSet.Tools) do
-            if string.find(v:lower(), "armor") then
-                if ZapSettings.Teleport.ArmorValueCheck and LocalPlayer.Character.BodyEffects.Armor.Value < 0 then
-                    TeleportBuy(ToolName(v, true))
-                else
-                    TeleportBuy(ToolName(v, true))
-                end
-            else
-                TeleportBuy(ToolName(v, true))
-                spawn(function()
-                    for i = 1, ZapSettings.Teleport.AmmoPurchaseAmount do
-                        TeleportBuy(ToolAmmo(v), true)
-                        wait(1)
-                    end
-                end)
-            end
-        end
-    end
-end)
-
--- Miscellaneous Window --
-local MiscellaneousTab = Window:CreateTab("Misc")
-LocalPlayer.CharacterAdded:Connect(function()
-    wait(0.5)
-    ZapModule.God.GodMeleeAlive = false
-    if LocalPlayer.Character:FindFirstChild("BodyEffects") then
-        if ZapModule.God.GodBullet then
-            GodFunction(ZapModule.God.GodBullet)
-            LocalPlayer.Character.BodyEffects.BreakingParts:Destroy()
-        end
-        if ZapModule.God.GodMelee then
-            GodFunction(ZapModule.God.GodMelee)
-            ZapModule.God.GodMeleeAlive = true
-            LocalPlayer.Character.BodyEffects.Armor:Destroy()
-            LocalPlayer.Character.BodyEffects.Defense:Destroy()
-        end
-        if ZapModule.God.AntiRagdoll then
-            GodFunction(ZapModule.God.AntiRagdoll)
-        end
-    end
-    wait(0.5)
-    if ZapSettings.Blatant.BlatantAA.Underground then
-        Underground(true)
-    end
-    wait(0.4)
-    if ZapSettings.Blatant.BlatantAA.UndergroundWallbang then
-        Float = Instance.new("BodyVelocity")
-        Float.Parent = LocalPlayer.Character.HumanoidRootPart
-        Float.MaxForce = Vector3.new(100000, 100000, 100000)
-        Float.Velocity = Vector3.new(0, 0, 0)
-        wait(0.25)
-        LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, -11.5, 0)
-        Cham(LocalPlayer, true)
-        ZapSettings.Blatant.BlatantAA.UndergroundWallbang = true
-    end
-    LocalPlayer.Character.Animate.idle.Animation1.AnimationId = AnimationModule[AnimationState.Idle][1]
-    LocalPlayer.Character.Animate.idle.Animation2.AnimationId = AnimationModule[AnimationState.Idle][2]
-    LocalPlayer.Character.Animate.walk.WalkAnim.AnimationId = AnimationModule[AnimationState.Walk][3]
-    LocalPlayer.Character.Animate.run.RunAnim.AnimationId = AnimationModule[AnimationState.Run][4]
-    LocalPlayer.Character.Animate.jump.JumpAnim.AnimationId = AnimationModule[AnimationState.Jump][5]
-    LocalPlayer.Character.Animate.climb.ClimbAnim.AnimationId = AnimationModule[AnimationState.Climb][6]
-    LocalPlayer.Character.Animate.fall.FallAnim.AnimationId = AnimationModule[AnimationState.Fall][7]
-    for i, v in pairs(AnimationState) do
-        print(i, v)
-    end
-end)
-
-local AnimationSector = MiscellaneousTab:CreateSector("Animation", "left")
-AnimationSector:AddDropdown("Idle", AnimationsName, "Default", false, function(State)
-    if Alive(LocalPlayer) then
-        LocalPlayer.Character.Animate.idle.Animation1.AnimationId = AnimationModule[State][1]
-        LocalPlayer.Character.Animate.idle.Animation2.AnimationId = AnimationModule[State][2]
-        AnimationState.Idle = State
-    end
-end)
-
-AnimationSector:AddDropdown("Walk", AnimationsName, "Default", false, function(State)
-    if Alive(LocalPlayer) then
-        LocalPlayer.Character.Animate.walk.WalkAnim.AnimationId = AnimationModule[State][3]
-        AnimationState.Walk = State
-    end
-end)
-
-AnimationSector:AddDropdown("Run", AnimationsName, "Default", false, function(State)
-    if Alive(LocalPlayer) then
-        LocalPlayer.Character.Animate.run.RunAnim.AnimationId = AnimationModule[State][4]
-        AnimationState.Run = State
-    end
-end)
-
-AnimationSector:AddDropdown("Jump", AnimationsName, "Default", false, function(State)
-    if Alive(LocalPlayer) then
-        LocalPlayer.Character.Animate.jump.JumpAnim.AnimationId = AnimationModule[State][5]
-        AnimationState.Jump = State
-    end
-end)
-
-AnimationSector:AddDropdown("Climb", AnimationsName, "Default", false, function(State)
-    if Alive(LocalPlayer) then
-        LocalPlayer.Character.Animate.climb.ClimbAnim.AnimationId = AnimationModule[State][6]
-        AnimationState.Climb = State
-    end
-end)
-
-AnimationSector:AddDropdown("Fall", AnimationsName, "Default", false, function(State)
-    if Alive(LocalPlayer) then
-        LocalPlayer.Character.Animate.fall.FallAnim.AnimationId = AnimationModule[State][7]
-        AnimationState.Fall = State
-    end
-end)
-
-local ScriptsSector = MiscellaneousTab:CreateSector("Scripts", "right")
-ScriptsSector:AddButton('Low gfx', function(state)
+local fpsboost = MiscSection:AddButton('Low gfx', function(state)
     if state then
     
         local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
@@ -1663,58 +847,778 @@ ScriptsSector:AddButton('Low gfx', function(state)
       end
 end)
 
-ScriptsSector:AddButton("Rejoin", function(State)
+local rejoin = MiscSection:AddButton("Rejoin", function(State)
     loadstring(game:HttpGet("https://pastebin.com/raw/1gtVMUz3"))()
 end)
-
-ScriptsSector:AddButton("Server hop", function(State)
+    
+local hop = MiscSection:AddButton("Server hop", function(State)
     loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/serverhop.lua'))()
 end)
-
-ScriptsSector:AddButton("Fake Macro", function(State)
-   loadstring(game:HttpGet("https://pastebin.com/raw/yMmUUyyE"))()
-   Notify({
-    Title = "Zap",
-    Description = "Fake Macro Keybind is Z!",
-    Duration = 3
-})
-end)
-
-ScriptsSector:AddButton("Fly", function(State)
-        Notify({
-        Title = "Zap",
-        Description = "Fly keybind is X!",
-        Duration = 3
+local trash = MiscSection:AddButton("Trash Talk", function(State)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/trash_talk.lua"))()
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Trash Talk keybind is J.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
     })
+end)
+
+local macro = MiscSection:AddButton("Fake Macro", function(State)
+   loadstring(game:HttpGet("https://pastebin.com/raw/yMmUUyyE"))()
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Fake Macro keybind is Z.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+    })
+end)
+
+local fly = MiscSection:AddButton("Fly", function(State)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/fly.lua"))()
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Fly keybind is X.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+    })
 end)
 
-ScriptsSector:AddButton("Animation Gamepass", function()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/animation_gamepass.lua'))()
-end)
-
-ScriptsSector:AddButton("Full Bright", function(State)
+local fullbright = MiscSection:AddButton("Full Bright", function(State)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/full_bright.lua"))()
 end)
 
-ScriptsSector:AddButton("No jump cooldown", function(State)
+local nocooldown = MiscSection:AddButton("No jump cooldown", function(State)
     loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/no-jump-cooldown.lua'))()
 end)
     
-ScriptsSector:AddButton("Weight Farm", function(State)
+local weightfarm = MiscSection:AddButton("Weight Farm", function(State)
     loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/weight_farm.lua'))()
 end)
+local god = MiscSection:AddButton("God Mode", function(State)
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/godmode.lua'))()
+    game.StarterGui:SetCore("SendNotification", {
+    Title = "zap.lua";
+    Text = "This can't be stopped.";
+    Icon = "rbxassetid://8768441000";
+    Duration = "BLANK";
+    callbakc = bindableFunction;
+    })
+end)
 
-ScriptsSector:AddButton("Reset Character", function(reset)
+local reset = MiscSection:AddButton("Reset Character", function(reset)
     game.Players.LocalPlayer.Character.Humanoid.Health = 0
 end)
 
-ScriptsSector:AddButton("Rage quit", function()
+local idepomilion = MiscSection:AddButton('Sing', function(State)
+    game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Mam głód pierdolę wszystko","All")
+wait(1)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("ty stój kiedy idę po milion","All")
+wait(1.2)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("jxak znxów coś mi nie wyszło","All")
+wait(1.3)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("i huj nadal idę po milion","All")
+wait(0.7)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("już nie czekam na przyszłość ","All")
+wait(0.8)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("alxe nie mów nic bo","All")
+wait(0.9)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("bo bo idę po milion", "All")
+end)
+
+local MovementSector = MiscTab:CreateSector("Movement", "right")
+local SpeedToggle = MovementSector:AddToggle('Speed Enabled', false, function(State)
+    zap.luaSettings.Blatant.Movement.SpeedEnabled = State
+end)
+
+SpeedToggle:AddSlider(0, 5, 10, 1, function(Value)
+    zap.luaSettings.Blatant.Movement.SpeedAmount = Value
+end)
+
+MovementSector:AddDropdown("Speed Type", {"CFrame"}, "CFrame", false, function(Value)
+    zap.luaSettings.Blatant.Movement.SpeedType = Value
+end)
+
+MovementSector:AddDropdown("Speed Render Type", {"Default", "Fast"}, "Default", false, function(Value)
+    zap.luaSettings.Blatant.Movement.SpeedRenderType = Value
+end)
+SpeedToggle:AddKeybind()
+
+local swagfly = scriptsSection:AddButton("Admin Fly", function ()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/cracked%20stuff/admin_fly.lua'))()
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Admin Fly keybind is X.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+    })
+end)
+
+local Juggernaut = scriptsSection:AddButton("Juggernaut", function()
+    local LocalPlayer = game:GetService("Players").LocalPlayer
+    local Mouse = LocalPlayer:GetMouse()
+    local OriginalKeyUpValue = 0
+    
+    local Anim = Instance.new("Animation")
+    Anim.AnimationId = "rbxassetid://2788838708"
+    
+    function StopAudio()
+        LocalPlayer.Character.LowerTorso.BOOMBOXSOUND:Stop()
+    end
+    
+    function stop(ID, Key)
+        local cor = coroutine.wrap(function()
+            wait(LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.TimeLength-0.1)
+            if LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OriginalKeyUpValue == Key then
+                StopAudio()
+            end
+        end)
+        cor()
+    end
+    
+    function play(ID, STOP, LMAO)
+        if LocalPlayer.Backpack:FindFirstChild("[Boombox]") then
+            local Tool = nil
+            if LocalPlayer.Character:FindFirstChildOfClass("Tool") and LMAO == true then
+                Tool = LocalPlayer.Character:FindFirstChildOfClass("Tool")
+                LocalPlayer.Character:FindFirstChildOfClass("Tool").Parent = LocalPlayer.Backpack
+            end
+            LocalPlayer.Backpack["[Boombox]"].Parent =
+                LocalPlayer.Character
+            game.ReplicatedStorage.MainEvent:FireServer("Boombox", ID)
+            LocalPlayer.Character["[Boombox]"].RequiresHandle = false
+            if LocalPlayer.Character["[Boombox]"]:FindFirstChild("Handle") then
+                LocalPlayer.Character["[Boombox]"].Handle:Destroy()
+            end
+            LocalPlayer.Character["[Boombox]"].Parent =
+                LocalPlayer.Backpack
+            LocalPlayer.PlayerGui.MainScreenGui.BoomboxFrame.Visible = false
+            if Tool ~= true then
+                if Tool then
+                    Tool.Parent = LocalPlayer.Character
+                end
+            end
+            if STOP == true then
+                LocalPlayer.Character.LowerTorso:WaitForChild("BOOMBOXSOUND")
+                local cor = coroutine.wrap(function()
+                    repeat wait() until LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.TimeLength > 0.01
+                    OriginalKeyUpValue = OriginalKeyUpValue+1
+                    stop(ID, OriginalKeyUpValue)
+                end)
+                cor()
+            end
+        end
+    end
+    
+    function Tool()
+        local Tool = Instance.new("Tool")
+        Tool.Name = "Juggernaut"
+        Tool.RequiresHandle = false
+        Tool.Activated:Connect(function()
+            local Character = LocalPlayer.Character
+            local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+    
+            function rm()
+                for i,v in pairs(Character:GetDescendants()) do
+                    if v:IsA("BasePart") or v:IsA("MeshPart") then
+                        if v.Name ~= "Head" then
+                            for i,cav in pairs(v:GetDescendants()) do
+                                if cav:IsA("Attachment") then
+                                    if cav:FindFirstChild("OriginalPosition") then
+                                        cav.OriginalPosition:Destroy()
+                                    end
+                                end
+                            end
+                            for i,v in pairs(v:GetChildren()) do
+                                if v.Name == "OriginalSize" then
+                                    v:Destroy()
+                                end
+                            end
+                            if v:FindFirstChild("AvatarPartScaleType") then
+                                v:FindFirstChild("AvatarPartScaleType"):Destroy()
+                            end
+                        end
+                    end
+                end
+            end
+    
+            Humanoid:LoadAnimation(Anim):Play()
+            play(862491729, true, true)
+            wait(0.4)
+            rm()
+            Humanoid:FindFirstChild("BodyTypeScale"):Destroy()
+            wait(0.2)
+    
+            rm()
+            Humanoid:FindFirstChild("BodyWidthScale"):Destroy()
+            wait(0.02)
+    
+            rm()
+            Humanoid:FindFirstChild("BodyDepthScale"):Destroy()
+            wait(0.02)
+    
+            rm()
+            Humanoid:FindFirstChild("BodyTypeScale"):Destroy()
+            wait(0.02)
+        end)
+        Tool.Parent = LocalPlayer.Backpack
+    end
+    Tool()
+end)
+
+local avatarchanger = scriptsSection:AddButton("Avatar Modifier", function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/cracked%20stuff/facechanger.lua'))()
+end)
+
+local ben = scriptsSection:AddButton("Ben Talk", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/ben.lua"))()
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Ben talk keybind is K.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+    })
+end)
+
+
+local panic = scriptsSection:AddButton("Rage quit", function()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/ragequit.lua'))()
 end)
 
+local superjump = scriptsSection:AddButton("Super Jump", function()
+    local  MyStand = "niggerballs69"
+    local SuperJumpEnabled = false
+    
+    getgenv().Toggled = false
+    local UIS = game:GetService("UserInputService")
+    UIS.InputBegan:connect(function(input,gameProcessed)
+        if input.UserInputType == Enum.UserInputType.Keyboard then
+            if input.KeyCode == Enum.KeyCode.H then
+                if UIS:GetFocusedTextBox() == nil then
+                    if getgenv().Toggled == false then
+                        getgenv().Toggled = true
+                    else
+                        getgenv().Toggled = true
+                    end;end;end;end;end)
+    
+    local LocalPlayer = game:GetService("Players").LocalPlayer
+    local Cookies = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Roll)
+    local OriginalKeyUpValue = 0
+    local Anim = Instance.new("Animation" )
+    Anim.AnimationId = "rbxassetid://2788290270"
+    local Hover = Instance.new("Animation", game.Workspace)
+    Hover.Name = "Hover"
+    Hover.AnimationId = "rbxassetid://698251653"
+    local LeftPunch = Instance.new("Animation",  game.ReplicatedStorage.ClientAnimations)LeftPunch.Name = "LeftPunch"
+    LeftPunch.AnimationId = "rbxassetid://2788308661"
+    local LeftAnim = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.LeftPunch)
+    local CoreUI = Instance.new("ScreenGui")
+    local Humanoid = game.Players.LocalPlayer.Character.Humanoid
+    CoreUI.Parent = game.CoreGui
+    local SaveLocation = nil
+    local RigWalk = nil
+    local RigIdle = nil
+    local InTimeErase = false
+    
+    local Pointing = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
+    Pointing.AnimationId = "rbxassetid://507770453"
+    
+    local UNMASKKK = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
+    UNMASKKK.Name = "Unmask"
+    UNMASKKK.AnimationId = "rbxassetid://3380629232"
+    
+    local MASKKK = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
+    MASKKK.Name = "Mask"
+    MASKKK.AnimationId = "rbxassetid://3380627692"
+    
+    local Poter = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(Pointing)
+    Poter.Looped = true
+    Poter.Priority = Enum.AnimationPriority.Action
+    
+    local WalkAnimation = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
+    WalkAnimation.AnimationId = "rbxassetid://2510198475"
+    
+    local Idle = Instance.new("Animation", game.ReplicatedStorage.ClientAnimations)
+    Idle.AnimationId = "rbxassetid://507766388"
+    
+    local OldChar = LocalPlayer.Character
+    local MaskAnim = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Mask)
+    local UnmaskAnim = LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Unmask)
+    
+    function FoV()
+        local fov = coroutine.wrap(function()
+            local Camera = workspace.Camera
+            for i = 1, 20 do
+                game.TweenService:Create(Camera, TweenInfo.new(0.5), {FieldOfView = 8*i}):Play()
+                wait(0.01)
+            end
+            for i = 1, 20 do
+                game.TweenService:Create(Camera, TweenInfo.new(0.5), {FieldOfView = 160-i*4.5}):Play()
+                wait(0.01)
+            end
+        end)
+        fov()
+    end
+    
+    local WalkSpeed = false
+    
+    local function rm()
+        for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+            if v.Name == "OriginalPosition" then
+                v:Destroy()
+            elseif v.Name == "OriginalSize" then
+                v:Destroy()
+            elseif v.Name == "AvatarPartScaleType" then
+                v:Destroy()
+            end
+        end
+    end
+    
+    
+    function Lighting()
+        if game.Lighting:FindFirstChild("ERASE") == nil then
+            local sound5 = Instance.new("Sound", CoreUI)
+            sound5.Volume = 0.1
+            sound5.Name = "ERASE"
+            sound5.Looped = true
+            sound5.SoundId = "rbxassetid://3167092959"
+            sound5:Play()
+    
+            game.Lighting.Sky.Parent = workspace
+            game:GetObjects("rbxassetid://6546113226")[1].Parent=game.Lighting
+    
+        else
+            workspace.Sky.Parent = game.Lighting
+            CoreUI:FindFirstChild("ERASE"):Destroy()
+            game.Lighting:FindFirstChild("ERASE"):Destroy()
+        end
+    end
+    
+    function TimeEraseUI()
+        local sound5 = Instance.new("Sound", CoreUI)
+        sound5.Volume = 0.1
+        sound5.SoundId = "rbxassetid://6546128175"
+        sound5:Play()
+    
+        local Image = Instance.new("ImageLabel", CoreUI)
+        Image.Image = "http://www.roblox.com/asset/?id=6546043746"
+        Image.BackgroundTransparency = 1
+        Image.AnchorPoint = Vector2.new(0.5, 0.5)
+        Image.Size = UDim2.fromScale(1, 1)
+        Image.Position = UDim2.fromScale(-0.5, 0.5)
+        delay(0, function()
+            for i = 0, 1, 0.1 do
+                Image.Position = UDim2.fromScale(-Image.Position.X.Scale+i, 0.5)
+                Image.ImageTransparency = Image.ImageTransparency+i
+                wait(.01)
+            end
+            Image:Destroy()
+            sound5:Destroy()
+        end)
+    end
+    
+    
+    function ModelCharacter()
+        if workspace:FindFirstChild(LocalPlayer.Name.."StringKOD") == nil then
+            local MODEL = Instance.new("Model", workspace)
+            MODEL.Name = LocalPlayer.Name.."StringKOD"
+    
+            OldChar.Humanoid:UnequipTools()
+    
+            for i, v in pairs(OldChar:GetChildren()) do 
+                if (v:IsA("BasePart")  or v:IsA("MeshPart")) and v.Parent:FindFirstChildOfClass("Humanoid") and v.Name ~= "HumanoidRootPart" then
+                    local Part = v:Clone()
+                    Part.Parent = MODEL
+                    Part.Name = v.Name
+                    Part.Material = Enum.Material.ForceField
+                    Part.CFrame = v.CFrame
+                    Part.Transparency = 0.5 
+                    Part.BrickColor = BrickColor.Red()
+                    Part.CanCollide = false
+                    Part.Anchored = true
+                    for i, v  in pairs(Part:GetChildren()) do 
+                        if v.ClassName ~= "SpecialMesh" then
+                            v:Destroy()
+                        end
+                    end
+                end
+            end
+            local NewCharacter = game:GetObjects("rbxassetid://6547055500")[1]
+            NewCharacter.Parent = MODEL
+            NewCharacter.Name = "Idaro"
+    
+            workspace.Camera.CameraSubject = NewCharacter.Humanoid
+            SaveLocation = OldChar.HumanoidRootPart.CFrame
+            InTimeErase = true
+            NewCharacter.HumanoidRootPart.CFrame = SaveLocation
+    
+            RigIdle = NewCharacter:WaitForChild("Humanoid"):LoadAnimation(Idle)
+            RigIdle.Looped = true
+            RigIdle.Priority = Enum.AnimationPriority.Action
+            RigWalk = NewCharacter:WaitForChild("Humanoid"):LoadAnimation(WalkAnimation)
+            RigWalk.Looped = true
+            RigWalk.Priority = Enum.AnimationPriority.Action
+            WalkSpeed = true
+            RigIdle:Play()
+        else
+            InTimeErase = false
+            WalkSpeed = false
+            workspace.Camera.CameraSubject =  OldChar.Humanoid
+            OldChar.HumanoidRootPart.CFrame =  workspace:FindFirstChild(LocalPlayer.Name.."StringKOD").Idaro.HumanoidRootPart.CFrame
+            workspace:FindFirstChild(LocalPlayer.Name.."StringKOD"):Destroy()
+        end
+    end
+    
+    function Slide()
+        local XD = OldChar.Humanoid:LoadAnimation(Anim)
+        XD:Play()
+        XD.TimePosition = 0.15
+        XD.Looped = false
+        XD:AdjustSpeed(1.1)
+    end
+    
+    function AddVelocity(Vel, Char)
+        Char.HumanoidRootPart.Velocity = Char.HumanoidRootPart.Velocity+Vel
+    end
+    
+    local IsJump = false
+    
+    function Jumping()
+        if IsJump == false then
+            return false
+        else
+            return true
+        end
+    end
+    
+    local Mouse = LocalPlayer:GetMouse()
+    
+    local MoveDirection = Vector3.new(0,0,0)
+    local WSpped = 0 
+    local LeftSpeed = 0
+    local UpSpeed = 0
+    
+    function IdleRigXD()
+        if RigIdle and RigWalk.IsPlaying and WSpped == 0 and LeftSpeed == 0 and UpSpeed == 0 then
+            RigIdle:Play()
+            RigWalk:Stop()
+        end
+    end
+    
+    function WalkRigXD()
+        if RigWalk and RigIdle.IsPlaying then
+            RigIdle:Stop()
+            RigWalk:Play()
+        end
+    end
+    
+    Mouse.KeyDown:Connect(function(KeyDownXD)
+        if workspace:FindFirstChild(LocalPlayer.Name.."StringKOD") then
+            if KeyDownXD == "w" then
+                WSpped = -1
+                WalkRigXD()
+            elseif KeyDownXD == "a" then
+                LeftSpeed = -1
+                WalkRigXD()
+            elseif KeyDownXD == "d" then
+                LeftSpeed = 1
+                WalkRigXD()
+            elseif KeyDownXD == "s" then
+                WSpped = 1
+                WalkRigXD()
+            end
+        end
+    end)
+    
+    Mouse.KeyUp:Connect(function(KeyDownXD)
+        if KeyDownXD == "w" then
+            WSpped = 0
+            IdleRigXD()
+        elseif KeyDownXD == "a" then
+            LeftSpeed = 0
+            IdleRigXD()
+        elseif KeyDownXD == "d" then
+            LeftSpeed = -0
+            IdleRigXD()
+        elseif KeyDownXD == "s" then
+            WSpped = 0
+            IdleRigXD()
+        end
+    end)
+    
+    local CD = false
+    local uis = game:GetService("UserInputService")
+    
+    uis.InputBegan:Connect(function(i, XD)
+        if i.KeyCode == Enum.KeyCode.H and XD == false then
+            if SuperJumpEnabled == false then
+                SuperJumpEnabled = true
+            elseif SuperJumpEnabled == true then
+                SuperJumpEnabled = false
+            end
+        end
+    end)
+    
+    uis.InputBegan:Connect(function(i, XD)
+        if i.KeyCode == Enum.KeyCode.Space and XD == false then
+            if workspace:FindFirstChild(LocalPlayer.Name.."StringKOD") == nil then
+                if Jumping() == true and not Poter.IsPlaying then
+                    AddVelocity(OldChar.HumanoidRootPart.CFrame.LookVector*150, OldChar)
+                    IsJump = false
+                    Cookies:Stop()
+                    CD = true
+                    Slide()
+                    repeat wait() until workspace:FindPartOnRayWithWhitelist(Ray.new(OldChar.HumanoidRootPart.Position, Vector3.new(0, -4 * OldChar.HumanoidRootPart.Size.y, 0)), { workspace.MAP })
+                    CD = false
+                end
+            else
+                workspace:FindFirstChild(LocalPlayer.Name.."StringKOD"):FindFirstChild("Idaro").Humanoid:ChangeState(3)
+            end
+        end
+    end)
+    
+    function StopAudio()
+        OldChar.LowerTorso.BOOMBOXSOUND:Stop()
+    end
+    
+    function stop(ID, Key)
+        local cor = coroutine.wrap(function()
+            wait(OldChar.LowerTorso.BOOMBOXSOUND.TimeLength-0)
+            if OldChar.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OriginalKeyUpValue == Key then
+                StopAudio()
+            end
+        end)
+        cor()
+    end
+    
+    
+    function play(ID, STOP, LMAO)
+        if LocalPlayer.Backpack:FindFirstChild("[Boombox]") then
+            local Tool = nil
+            if OldChar:FindFirstChildOfClass("Tool") and LMAO == true then
+                Tool = OldChar:FindFirstChildOfClass("Tool")
+                OldChar:FindFirstChildOfClass("Tool").Parent = LocalPlayer.Backpack
+            end
+            LocalPlayer.Backpack["[Boombox]"].Parent =
+                OldChar
+            game.ReplicatedStorage.MainEvent:FireServer("Boombox", ID)
+            OldChar["[Boombox]"].RequiresHandle = false
+            if OldChar["[Boombox]"]:FindFirstChild("Handle") then
+                OldChar["[Boombox]"].Handle:Destroy()
+            end
+            OldChar["[Boombox]"].Parent =
+                LocalPlayer.Backpack
+            LocalPlayer.PlayerGui.MainScreenGui.BoomboxFrame.Visible = false
+            if Tool ~= true then
+                if Tool then
+                    Tool.Parent = OldChar
+                end
+            end
+            if STOP == true then
+                OldChar.LowerTorso:WaitForChild("BOOMBOXSOUND")
+                local cor = coroutine.wrap(function()
+                    repeat wait() until OldChar.LowerTorso.BOOMBOXSOUND.SoundId == "rbxassetid://"..ID and OldChar.LowerTorso.BOOMBOXSOUND.TimeLength > 0
+                    OriginalKeyUpValue = OriginalKeyUpValue+1
+                    stop(ID, OriginalKeyUpValue)
+                end)
+                cor()
+            end
+        end
+    end
+    
+    local bro = false
+    local TimeErase, CanCel = "Time erase!", "Time erase!"
+    local TimeStop, TimeResume = "Time stop!", "Time stop!"
+    local XD = false
+    LocalPlayer.Chatted:Connect(function(MSG)
+        if MSG == "Rage!" then
+    if Humanoid:FindFirstChild("HeadScale") then
+        rm()
+        wait(0.6)
+    
+        Humanoid:FindFirstChild("HeadScale"):Destroy()
+        wait(0.6)
+    end
+    
+    
+    if Humanoid:FindFirstChild("BodyWidthScale") then
+        rm()
+        wait(0.6)
+        Humanoid:FindFirstChild("BodyWidthScale"):Destroy()
+        wait(0.6)
+    end
+    
+    
+    
+    if Humanoid:FindFirstChild("BodyDepthScale") then
+        rm()
+        wait(0.6)
+        Humanoid:FindFirstChild("BodyDepthScale"):Destroy()
+        wait(0.6)
+    end
+    
+    
+    
+    if Humanoid:FindFirstChild("BodyTypeScale") then
+        rm()
+        wait(0.6)
+        Humanoid:FindFirstChild("BodyTypeScale"):Destroy()
+       wait(0.6)
+    end
+        elseif MSG:sub(1, 11) == TimeErase and XD == false and not Poter.IsPlaying then
+            XDDDD(XD)
+        elseif MSG == CanCel and XD == true and not Poter.IsPlaying then
+            XDDDD(XD)
+        elseif MSG == TimeStop then
+            play(6947054675, true, true)
+            wait(0.3)
+            OldChar.LowerTorso.BOOMBOXSOUND.SoundId = "http://www.roblox.com/asset/?id=wd"
+            wait(0.1)
+            play(7084712646, true, true)
+        end
+    end)
+    
+    function XDDDD(XDR)
+        if XDR == false then
+            XD = true
+            play(6546133414, true, true)
+            wait(2)
+            TimeEraseUI()
+            FoV()
+            Lighting()
+            ModelCharacter()
+        else
+            XD = false
+            InTimeErase = false
+            wait(0.1)
+            play(6543435253, true, true)
+            TimeEraseUI()
+            ModelCharacter()
+            Lighting()
+            FoV()
+    end
+    end
+    
+    function Jump(...)
+        (...).Jumping:Connect(function()
+            if SuperJumpEnabled == true then
+            if CD == false and not Poter.IsPlaying then
+                CD = true
+                delay(1, function()
+                    CD = false
+                end)
+                Cookies:Play(0, 1, 1.4)
+                AddVelocity(OldChar.HumanoidRootPart.CFrame.UpVector*120, OldChar)
+                delay(0, function()
+                    IsJump = true
+                    wait(1) 
+                    if IsJump == true then
+                        IsJump = false
+                    end
+                end)
+                end
+            end
+        end)
+    end
+    
+    
+    Jump(OldChar.Humanoid)
+    
+    LocalPlayer.CharacterAdded:Connect(function(Character)
+        wait(1)
+        if Character.Name == LocalPlayer.Name then
+            Jump(Character.Humanoid)
+            Poter = Character:WaitForChild("Humanoid"):LoadAnimation(Pointing)
+            Poter.Looped = true
+            Poter.Priority = Enum.AnimationPriority.Action
+    
+            Cookies = Character:WaitForChild("Humanoid"):LoadAnimation(game.ReplicatedStorage.ClientAnimations.Roll)
+            OldChar = Character
+        end
+    end)
+    
+    game["Run Service"].Heartbeat:Connect(function()
+        if InTimeErase then
+            for i, v in pairs(OldChar:GetChildren()) do
+                if v:IsA("BasePart") then
+                    v.CFrame = CFrame.new(math.random(200, 500), math.random(200, 500), math.random(200, 500))
+                    v.Velocity = Vector3.new(0,0,0)
+                end
+            end
+    
+            if OldChar:FindFirstChild("Combat") and XD == true then
+                XD = false
+                XDDDD(true)
+            end
+    
+            if WalkSpeed == true then
+                MoveDirection = Vector3.new(LeftSpeed, UpSpeed, WSpped)
+                workspace:FindFirstChild(LocalPlayer.Name.."StringKOD"):FindFirstChild("Idaro").Humanoid:Move(MoveDirection, true)
+            end
+        else
+            if OldChar:FindFirstChild("[Flashlight]") then
+                if workspace.Players:FindFirstChild(MyStand) then
+                    if not Poter.IsPlaying then
+                        Poter:Play()
+                        Poter:AdjustSpeed(0)
+                        Poter.TimePosition = 1.2
+                    end
+                    local lol = workspace.Players:FindFirstChild(MyStand).HumanoidRootPart.CFrame * CFrame.new(0, 0.5, 1.25)
+                    OldChar.HumanoidRootPart.CFrame = lol
+                end
+            else
+                if Poter.IsPlaying then
+                    Poter:Stop()
+                end
+            end
+        end
+    end)
+        game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Super Jump keybind is H.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+    })
+end)
+
+local speedboost = scriptsSection:AddButton("Speed", function()
+    plr = game:GetService('Players').LocalPlayer
+    down = true
+     
+    function onButton1Down(mouse)
+        down = true
+        while down do
+            if not down then break end
+            local char = plr.Character
+            char.HumanoidRootPart.Velocity = char.HumanoidRootPart.CFrame.lookVector * 190
+            wait()
+        end
+    end
+     
+    function onButton1Up(mouse)
+        down = false
+    end
+     
+    function onSelected(mouse)
+        mouse.KeyDown:connect(function(m) if m:lower()=="c"then onButton1Down(mouse)end end)
+        mouse.KeyUp:connect(function(m) if m:lower()=="c"then onButton1Up(mouse)end end)
+    end
+    onSelected(game.Players.LocalPlayer:GetMouse())
+        game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Speed keybind is C.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+    })
+end)
 getgenv().Multiplier = -0.27
-ScriptsSector:AddButton("Antilock", function()
+local antilock = scriptsSection:AddButton("Antilock", function()
     local userInput = game:service('UserInputService')
     local runService = game:service('RunService')
     userInput.InputBegan:connect(function(Key)
@@ -1728,142 +1632,149 @@ ScriptsSector:AddButton("Antilock", function()
         end
     end
 end)
-    Notify({
-    Title = "Zap",
-    Description = "Antilock keybind is H!",
-    Duration = 3
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Antilock keybind is H.";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
     })
 end)
 
 
--- Settings Window --
-
-local SettingsTab = Window:CreateTab("Settings")
-
-if syn then
-    SettingsTab:CreateConfigSystem("left")
-else
-    Notify({
-        Title = "Zap",
-        Description = "Your Executor Doesn't Support Config.",
-        Duration = 3
+local CreditsTab = Window:CreateTab("Credits")
+local CreditsSection = CreditsTab:CreateSector("Developers", "left")
+local discord = CreditsSection:AddButton("Our Developing Team", function(bool)
+    setclipboard("grek#1337 <@557595801682182147> | $ Adxn#0001 <@818413928841084938> | https://zap.lua.cf/")
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Our team copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
     })
-end
-
-local UiSettings = SettingsTab:CreateSector("Ui Settings", "right")
-
-local UiColour = UiSettings:AddColorpicker("Accent Color", Library.theme.accentcolor, function(Color)
-    Library.theme.accentcolor = Color
 end)
 
-UiSettings:AddButton("Reload Zap", function()
-    Notify({
-        Title = "Zap",
-        Description = "Reloading!",
-        Duration = 3
-        })
-    loadstring(game:HttpGet('https://ekso.gq/raw/scripts/zap.lua'))()
-end)
-
-Notify({
-    Title = "Zap",
-    Description = "Loaded Succesfully!",
-    Duration = 3
+local esko = CreditsSection:AddButton("Owned by ekso.gq", function(bool)
+    setclipboard("https://ekso.gq")
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Owner copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
     })
-
-print("_________________________________ZAP_________________________________")
-print("| [zap.lua] Executed version: 1.0")
-print("| [zap.lua] Your user is: "..game.Players.LocalPlayer.Name.. "") 
-print("| [zap.lua] Your id is: "..game.Players.LocalPlayer.UserId.. "")
-print("| [zap.lua] Job id: " ..game.JobId.. "")
-print("| [zap.lua] Join us discord.gg/zp                 ")
-print("| [zap.lua] Made by grek <@557595801682182147>     ")
-print("_________________________________________________________________")
-
-local http_request = http_request or request or syn.request;
-local a = {
-	['cmd'] = 'INVITE_BROWSER',
-	['args'] = {
-		["code"] = 'zp'
-	},
-	['nonce'] = game:GetService('HttpService'):GenerateGUID(true)
-}
-
-http_request({
-	Url = 'http://127.0.0.1:6463/rpc?v=1',
-	Method = 'POST',
-	Headers = {
-		['Content-Type'] = 'application/json',
-		['Origin'] = 'https://discord.com'
-	},
-	Body = game:GetService('HttpService'):JSONEncode(a)
-})
-
-local Players = game:GetService("Players")
-
-Players.PlayerAdded:Connect(function(player)
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/blacklist.lua'))()
-end)
-wait(1)
-loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
-while true do
-local http_request = http_request or request or syn.request;
-local a = {
-	['cmd'] = 'INVITE_BROWSER',
-	['args'] = {
-		["code"] = 'zp'
-	},
-	['nonce'] = game:GetService('HttpService'):GenerateGUID(true)
-}
-
-http_request({
-	Url = 'http://127.0.0.1:6463/rpc?v=1',
-	Method = 'POST',
-	Headers = {
-		['Content-Type'] = 'application/json',
-		['Origin'] = 'https://discord.com'
-	},
-	Body = game:GetService('HttpService'):JSONEncode(a)
-})
-wait(2)
-end
-
--- Init --
-
-for _, v in next, Players:GetPlayers() do
-    if v ~= LocalPlayer and v:IsFriendsWith(LocalPlayer.UserId) then
-        Insert(ZapSettings.Aiming.Whitelist.Friends, v.Name)
-    end
-end
-
-Players.PlayerAdded:Connect(function(_Player)
-    if _Player ~= LocalPlayer and _Player:IsFriendsWith(LocalPlayer.UserId) then
-        Insert(ZapSettings.Aiming.Whitelist.Friends, _Player.Name)
-    end
 end)
 
-Players.PlayerRemoving:Connect(function(_Player)
-    if _Player ~= LocalPlayer and _Player:IsFriendsWith(LocalPlayer.UserId) then
-        Remove(ZapSettings.Aiming.Whitelist.Friends, _Player.Name)
-    end
+local discord1 = CreditsSection:AddButton("grek#1337", function(bool)
+    setclipboard("grek#1337 <@557595801682182147>")
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Staff member copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
 end)
 
-function NoSpace(Data)
-    return Data:gsub("%s+", "") or Data
-end
-    
-function Find(Data)
-    local Target = nil
-    
-    for i, v in next, Players:GetPlayers() do
-        if v.Name ~= LocalPlayer.Name and v.Name:lower():match('^'.. NoSpace(Data):lower()) then
-            Target = v.Name
-        end
-    end
-    
-    return Target
-end
+local discord2 = CreditsSection:AddButton("$ Adxn#0001", function(bool)
+    setclipboard("$ Adxn#0001 <@818413928841084938>")
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Staff member copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+
+local discord3 = CreditsSection:AddButton("Copy website link.", function(bool)
+    setclipboard("http://zap.lua.cf")
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Website copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+
+local partnersSection = CreditsTab:CreateSector("Partners", "right")
+local partners1 = partnersSection:AddButton("discord.gg/azq", function(bool)
+    setclipboard("https://discord.gg/azq")
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Supporter Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+
+local partners2 = partnersSection:AddButton("v3rmillion.net", function(bool)
+    setclipboard("https://v3rmillion.net")
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Supporter Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+local partners = partnersSection:AddButton("x.synapse.to", function(bool)
+    setclipboard("https://x.synapse.to")
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Supporter Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+
+local partners4 = partnersSection:AddButton("krnl.ca", function(bool)
+    setclipboard("https://krnl.ca")
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Supporter Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+
+local partners6 = partnersSection:AddButton("angxlzz", function(bool)
+    setclipboard("https://youtube.com/angxlzz")
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Supporter Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
+
+local partners5 = partnersSection:AddButton("ekso.gq", function(bool)
+    setclipboard("https://ekso.gq")
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "zap.lua";
+        Text = "Supporter Copied on clipboard!";
+        Icon = "rbxassetid://8768441000";
+        Duration = "BLANK";
+        callbakc = bindableFunction;
+        Button1 = "Okay!";
+    })
+end)
 
 function Alive(Player)
     if Player and Player.Character and Player.Character:FindFirstChild("HumanoidRootPart") ~= nil and Player.Character:FindFirstChild("Humanoid") ~= nil and Player.Character:FindFirstChild("Head") ~= nil then
@@ -1872,470 +1783,33 @@ function Alive(Player)
     return false
 end
 
-function Knocked(Player)
-    if Alive(Player) then
-        if Player.Character.BodyEffects["K.O"].Value then
-            return true
-        end
-        return false
+local GetService = setmetatable({}, {
+    __index = function(self, key)
+        return game:GetService(key)
     end
-    return false
-end
-
-function Grabbing(Player)
-    if Alive(Player) then
-        if Player.Character:FindFirstChild("GRABBING_CONSTRAINT") then
-            return true
-        end
-        return false
-    end
-    return false
-end
-
-function NearestDistance()
-    local Target = nil
-    local Distance = math.huge
-    
-    for i, v in next, Players:GetPlayers() do
-        if v ~= LocalPlayer and Alive(LocalPlayer) and Alive(v) then
-            local DistanceFromPlayer = (v.Character.HumanoidRootPart.Position - LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-            if Distance > DistanceFromPlayer then
-                if (not ZapSettings.Aiming.Whitelist.FriendsWhitelist or not table.find(ZapSettings.Aiming.Whitelist.Friends, v.Name)) and (not ZapSettings.Aiming.Whitelist.CrewEnabled or v:FindFirstChild("DataFolder") and v.DataFolder.Information:FindFirstChild("Crew") and not tonumber(v.DataFolder.Information.Crew.Value) == tonumber(LocalPlayer.DataFolder.Information.Crew.Value)) and (not ZapSettings.Aiming.Whitelist.Enabled or not table.find(ZapSettings.Aiming.Whitelist.Players, v.Name)) then
-                    Target = v
-                    Distance = DistanceFromPlayer
-                end
-            end
-        end
-    end
-
-    return Target, Distance
-end
-
-function NearestMouse()
-    local Target = nil
-    local Distance = math.huge
-
-    for i, v in next, Players:GetPlayers() do
-        if v ~= LocalPlayer and Alive(LocalPlayer) and Alive(v) then
-            local RootPosition, RootVisible = CurrentCamera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
-            local DistanceFromMouse = (Vector2.new(RootPosition.X, RootPosition.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
-            if RootVisible and Distance > DistanceFromMouse then
-                if (not ZapSettings.Aiming.Whitelist.FriendsWhitelist or not table.find(ZapSettings.Aiming.Whitelist.Friends, v.Name)) and (not ZapSettings.Aiming.Whitelist.CrewEnabled or v:FindFirstChild("DataFolder") and v.DataFolder.Information:FindFirstChild("Crew") and not tonumber(v.DataFolder.Information.Crew.Value) == tonumber(LocalPlayer.DataFolder.Information.Crew.Value)) and (not ZapSettings.Aiming.Whitelist.Enabled or not table.find(ZapSettings.Aiming.Whitelist.Players, v.Name)) then
-                    Target = v
-                    Distance = DistanceFromMouse
-                end
-            end
-        end
-    end
-
-    return Target, Distance
-end
-
-function NearestType(Type)
-    if Type == "Distance" then
-        return NearestDistance()
-    elseif Type == "Mouse" then
-        return NearestMouse()
-    end
-end
-
-function Jitter(Speed, Angle)
+})
+local RunSer = GetService.RunService
+RunSer.Heartbeat:Connect(function()
     if Alive(LocalPlayer) then
-        local Jit = Speed or math.random(30, 90)
-        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(LocalPlayer.Character.HumanoidRootPart.CFrame.Position) * CFrame.Angles(0, math.rad(Angle) + math.rad((math.random(1, 2) == 1 and Jit or -Jit)), 0) 
-    end
-end
-
-function TableLowerFind(Table, CurrentName)
-    local TableName
-    for i, v in pairs(Table) do
-        if string.find(CurrentName:gsub("%[", ""):gsub("%]", ""):lower(), v:lower()) then
-            TableName = v
-        end
-    end
-    return TableName
-end
-    
-function Spin(Speed)
-    if Alive(LocalPlayer) then
-        LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.Angles(0, math.rad(Speed), 0)
-    end
-end
-
-function TeleportBuy(Target, AutoSetDelay)
-    if workspace.Ignored.Shop:FindFirstChild(Target) and Alive(LocalPlayer) then
-        ZapModule.Old.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame
-        wait(0.05)
-        LocalPlayer.Character.HumanoidRootPart.CFrame = Workspace.Ignored.Shop[Target].Head.CFrame * CFrame.new(0, 3, 0)
-        wait(0.15)
-        if ZapSettings.Teleport.AutoPurchase then
-            for i = 1, 10 do
-                fireclickdetector(Workspace.Ignored.Shop[Target].ClickDetector)
-            end
-        end
-        if ZapSettings.Teleport.TeleportReturn then
-            wait(ZapSettings.Teleport.ReturnDelay)
-            LocalPlayer.Character.HumanoidRootPart.CFrame = ZapModule.Old.CFrame  
-        end
-        if AutoSetDelay then
-            wait(1)
-        end
-    end
-end
-
-function Buy(Target, Delay, LagBack)
-    if workspace.Ignored.Shop:FindFirstChild(Target) and Alive(LocalPlayer) then
-        ZapModule.Old.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame
-        wait(0.05)
-        LocalPlayer.Character.HumanoidRootPart.CFrame = Workspace.Ignored.Shop[Target].Head.CFrame * CFrame.new(0, 3, 0)
-        wait(0.15)
-        for i = 1, 3 do
-            fireclickdetector(Workspace.Ignored.Shop[Target].ClickDetector)
-        end
-        if LagBack then
-            wait(1)
-            LocalPlayer.Character.HumanoidRootPart.CFrame = ZapModule.Old.CFrame  
-        end
-        if Delay ~= nil then
-            wait(Delay)
-        end
-    end
-end
-
-function Visible(OriginPart, Part)
-    if Alive(LocalPlayer) then
-        local IgnoreList = {CurrentCamera, LocalPlayer.Character, OriginPart.Parent}
-        local Parts = CurrentCamera:GetPartsObscuringTarget({OriginPart.Position, Part.Position}, IgnoreList)
-    
-        for i, v in pairs(Parts) do
-            if v.Transparency >= 0.3 then
-                ZapModule.Instance[#ZapModule.Instance + 1] = v
-            end
-    
-            if v.Material == Enum.Material.Glass then
-                ZapModule.Instance[#ZapModule.Instance + 1] = v
-            end
-        end
-    
-        return #Parts == 0
-    end
-    return true
-end
-
-function ToolName(Name)
-    for Check = 1, 100000 do
-        if Workspace.Ignored.Shop:FindFirstChild("[" .. Name .. "] - $" .. Check) then
-            return tostring("[" .. Name .. "] - $" .. Check)
-        end
-    end
-end
-
-function ToolAmmo(Name)
-    for Check1 = 1, 250 do
-        for Check2 = 1, 250 do
-            if Workspace.Ignored.Shop:FindFirstChild(Check1 .. " [" .. Name .. " Ammo] - $" .. Check2) then
-                return tostring(Check1 .. " [" .. Name .. " Ammo] - $" .. Check2)
-            end
-        end
-    end
-end
-
-function Invisible()
-    if Alive(LocalPlayer) then
-        ZapModule.Old.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame
-        print(ZapModule.Old.CFrame)
-        wait(0.1)
-        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 96995694596945934234234234, 0)
-        wait(0.1)
-        LocalPlayer.Character.LowerTorso.Root:Destroy()
-        for _, v in pairs(LocalPlayer.Character:GetChildren()) do
-            if v:IsA("MeshPart") and not table.find(ZapModule.Ignores, v.Name) then
-                v:Destroy()
-            end
-        end
-        wait(0.1)
-        LocalPlayer.Character.HumanoidRootPart.CFrame = ZapModule.Old.CFrame
-    end
-end
-
-function NilBody()
-    if Alive(LocalPlayer) then
-        for i, v in pairs(LocalPlayer.Character:GetChildren()) do
-            if v:IsA("BasePart") or v:IsA("Part") or v:IsA("MeshPart") then
-                if v.Name ~= "HumanoidRootPart" then
-                    v:Destroy()
-                end
-            end
-        end
-    end
-end
-
-function ChanceTable(Table)
-    local Chance = 0
-    for i, v in pairs(Table) do
-        Chance = Chance + v
-    end
-    Chance = math.random(0, Chance)
-    for i, v in pairs(Table) do
-        Chance = Chance - v
-        if Chance <= 0 then
-            return i
-        end
-    end	
-end
-
-function RandomTable(Table)
-    local Values = 0
-    for i, v in pairs(Table) do
-        Values = i
-    end
-    
-    return Table[math.random(1, Values)]
-end
-
-function Remove(Data, Data2)
-    for i, v in pairs(Data) do
-        if v == Data2 then
-            table.remove(Data, i)
-        end
-    end
-end
-
-function IsVisible(GetPosition, IgnoreLists)
-    return #CurrentCamera:GetPartsObscuringTarget({game.Players.LocalPlayer.Character.Head.Position, GetPosition}, IgnoreLists) == 0 and true or false
-end
-
-function GodFunction(Variable)
-    LocalPlayer.Character.RagdollConstraints:Destroy()
-    local Folder = Instance.new("Folder", LocalPlayer.Character)
-    Folder.Name = "FULLY_LOADED_CHAR"
-    wait()
-    StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, true)
-    Variable = false
-end
-
-function Cham(Data, State)
-    local BoxVar = nil
-    local GlowVar = nil
-    if State then
-        for _, v in pairs(Data.Character:GetChildren()) do
-            if v:IsA("BasePart") and v.Transparency ~= 1 then
-                if not v:FindFirstChild("Box") then
-                    BoxVar = Instance.new("BoxHandleAdornment", v)
-                    BoxVar.Name = "Box"
-                    BoxVar.AlwaysOnTop = true
-                    BoxVar.ZIndex = 4
-                    BoxVar.Adornee = v
-                    BoxVar.Color3 = Color3.fromRGB(0, 153, 153)
-                    BoxVar.Transparency = 0.5
-                    BoxVar.Size = v.Size + Vector3.new(0.02, 0.02, 0.02)
-                end
-            end
-        end
-    else
-        for i, v in pairs(Data.Character:GetChildren()) do
-            if v:IsA("BasePart") and v.Transparency ~= 1 then
-                if v:FindFirstChild("Box") then
-                    v["Box"]:Destroy()
-                end
-            end
-        end
-        
-        return BoxVar, GlowVar
-    end
-end
-
-UserInputService.InputBegan:Connect(function(Key, Event)
-    if Key.UserInputType == Enum.UserInputType.MouseButton2 and not Event then
-        ZapSettings.Aiming.Aimbot.IsAiming = true
-    end
-end)
-
-UserInputService.InputEnded:Connect(function(Key, Event)
-    if Key.UserInputType == Enum.UserInputType.MouseButton2 and not Event then
-        ZapSettings.Aiming.Aimbot.IsAiming = false
-    end
-end)
-
-RunService.Heartbeat:Connect(function()
-    if Alive(LocalPlayer) then
-        if ZapSettings.Blatant.Movement.SpeedEnabled and ZapSettings.Blatant.Movement.SpeedType == "CFrame" then
-            if ZapSettings.Blatant.Movement.SpeedRenderType == "Default" then
+        if zap.luaSettings.Blatant.Movement.SpeedEnabled and zap.luaSettings.Blatant.Movement.SpeedType == "CFrame" then
+            if zap.luaSettings.Blatant.Movement.SpeedRenderType == "Default" then
                 if LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
-                    for i = 1, ZapSettings.Blatant.Movement.SpeedAmount do
+                    for i = 1, zap.luaSettings.Blatant.Movement.SpeedAmount do
                         LocalPlayer.Character:TranslateBy(LocalPlayer.Character.Humanoid.MoveDirection)
                     end
                 end
             end
         end
-        if ZapSettings.Blatant.Character.AntiBag then
-            if LocalPlayer.Character:FindFirstChild("Christmas_Sock") then
-                LocalPlayer.Character:FindFirstChild("Christmas_Sock"):Destroy()
-            end
-        end
-        if ZapSettings.Blatant.Character.AntiGrab and LocalPlayer.Character:FindFirstChild("GRABBING_CONSTRAINT") then
-            LocalPlayer.Character["GRABBING_CONSTRAINT"]:Destroy()
-        end
-    end
-end)
-
-RunService.Stepped:Connect(function()
-	if ZapSettings.Blatant.BlatantAA.UndergroundWallbang then
-		for i, v in pairs(LocalPlayer.Character:GetDescendants()) do
-			if v:IsA("BasePart") and v.CanCollide == true then
-				v.CanCollide = false
-			end
-		end
-	end
-end)
-
-spawn(function()
-    while wait() do
-        if Alive(LocalPlayer) then
-            if ZapSettings.Blatant.Character.AutoLettuce then
-                pcall(function()
-                    Buy("[Lettuce] - $5", 1)
-                    if LocalPlayer.Backpack:FindFirstChild("[Lettuce]") then
-                        LocalPlayer.Character.Humanoid:EquipTool(LocalPlayer.Backpack["[Lettuce]"])
-                    end
-                    wait(0.5)
-                    LocalPlayer.Character["[Lettuce]"]:Activate()
-                end)
-            end
-            if ZapSettings.Blatant.Character.AutoReload then
-                local Gun = LocalPlayer.Character:FindFirstChildOfClass("Tool")
-                if Gun ~= nil and Gun:FindFirstChild("MaxAmmo") then
-                    if Gun.Ammo.Value == 0 then
-                        ReplicatedStorage.MainEvent:FireServer("Reload", Gun)
+        if zap.luaSettings.Blatant.Movement.SpeedEnabled and zap.luaSettings.Blatant.Movement.SpeedType == "CFrame" then
+            if zap.luaSettings.Blatant.Movement.SpeedRenderType == "Fast" and Alive(LocalPlayer) then
+                if LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
+                    for i = 1, zap.luaSettings.Blatant.Movement.SpeedAmount do
+                        LocalPlayer.Character:TranslateBy(LocalPlayer.Character.Humanoid.MoveDirection)
                     end
                 end
             end
-            if ZapSettings.Blatant.Character.AutoArmor then
-                if LocalPlayer.Character.BodyEffects.Armor.Value == 0 then
-                    Buy("[High-Medium Armor] - $2300", 0.5, true)
-                end
-            end
-            if ZapSettings.Blatant.Farming.MuscleFarm then
-                pcall(function()
-                    if ZapSettings.Blatant.Farming.MuscleFarmingType == "Normal" then
-                        if not LocalPlayer.Backpack:FindFirstChild("[Weights]") then
-                            Buy("[Weights] - $120", 1)
-                        end
-                        if LocalPlayer.Backpack:FindFirstChild("[Weights]") then
-                            LocalPlayer.Character.Humanoid:EquipTool(LocalPlayer.Backpack["[Weights]"])
-                        end
-                        LocalPlayer.Character["[Weights]"]:Activate()
-                    end
-                    if ZapSettings.Blatant.Farming.MuscleFarmingType == "Heavy" then
-                        if not LocalPlayer.Backpack:FindFirstChild("[HeavyWeights]") then
-                            Buy("[HeavyWeights] - $250", 1)
-                        end
-                        if LocalPlayer.Backpack:FindFirstChild("[HeavyWeights]") then
-                            LocalPlayer.Character.Humanoid:EquipTool(LocalPlayer.Backpack["[HeavyWeights]"])
-                        end
-                        LocalPlayer.Character["[HeavyWeights]"]:Activate()
-                    end
-                end)
-            end
-            if ZapSettings.Blatant.Farming.ShoeFarm then
-                pcall(function()
-                    for i, v in pairs(Workspace.Ignored.Drop:GetChildren()) do
-                        if v.Name == "MeshPart" then
-                            LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame * CFrame.new(0, 2, 0)
-                            local ShoeDistance = (v.Position - LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-                            if ShoeDistance < 25 then
-                                fireclickdetector(v.ClickDetector)
-                            end
-                        else
-                            fireclickdetector(Workspace.Ignored["Clean the shoes on the floor and come to me for cash"].ClickDetector)
-                        end
-                    end
-                end)
-            end
-            if ZapSettings.Blatant.Farming.HospitalFarm then
-                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(116, 23, -479)
-                for _, v in pairs(Workspace.Ignored.HospitalJob:GetChildren()) do
-                    if v.Name == "Can I get the Green bottle" then
-                        fireclickdetector(v.Parent.Green.ClickDetector)
-                        wait(1)
-                        fireclickdetector(v.ClickDetector)
-                    end
-                    if v.Name == "Can I get the Blue bottle" then
-                        fireclickdetector(v.Parent.Blue.ClickDetector)
-                        wait(1)
-                        fireclickdetector(v.ClickDetector)
-                    end
-                    if v.Name == "Can I get the Red bottle" then
-                        fireclickdetector(v.Parent.Red.ClickDetector)
-                        wait(1)
-                        fireclickdetector(v.ClickDetector)
-                    end
-                end
-            end
-            if ZapSettings.Blatant.Farming.BoxFarm then
-                pcall(function()
-                    LocalPlayer.Character.HumanoidRootPart.CFrame = Workspace.MAP.Map.ArenaBOX.PunchingBagInGame["pretty ransom"].CFrame * CFrame.new(0, -1, 3)
-                    if LocalPlayer.Backpack:FindFirstChild("Combat") then
-                        LocalPlayer.Backpack.Combat.Parent = LocalPlayer.Character
-                    end
-                end)
-                mouse1click()
-            end
         end
-    end
-end)
-
-spawn(function()
-    while wait() do
-        if ZapSettings.Blatant.Farming.ATMFarm then
-            for _, v in pairs(Workspace.Cashiers:GetChildren()) do
-                if v:FindFirstChild("Head") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                    repeat
-                        ZapSettings.Blatant.Farming.ATMPick = false
-                        wait()
-                        if ZapSettings.Blatant.Farming.ATMFarm then
-                            if Alive(LocalPlayer) then
-                                LocalPlayer.Character.HumanoidRootPart.CFrame = v.Head.CFrame * CFrame.new(0, -1, 2.5)
-                                if LocalPlayer.Backpack:FindFirstChild("Combat") then
-                                    LocalPlayer.Backpack.Combat.Parent = LocalPlayer.Character
-                                end
-                                --if LocalPlayer.Character:FindFirstChild("Combat") then
-                                    LocalPlayer.Character["Combat"]:Activate()
-                                --end
-                            end
-                        end
-                    until v.Humanoid.Health <= 0 or not ZapSettings.Blatant.Farming.ATMFarm
-                    pcall(function()
-                        LocalPlayer.Character:FindFirstChildOfClass("Tool").Parent = LocalPlayer.Backpack
-                    end)
-                    ZapSettings.Blatant.Farming.ATMPick = true
-                    wait(5)
-                end
-            end
-        end
-    end
-end)
-
-RunService.RenderStepped:Connect(function()
-    if Alive(LocalPlayer) then
-        if ZapSettings.Aiming.AimingSettings.PingBasedPrediction then
-            local PingStats = GetService.Stats.Network.ServerStatsItem["Data Ping"]:GetValueString()
-            local Value = tostring(PingStats)
-            local PingValue = Value:split(" ")
-            local PingNumber = tonumber(PingValue[1])
-    
-            if PingNumber < 130 then
-                ZapSettings.Aiming.AimingSettings.GetVelocity = PingNumber / 1000 + 0.037
-            else
-                ZapSettings.Aiming.AimingSettings.GetVelocity = PingNumber / 1000 + 0.033
-            end
-        else
-            ZapSettings.Aiming.AimingSettings.GetVelocity = 0.165
-        end
-        if ZapSettings.Blatant.Cash.AutoDrop then
-            ReplicatedStorage.MainEvent:FireServer("DropMoney", tostring(ZapSettings.Blatant.Cash.AutoDropAmount))
-        end
-        if ZapSettings.Blatant.Cash.AutoPickCash then
+        if zap.luaSettings.Blatant.Cash.AutoPickCash then
             pcall(function()
                 for _, v in pairs(Workspace.Ignored.Drop:GetChildren()) do
                     if v.Name == "MoneyDrop" then
@@ -2347,259 +1821,253 @@ RunService.RenderStepped:Connect(function()
                 end
             end)
         end
-        if ZapSettings.Blatant.Farming.ATMPick then
-            pcall(function()
-                for _, v in pairs(Workspace.Ignored.Drop:GetChildren()) do
-                    if v.Name == "MoneyDrop" then
-                        local MoneyMagnitude = (v.Position - LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-                        if MoneyMagnitude < 25 then
-                            fireclickdetector(v.ClickDetector)
-                        end 
-                    end
-                end
-            end)
-        end
-        if ZapSettings.Blatant.Movement.SpeedEnabled and ZapSettings.Blatant.Movement.SpeedType == "CFrame" then
-            if ZapSettings.Blatant.Movement.SpeedRenderType == "Fast" and Alive(LocalPlayer) then
-                if LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
-                    for i = 1, ZapSettings.Blatant.Movement.SpeedAmount do
-                        LocalPlayer.Character:TranslateBy(LocalPlayer.Character.Humanoid.MoveDirection)
-                    end
-                end
+        if zap.luaSettings.Blatant.Character.AntiBag then
+            if LocalPlayer.Character:FindFirstChild("Christmas_Sock") then
+                LocalPlayer.Character:FindFirstChild("Christmas_Sock"):Destroy()
             end
-        end
-        if ZapSettings.Blatant.Reaching.FistReach and LocalPlayer.Character.LeftHand.Transparency ~= 1 then
-            LocalPlayer.Character.LeftHand.Size = Vector3.new(45, 45, 45)
-            LocalPlayer.Character.RightHand.Size = Vector3.new(45, 45, 45)
-            LocalPlayer.Character.RightHand.Massless = true
-            LocalPlayer.Character.LeftHand.Massless = true
-            LocalPlayer.Character.RightHand.Transparency = 1
-            LocalPlayer.Character.LeftHand.Transparency = 1
-        end
-        if ZapSettings.Blatant.Reaching.MeleeReach then
-            local Tool = LocalPlayer.Character:FindFirstChildOfClass("Tool")
-            if Tool ~= nil and not Tool:FindFirstChild("Ammo") and TableLowerFind(ZapModule.Teleport.Melee, Tool.Name) ~= nil and Tool:FindFirstChild("Handle") then
-                if Tool.Handle.Transparency ~= 1 then
-                    Tool.Handle.Size = Vector3.new(45, 45, 45)
-                    Tool.Handle.Transparency = 1
-                end
-            end
-        else
-            local Tool = LocalPlayer.Character:FindFirstChildOfClass("Tool")
-            if Tool ~= nil and not Tool:FindFirstChild("Ammo") and TableLowerFind(ZapModule.Teleport.Melee, Tool.Name) ~= nil and Tool:FindFirstChild("Handle") then
-                if Tool.Handle.Transparency == 1 then
-                    if Tool.Name == "knife" then
-                        Tool.Handle.Size = Vector3.new(2.19574, 0.449288, 0.102495)
-                    end
-                    if Tool.Name == "bat" then
-                        Tool.Handle.Size = Vector3.new(0.559523, 4.68133, 0.559523)
-                    end
-                    if Tool.Name == "pencil" then
-                        Tool.Handle.Size = Vector3.new(0.375586, 1.9, 0.375587)
-                    end
-                    if Tool.Name == "pitchfork" then
-                        Tool.Handle.Size = Vector3.new(1.0553, 5.86135, 0.316619)
-                    end
-                    if Tool.Name == "shovel" then
-                        Tool.Handle.Size = Vector3.new(1.68383, 5.903, 0.337731)
-                    end
-                    Tool.Handle.Transparency = 0
-                end
-            end
-        end
-        if ZapSettings.Blatant.LegitAA.Enabled then
-            if ZapSettings.Blatant.LegitAA.AntiPointAt then
-                for i, v in next, Players:GetPlayers() do
-                    if v ~= LocalPlayer and Alive(v) and Alive(LocalPlayer) then
-                        local BodyEffects = v.Character:FindFirstChild("BodyEffects")
-                        local MousePos = BodyEffects:FindFirstChild("MousePos")
-                        if BodyEffects ~= nil and MousePos ~= nil then
-                            local EnemyMouseMagnitude = (LocalPlayer.Character.HumanoidRootPart.Position - MousePos.Value).Magnitude
-                            if ZapSettings.Blatant.LegitAA.AntiAimAtDistance > EnemyMouseMagnitude then
-                                Root.CFrame = Root.CFrame * CFrame.new(math.random(1, 2) == 1 and 2 or -2, 0, 0)
-                            end
-                        end
-                    end
-                end
-            end
-        end
-        if ZapSettings.Blatant.BlatantAA.Enabled then
-                if ZapSettings.Blatant.BlatantAA.AntiAimType == "Jitter" then
-                    Jitter(ZapSettings.Blatant.BlatantAA.AntiAimSpeed, ZapSettings.Blatant.BlatantAA.JitterAngle)
-                else
-                    Spin(ZapSettings.Blatant.BlatantAA.AntiAimSpeed)
-                end
-                if ZapSettings.Blatant.BlatantAA.NoAutoRotate then
-                    LocalPlayer.Character.Humanoid.AutoRotate = false
-                else
-                    LocalPlayer.Character.Humanoid.AutoRotate = true
-                end
-        else
-            LocalPlayer.Character.Humanoid.AutoRotate = true
-        end
-    end
-    if ZapSettings.Aiming.TargetAimSettings.UnlockTargetKnocked then
-        if ZapSettings.Aiming.TargetAimSettings.Target ~= nil and Players:FindFirstChild(ZapSettings.Aiming.TargetAimSettings.Target) then
-            if Knocked(Players:FindFirstChild(ZapSettings.Aiming.TargetAimSettings.Target)) then
-                ZapSettings.Aiming.TargetAimSettings.Target = nil
-            end
-        end
-    end
-    if ZapSettings.Aiming.SilentAim.ShowFOV then
-        SilentAimFOV.Visible = true
-        SilentAimFOV.Radius = ZapSettings.Aiming.FOV.SilentAimSize
-        SilentAimFOV.Filled = ZapSettings.Aiming.FOV.FOVFilled
-        SilentAimFOV.Transparency = ZapSettings.Aiming.FOV.Transparency
-        SilentAimFOV.NumSides = 100
-        SilentAimFOV.Color = ZapSettings.Aiming.SilentAim.FOVColor
-        SilentAimFOV.Position = Vector2.new(Mouse.X, Mouse.Y + GuiInset.Y)
-    else
-        SilentAimFOV.Visible = false
-    end
-    if ZapSettings.Aiming.Aimbot.Enabled then
-        if ZapSettings.Aiming.Aimbot.ShowFOV then
-            AimbotFOV.Visible = true
-            AimbotFOV.Radius = ZapSettings.Aiming.FOV.AimAssistSize
-            AimbotFOV.Filled = ZapSettings.Aiming.FOV.FOVFilled
-            AimbotFOV.Transparency = ZapSettings.Aiming.FOV.Transparency
-            AimbotFOV.NumSides = 100
-            AimbotFOV.Color = ZapSettings.Aiming.Aimbot.FOVColor
-            AimbotFOV.Position = Vector2.new(Mouse.X, Mouse.Y + GuiInset.Y)
-        else
-            AimbotFOV.Visible = false
-        end
-        if ZapSettings.Aiming.Aimbot.AimAssist and ZapSettings.Aiming.Aimbot.IsAiming then
-            local NearestTarget, NearestDistance = NearestType(ZapSettings.Aiming.Aimbot.UseNearestDistance and "Distance" or "Mouse")
-
-            if NearestTarget and (not ZapSettings.Aiming.Aimbot.GrabbedCheck or not Grabbing(NearestTarget)) and (not ZapSettings.Aiming.Aimbot.KnockedOutCheck or not Knocked(NearestTarget)) and (not ZapSettings.Aiming.Aimbot.ShowFOV or ZapSettings.Aiming.FOV.AimAssistSize > NearestDistance) and (not ZapSettings.Aiming.Aimbot.WallCheck or Visible(NearestTarget.Character.HumanoidRootPart, LocalPlayer.Character.HumanoidRootPart)) then
-                local TargetPart = (NearestTarget.Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall and NearestTarget.Character.LeftFoot or NearestTarget.Character[RandomTable(ZapSettings.Aiming.Aimbot.Hitboxes)])
-                local Prediction = (ZapSettings.Aiming.TargetAimSettings.MovementPrediction and TargetPart.CFrame + (TargetPart.Velocity * ZapSettings.Aiming.TargetAimSettings.MovementPredictionAmount) or TargetPart.CFrame + (TargetPart.Velocity * ZapSettings.Aiming.AimingSettings.GetVelocity))
-                
-                if ZapSettings.Aiming.AimbotSettings.AimAssistType == "Mouse" then
-                    local NearestPosition, NearestVisible = CurrentCamera:WorldToScreenPoint(Prediction.Position)
-                    local MouseLocation = CurrentCamera:WorldToScreenPoint(Mouse.Hit.Position)
-                    local EndPosition = (ZapSettings.Aiming.AimbotSettings.SmoothingTracing and Vector2.new((NearestPosition.X - MouseLocation.X) / ZapSettings.Aiming.AimbotSettings.SmoothingTracingAmount, (NearestPosition.Y - MouseLocation.Y) / ZapSettings.Aiming.AimbotSettings.SmoothingTracingAmount) or Vector2.new((NearestPosition.X - MouseLocation.X) / 1.4, (NearestPosition.Y - MouseLocation.Y) / 1.4))
-                    
-                    if NearestVisible then
-                        mousemoverel(EndPosition.X, EndPosition.Y)
-                    end
-                elseif ZapSettings.Aiming.AimbotSettings.AimAssistType == "Camera" then
-                    CurrentCamera.CFrame = CFrame.lookAt(CurrentCamera.CFrame.Position, Prediction.Position)
-                end
-            end
-        end
-    else
-        AimbotFOV.Visible = false
-    end
-end)
-
-spawn(function()
-    while wait(1 / 16) do
-        LagTick = math.clamp(ZapModule.LagTick + 1, 0, ZapSettings.Blatant.FakeLag.TriggerAmount)
-        if Alive(Player) and ZapSettings.Blatant.FakeLag.Enabled then
-            if LagTick == math.random(1, ZapSettings.Blatant.FakeLag.TriggerAmount) then
-                Network:SetOutgoingKBPSLimit(9e9)
-                ZapFolder:ClearAllChildren()
-                LagTick = 0
-                --[[
-                    if Settings.Visuals.PlayerESP.FakeLag.Cham then
-                        for i, v in pairs(Player.Character:GetChildren()) do
-                            if v:IsA("BasePart") and v.Name ~= "HumanoidRootPart" then
-                                local ShadowPart = Instance.new("Part")
-                                ShadowPart.CFrame = v.CFrame
-                                ShadowPart.Anchored = true
-                                ShadowPart.CanCollide = false
-                                ShadowPart.Material = Enum.Material.ForceField
-                                ShadowPart.Color = Settings.Visuals.PlayerESP.FakeLag.Color
-                                ShadowPart.Name = v.Name
-                                ShadowPart.Transparency = 0
-                                ShadowPart.Size = v.Size
-                                ShadowPart.Parent = FakeLagFolder
-                            end
-                        end
-                    end
-                ]]
-            else
-                if ZapSettings.Blatant.FakeLag.Enabled then
-                    Network:SetOutgoingKBPSLimit(1)
-                end
-            end
-        else
-            ZapFolder:ClearAllChildren()
-            Network:SetOutgoingKBPSLimit(9e9)
         end
     end
 end)
 
-local __namecall -- cock ;)
-__namecall = hookmetamethod(game, "__namecall", function(self, ...)
-    local Args = {...}
-    local Method = getnamecallmethod()
+game.StarterGui:SetCore("SendNotification", {
+    Title = "zap.lua";
+    Text = "Succesfully loaded!";
+    Icon = "http://www.roblox.com/asset/?id=8768441000";
+    Duration = "4";
+    callbakc = bindableFunction;
+})
+wait(8)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "zap.lua";
+    Text = "https://zap.lua.cf";
+    Icon = "http://www.roblox.com/asset/?id=8768441000";
+    Duration = "3";
+    callbakc = bindableFunction;
+    Button1 = "Okay!";
+})
 
-    if tostring(self.Name) == "MainEvent" and tostring(Method) == "FireServer" then
-        if Args[1] == "TeleportDetect" or Args[1] == "CHECKER_1" or Args[1] == "OneMoreTime" then
-            return
-        end
-    end
 
-    return __namecall(self, ...)
+print("___________________________zap.lua__________________________")
+print("| [zap.lua] Executed version: 6.0")
+print("| [zap.lua] Your user is: "..game.Players.LocalPlayer.Name.. "") 
+print("| [zap.lua] Your id is: "..game.Players.LocalPlayer.UserId.. "")
+print("| [zap.lua] Job id: " ..game.JobId.. "")
+print("| [zap.lua] Join us discord.gg/axq                 ")
+print("| [zap.lua] Made by ekso <@804245361894883339>     ")
+print("| [zap.lua] Website - https://zap.lua.cf         ")
+print("_________________________________________________________________")
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/chatspy.lua'))()
+
+local Players = game:GetService("Players")
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/blacklist.lua'))()
+
+Players.PlayerAdded:Connect(function(player)
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/blacklist.lua'))()
 end)
+wait(1)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
 
-local __index -- <3
-__index = hookmetamethod(game, "__index", function(self, key)
-    if self == Mouse and (tostring(key) == "Hit" or tostring(key) == "Target") then
-        if ZapSettings.Aiming.TargetAim.Enabled then
-            if ZapSettings.Aiming.TargetAim.Target ~= nil and ChanceTable(ZapSettings.Aiming.AimingSettings.HitChanceAmount) == "HitPercent" then
-                if Players:FindFirstChild(ZapSettings.Aiming.TargetAim.Target) ~= nil and (not ZapSettings.Aiming.TargetAim.GrabbedCheck or not Grabbing(Players[ZapSettings.Aiming.TargetAim.Target])) and (not ZapSettings.Aiming.TargetAim.KnockedOutCheck or not Knocked(Players[ZapSettings.Aiming.TargetAim.Target])) and (not ZapSettings.Aiming.TargetAim.ShowFOV or ZapSettings.Aiming.FOV.TargetAimSize > (LocalPlayer.Character.Head.Position - Players[ZapSettings.Aiming.TargetAim.Target].Character.Head.Position).Magnitude) and (not ZapSettings.Aiming.TargetAim.WallCheck or Visible(Players[ZapSettings.Aiming.TargetAim.Target].Character.HumanoidRootPart, LocalPlayer.Character.HumanoidRootPart)) then
-                    local TargetPart = (Players[ZapSettings.Aiming.TargetAim.Target].Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall and Players[ZapSettings.Aiming.TargetAim.Target].Character.LeftFoot or Players[ZapSettings.Aiming.TargetAim.Target].Character[RandomTable(ZapSettings.Aiming.TargetAim.Hitboxes)])
-                    local Prediction = (ZapSettings.Aiming.TargetAimSettings.MovementPrediction and TargetPart.CFrame + (TargetPart.Velocity * ZapSettings.Aiming.TargetAimSettings.MovementPredictionAmount) or TargetPart.CFrame + (TargetPart.Velocity * ZapSettings.Aiming.AimingSettings.GetVelocity))
+--[[-----------------------------------------------------------------------
 
-                    return (tostring(key) == "Hit" and Prediction or tostring(key) == "Target" and TargetPart)
-                end
-            end
-        else    
-            if ZapSettings.Aiming.SilentAim.Enabled and ChanceTable(ZapSettings.Aiming.AimingSettings.HitChanceAmount) == "HitPercent" then
-                local NearestTarget, NearestDistance = NearestType(ZapSettings.Aiming.SilentAim.UseNearestDistance and "Distance" or "Mouse")
-    
-                if NearestTarget and (not ZapSettings.Aiming.SilentAim.GrabbedCheck or not Grabbing(NearestTarget)) and (not ZapSettings.Aiming.SilentAim.KnockedOutCheck or not Knocked(NearestTarget)) and (not ZapSettings.Aiming.SilentAim.ShowFOV or ZapSettings.Aiming.FOV.SilentAimSize > NearestDistance) and (not ZapSettings.Aiming.SilentAim.WallCheck or IsVisible(NearestTarget.Character.Head.Position, {NearestTarget.Character, LocalPlayer.Character, CurrentCamera}) == true) then
-                    local TargetPart = (NearestTarget.Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall and NearestTarget.Character.LeftFoot or NearestTarget.Character[RandomTable(ZapSettings.Aiming.SilentAim.Hitboxes)])
-                    local Prediction = (ZapSettings.Aiming.TargetAimSettings.MovementPrediction and TargetPart.CFrame + (TargetPart.Velocity * ZapSettings.Aiming.TargetAimSettings.MovementPredictionAmount) or TargetPart.CFrame + (TargetPart.Velocity * ZapSettings.Aiming.AimingSettings.GetVelocity))
-    
-                    return (tostring(key) == "Hit" and Prediction or tostring(key) == "Target" and TargetPart)
-                end
-            end
-        end
-        
-    end
+██╗░░██╗░█████╗░░█████╗░██████╗░░██████╗███████╗███╗░░██╗░██████╗███████╗
+██║░░██║██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║██╔════╝██╔════╝
+███████║██║░░██║██║░░██║██║░░██║╚█████╗░████╗ ░░██╔██╗██║╚█████╗░█████╗░░
+██╔══██║██║░░██║██║░░██║██║░░██║░╚═══██╗██╔══╝░░██║╚████║░╚═══██╗██╔══╝░░
+██║░░██║╚█████╔╝╚█████╔╝██████╔╝██████╔╝███████╗██║░╚███║██████╔╝███████╗
+╚═╝░░╚═╝░╚════╝░░╚════╝░╚═════╝░╚═════╝░╚══════╝╚═╝░░╚══╝╚═════╝░╚══════╝
 
-    return __index(self, key)
-end)
-
-while wait() do
-    if ZapSettings.Aiming.TriggerBot.Enabled then
-        for i, v in next, Players:GetPlayers() do 
-            if Alive(v) then 
-                if Mouse.Target:IsDescendantOf(v.Character) then 
-                    mouse1press()
-                    wait()
-                    mouse1release()
-                    if ZapSettings.Aiming.TriggerBot.Delay then
-                        wait(ZapSettings.Aiming.TriggerBot.DelayAmount)
-                    end
-                end 
-            end
-        end
-    end
-end 
---[[
-    
-                    ███████╗░█████╗░██████╗░░░░██╗░░░░░██╗░░░██╗░█████╗░
-                    ╚════██║██╔══██╗██╔══██╗░░░██║░░░░░██║░░░██║██╔══██╗
-                    ░░███╔═╝███████║██████╔╝░░░██║░░░░░██║░░░██║███████║
-                    ██╔══╝░░██╔══██║██╔═══╝░░░░██║░░░░░██║░░░██║██╔══██║
-                    ███████╗██║░░██║██║░░░░░██╗███████╗╚██████╔╝██║░░██║
-                    ╚══════╝╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝░╚═════╝░╚═╝░░╚═╝
-                    If you found this, use this privete.
-                    This is made for free use so don't leak or paste.
-                    Thanks for using us <33
-]]
+-------------------------------------------------------------------------]]
+while true do
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("-[[[[-----------------]]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][]-------------------")
+warn("-[[[[][][][]---------------")
+warn("-[[[[][][][][][][][][------")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[-------------------]]]-")
+warn("-[[[[][][][][][][][][------")
+warn("-[[[[][][][]---------------")
+warn("-[[[[][]-------------------")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+print("                          ")
+print("                          ")
+print("                          ")
+print("                          ")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[[[[--------------]]]]-")
+warn("-[[[[[[[[-------------]]]]-")
+warn("-[[[[-[[[[------------]]]]-")
+warn("-[[[[--[[[[-----------]]]]-")
+warn("-[[[[---[[[[----------]]]]-")
+warn("-[[[[----[[[[---------]]]]-")
+warn("-[[[[-----[[[[--------]]]]-")
+warn("-[[[[------[[[[-------]]]]-")
+warn("-[[[[-------[[[[------]]]]-")
+warn("-[[[[--------[[[[-----]]]]-")
+warn("-[[[[---------[[[[----]]]]-")
+warn("-[[[[----------[[[[---]]]]-")
+warn("-[[[[-----------[[[[--]]]]-")
+warn("-[[[[------------[[[[-]]]]-")
+warn("-[[[[-------------[[[[]]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-----------------------]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+print("                          ")
+warn("---------------------------")
+warn("---------------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[-----------------------")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("-[[[[][][][][][][][][][]]]-")
+warn("---------------------------")
+warn("---------------------------")
+print("                          ")
+print("[zap.lua] Kicu kreci lody")
+print("[zap.lua] Kc waneska<3")
+wait(69420)
+end
