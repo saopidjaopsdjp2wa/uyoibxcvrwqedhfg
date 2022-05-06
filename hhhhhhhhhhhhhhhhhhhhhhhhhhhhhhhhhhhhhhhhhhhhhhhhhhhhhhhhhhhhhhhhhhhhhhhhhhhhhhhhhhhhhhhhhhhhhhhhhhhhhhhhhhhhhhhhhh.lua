@@ -1362,6 +1362,19 @@ CharacterSector:AddToggle('Anti Grab', false, function(State)
     ZapSettings.Blatant.Character.AntiGrab = State
 end)
 
+CharacterSector:AddToggle("Anti Slow", nil, function(gh)
+    if gh == true then
+        game:GetService('RunService'):BindToRenderStep("Anti-Slow", 0 , function()
+            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoWalkSpeed"):Destroy() end
+            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("ReduceWalk"):Destroy() end
+            if game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoJumping") then game.Players.LocalPlayer.Character.BodyEffects.Movement:FindFirstChild("NoJumping"):Destroy() end
+            if game.Players.LocalPlayer.Character.BodyEffects.Reload.Value == true then game.Players.LocalPlayer.Character.BodyEffects.Reload.Value = false end
+        end)
+    elseif gh == false then
+        game:GetService('RunService'):UnbindFromRenderStep("Anti-Slow")
+    end
+end)
+
 CharacterSector:AddToggle("Auto Stomp", nil, function(r)
     if r == true then
         game:GetService('RunService'):BindToRenderStep("Auto-Stomp", 0 , function()
