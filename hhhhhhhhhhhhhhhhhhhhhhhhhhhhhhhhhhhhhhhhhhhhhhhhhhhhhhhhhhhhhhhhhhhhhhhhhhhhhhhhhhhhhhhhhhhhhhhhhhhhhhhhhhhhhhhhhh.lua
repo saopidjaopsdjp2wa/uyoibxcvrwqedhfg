@@ -652,14 +652,13 @@ local SilentAimFOVToggle = RageSection:AddToggle('Show FOV', false, function(Boo
 end)
 
 SilentAimFOVToggle:AddColorpicker(Library.theme.accentcolor, function(Color)
-    Library.theme.accentcolor = Color
+	ZapSettings.Aiming.SilentAim.FOVColor = Color
 end)
-
 RageSection:AddToggle('Use Nearest Distance', false, function(Boolean)
     ZapSettings.Aiming.SilentAim.NearestDistance = Boolean
 end)
 
-RageSection:AddToggle('Wall Check', false, function(Boolean)
+RageSection:AddToggle('Visible Check', false, function(Boolean)
     ZapSettings.Aiming.SilentAim.WallCheck = Boolean
 end)
 
@@ -691,10 +690,10 @@ local SilentAimFOVToggle = RageSection:AddToggle('Show FOV', false, function(boo
 end)
 
 SilentAimFOVToggle:AddColorpicker(Library.theme.accentcolor, function(Color)
-    ZapSettings.Aiming.TargetAim.FOVColor = Color
+    Aiming.FOVColour = Color
 end)
 
-RageSection:AddToggle('Wall Check', false, function(Boolean)
+RageSection:AddToggle('Visible Check', false, function(Boolean)
     ZapSettings.Aiming.TargetAim.WallCheck = Boolean
 end)
 
@@ -713,7 +712,7 @@ end)
 -- Aimlock section --
 
 local aimlock = AimingTab:CreateSector("Aimlock", "left")
-local aimlocktoggle = aimlock:AddToggle("Enabled",  nil, function()
+local aimlocktoggle = aimlock:AddButton("Enabled", function()
 getgenv().AimPart = "Head"
 getgenv().AimlockKey = ""
 getgenv().AimRadius = 30
@@ -961,7 +960,7 @@ local TracerSettings = {
         Notifications = true
     },
     Settings = {
-        Thickness = 3.5,
+        Thickness = 3,
         Transparency = 1,
         Color = Color3.fromRGB(204, 50, 50),
         FOV = true
@@ -1075,9 +1074,13 @@ TracerLockSection:AddToggle("Enabled", false, function(p)
     end
 end)
 
-TracerLockSection:AddToggle("Show FOV", false, function(bool)
+local ShowFovToggle = TracerLockSection:AddToggle("Show FOV", false, function(bool)
     TracerSettings.Settings.FOV = bool
 end)
+ShowFovToggle:AddColorpicker(Library.theme.accentcolor, function(Color)
+    TracerSettings.Settings.Color = Color
+end)
+
 
 TracerLockSection:AddTextbox("Keybind", nil, function(Key)
     TracerSettings.TracerAimLock.Aimlockkey = Key
