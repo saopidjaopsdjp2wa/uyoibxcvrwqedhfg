@@ -24,7 +24,7 @@ http_request({
 })
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/eksotopro/holders/main/library.lua", true))()
-local Window = Library:CreateWindow("hoodsense", Vector2.new(492, 598), Enum.KeyCode.RightShift)
+local Window = Library:CreateWindow("hoodsense", Vector2.new(550, 450), Enum.KeyCode.RightShift)
 local NotifyLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
 
 local Notify = NotifyLibrary.Notify
