@@ -1793,28 +1793,14 @@ print("| [hoodsense.cc] Job id: " ..game.JobId.. "")
 print("| [hoodsense.cc] Join us discord.gg/zp                  ")
 print("| [hoodsense.cc] Made by ekso <@804245361894883339>     ")
 print("_________________________________________________________________")
-
 loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/chatspy.lua'))()
-
-local Players = game:GetService("Players")
-
 loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/blacklist.lua'))()
 
+local Players = game:GetService("Players")
 Players.PlayerAdded:Connect(function(player)
     loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/blacklist.lua'))()
 end)
-wait(1)
+wait(0.1)
 loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
-
---[[-----------------------------------------------------------------------
-
-██╗░░██╗░█████╗░░█████╗░██████╗░░██████╗███████╗███╗░░██╗░██████╗███████╗
-██║░░██║██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║██╔════╝██╔════╝
-███████║██║░░██║██║░░██║██║░░██║╚█████╗░████╗ ░░██╔██╗██║╚█████╗░█████╗░░
-██╔══██║██║░░██║██║░░██║██║░░██║░╚═══██╗██╔══╝░░██║╚████║░╚═══██╗██╔══╝░░
-██║░░██║╚█████╔╝╚█████╔╝██████╔╝██████╔╝███████╗██║░╚███║██████╔╝███████╗
-╚═╝░░╚═╝░╚════╝░░╚════╝░╚═════╝░╚═════╝░╚══════╝╚═╝░░╚══╝╚═════╝░╚══════╝
-
--------------------------------------------------------------------------]]
