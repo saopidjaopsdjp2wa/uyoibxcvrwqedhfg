@@ -8,7 +8,7 @@ local http_request = http_request or request or syn.request;
 local a = {
 	['cmd'] = 'INVITE_BROWSER',
 	['args'] = {
-		["code"] = 'zp'
+	["code"] = 'zp'
 	},
 	['nonce'] = game:GetService('HttpService'):GenerateGUID(true)
 }
@@ -596,7 +596,21 @@ Notify({
     Description = "Hello, " ..game.Players.LocalPlayer.DisplayName..".",
     Duration = 3
 })
-wait(0.2)
+local StaffId = {
+	[2452452863] = true,
+	[3449237561] = true,
+	[229198462] = true,
+}
+for _,v in pairs(game:GetService('Players'):GetChildren()) do
+if StaffId[v.UserId] then
+Notify({
+    Title = "Zap",
+    Description = "Woah! Developer Id found!",
+    Duration = 3
+})
+end
+end
+wait(0.3)
 Notify({
     Title = "Zap",
     Description = "Loading...",
@@ -913,33 +927,6 @@ end)
 
 -- Target Aim Settings Section --
 
-local TargetAimSettings = AimingTab:CreateSector("Target Aim Settings", "right")
-
-local TargetBind = TargetAimSettings:AddKeybind("Keybind", false, function()
-    
-end, function()
-    if ZapSettings.Aiming.TargetAim.Enabled then
-        local NearestTarget, NearestDistance = NearestMouse()
-        if NearestTarget and Visible(NearestTarget.Character.HumanoidRootPart, LocalPlayer.Character.HumanoidRootPart) then
-            ZapSettings.Aiming.TargetAim.Target = NearestTarget.Name
-            if ZapSettings.Aiming.TargetAimSettings.NotificationAlert then
-                Notify({
-                    Title = "Zap",
-                    Description = "Target " .. NearestTarget.Name,
-                    Duration = 3
-                })
-            end
-        end
-    end
-end)
-
-TargetAimSettings:AddToggle('Unlock Target Knocked', false, function(State)
-    ZapSettings.Aiming.TargetAimSettings.UnlockTargetKnocked = State
-end)
-
-TargetAimSettings:AddToggle('Notification Alert', false, function(State)
-    ZapSettings.Aiming.TargetAimSettings.NotificationAlert = State
-end)
 
 local TracerSettings = {
     TracerAimLock = {
@@ -1071,11 +1058,42 @@ ShowFovToggle:AddColorpicker(Library.theme.accentcolor, function(Color)
     TracerSettings.Settings.Color = Color
 end)
 
+TracerLockSection:AddTextbox("Prediction", 0.135, function(Value)
+    TracerSettings.TracerAimLock.Prediction = Value
+end)
 
-TracerLockSection:AddTextbox("Keybind", nil, function(Key)
+
+TracerLockSection:AddTextbox("Keybind", false, function(Key)
     TracerSettings.TracerAimLock.Aimlockkey = Key
 end)
 
+local TargetAimSettings = AimingTab:CreateSector("Target Aim Settings", "right")
+
+local TargetBind = TargetAimSettings:AddKeybind("Keybind", false, function()
+    
+end, function()
+    if ZapSettings.Aiming.TargetAim.Enabled then
+        local NearestTarget, NearestDistance = NearestMouse()
+        if NearestTarget and Visible(NearestTarget.Character.HumanoidRootPart, LocalPlayer.Character.HumanoidRootPart) then
+            ZapSettings.Aiming.TargetAim.Target = NearestTarget.Name
+            if ZapSettings.Aiming.TargetAimSettings.NotificationAlert then
+                Notify({
+                    Title = "Zap",
+                    Description = "Target " .. NearestTarget.Name,
+                    Duration = 3
+                })
+            end
+        end
+    end
+end)
+
+TargetAimSettings:AddToggle('Unlock Target Knocked', false, function(State)
+    ZapSettings.Aiming.TargetAimSettings.UnlockTargetKnocked = State
+end)
+
+TargetAimSettings:AddToggle('Notification Alert', false, function(State)
+    ZapSettings.Aiming.TargetAimSettings.NotificationAlert = State
+end)
 
 local WhitelistSection = AimingTab:CreateSector("Target Aim Whitelist", "right")
 
@@ -1419,7 +1437,7 @@ FarmingSector:AddToggle('Auto Lettuce', false, function(State)
     ZapSettings.Blatant.Character.AutoLettuce = State
 end)
 
-local CashSector = BlatantTab:CreateSector("Selling", "left")
+local CashSector = BlatantTab:CreateSector("Selling Tools", "left")
 
 local AutoDropToggle = CashSector:AddToggle("Auto Drop", false, function(State)
     ZapSettings.Blatant.Cash.AutoDrop = State
@@ -1920,6 +1938,28 @@ else
         Duration = 3
     })
 end
+
+local ChatSpam = {
+    S_1 = "",
+    S_2 = "All"
+}
+
+local ChatSection = MiscellaneousTab:CreateSector("Chat Spam", "left")
+local ChatSpammer = ChatSection:AddToggle("Chat Spam", false, function(s)
+    if s == true then
+    chat = true
+    while chat do
+    game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ChatSpam.S_1, ChatSpam.S_2)
+    wait(1)
+    end
+    elseif s == false then
+        chat = false
+    end
+end)
+
+ChatSection:AddTextbox("Message", "Zap is the best!", function(Value)
+    ChatSpam.S_1 = Value
+end)
 
 local CreditsSection = MiscellaneousTab:CreateSector("Developers", "right")
 local discord = CreditsSection:AddButton("Our Team", function(bool)
