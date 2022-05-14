@@ -1804,3 +1804,4 @@ Players.PlayerAdded:Connect(function(player)
 end)
 wait(0.1)
 loadstring(game:HttpGet('https://raw.githubusercontent.com/eksotopro/holders/main/emoji.lua'))()
+
